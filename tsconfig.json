@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "ESNext",
+    "module": "commonjs",
+    "lib": [
+      "ES2020",
+    ],
+    "moduleResolution": "node",
+    "importHelpers": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "plugins": [
+      {"transform": "./di-transformer-adapter.ts" },
+      {"transform": "ts-transformer-classname" },
+    ]
+  },
+  "include": [
+    "src",
+  ]
+}

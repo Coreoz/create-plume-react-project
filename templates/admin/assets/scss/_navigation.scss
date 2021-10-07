@@ -1,0 +1,18 @@
+#main-nav {
+  height: 100%;
+  overflow: auto;
+  width: 220px;
+  background-color: darken($background-color, 2%);
+  border-right: 1px solid $separator-color;
+
+  .app-info {
+    margin-top: $box-padding;
+    text-align: center;
+  }
+
+  .navigation {
+    .nested-items {
+      padding-left: $box-padding;
+    }
+  }
+}

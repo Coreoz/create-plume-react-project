@@ -1,0 +1,20 @@
+.popin {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(#000000, .4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .popin-container {
+    background-color: #ffffff;
+    box-shadow: 0 3px 5px 1px rgba(#000000, .25);
+    border-radius: 3px;
+    padding: $box-padding 0;
+    max-height: 100%;
+    overflow: auto;
+  }
+}

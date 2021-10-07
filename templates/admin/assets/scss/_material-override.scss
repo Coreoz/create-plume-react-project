@@ -1,0 +1,22 @@
+.app {
+
+  .MuiButton-containedSecondary { /* stylelint-disable-line selector-class-pattern */
+    background-color: $primary-color;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  .MuiButton-containedPrimary { /* stylelint-disable-line selector-class-pattern */
+    background-color: $secondary-color;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+
+  .MuiCircularProgress-colorPrimary { /* stylelint-disable-line selector-class-pattern */
+    color: $primary-color;
+  }
+}
