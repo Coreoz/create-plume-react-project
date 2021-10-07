@@ -1,0 +1,6 @@
+build/*
+di-transformer-adapter.ts
+.eslintrc.js
+stylelint.config.js
+vite.config.js
+jest.config.js

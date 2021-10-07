@@ -29,11 +29,23 @@ export default class Creator {
   }
 
   private updateTargetFilesWithProjectName() {
+    this.updatePackageJson();
+    this.updateIndexHtml();
+  }
+
+  private updatePackageJson() {
     const { projectName } = this.config.get();
     this.updateFileContent('package.json', (fileContent) => {
       const packageJsonContent = JSON.parse(fileContent);
       packageJsonContent.name = projectName;
       return JSON.stringify(packageJsonContent, null, 2);
+    });
+  }
+
+  private updateIndexHtml() {
+    const { projectName } = this.config.get();
+    this.updateFileContent('index.html', (fileContent) => {
+      return fileContent.replace('Plume admin', projectName);
     });
   }
 
