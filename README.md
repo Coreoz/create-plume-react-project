@@ -7,6 +7,10 @@ Usage
 -----
 Create a new project in the current folder with: `npx create-plume-react-project --template admin --projectName admin-vel`
 
+Once project is created, it can be started with:
+1. `yarn` to resolve dependencies
+2. `yarn start` to start the project
+
 Options
 -------
 Options are passed using this syntax: `npx create-plume-react-project --[optionName] [value]`
