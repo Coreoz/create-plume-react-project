@@ -11,6 +11,7 @@
     "create-project",
     "react",
     "typescript",
+    "archetype",
     "plume"
   ],
   "main": "./build/cli.js",
@@ -28,8 +29,6 @@
     "templates/**/*.*"
   ],
   "dependencies": {
-    "chalk": "^4.1.2",
-    "enquirer": "2.3.6",
     "fs-extra": "10.0.0",
     "minimist": "^1.2.5",
     "plume-ts-di": "^1.1.1",
