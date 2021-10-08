@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
-import Config from '../config/Config';
 import path from 'path';
 import { Logger } from 'simple-logging-system';
+import Config from '../config/Config';
 
 const logger = new Logger('Creator');
 
@@ -16,15 +16,20 @@ export default class Creator {
     try {
       this.copyTemplate();
       this.updateTargetFilesWithProjectName();
+      logger.info(`Project created in ${this.config.get().targetDirectory}`);
     } catch (e) {
       logger.error('Could not create project', e);
     }
   }
 
   private copyTemplate() {
+    const { targetDirectory } = this.config.get();
+    if (fs.readdirSync(targetDirectory).length > 0) {
+      throw new Error(`Target directory '${targetDirectory}' is not empty`);
+    }
     fs.copySync(
       path.resolve(this.config.get().templateDirectory, this.config.get().template),
-      this.config.get().targetDirectory,
+      targetDirectory,
     );
   }
 
@@ -44,9 +49,7 @@ export default class Creator {
 
   private updateIndexHtml() {
     const { projectName } = this.config.get();
-    this.updateFileContent('index.html', (fileContent) => {
-      return fileContent.replace('Plume admin', projectName);
-    });
+    this.updateFileContent('index.html', (fileContent) => fileContent.replace('Plume admin', projectName));
   }
 
   private updateFileContent(relativePath: string, fileTransformer: (fileContent: string) => string) {

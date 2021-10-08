@@ -1565,7 +1565,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.1":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -1742,8 +1742,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.28.5
     "@typescript-eslint/parser": ^4.28.5
     "@wessberg/di-compiler": ^2.2.5
-    chalk: ^4.1.2
-    enquirer: 2.3.6
     eslint: ^7.31.0
     eslint-config-airbnb-base: ^14.2.1
     eslint-config-airbnb-typescript: ^12.3.1
@@ -1992,7 +1990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enquirer@npm:2.3.6, enquirer@npm:^2.3.5":
+"enquirer@npm:^2.3.5":
   version: 2.3.6
   resolution: "enquirer@npm:2.3.6"
   dependencies:

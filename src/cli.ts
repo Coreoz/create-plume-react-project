@@ -16,4 +16,3 @@ ServerLogger.setupServerLogs(config.get().verbose);
 const logger = new Logger('cli');
 logger.debug('Configuration used:', config.get());
 injector.getInstance(Creator).create();
-logger.info(`Project created in ${config.get().targetDirectory}`);

@@ -18,7 +18,21 @@ So the `template` option can be used like this: `npx create-plume-react-project 
 | projectName       | my-project                             | Any string value        | The project name is used for in `package.json` and `index.html` files |
 | verbose           | false                                  | true, false             | True to display extra debug information during processing             |
 | targetDirectory   | Current directory                      | Any valid absolute path | The path in which the project will be initialized with the template   |
-| templateDirectory | The assets directory of the create cli | Any valid absolute path | The path in which templates will be used                              |
+| templateDirectory | The build/templates directory of the create cli | Any valid absolute path | The path in which templates will be used                              |
+
+Development
+-----------
+To set up the development environment to work on this create cli:
+1. run `yarn`
+2. run `yarn build`
+3. run `npm link`
+
+Then it is possible to open a new terminal anywhere on the local computer and run: `npx create-plume-react-project --template admin --projectName admin-vel`
+
+To test new changes, `yarn build` should be run.
+
+Templates are fully working projects, so modifications in the templates should be tested
+at least by running the modified templates.
 
 TODO
 ----

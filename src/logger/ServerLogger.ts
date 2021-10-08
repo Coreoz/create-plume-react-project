@@ -32,7 +32,7 @@ export default class ServerLogger {
     console.log(
       `${ServerLogger.levelToColor(level)}%s\x1b[0m`,
       message,
-      args.length === 0 ? '' : JSON.stringify(args),
+      ...args,
     );
   }
 
