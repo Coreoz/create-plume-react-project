@@ -43,3 +43,4 @@ TODO
 - Propose a command line interface using `enquirer` to ask the user to set interactively the options
 - Propose module options for the front template like `i18n`, `material`, `form`, `session`
 - Use `chalk` instead of doing terminal coloration by hand
+- Use `execa` or `pkg-install` to directly install the project

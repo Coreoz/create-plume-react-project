@@ -17,6 +17,7 @@ export default class Creator {
       this.copyTemplate();
       this.updateTargetFilesWithProjectName();
       logger.info(`Project created in ${this.config.get().targetDirectory}`);
+      logger.info('To start the project, you can now run the commands: yarn && yarn start');
     } catch (e) {
       logger.error('Could not create project', e);
     }
