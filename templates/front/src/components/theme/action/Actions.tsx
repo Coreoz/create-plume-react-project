@@ -7,10 +7,9 @@ export type ActionButtonProps = WithChildren<{
   cssClasses?: string;
 }>;
 
-// TODO à styliser
 export function ActionButton({
-                               cssClasses, onClick, loadingState, children,
-                             }: ActionButtonProps) {
+  cssClasses, onClick, loadingState, children,
+}: ActionButtonProps) {
   return (
     <div className={`action-container loading-button ${cssClasses}`}>
       <button

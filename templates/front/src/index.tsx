@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '@fontsource/roboto';
-import 'react-toastify/dist/ReactToastify.css';
 import 'micro-observables/batchingForReactDom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
