@@ -29,7 +29,7 @@
   "release-it": {
     "hooks": {
       "before:init": [
-        "npm run prepare-release"
+        "yarn prepare-release"
       ]
     }
   },
