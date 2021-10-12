@@ -5,7 +5,7 @@ React Plume project archetypes.
 
 Usage
 -----
-Create a new project in the current folder with: `npx create-plume-react-project --template admin --projectName admin-vel`
+Create a new project in the current folder with: `npm init plume-react-project --template admin --projectName admin-vel`
 
 Once project is created, it can be started with:
 1. `yarn` to resolve dependencies
