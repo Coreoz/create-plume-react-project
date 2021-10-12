@@ -64,7 +64,7 @@
     "build": "ttsc && yarn copy-templates",
     "eslint": "eslint src --ext .ts",
     "test": "jest --config jest.config.js",
-    "copy-templates": "mkdir -p build/templates && git ls-files --exclude-from=.gitignore | grep '^templates' | xargs -I0 cp --parents -u 0 build",
+    "copy-templates": "mkdir -p build/templates && git ls-files --exclude-from=.gitignore | grep '^templates' | xargs -I0 cp --parents -u 0 build && find build/templates -maxdepth 2 -name .gitignore | xargs -I0 mv 0 0_safe",
     "typescript": "tsc --noEmit",
     "clean": "rm -rf build",
     "lint": "yarn typescript && yarn eslint",

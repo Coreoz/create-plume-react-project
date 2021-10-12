@@ -32,6 +32,12 @@ export default class Creator {
       path.resolve(this.config.get().templateDirectory, this.config.get().template),
       targetDirectory,
     );
+    // strangely the .gitignore file is not copy when the CLI is executed by npx/npm init/yarn create/...
+    // => so this hack enables to bypass this issue (cf 'package.json' & the 'copy-templates' script)
+    fs.moveSync(
+      path.resolve(targetDirectory, '.gitignore_safe'),
+      path.resolve(targetDirectory, '.gitignore'),
+    );
   }
 
   private updateTargetFilesWithProjectName() {
