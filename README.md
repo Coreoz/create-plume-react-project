@@ -13,8 +13,8 @@ Once project is created, it can be started with:
 
 Options
 -------
-Options are passed using this syntax: `npx create-plume-react-project --[optionName] [value]`
-So the `template` option can be used like this: `npx create-plume-react-project --template admin`
+Options are passed using this syntax: `npm init plume-react-project --[optionName] [value]`
+So the `template` option can be used like this: `npm init plume-react-project --template admin`
 
 | Name              | Default value                          | Available values        | Description                                                           |
 |-------------------|----------------------------------------|-------------------------|-----------------------------------------------------------------------|
@@ -31,7 +31,7 @@ To set up the development environment to work on this create cli:
 2. run `yarn build`
 3. run `npm link`
 
-Then it is possible to open a new terminal anywhere on the local computer and run: `npx create-plume-react-project --template admin --projectName admin-vel`
+Then it is possible to open a new terminal anywhere on the local computer and run: `npm init plume-react-project --template admin --projectName admin-vel`
 
 To test new changes, `yarn build` should be run.
 
