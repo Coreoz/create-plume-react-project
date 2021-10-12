@@ -15,7 +15,7 @@ export default function LocaleSelector(
       {
         availableLocales.map((availableLocale) => (
           currentLocale === availableLocale
-            ? (<span>{availableLocale.name}</span>)
+            ? (<span key={availableLocale.code}>{availableLocale.name}</span>)
             : (
               <button
                 type="button"
