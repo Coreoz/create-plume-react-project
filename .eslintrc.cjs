@@ -39,6 +39,7 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
+    '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-explicit-any': 2,
   },
 };
