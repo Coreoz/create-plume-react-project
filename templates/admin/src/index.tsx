@@ -8,6 +8,7 @@ import 'micro-observables/batchingForReactDom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import './polyfill-loader';
 import installServicesModule from './services/services-module';
 import installComponentsModule from './components/components-module';
 import App from './components/App';

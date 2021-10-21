@@ -34,6 +34,27 @@ If that's the case:
 - If the application can be accessed in the browser at <http://localhost:3000>, it is possible to just reload the webpage: press `ctrl+r` keys
 - Else, you can force the first Typescript compilation with: `yarn build`
 
+Handling old browsers
+---------------------
+This project is supported only relatively new browsers.
+But anything that uses a feature that requires at least es2019 should be used sparsely and carefully.
+
+To have a look on advanced features used by the project, it is possible to:
+1. In `.eslintrc.js`, uncomment the line `'plugin:typescript-compat/recommended'`
+2. Run `yarn eslint`
+
+Errors regarding IE 11 will also be raised, but at least, it enables to have a global view of what features are being
+used.
+
+Valid features being used are listing in `.eslintrc.js` in the `polyfills` part.
+
+A banner is displayed in non-supported browsers. This is configured directly in the root `index.html` file.
+`index.html` uses essential main features detection to choose weather to display the banner in non-supported browsers
+or not.
+
+Opera Mini is by default not supported though it is used in some regions in the World. To support it, the best way
+would be to load dynamically `fetch` and `Promise` polyfills if these features are not available.
+
 Sources structure
 -----------------
 A well-structured project greatly improve maintainability.

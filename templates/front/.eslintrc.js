@@ -7,6 +7,11 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb-typescript',
+    'plugin:compat/recommended',
+    // à décommenter pour voir l'usage des fonctions un peu exotiques
+    // => par contre on ne peut pas laisser ce plugin tout le temps
+    // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
+    // 'plugin:typescript-compat/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,6 +26,23 @@ module.exports = {
     'react',
     '@typescript-eslint',
   ],
+  settings: {
+    polyfills: [
+      'AbortController',
+      'PromiseConstructor.allSettled',
+      // these methods are not present in IE 11, but this browser is not supported, so we consider them polyfilled
+      'Promise.catch',
+      'Promise.then',
+      'Promise.finally',
+      'PromiseConstructor.resolve',
+      'String.startsWith',
+      'Array.includes',
+      'ArrayConstructor.from',
+      'ObjectConstructor.values',
+      'Map.values',
+      'Map.keys',
+    ]
+  },
   rules: {
     'max-len': ["error", { "code": 120 }],
     'react/require-default-props': 0,

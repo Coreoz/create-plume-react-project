@@ -5,11 +5,19 @@
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <meta name="theme-color" content="#000000" />
     <link rel="stylesheet" href="/assets/scss/app.scss">
-    <title>Plume admin</title>
+    <title>Plume</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" class="app"></div>
     <script type="module" src="/ts-built/index.js"></script>
+    <script>
+      if (!window.Promise || !window.Promise.prototype.finally || !window.Array
+              || !window.Array.prototype.flatMap || !window.Map || !window.fetch) {
+        var s = document.createElement('script');
+        s.src = '/assets/js/outdated-browser.js';
+        document.head.appendChild(s);
+      }
+    </script>
   </body>
 </html>

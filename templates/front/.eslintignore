@@ -1,4 +1,5 @@
 build/*
+public/*
 di-transformer-adapter.ts
 .eslintrc.js
 stylelint.config.js
