@@ -100,7 +100,7 @@ Si votre projet comporte deux applications front (un FO et un BO), il faudra bie
 
 ### Configuration vite
 
-Dans le fichier `vite.config.js`, ajoutez le base path admin pour préciser le chemin sur lequel les sources vont être accessibles :
+Dans le fichier `vite.config.ts`, ajoutez le base path admin pour préciser le chemin sur lequel les sources vont être accessibles :
 
 ```
 import { defineConfig } from 'vite'
