@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import {
   Button, CircularProgress, Icon,
-} from '@material-ui/core';
+} from '@mui/material';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import {
   ActionButtonProps,

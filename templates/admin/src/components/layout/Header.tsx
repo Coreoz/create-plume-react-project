@@ -1,6 +1,6 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
-import { MenuItem } from '@material-ui/core';
+import { MenuItem } from '@mui/material';
 import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 import { User } from '../../services/session/User';
 import LocaleSelector from '../theme/LocaleSelector';

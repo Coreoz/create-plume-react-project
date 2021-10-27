@@ -1,4 +1,4 @@
-import { NativeSelect } from '@material-ui/core';
+import { NativeSelect } from '@mui/material';
 import React from 'react';
 import { useController } from 'react-hook-form';
 import { InputSelectProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';

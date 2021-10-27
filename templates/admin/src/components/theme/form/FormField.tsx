@@ -1,6 +1,6 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
-import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
+import { FormControl, FormHelperText, InputLabel } from '@mui/material';
 import { FormFieldProps } from '../../../lib/plume-admin-theme/form/FormFieldProps';
 import { formErrorToMessage } from '../../../lib/plume-form-error-messages/FormErrorMessages';
 import PlumeMessageResolver from '../../../lib/plume-messages/MessageResolver';

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@mui/material';
 import '@fontsource/roboto';
 import 'react-toastify/dist/ReactToastify.css';
 import 'micro-observables/batchingForReactDom';

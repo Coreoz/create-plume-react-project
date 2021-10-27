@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useForm } from 'react-hook-form';
-import { Alert } from '@material-ui/core';
+import { Alert } from '@mui/material';
 import SessionService from '../../../services/session/SessionService';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import FormField from '../../theme/form/FormField';

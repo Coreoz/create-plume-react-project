@@ -1,4 +1,4 @@
-import { MenuItem } from '@material-ui/core';
+import { MenuItem } from '@mui/material';
 import React from 'react';
 import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 import DropdownMenu, { useOnClickSubscriber } from './DropdownMenu';

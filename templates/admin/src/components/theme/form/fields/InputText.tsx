@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input } from '@material-ui/core';
+import { Input } from '@mui/material';
 import { useController } from 'react-hook-form';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 

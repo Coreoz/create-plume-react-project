@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Menu } from '@material-ui/core';
+import { Button, Icon, Menu } from '@mui/material';
 import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
 
 export type DropdownMenuType = WithChildren<{

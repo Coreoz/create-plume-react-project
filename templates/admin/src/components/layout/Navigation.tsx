@@ -4,7 +4,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import {
   Collapse,
   Icon, List, ListItem, ListItemIcon, ListItemText,
-} from '@material-ui/core';
+} from '@mui/material';
 import SessionService from '../../services/session/SessionService';
 import Permission from '../../services/session/Permission';
 import { HOME, USERS } from '../Routes';
