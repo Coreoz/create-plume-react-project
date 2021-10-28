@@ -13,7 +13,7 @@ export default class MessageResolver implements PlumeMessageResolver {
   constructor(private readonly messages: MessageService) {
   }
 
-  messageResolver(messageKey: string, ...messageArgs: string[]): string {
+  private messageResolver = (messageKey: string, ...messageArgs: string[]): string => {
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     const translation = (this.messages.t() as any)[messageKey];
     if (translation === undefined) {
@@ -28,7 +28,7 @@ export default class MessageResolver implements PlumeMessageResolver {
 
   // implementing PlumeMessageResolver
 
-  httpError(error: HttpPlumeError) {
+  httpError = (error: HttpPlumeError) => {
     return this.messages.httpError(error);
   }
 
