@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button, Icon, Menu } from '@mui/material';
-import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
 
-export type DropdownMenuType = WithChildren<{
+export type DropdownMenuType = {
   label: string;
   id: string;
   subscribeOnClick?: (onClick: () => void) => void;
-}>;
+  children?: React.ReactNode;
+};
 
 /**
  * a hook-ish function used for the {@link DropdownMenu} so that the DropdownMenu knows when an item is clicked.

@@ -1,15 +1,14 @@
 import { FieldError } from 'react-hook-form';
-import { WithChildren } from '../../ts-react-children-type/WithChildren';
 
-export type FormFieldProps = WithChildren<{
+export type FormFieldProps = {
   /**
    * The identifier of the input, so the label and the error fields are correctly refering the input
    */
-  inputId?: string,
+  inputId?: string;
   /**
    * The optional label that will be display next to the form field
    */
-  label?: string,
+  label?: string;
   /**
    * The field optional error object returned by the `useForm` hook.
    * For example:
@@ -21,7 +20,7 @@ export type FormFieldProps = WithChildren<{
    * </FormField>
    * ```
    */
-  error?: FieldError,
+  error?: FieldError;
   /**
    * The mapping function that will be called if {@link error} is set
    * to try to resolve the corresponding message depending on the error type.
@@ -45,5 +44,9 @@ export type FormFieldProps = WithChildren<{
    *
    * The usage of `errorMessageMapping` requires the FormField error field to be set in order to be executed
    */
-  errorMessageMapping?: (error: FieldError) => string | undefined,
-}>;
+  errorMessageMapping?: (error: FieldError) => string | undefined;
+  /**
+   * The field content children nodes
+   */
+  children?: React.ReactNode;
+};

@@ -1,7 +1,6 @@
 import { FocusEventHandler } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
-import { WithChildren } from '../../ts-react-children-type/WithChildren';
 
 export type InputTextProps = {
   type?: string;
@@ -18,7 +17,7 @@ export type InputTextProps = {
   onBlur?: FocusEventHandler<unknown>;
 };
 
-export type InputSelectProps = WithChildren<{
+export type InputSelectProps = {
   name: string;
   id?:string;
   required?:boolean;
@@ -26,4 +25,5 @@ export type InputSelectProps = WithChildren<{
   defaultValue?: string | number;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control: Control<any>;
-}>;
+  children?: React.ReactNode;
+};

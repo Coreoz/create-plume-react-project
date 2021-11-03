@@ -1,10 +1,11 @@
-import { WithChildren } from '../../ts-react-children-type/WithChildren';
 import { IconType } from '../../../components/theme/IconType';
 
-export type LayoutPageTitleProps = WithChildren<{
+export type LayoutPageTitleProps = {
   icon?: IconType;
-}>;
+  children?: React.ReactNode;
+};
 
-export type PanelProps = WithChildren<{
+export type PanelProps = {
   icon?: IconType;
-}>;
+  children?: React.ReactNode;
+};

@@ -1,11 +1,11 @@
 import React from 'react';
-import { WithChildren } from '../../../lib/ts-react-children-type/WithChildren';
 
-export type ActionButtonProps = WithChildren<{
+export type ActionButtonProps = {
   onClick?: () => void;
   loadingState?: boolean;
   cssClasses?: string;
-}>;
+  children?: React.ReactNode;
+};
 
 export function ActionButton({
   cssClasses, onClick, loadingState, children,

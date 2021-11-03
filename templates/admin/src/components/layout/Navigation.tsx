@@ -8,7 +8,6 @@ import {
 import SessionService from '../../services/session/SessionService';
 import Permission from '../../services/session/Permission';
 import { HOME, USERS } from '../Routes';
-import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
 import { IconType } from '../theme/IconType';
 import MessageService from '../../i18n/messages/MessageService';
 
@@ -27,11 +26,12 @@ const LinkListItem = ({ icon, route, label } : LinkListItemProps) => (
   </ListItem>
 );
 
-type NestedItemProps = WithChildren<{
+type NestedItemProps = {
   icon?: IconType;
   opened?: boolean;
   label: string;
-}>;
+  children?: React.ReactNode;
+};
 
 const NestedItem = ({
   icon, label, opened, children,
