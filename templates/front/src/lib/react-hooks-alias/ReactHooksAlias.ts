@@ -33,3 +33,23 @@ export function useOnComponentUnMounted(callback: () => void): void {
 export function useOnDependenciesChange(callback: () => void, dependencies: DependencyList): void {
   useEffect(callback, dependencies);
 }
+
+/**
+ * Hook to run only once some code AFTER the component has been first rendered with SSR support.
+ * For SSR server side execution, the code will be executed BEFORE the rendering of the component.
+ *
+ * SSR is detected using the condition `typeof process !== 'undefined'``. See https://stackoverflow.com/a/35813135
+ *
+ * If for some reason SSR works differently on a project, this hook should be copied and modified
+ * according to the project needs.
+ * @param callback The function that will be called once after the component has been rendered
+ */
+export function useOnComponentMountedWithSsrSupport(callback: () => void): void {
+  if (typeof process !== 'undefined') {
+    // server context
+    useOnBeforeComponentRendered(callback);
+  } else {
+    // browser context
+    useOnComponentMounted(callback);
+  }
+}
