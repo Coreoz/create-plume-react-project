@@ -40,7 +40,7 @@ export function ActionLink({
 }
 
 export function ActionButton({
-  style, icon, cssClasses, onClick, loadingState, children,
+  style, icon, cssClasses, onClick, isLoading, children,
 }: ActionButtonProps) {
   return (
     <div className={`action-container loading-button ${cssClasses}`}>
@@ -48,13 +48,13 @@ export function ActionButton({
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
         variant="contained"
-        disabled={loadingState}
+        disabled={isLoading}
         color={actionStyleToCssClass(style)}
         startIcon={icon && <Icon>{icon}</Icon>}
       >
         {children}
       </Button>
-      {loadingState && (
+      {isLoading && (
       <div className="loading-progress">
         <CircularProgress size="auto" />
       </div>

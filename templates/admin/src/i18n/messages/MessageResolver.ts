@@ -24,13 +24,11 @@ export default class MessageResolver implements PlumeMessageResolver {
       return translation(...messageArgs);
     }
     return translation;
-  }
+  };
 
   // implementing PlumeMessageResolver
 
-  httpError = (error: HttpPlumeError) => {
-    return this.messages.httpError(error);
-  }
+  httpError = (error: HttpPlumeError) => this.messages.httpError(error);
 
   t = this.messageResolver;
 }

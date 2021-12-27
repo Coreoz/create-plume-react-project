@@ -10,7 +10,7 @@ export default class ApiHttpClientAuthenticated implements PlumeAdminHttpClient 
     private readonly sessionService: SessionService) {
   }
 
-  rawRequest(method: HttpMethod, path: string): HttpRequest<Promise<Response>> {
+  rawRequest(method: HttpMethod, path: string): HttpRequest<PlumeHttpPromise<Response>> {
     return this
       .httpClient
       .rawRequest(method, path)

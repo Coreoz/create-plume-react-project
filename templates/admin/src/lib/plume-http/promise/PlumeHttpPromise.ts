@@ -1,97 +1,133 @@
 import { Logger } from 'simple-logging-system';
 import { genericError, HttpPlumeError, HttpPlumeResponse } from '../client/PlumeHttpResponse';
-import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 
 const logger = new Logger('PlumeHttpPromise');
 
-export interface PlumeHttpPromiseConsumeOnly<T> {
-  then(consumer: (result: T) => void): PlumeHttpPromiseConsumeOnly<T>;
-  catch(consumer: (error: HttpPlumeError) => void): PlumeHttpPromiseConsumeOnly<T>;
+/**
+ * A function that takes a parameter of type `P` and returns a result of type `R`
+ */
+export interface PromiseFunction<P, R> {
+  (parameter: P): R;
 }
 
-export default class PlumeHttpPromise<T> implements PlumeHttpPromiseConsumeOnly<T> {
-  private thenConsumer?: (result: T) => void = undefined;
+export function httpErrorHandler<T>(httpResponse: HttpPlumeResponse<T>): T {
+  if (httpResponse.error !== undefined) {
+    // We actually want to through an object literal and not and `Error`
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    throw httpResponse.error;
+  }
+  if (httpResponse.response === undefined) {
+    logger.error('Weird, the http result is not recognized');
+    // We actually want to through an object literal and not and `Error`
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    throw genericError;
+  }
+  return httpResponse.response;
+}
 
-  private catchConsumer?: (error: HttpPlumeError) => void = undefined;
+/**
+ * Convert a `Promise<HttpPlumeResponse<T>>` to a `Promise<T>`.
+ *
+ * In case an HTTP error is returned by `HttpPlumeResponse<T>`, a rejected `Promise` is issued
+ * with the error object {@link HttpPlumeError}
+ * @param httpPromise The `Promise` to be unwrapped
+ */
+export function unwrapHttpPromise<T>(httpPromise: Promise<HttpPlumeResponse<T>>): Promise<T> {
+  return httpPromise.then(httpErrorHandler);
+}
 
-  private isConsumedRaw: boolean;
+export function safeThen<P, R>(thenFunction: PromiseFunction<P, R>, debugContext?: object): PromiseFunction<P, R> {
+  return (parameter: P) => {
+    try {
+      return thenFunction(parameter);
+    } catch (e) {
+      logger.error('Error applying then function', { debugContext, parameter }, e);
+      // We actually want to through an object literal and not and `Error`
+      // eslint-disable-next-line @typescript-eslint/no-throw-literal
+      throw genericError;
+    }
+  };
+}
 
-  constructor(private readonly request: HttpRequest<unknown>, private readonly promise: Promise<HttpPlumeResponse<T>>) {
-    this.isConsumedRaw = false;
-    // setTimeout enables PlumeHttpPromise users to set their then and catch functions
-    setTimeout(() => {
-      if (this.isConsumedRaw) {
-        return;
+export function safeCatch<R>(catchFunction: PromiseFunction<HttpPlumeError, R>, debugContext?: object)
+  : PromiseFunction<unknown, R> {
+  return (httpError: unknown) => {
+    if (httpError && typeof httpError === 'object' && (httpError as HttpPlumeError).errorCode !== undefined) {
+      try {
+        return catchFunction(httpError as HttpPlumeError);
+      } catch (e) {
+        logger.error('Error applying catch function', { debugContext, httpError }, e);
+        // We actually want to through an object literal and not and `Error`
+        // eslint-disable-next-line @typescript-eslint/no-throw-literal
+        throw genericError;
       }
+    }
+    logger.error('Error thrown is not an httpError', { debugContext, httpError });
+    // We actually want to through an object literal and not and `Error`
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    throw genericError;
+  };
+}
 
-      promise
-        .then((result) => {
-          if (result.error !== undefined) {
-            if (this.catchConsumer !== undefined) {
-              logger.info('Caught http error', { request, response: result });
-              PlumeHttpPromise.executeCatchConsumer(request, result.error, this.catchConsumer);
-            } else {
-              logger.warn('Ignored http error', { request, response: result });
-            }
-          } else if (result.response !== undefined) {
-            if (this.thenConsumer !== undefined) {
-              try {
-                this.thenConsumer(result.response);
-              } catch (e) {
-                logger.error('Error consuming http result', { request, response: result }, e);
-              }
-            } else {
-              logger.info('Ignored http result', { request, response: result });
-            }
-          } else {
-            logger.error('Weird, the http result is not recognized', { request, response: result });
-            if (this.catchConsumer !== undefined) {
-              PlumeHttpPromise.executeCatchConsumer(request, genericError, this.catchConsumer);
-            }
-          }
-        })
-        .catch((error) => logger.error('uncaught error catch by HttpPlumePromise', request, error));
+/**
+ * A mutable safe `Promise` that ensures:
+ * - Either a then function is provided or either an info log statement will be issued
+ * - Either a catch function is provided or either a warning log statement will be issued
+ * - Then and Catch functions are wrapped to ensure that if an error occurs during the execution,
+ * an error statement is issued
+ */
+export default class PlumeHttpPromise<T> {
+  private isThenAttached: boolean;
+
+  private isCaughtAttached: boolean;
+
+  // protected visibility for testing purpose only
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected promise: Promise<any>;
+
+  constructor(basePromise: Promise<T>, private readonly debugContext?: object) {
+    this.isThenAttached = false;
+    this.isCaughtAttached = false;
+    this.promise = basePromise;
+    setTimeout(() => {
+      if (!this.isThenAttached) {
+        this.promise.then((response) => {
+          logger.info('Ignored HTTP result', { debugContext, response });
+        });
+      }
+      this.promise.catch((httpError) => {
+        if (this.isCaughtAttached) {
+          logger.debug('Caught HTTP error', { debugContext, httpError });
+        } else {
+          logger.warn('Ignored HTTP error', { debugContext, httpError });
+        }
+      });
     }, 0);
   }
 
-  rawPromise() {
-    if (this.thenConsumer !== undefined || this.catchConsumer !== undefined) {
-      throw new Error('Trying to get the raw promise whereas consumers have already been defined');
-    }
-    this.isConsumedRaw = true;
+  then<R = T>(thenFunction: PromiseFunction<T, R>): PlumeHttpPromise<R> {
+    this.isThenAttached = true;
+    this.promise = this.promise.then(safeThen(thenFunction));
+    return this as unknown as PlumeHttpPromise<R>;
+  }
+
+  catch<R = T>(catchFunction: PromiseFunction<HttpPlumeError, R>): PlumeHttpPromise<R> {
+    this.isCaughtAttached = true;
+    this.promise = this.promise.catch(safeCatch(catchFunction));
+    return this as unknown as PlumeHttpPromise<R>;
+  }
+
+  /**
+   * Returns the corresponding raw `Promise`.
+   *
+   * - Either this should be called after {@link then} and {@link catch} functions are attached
+   * - Either then are catch functions should be attached to the returned `Promise`. Usage of {@link safeThen}
+   * and {@link safeCatch} is recommended for that
+   */
+  toPromise(): Promise<T> {
+    // When manipulating the raw promise, we cannot keep track of then() and catch() methods being called
+    this.isThenAttached = true;
+    this.isCaughtAttached = true;
     return this.promise;
-  }
-
-  then(consumer: (result: T) => void): PlumeHttpPromiseConsumeOnly<T> {
-    this.thenConsumer = PlumeHttpPromise.toUniqueConsumer(consumer, this.thenConsumer);
-    return this;
-  }
-
-  catch(consumer: (error: HttpPlumeError) => void): PlumeHttpPromiseConsumeOnly<T> {
-    this.catchConsumer = PlumeHttpPromise.toUniqueConsumer(consumer, this.catchConsumer);
-    return this;
-  }
-
-  private static executeCatchConsumer(
-    request: HttpRequest<unknown>, error: HttpPlumeError, catchConsumer: (error: HttpPlumeError) => void,
-  ) {
-    try {
-      catchConsumer(error);
-    } catch (e) {
-      logger.error('Error consuming http error', { request, error }, e);
-    }
-  }
-
-  private static toUniqueConsumer<U>(
-    newConsumer: (arg: U) => void,
-    baseConsumer?: (arg: U) => void,
-  ) {
-    if (baseConsumer !== undefined) {
-      return ((arg: U) => {
-        baseConsumer(arg);
-        newConsumer(arg);
-      });
-    }
-    return newConsumer;
   }
 }

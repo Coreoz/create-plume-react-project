@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import UserApi from '../api/UserApi';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
-import useLoader from '../../plume-http/hook/PlumeHttpHookLoader';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
 import useConfirmation from '../../react-hook-confirm/ReactHookConfirm';
@@ -14,6 +13,7 @@ import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolver from '../../plume-messages/MessageResolver';
 import NotificationEngine from '../../plume-notification/NotificationEngine';
 import { makeErrorMessageMapping } from '../../plume-form-error-messages/FormErrorMessages';
+import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 
 type UsersRouteParams = {
   userId: string,
@@ -87,7 +87,7 @@ export default class UsersEdit {
 
     const trySaveUser = (userToSave: AdminUserParameters) => {
       if (validatePasswordAndConfirmationEmptiness(userToSave) && validatePasswordAndConfirmation(userToSave)) {
-        savingLoader.withLoading(this
+        savingLoader.monitor(this
           .userApi
           .save(userToSave)
           .then((createdUser) => {
@@ -108,7 +108,7 @@ export default class UsersEdit {
     const confirmDeleteUser = useConfirmation();
 
     const tryDeleteUser = (idUser: string) => {
-      deletingLoader.withLoading(this
+      deletingLoader.monitor(this
         .userApi
         .delete(idUser)
         .then(() => {
@@ -275,13 +275,13 @@ export default class UsersEdit {
                   icon="delete"
                   style={ActionStyle.DANGER}
                   onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
-                  loadingState={deletingLoader.loadingState}
+                  isLoading={deletingLoader.isLoading}
                 >
                   {this.messages.t('action.delete')}
                 </this.theme.actionButton>
                 )
               }
-              <this.theme.actionButton icon="save" style={ActionStyle.PRIMARY} loadingState={savingLoader.loadingState}>
+              <this.theme.actionButton icon="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
                 {this.messages.t('action.save')}
               </this.theme.actionButton>
             </this.theme.actionsContainer>

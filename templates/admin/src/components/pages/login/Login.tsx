@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useForm } from 'react-hook-form';
@@ -6,12 +6,11 @@ import { Alert } from '@mui/material';
 import SessionService from '../../../services/session/SessionService';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import FormField from '../../theme/form/FormField';
-import useLoader from '../../../lib/plume-http/hook/PlumeHttpHookLoader';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
-import { HttpPlumeError } from '../../../lib/plume-http/client/PlumeHttpResponse';
 import InputText from '../../theme/form/fields/InputText';
 import { HOME } from '../../Routes';
 import MessageService from '../../../i18n/messages/MessageService';
+import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 
 export default function Login() {
   const sessionService = getGlobalInstance(SessionService);
@@ -22,8 +21,6 @@ export default function Login() {
     return <Redirect to={{ pathname: HOME }} />;
   }
 
-  const [httpError, setHttpError] = useState<HttpPlumeError>();
-
   const {
     handleSubmit, control, formState: { errors },
   } = useForm<SessionCredentials>();
@@ -31,17 +28,15 @@ export default function Login() {
   const loader = useLoader();
 
   const tryAuthenticate = (credentials: SessionCredentials) => {
-    loader.withLoading(sessionService
-      .authenticate(credentials)
-      .catch(setHttpError));
+    loader.monitor(sessionService.authenticate(credentials));
   };
 
   return (
     <div className="login-page">
       <h1>Plume Admin</h1>
       <div className="login-box">
-        {httpError && (
-          <Alert className="form-errors" severity="error">{messageService.httpError(httpError)}</Alert>
+        {loader.error && (
+          <Alert className="form-errors" severity="error">{messageService.httpError(loader.error)}</Alert>
         )}
         <strong>{messages['login.title']}</strong>
         <form onSubmit={handleSubmit(tryAuthenticate)}>
@@ -59,7 +54,7 @@ export default function Login() {
             />
           </FormField>
           <ActionsContainer>
-            <ActionButton cssClasses="" loadingState={loader.loadingState}>
+            <ActionButton cssClasses="" isLoading={loader.isLoading}>
               {messages['action.authenticate']}
             </ActionButton>
           </ActionsContainer>

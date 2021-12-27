@@ -23,7 +23,7 @@ export default class PlumeHttpClientHelpers {
       .finally(() => clearTimeout(timeoutHandle));
   }
 
-  static executeRest<T>(httpRequest: HttpRequest<unknown>) {
+  static executeRest<T>(httpRequest: HttpRequest<unknown>): Promise<HttpPlumeResponse<T>> {
     return <Promise<HttpPlumeResponse<T>>> PlumeHttpClientHelpers
       .execute(httpRequest)
       .then(PlumeHttpClientHelpers.serverErrorHandler)
