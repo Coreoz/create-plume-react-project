@@ -24,7 +24,10 @@ export default class GlobalErrorBoundary
       error,
       errorInfo,
     });
-    logger.error(error.toString(), errorInfo.componentStack);
+    logger.error(
+      `${error.name}: ${error.message}`,
+      { stack: error.stack, componentStack: errorInfo.componentStack },
+    );
   }
 
   render() {
