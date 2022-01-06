@@ -1,3 +1,6 @@
+/**
+ * Represent an HTTP method.
+ */
 enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
