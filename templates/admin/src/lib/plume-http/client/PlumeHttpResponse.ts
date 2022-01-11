@@ -21,6 +21,9 @@ export type HttpPlumeResponse<T> = {
   response?: T,
 };
 
+export const makeErrorPromiseResponse = <T>(error: HttpPlumeError): Promise<HttpPlumeResponse<T>> => Promise
+  .resolve<HttpPlumeResponse<T>>({ error });
+
 /**
  * A generic error used to represent an unknown error in an execution.
  */
