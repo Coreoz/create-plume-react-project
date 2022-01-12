@@ -21,13 +21,13 @@ export interface PromiseFunction<P, R> {
  */
 export function processHttpResponse<T>(httpResponse: HttpPlumeResponse<T>): T {
   if (httpResponse.error !== undefined) {
-    // We actually want to through an object literal and not and `Error`
+    // We actually want to throw an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw httpResponse.error;
   }
   if (httpResponse.response === undefined) {
     logger.error('Weird, the http result is not recognized');
-    // We actually want to through an object literal and not and `Error`
+    // We actually want to throw an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw genericError;
   }
