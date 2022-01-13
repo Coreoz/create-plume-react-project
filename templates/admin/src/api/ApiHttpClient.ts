@@ -2,7 +2,7 @@ import HttpMethod from '../lib/simple-http-request-builder/HttpMethod';
 import HttpRequest from '../lib/simple-http-request-builder/HttpRequest';
 import PlumeHttpPromise, { unwrapHttpPromise } from '../lib/plume-http/promise/PlumeHttpPromise';
 import jsonFetchClient from '../lib/plume-http/client/JsonFetchClient';
-import rawFetchClient from '../lib/plume-http/client/RawFetchClient';
+import fetchClient from '../lib/plume-http/client/FetchClient';
 
 const baseUrl = '/api';
 
@@ -11,7 +11,7 @@ export default class ApiHttpClient {
   rawRequest(method: HttpMethod, path: string): HttpRequest<PlumeHttpPromise<Response>> {
     return new HttpRequest<PlumeHttpPromise<Response>>(
       (httpRequest) => new PlumeHttpPromise<Response>(
-        unwrapHttpPromise(rawFetchClient(httpRequest)),
+        unwrapHttpPromise(fetchClient(httpRequest)),
         httpRequest,
       ),
       baseUrl,
