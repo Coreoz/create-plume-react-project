@@ -1,5 +1,6 @@
+import { useRef, useState } from 'react';
 import { DataLoader } from './observableLoaderHook';
-import { useOnComponentMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { useOnComponentMounted, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 import useLoader, { LoadingPromise } from './promiseLoaderHook';
 
 /**
@@ -11,16 +12,28 @@ import useLoader, { LoadingPromise } from './promiseLoaderHook';
  * @param dataPromise The function that makes the call that returns a `Promise`.
  * This function is called as soon as the component has been mounted, see {@link useOnComponentMounted}.
  */
-export default function useDataLoader(dataPromise: () => LoadingPromise): DataLoader {
+export default function useDataLoader<T>(dataPromise: () => LoadingPromise<T>): DataLoader<T> {
+  const [data, setData] = useState<T>();
+  const isMountedRef = useRef<boolean>(true);
   const loader = useLoader();
-  const dataLoader = () => loader.monitor(dataPromise());
+  const dataLoader = () => loader.monitor(dataPromise().then((result) => {
+    // don't update state if the component is unmounted to avoid errors
+    if (isMountedRef) {
+      setData(result);
+    }
+  }));
 
   useOnComponentMounted(dataLoader);
+
+  useOnComponentUnMounted(() => {
+    isMountedRef.current = false;
+  });
 
   return {
     isLoaded: loader.isLoaded,
     isLoading: loader.isLoading,
     error: loader.error,
     loader: dataLoader,
+    data,
   };
 }
