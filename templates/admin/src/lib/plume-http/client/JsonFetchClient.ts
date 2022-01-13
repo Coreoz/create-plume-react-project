@@ -2,13 +2,13 @@ import { Logger } from 'simple-logging-system';
 import {
   genericError, HttpError, HttpResponse, toErrorResponsePromise,
 } from './HttpResponse';
-import fetchClient, { FetchResponseHandler } from './FetchClient';
+import fetchClient from './FetchClient';
 import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 import validateBasicStatusCodes from './FetchStatusValidators';
 
 const logger = new Logger('JsonFetchClient');
 
-export const jsonContentTypeValidator: FetchResponseHandler = (
+export const jsonContentTypeValidator = (
   response: Response,
   jsonContentType: string = 'application/json',
 ) => {
@@ -34,7 +34,7 @@ export const defaultJsonErrorMapper: JsonErrorMapper = (response: Response, json
   return json;
 };
 
-export const fetchJsonResponse: FetchResponseHandler = (
+export const toJsonResponse = (
   response: Response,
   jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper,
 ) => response
@@ -58,7 +58,7 @@ export const fetchJsonResponse: FetchResponseHandler = (
 
 const defaultJsonFetchClient = <T>(httpRequest: HttpRequest<unknown>)
   : Promise<HttpResponse<T>> => fetchClient(
-    httpRequest, validateBasicStatusCodes, jsonContentTypeValidator, fetchJsonResponse,
+    httpRequest, validateBasicStatusCodes, jsonContentTypeValidator, toJsonResponse,
   );
 
 export default defaultJsonFetchClient;
