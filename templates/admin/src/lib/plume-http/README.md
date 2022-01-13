@@ -1,6 +1,8 @@
 HTTP Client
 ===========
 
+TODO explain step by step how to create an HTTP client tailored for the XYZ API.
+
 This library provides a generic HTTP client to simplify the HTTP exchanges with a REST and non-REST remote servers.
 
 This library focus mainly on HTTP calls that comply to a backend made with the
