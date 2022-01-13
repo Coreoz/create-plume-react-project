@@ -1,4 +1,4 @@
-import { HttpPlumeError } from '../plume-http/client/PlumeHttpResponse';
+import { HttpError } from '../plume-http/client/HttpResponse';
 
 export interface MessageResolver {
   (messageKey: string, ...messageArgs: string[]): string;
@@ -13,5 +13,5 @@ export interface MessageResolver {
 export default abstract class PlumeMessageResolver {
   abstract t: MessageResolver;
 
-  abstract httpError(error: HttpPlumeError): string;
+  abstract httpError(error: HttpError): string;
 }

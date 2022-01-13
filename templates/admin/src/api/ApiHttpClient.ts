@@ -1,16 +1,16 @@
 import HttpMethod from '../lib/simple-http-request-builder/HttpMethod';
 import HttpRequest from '../lib/simple-http-request-builder/HttpRequest';
-import PlumeHttpPromise, { unwrapHttpPromise } from '../lib/plume-http/promise/PlumeHttpPromise';
-import jsonFetchClient from '../lib/plume-http/client/JsonFetchClient';
+import HttpPromise, { unwrapHttpPromise } from '../lib/plume-http/promise/HttpPromise';
+import defaultJsonFetchClient from '../lib/plume-http/client/JsonFetchClient';
 import fetchClient from '../lib/plume-http/client/FetchClient';
 
 const baseUrl = '/api';
 
 export default class ApiHttpClient {
   // eslint-disable-next-line class-methods-use-this
-  rawRequest(method: HttpMethod, path: string): HttpRequest<PlumeHttpPromise<Response>> {
-    return new HttpRequest<PlumeHttpPromise<Response>>(
-      (httpRequest) => new PlumeHttpPromise<Response>(
+  rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
+    return new HttpRequest<HttpPromise<Response>>(
+      (httpRequest) => new HttpPromise<Response>(
         unwrapHttpPromise(fetchClient(httpRequest)),
         httpRequest,
       ),
@@ -21,10 +21,10 @@ export default class ApiHttpClient {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  restRequest<T>(method: HttpMethod, path: string): HttpRequest<PlumeHttpPromise<T>> {
-    return new HttpRequest<PlumeHttpPromise<T>>(
-      (httpRequest) => new PlumeHttpPromise<T>(
-        unwrapHttpPromise(jsonFetchClient(httpRequest)),
+  restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
+    return new HttpRequest<HttpPromise<T>>(
+      (httpRequest) => new HttpPromise<T>(
+        unwrapHttpPromise(defaultJsonFetchClient(httpRequest)),
         httpRequest,
       ),
       baseUrl,

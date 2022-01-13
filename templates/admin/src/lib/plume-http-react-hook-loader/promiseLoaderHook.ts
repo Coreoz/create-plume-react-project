@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { HttpPlumeError } from '../plume-http/client/PlumeHttpResponse';
+import { HttpError } from '../plume-http/client/HttpResponse';
 
 /**
  * Any Promise-like that provides then and catch method for errors.
  *
- * Errors must be of type {@link HttpPlumeError}
+ * Errors must be of type {@link HttpError}
  */
 export type LoadingPromise = {
   then: (consumer: () => void) => LoadingPromise,
-  catch: (consumer: (error: HttpPlumeError) => void) => LoadingPromise,
+  catch: (consumer: (error: HttpError) => void) => LoadingPromise,
 };
 
 /**
@@ -21,7 +21,7 @@ export type LoaderState = {
   /**
    * The error that might have occurred during the loading of the monitored `Promise`, see {@link monitor}
    */
-  error?: HttpPlumeError,
+  error?: HttpError,
   /**
    * If the `Promise` is still running and waiting for result
    */
@@ -44,7 +44,7 @@ export type LoaderState = {
  */
 export default function useLoader(): LoaderState {
   const [loadingState, setLoadingState] = useState<boolean>();
-  const [loadingError, setLoadingError] = useState<HttpPlumeError>();
+  const [loadingError, setLoadingError] = useState<HttpError>();
 
   return {
     isLoading: loadingState ?? false,

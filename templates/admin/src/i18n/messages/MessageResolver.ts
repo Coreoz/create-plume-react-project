@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
 import MessageService from './MessageService';
 import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
-import { HttpPlumeError } from '../../lib/plume-http/client/PlumeHttpResponse';
+import { HttpError } from '../../lib/plume-http/client/HttpResponse';
 
 const logger = new Logger('MessageResolver');
 
@@ -28,7 +28,7 @@ export default class MessageResolver implements PlumeMessageResolver {
 
   // implementing PlumeMessageResolver
 
-  httpError = (error: HttpPlumeError) => this.messages.httpError(error);
+  httpError = (error: HttpError) => this.messages.httpError(error);
 
   t = this.messageResolver;
 }

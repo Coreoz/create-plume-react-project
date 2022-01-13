@@ -1,24 +1,43 @@
 import { Logger } from 'simple-logging-system';
-import { genericError, HttpPlumeResponse, makeErrorPromiseResponse } from './PlumeHttpResponse';
+import {
+  genericError, HttpError, HttpResponse, toErrorResponsePromise,
+} from './HttpResponse';
 import fetchClient, { FetchResponseHandler } from './FetchClient';
 import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 import validateBasicStatusCodes from './FetchStatusValidators';
 
 const logger = new Logger('JsonFetchClient');
 
-export const jsonContentTypeValidator: FetchResponseHandler = (response: Response) => {
+export const jsonContentTypeValidator: FetchResponseHandler = (
+  response: Response,
+  jsonContentType: string = 'application/json',
+) => {
   // make sure the response is a JSON one
   const contentType = response.headers.get('content-type');
-  if (contentType === null || contentType.indexOf('application/json') === -1) {
+  if (contentType === null || contentType.indexOf(jsonContentType) === -1) {
     logger.error('Response type is not JSON', response);
-    return makeErrorPromiseResponse(genericError);
+    return toErrorResponsePromise(genericError);
   }
 
   return undefined;
 };
 
-// TODO ajouter un paramètre toJsonError pour convertir une erreur JSON serveur en erreur HttpPlumeError
-export const fetchJsonResponse: FetchResponseHandler = (response: Response) => response
+// any is the returned type of the Fetch.json() Promise
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type JsonErrorMapper = (response: Response, json: any) => HttpError;
+
+export const defaultJsonErrorMapper: JsonErrorMapper = (response: Response, json) => {
+  if (typeof json.errorCode === 'undefined') {
+    logger.error('Unrecognized JSON error', response);
+    return genericError;
+  }
+  return json;
+};
+
+export const fetchJsonResponse: FetchResponseHandler = (
+  response: Response,
+  jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper,
+) => response
   .json()
   .then((json) => {
     if (response.ok) {
@@ -26,14 +45,8 @@ export const fetchJsonResponse: FetchResponseHandler = (response: Response) => r
         response: json,
       };
     }
-    if (typeof json.errorCode === 'undefined') {
-      logger.error('Unrecognized JSON error', response);
-      return {
-        error: genericError,
-      };
-    }
     return {
-      error: json,
+      error: jsonErrorMapper(response, json),
     };
   })
   .catch((error) => {
@@ -43,9 +56,9 @@ export const fetchJsonResponse: FetchResponseHandler = (response: Response) => r
     };
   });
 
-const jsonFetchClient = <T>(httpRequest: HttpRequest<unknown>)
-  : Promise<HttpPlumeResponse<T>> => fetchClient(
+const defaultJsonFetchClient = <T>(httpRequest: HttpRequest<unknown>)
+  : Promise<HttpResponse<T>> => fetchClient(
     httpRequest, validateBasicStatusCodes, jsonContentTypeValidator, fetchJsonResponse,
   );
 
-export default jsonFetchClient;
+export default defaultJsonFetchClient;

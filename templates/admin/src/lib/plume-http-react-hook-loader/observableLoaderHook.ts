@@ -1,6 +1,6 @@
 import { Observable, useObservable } from 'micro-observables';
 import { useState } from 'react';
-import { HttpPlumeError } from '../plume-http/client/PlumeHttpResponse';
+import { HttpError } from '../plume-http/client/HttpResponse';
 import { useOnComponentMountedWithSsrSupport } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
@@ -19,8 +19,8 @@ export type ObservableDataHandler<T> = {
   isLoadedPredicate?: (data: T) => boolean,
   /**
    * The function that tries to load the `Observable` data.
-   * This function must return some kind of `Promise`, `PlumeHttpPromise`,
-   * or anything that provides an object containing `catch()` method with an error of type {@link HttpPlumeError}.
+   * This function must return some kind of `Promise`, `HttpPromise`,
+   * or anything that provides an object containing `catch()` method with an error of type {@link HttpError}.
    *
    * This function will try to load only `Observable` data that are not yet loaded.
    */
@@ -41,7 +41,7 @@ export type DataLoader = {
    * In case an error has occurred, a button to retry loading the data should be proposed to
    * the user. The `onClick` property of the button should point to the {@link loader}
    */
-  error?: HttpPlumeError,
+  error?: HttpError,
   /**
    * `True` if the `Observable` data is being loaded
    */
@@ -61,10 +61,10 @@ export type DataLoader = {
 /**
  * Any Promise-like that provides a catch method for errors.
  *
- * Errors must be of type {@link HttpPlumeError}
+ * Errors must be of type {@link HttpError}
  */
 export type CatchablePromise = {
-  catch: (consumer: (error: HttpPlumeError) => void) => unknown;
+  catch: (consumer: (error: HttpError) => void) => unknown;
 };
 
 /**
@@ -104,7 +104,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
     });
   const isAllDataLoaded = allDataLoadable.every((dataLoadable) => dataLoadable.isLoaded);
 
-  const [loadingError, setLoadingError] = useState<HttpPlumeError>();
+  const [loadingError, setLoadingError] = useState<HttpError>();
   // data loader with error handling
   const loaderWithErrorHandling = () => {
     setLoadingError(undefined);

@@ -2,11 +2,11 @@ import { Logger } from 'simple-logging-system';
 import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 import {
   genericError,
-  HttpPlumeResponse,
-  makeErrorPromiseResponse,
+  HttpResponse,
+  toErrorResponsePromise,
   networkError,
   timeoutError,
-} from './PlumeHttpResponse';
+} from './HttpResponse';
 
 const logger = new Logger('FetchClient');
 
@@ -26,7 +26,7 @@ export const fetchClientExecutor = (httpRequest: HttpRequest<unknown>): Promise<
     .finally(() => clearTimeout(timeoutHandle));
 };
 
-export const networkErrorCatcher = <T>(error: Error): HttpPlumeResponse<T> => {
+export const networkErrorCatcher = <T>(error: Error): HttpResponse<T> => {
   if (error.name === 'AbortError') {
     return {
       error: timeoutError,
@@ -39,11 +39,11 @@ export const networkErrorCatcher = <T>(error: Error): HttpPlumeResponse<T> => {
 };
 
 export interface FetchResponseHandler<T = unknown> {
-  (response: Response): Promise<HttpPlumeResponse<T>> | undefined;
+  (response: Response): Promise<HttpResponse<T>> | undefined;
 }
 
 const fetchClient = <T = Response>(httpRequest: HttpRequest<unknown>, ...handlers: FetchResponseHandler[])
-  : Promise<HttpPlumeResponse<T>> => <Promise<HttpPlumeResponse<T>>> fetchClientExecutor(httpRequest)
+  : Promise<HttpResponse<T>> => <Promise<HttpResponse<T>>> fetchClientExecutor(httpRequest)
     .then((response) => {
       for (const handler of handlers) {
         try {
@@ -53,7 +53,7 @@ const fetchClient = <T = Response>(httpRequest: HttpRequest<unknown>, ...handler
           }
         } catch (error) {
           logger.error('Error executing handler', handler, error);
-          return makeErrorPromiseResponse(genericError);
+          return toErrorResponsePromise(genericError);
         }
       }
       return { response };
