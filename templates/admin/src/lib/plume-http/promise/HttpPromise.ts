@@ -88,7 +88,7 @@ export function safeCatch<R>(catchFunction: PromiseFunction<HttpError, R>, debug
         throw genericError;
       }
     }
-    logger.error('Error thrown is not an httpError', { debugContext, httpError });
+    logger.error('Error thrown is not an httpError', { debugContext }, httpError);
     // We actually want to through an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw genericError;
