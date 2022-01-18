@@ -153,7 +153,7 @@ export default class HttpPromise<T> {
    */
   then<R = void>(thenFunction: PromiseFunction<T, R>): HttpPromise<R> {
     this.isThenAttached = true;
-    this.promise = this.promise.then(safeThen(thenFunction));
+    this.promise = this.promise.then(safeThen(thenFunction, this.debugContext));
     return this as unknown as HttpPromise<R>;
   }
 
@@ -176,7 +176,7 @@ export default class HttpPromise<T> {
    */
   catch<R = void>(catchFunction: PromiseFunction<HttpError, R>): HttpPromise<R | T> {
     this.isCaughtAttached = true;
-    this.promise = this.promise.catch(safeCatch(catchFunction));
+    this.promise = this.promise.catch(safeCatch(catchFunction, this.debugContext));
     return this as unknown as HttpPromise<R>;
   }
 
