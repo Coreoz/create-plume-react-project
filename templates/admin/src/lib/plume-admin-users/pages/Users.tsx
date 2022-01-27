@@ -40,7 +40,7 @@ export default class Users {
     useOnComponentMounted(updateUsersAndRoles);
 
     return (
-      <>
+      <div className="admin-page">
         <this.usersList.render usersPath={path} usersWithRoles={usersWithRoles} />
         <Switch>
           <Route path={`${path}/create`}>
@@ -58,7 +58,7 @@ export default class Users {
             />
           </Route>
         </Switch>
-      </>
+      </div>
     );
   };
 }

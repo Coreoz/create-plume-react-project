@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Switch,
-  Route, Redirect,
+  Route,
+  Redirect,
 } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import Home from '../pages/Home';

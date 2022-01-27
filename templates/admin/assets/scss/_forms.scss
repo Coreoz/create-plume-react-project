@@ -1,12 +1,12 @@
 form {
-  margin-top: $box-padding;
+  margin-top: $spacer-4;
 
   .form-control {
     width: 100%;
-    margin: 0 0 $box-padding 0;
+    margin: 0 0 $spacer-4 0;
   }
 }
 
 .form-errors {
-  margin-bottom: $box-padding;
+  margin-bottom: $spacer-4;
 }

@@ -5,5 +5,9 @@ import MessageService from '../../i18n/messages/MessageService';
 export default function Home() {
   const messages = getGlobalInstance(MessageService).t();
 
-  return <div><h1>{messages['home.title']}</h1></div>;
+  return (
+    <div className="admin-page">
+      <h1>{messages['home.title']}</h1>
+    </div>
+  );
 }

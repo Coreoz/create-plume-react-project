@@ -1,0 +1,37 @@
+body {
+  background: white;
+  overflow: hidden;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+#main-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  #content-layout {
+    height: 100%;
+    overflow: auto;
+    flex-grow: 1;
+  }
+}
+
+.admin-page {
+  padding: $spacer-6;
+
+  .page-title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacer-4;
+
+    .page-title {
+      font-size: $font-size-large;
+      color: $primary-color;
+    }
+  }
+}

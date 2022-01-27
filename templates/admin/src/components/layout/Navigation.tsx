@@ -1,59 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
-import {
-  Collapse,
-  Icon, List, ListItem, ListItemIcon, ListItemText,
-} from '@mui/material';
+import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
 import SessionService from '../../services/session/SessionService';
 import Permission from '../../services/session/Permission';
 import { HOME, USERS } from '../Routes';
+import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
 import { IconType } from '../theme/IconType';
 import MessageService from '../../i18n/messages/MessageService';
+import useToggle from '../../lib/react-hook-toggle/ReactHookConfirm';
 
 type LinkListItemProps = {
-  icon: IconType;
-  route: string;
-  label: string;
+  icon: IconType,
+  route: string,
+  label: string,
+  drawerOpen: boolean,
+  selected: boolean,
 };
 
-const LinkListItem = ({ icon, route, label } : LinkListItemProps) => (
-  <ListItem button component={Link} to={route}>
+const LinkListItem = (
+  {
+    icon, route, label, drawerOpen, selected
+  }: LinkListItemProps
+) => (
+  <ListItem
+    button
+    component={Link}
+    to={route}
+    className={selected ? 'active list-item' : 'list-item'}
+  >
     <ListItemIcon>
-      <Icon>{icon}</Icon>
+      <Icon fontSize="large">{icon}</Icon>
     </ListItemIcon>
-    <ListItemText primary={label} />
+    {
+      drawerOpen
+      && (
+        <ListItemText primary={label} />
+      )
+    }
   </ListItem>
 );
 
-type NestedItemProps = {
+type NestedItemProps = WithChildren<{
   icon?: IconType;
   opened?: boolean;
   label: string;
-  children?: React.ReactNode;
-};
+  drawerOpen: boolean;
+}>;
 
-const NestedItem = ({
-  icon, label, opened, children,
-} : NestedItemProps) => {
-  const [open, setOpen] = React.useState(opened ?? true);
-
-  const handleOpenClick = () => {
-    setOpen(!open);
-  };
+const NestedItem = (
+  {
+    icon, label, opened, children, drawerOpen,
+  }: NestedItemProps
+) => {
+  const [isItemOpened, toggleItemOpening] = useToggle(opened ?? true);
 
   return (
     <>
-      <ListItem button onClick={handleOpenClick}>
+      <ListItem button onClick={toggleItemOpening}>
         {icon && (
-        <ListItemIcon>
-          <Icon>{icon}</Icon>
-        </ListItemIcon>
+          <ListItemIcon>
+            <Icon fontSize="large">{icon}</Icon>
+          </ListItemIcon>
         )}
-        <ListItemText primary={label} />
-        {open ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
+        {drawerOpen && <ListItemText primary={label} />}
+        {isItemOpened ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
         <List component="div" disablePadding className="nested-items">
           {children}
         </List>
@@ -66,20 +79,45 @@ export default function Navigation() {
   const sessionService = getGlobalInstance(SessionService);
   const messages = getGlobalInstance(MessageService).t();
 
-  // TODO il faudrait surement remplacer ça par https://material-ui.com/components/drawers/#persistent-drawer
+  const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
+
   return (
-    <nav id="main-nav">
+    <nav className={`main-nav ${isDrawerOpened ? 'nav' : 'nav nav--reduced'}`}>
+      <button type="button" className="toggle-nav">
+        <Icon
+          onClick={toggleDrawerOpening}
+        >
+          {isDrawerOpened ? 'arrow_back_ios' : 'arrow_forward_ios'}
+        </Icon>
+      </button>
+
       <div className="app-info">
-        <strong>{messages['app.name']}</strong>
+        <img src="/assets/icons/plume_logo.png" className="logo" alt="logo" />
+        <span>{messages['app.name']}</span>
       </div>
-      <hr />
+
       <List className="navigation">
-        <LinkListItem icon="home" route={HOME} label={messages['nav.home']} />
-        {sessionService.hasPermission(Permission.MANAGE_USERS) && (
-        <NestedItem icon="manage_accounts" label={messages['nav.users']}>
-          <LinkListItem icon="account_circle" route={USERS} label={messages['nav.user-list']} />
-        </NestedItem>
-        )}
+        <LinkListItem
+          icon="home"
+          route={HOME}
+          label={messages['nav.home']}
+          drawerOpen={isDrawerOpened}
+          selected={true}
+        />
+        {
+          sessionService.hasPermission(Permission.MANAGE_USERS)
+          && (
+            <NestedItem icon="manage_accounts" label={messages['nav.users']} drawerOpen={isDrawerOpened}>
+              <LinkListItem
+                icon="account_circle"
+                route={USERS}
+                label={messages['nav.user-list']}
+                drawerOpen={isDrawerOpened}
+                selected={true}
+              />
+            </NestedItem>
+          )
+        }
       </List>
     </nav>
   );

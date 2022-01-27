@@ -1,0 +1,56 @@
+#main-header {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  border-bottom: 1px solid $separator-color;
+
+  h1 {
+    padding: $spacer-4 0;
+    text-transform: uppercase;
+    margin-left: $spacer-6;
+    font-size: $font-size-large;
+  }
+
+  .header_actions {
+    height: 100%;
+    margin-left: auto;
+
+    .header_action {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 $spacer-5;
+      border-left: 1px solid $separator-color;
+    }
+
+    .user-name {
+      padding: $spacer-4;
+    }
+
+    button {
+      width: 50px;
+      min-width: unset;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $secondary-color;
+      background: $gray-lighter;
+      font-size: $font-size-medium;
+
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+#user-name {
+  color: $gray-dark;
+  min-width: 75px;
+  text-align: center;
+  padding: 0 $spacer-4 $spacer-2 $spacer-4;
+  border-bottom: 1px solid $separator-color;
+  margin-bottom: $spacer-3;
+}

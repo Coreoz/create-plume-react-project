@@ -1,0 +1,10 @@
+@mixin round-information($size) {
+  color: $primary-color;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: #{$size}px;;
+  width: #{$size}px;;
+  height: #{$size}px;;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
