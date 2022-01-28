@@ -19,8 +19,6 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
   const sessionService = getGlobalInstance(SessionService);
   const messages = getGlobalInstance(MessageService).t();
 
-  const displayToggleLanguage = false; // todo change if needed
-
   const getInitialLettersOfUser = () => {
     const parts = currentUser?.fullName?.split(' ');
     return parts?.map((part) => part.charAt(0)).join('');
@@ -30,11 +28,17 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
     <header id="main-header">
       <h1 className="section_name">{messages['app.name']}</h1>
       <div className="header_actions">
-
+        <div className="header_action">
+          <LocaleSelector
+            currentLocale={currentLocale}
+            availableLocales={localeService.getAvailableLocales()}
+            onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
+          />
+        </div>
         {
           currentUser
           && (
-            <div className="header_action">
+            <div className="header_action header_action--circle">
               <DropdownMenu label={getInitialLettersOfUser() || ''} id="user-menu">
                 <div id="user-name">{currentUser.fullName}</div>
                 <MenuItem
@@ -44,16 +48,6 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
                 </MenuItem>
               </DropdownMenu>
             </div>
-          )
-        }
-        {
-          displayToggleLanguage
-          && (
-            <LocaleSelector
-              currentLocale={currentLocale}
-              availableLocales={localeService.getAvailableLocales()}
-              onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
-            />
           )
         }
       </div>

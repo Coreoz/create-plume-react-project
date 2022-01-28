@@ -10,6 +10,6 @@ export default function useToggle(initialState: boolean = false): [boolean, () =
     value,
     useCallback(() => {
       setValue(!value);
-    }),
+    }, [value]),
   ];
 }

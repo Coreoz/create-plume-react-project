@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
 import SessionService from '../../services/session/SessionService';
@@ -8,7 +8,7 @@ import { HOME, USERS } from '../Routes';
 import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
 import { IconType } from '../theme/IconType';
 import MessageService from '../../i18n/messages/MessageService';
-import useToggle from '../../lib/react-hook-toggle/ReactHookConfirm';
+import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 
 type LinkListItemProps = {
   icon: IconType,
@@ -20,32 +20,36 @@ type LinkListItemProps = {
 
 const LinkListItem = (
   {
-    icon, route, label, drawerOpen, selected
+    icon, route, label, drawerOpen
   }: LinkListItemProps
-) => (
-  <ListItem
-    button
-    component={Link}
-    to={route}
-    className={selected ? 'active list-item' : 'list-item'}
-  >
-    <ListItemIcon>
-      <Icon fontSize="large">{icon}</Icon>
-    </ListItemIcon>
-    {
-      drawerOpen
-      && (
-        <ListItemText primary={label} />
-      )
-    }
-  </ListItem>
-);
+) => {
+  const routeMatch = useRouteMatch({ path: route, exact: false });
+  return (
+    <ListItem
+      button
+      component={Link}
+      to={route}
+      className={routeMatch ? 'active list-item' : 'list-item'}
+    >
+      <ListItemIcon>
+        <Icon fontSize="large">{icon}</Icon>
+      </ListItemIcon>
+      {
+        drawerOpen
+        && (
+          <ListItemText primary={label} />
+        )
+      }
+    </ListItem>
+  );
+}
 
 type NestedItemProps = WithChildren<{
   icon?: IconType;
   opened?: boolean;
   label: string;
   drawerOpen: boolean;
+  children?: React.ReactNode;
 }>;
 
 const NestedItem = (
@@ -57,13 +61,25 @@ const NestedItem = (
 
   return (
     <>
-      <ListItem button onClick={toggleItemOpening}>
-        {icon && (
-          <ListItemIcon>
-            <Icon fontSize="large">{icon}</Icon>
-          </ListItemIcon>
-        )}
-        {drawerOpen && <ListItemText primary={label} />}
+      <ListItem
+        button
+        component="a"
+        onClick={toggleItemOpening}
+      >
+        {
+          icon
+          && (
+            <ListItemIcon>
+              <Icon fontSize="large">{icon}</Icon>
+            </ListItemIcon>
+          )
+        }
+        {
+          drawerOpen
+          && (
+            <ListItemText primary={label} />
+          )
+        }
         {isItemOpened ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
       </ListItem>
       <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
@@ -102,7 +118,6 @@ export default function Navigation() {
           route={HOME}
           label={messages['nav.home']}
           drawerOpen={isDrawerOpened}
-          selected={true}
         />
         {
           sessionService.hasPermission(Permission.MANAGE_USERS)
@@ -113,7 +128,6 @@ export default function Navigation() {
                 route={USERS}
                 label={messages['nav.user-list']}
                 drawerOpen={isDrawerOpened}
-                selected={true}
               />
             </NestedItem>
           )
