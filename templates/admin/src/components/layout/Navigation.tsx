@@ -15,7 +15,6 @@ type LinkListItemProps = {
   route: string,
   label: string,
   drawerOpen: boolean,
-  selected: boolean,
 };
 
 const LinkListItem = (
