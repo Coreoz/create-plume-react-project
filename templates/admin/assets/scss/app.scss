@@ -1,7 +1,7 @@
 @import 'variables';
-@import 'mixins';
 
 @import 'layouts/index';
+@import 'pages/index';
 
 @import '@fontsource/roboto/latin-100.css';
 @import '@fontsource/roboto/latin-400.css';
@@ -12,4 +12,3 @@
 @import 'actions';
 @import 'icons';
 @import 'material-override';
-@import 'pages/login';
