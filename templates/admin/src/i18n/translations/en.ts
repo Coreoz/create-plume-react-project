@@ -10,6 +10,8 @@ const enMessages: Translations = {
   'action.add': 'Add',
   'action.authenticate': 'Log in',
   'action.disconnect': 'Log out',
+  'action.google.authenticate': 'Log in with Google',
+  'action.apple.authenticate': 'Log in with Apple',
   'action.keep-editing': 'Keep editing',
   'action.close-without-saving': 'Close without saving',
   // common labels
@@ -21,13 +23,15 @@ const enMessages: Translations = {
     + 'If you would like to save changes, press the "Keep editing" button',
   'message.confirm-delete': 'To confirm the deleting, press the "Delete" button',
   // navigation
-  'app.name': 'Plume admin',
+  'app.name': 'Plume',
+  'app.baseline': 'Administration application',
   'nav.home': 'Home',
   'nav.users': 'User management',
   'nav.user-list': 'Users',
   // home
   'home.title': 'Home page',
   'login.title': 'Please authenticate',
+  'login.actions.forgot': 'I forget my password',
   // users
   'users.USERNAME': 'User name',
   'users.PASSWORD': 'Password',

@@ -12,6 +12,8 @@ export type Translations = {
   'action.add': string,
   'action.authenticate': string,
   'action.disconnect': string,
+  'action.google.authenticate': string
+  'action.apple.authenticate': string
   'action.keep-editing': string,
   'action.close-without-saving': string,
   // common labels
@@ -23,12 +25,15 @@ export type Translations = {
   'message.confirm-delete': string,
   // navigation
   'app.name': string,
+  'app.baseline': string,
   'nav.home': string,
   'nav.users': string,
   'nav.user-list': string,
   // home
   'home.title': string,
+  // login
   'login.title': string,
+  'login.actions.forgot': string,
   // users
   'users.USERNAME': string,
   'users.PASSWORD': string,

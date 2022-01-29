@@ -2,14 +2,16 @@ import ActionStyle from './ActionStyle';
 import { IconType } from '../../../components/theme/IconType';
 
 export type ActionContainerProps = {
-  children?: React.ReactNode;
+  cssClasses?: string,
+  children?: React.ReactNode,
 };
 
 export type ActionProps = {
-  style?: ActionStyle;
-  icon?: IconType;
-  cssClasses?: string;
-  children?: React.ReactNode;
+  style?: ActionStyle,
+  icon?: JSX.Element,
+  iconName?: IconType,
+  cssClasses?: string,
+  children?: React.ReactNode,
 };
 
 export interface ActionLinkProps extends ActionProps {

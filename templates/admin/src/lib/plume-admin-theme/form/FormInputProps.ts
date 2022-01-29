@@ -5,16 +5,21 @@ import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 export type InputTextProps = {
   type?: string;
   name?: string;
-  id?:string;
+  id?: string;
   useNameAsId?: boolean;
   autoComplete?: string;
   disabled?: boolean;
   defaultValue?: string;
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control: Control<any>;
   // focus event
-  onBlur?: FocusEventHandler<unknown>;
+  onBlur?: FocusEventHandler<any>;
+  onChange?: (value: { target: { value: string } }) => void;
+  label?: string;
+  placeholder?: string;
+  shouldUnregister?: boolean;
+  multiline?: boolean,
+  rows?: number
 };
 
 export type InputSelectProps = {

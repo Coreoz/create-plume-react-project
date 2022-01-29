@@ -8,8 +8,10 @@ const frMessages: Translations = {
   'action.delete': 'Supprimer',
   'action.search': 'Rechercher',
   'action.add': 'Ajouter',
-  'action.authenticate': 'Connexion',
-  'action.disconnect': 'Déconnexion',
+  'action.authenticate': 'Me connecter',
+  'action.disconnect': 'Me déconnecter',
+  'action.google.authenticate': 'Se connecter avec Google',
+  'action.apple.authenticate': 'Se connecter avec Apple',
   'action.keep-editing': 'Rester sur la page',
   'action.close-without-saving': 'Fermer sans sauvegarder',
   // common labels
@@ -21,13 +23,15 @@ const frMessages: Translations = {
     + 'Si vous voulez enregistrer ces modifications, cliquez sur le bouton "Rester sur la page"',
   'message.confirm-delete': 'Pour confirmer la suppression, cliquez sur le bouton "Supprimer"',
   // navigation
-  'app.name': 'Plume admin',
+  'app.name': 'Plume',
+  'app.baseline': 'Espace d\'administration',
   'nav.home': 'Accueil',
   'nav.users': 'Gestion des utilisateurs',
   'nav.user-list': 'Utilisateurs',
   // home
   'home.title': 'Page d\'accueil',
-  'login.title': 'Veuillez vous authentifier',
+  'login.title': 'Se connecter',
+  'login.actions.forgot': 'J\'ai oublié mon mot de passe',
   // users
   'users.USERNAME': 'Nom d\'utilisateur',
   'users.PASSWORD': 'Mot de passe',

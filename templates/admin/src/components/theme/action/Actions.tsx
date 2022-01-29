@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import {
-  Button, CircularProgress, Icon,
-} from '@mui/material';
+import { Button, CircularProgress, Icon, } from '@mui/material';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import {
   ActionButtonProps,
@@ -10,21 +8,38 @@ import {
   ActionLinkProps,
 } from '../../../lib/plume-admin-theme/action/ActionProps';
 
-function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' {
-  return actionStyle === 'primary' ? 'primary' : 'secondary';
+function imageOrIconNameToIcon(image?: JSX.Element, iconName?: string): JSX.Element {
+  if (!image && !iconName) {
+    return null;
+  }
+  if (iconName) {
+    return (
+      <Icon>{iconName}</Icon>
+    )
+  }
+  return <img src={image} class="button-icon" alt="icon"/>;
 }
 
-export function ActionsContainer({ children }: ActionContainerProps) {
+function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' | 'danger' {
+  if (!actionStyle) {
+    return 'inherit';
+  }
+  return actionStyle;
+}
+
+export function ActionsContainer({ children, cssClasses }: ActionContainerProps) {
   return (
-    <div className="actions">
+    <div className={`actions ${cssClasses}`}>
       {children}
     </div>
   );
 }
 
-export function ActionLink({
-  style, icon, linkTo, children,
-}: ActionLinkProps) {
+export function ActionLink(
+  {
+    style, icon, linkTo, children,
+  }: ActionLinkProps
+) {
   return (
     <Button
       className={`action-container ${actionStyleToCssClass(style)}`}
@@ -39,9 +54,11 @@ export function ActionLink({
   );
 }
 
-export function ActionButton({
-  style, icon, cssClasses, onClick, isLoading, children,
-}: ActionButtonProps) {
+export function ActionButton(
+  {
+    style, icon, iconName, cssClasses, onClick, isLoading, children
+  }: ActionButtonProps
+) {
   return (
     <div className={`action-container loading-button ${cssClasses}`}>
       <Button
@@ -50,15 +67,18 @@ export function ActionButton({
         variant="contained"
         disabled={isLoading}
         color={actionStyleToCssClass(style)}
-        startIcon={icon && <Icon>{icon}</Icon>}
+        startIcon={imageOrIconNameToIcon(icon, iconName)}
       >
         {children}
       </Button>
-      {isLoading && (
-      <div className="loading-progress">
-        <CircularProgress size="auto" />
-      </div>
-      )}
+      {
+        isLoading
+        && (
+          <div className="loading-progress">
+            <CircularProgress size="auto" />
+          </div>
+        )
+      }
     </div>
   );
 }

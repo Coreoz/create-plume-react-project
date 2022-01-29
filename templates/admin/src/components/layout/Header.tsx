@@ -24,9 +24,12 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
     return parts?.map((part) => part.charAt(0)).join('');
   };
 
+  if (!currentUser) {
+    return false;
+  }
   return (
     <header id="main-header">
-      <h1 className="section_name">{messages['app.name']}</h1>
+      <h1 className="section_name">{messages['app.baseline']}</h1>
       <div className="header_actions">
         <div className="header_action">
           <LocaleSelector
@@ -35,21 +38,16 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
             onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
           />
         </div>
-        {
-          currentUser
-          && (
-            <div className="header_action header_action--circle">
-              <DropdownMenu label={getInitialLettersOfUser() || ''} id="user-menu">
-                <div id="user-name">{currentUser.fullName}</div>
-                <MenuItem
-                  onClick={() => sessionService.disconnect()}
-                >
-                  {messages['action.disconnect']}
-                </MenuItem>
-              </DropdownMenu>
-            </div>
-          )
-        }
+        <div className="header_action header_action--circle">
+          <DropdownMenu label={getInitialLettersOfUser() || ''} id="user-menu">
+            <div id="user-name">{currentUser.fullName}</div>
+            <MenuItem
+              onClick={() => sessionService.disconnect()}
+            >
+              {messages['action.disconnect']}
+            </MenuItem>
+          </DropdownMenu>
+        </div>
       </div>
     </header>
   );

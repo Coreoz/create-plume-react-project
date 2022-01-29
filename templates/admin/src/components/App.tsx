@@ -40,7 +40,7 @@ export default class App {
         <ToastContainer />
         <Switch>
           <Route exact path="/login">
-            <div id="login-layout">
+            <div className="login-layout">
               <Header currentLocale={currentLocale} currentUser={currentUser} />
               <Login />
             </div>
