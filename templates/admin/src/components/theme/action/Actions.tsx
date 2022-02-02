@@ -34,7 +34,7 @@ function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary'
 
 export function ActionsContainer({ children, cssClasses }: ActionContainerProps) {
   return (
-    <div className={`actions ${cssClasses}`}>
+    <div className={`actions${cssClasses ? ' ' + cssClasses : ''}`}>
       {children}
     </div>
   );
@@ -65,7 +65,7 @@ export function ActionButton(
   }: ActionButtonProps
 ) {
   return (
-    <div className={`action-container loading-button ${cssClasses}`}>
+    <div className={`action-container loading-button${cssClasses ? ' ' + cssClasses : ''}`}>
       <Button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}

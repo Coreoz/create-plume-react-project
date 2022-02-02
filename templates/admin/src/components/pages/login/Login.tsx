@@ -72,24 +72,24 @@ export default function Login() {
               useNameAsId
             />
           </FormField>
-          <ActionsContainer>
-            <ActionButton cssClasses="" isLoading={loader.isLoading} style={ActionStyle.PRIMARY}>
+          <theme.actionsContainer>
+            <theme.actionButton isLoading={loader.isLoading} style={ActionStyle.PRIMARY}>
               {messages['action.authenticate']}
-            </ActionButton>
-          </ActionsContainer>
+            </theme.actionButton>
+          </theme.actionsContainer>
         </form>
         <div className="forgotten-password">
           <a href="" onClick={() => history.push(FORGOT_PASSWORD)}>{messages['login.actions.forgot']}</a>
         </div>
         <theme.panelSeparator />
-        <ActionsContainer cssClasses="actions--column">
-          <ActionButton icon={googleLogo} cssClasses="login-action-button">
+        <theme.actionsContainer cssClasses="actions--column">
+          <theme.actionButton icon={googleLogo} cssClasses="login-action-button">
             {messages['action.google.authenticate']}
-          </ActionButton>
-          <ActionButton icon={appleLogo} cssClasses="login-action-button">
+          </theme.actionButton>
+          <theme.actionButton icon={appleLogo} cssClasses="login-action-button">
             {messages['action.apple.authenticate']}
-          </ActionButton>
-        </ActionsContainer>
+          </theme.actionButton>
+        </theme.actionsContainer>
       </div>
     </div>
   );
