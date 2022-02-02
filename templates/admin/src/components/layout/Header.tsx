@@ -25,7 +25,7 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
   };
 
   if (!currentUser) {
-    return false;
+    return (<></>);
   }
   return (
     <header id="main-header">

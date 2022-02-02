@@ -8,7 +8,7 @@ import {
   ActionLinkProps,
 } from '../../../lib/plume-admin-theme/action/ActionProps';
 
-function imageOrIconNameToIcon(image?: JSX.Element, iconName?: string): JSX.Element {
+function imageOrIconNameToIcon(image?: string, iconName?: string): JSX.Element | HTMLImageElement | null {
   if (!image && !iconName) {
     return null;
   }
@@ -17,12 +17,17 @@ function imageOrIconNameToIcon(image?: JSX.Element, iconName?: string): JSX.Elem
       <Icon>{iconName}</Icon>
     )
   }
-  return <img src={image} class="button-icon" alt="icon"/>;
+  return (
+    <img src={image} className="button-icon" alt="icon" />
+  );
 }
 
-function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' | 'danger' {
+function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' | 'error' {
   if (!actionStyle) {
     return 'inherit';
+  }
+  if (actionStyle === ActionStyle.DANGER) {
+    return 'error';
   }
   return actionStyle;
 }

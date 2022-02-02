@@ -155,7 +155,7 @@ export default class UsersEdit {
         <h2>{isCreation ? this.messages.t('user.title-create') : this.messages.t('user.title-edit')}</h2>
         <this.theme.actionsContainer>
           <this.theme.actionLink
-            icon="keyboard_arrow_left"
+            iconName="keyboard_arrow_left"
             linkTo={usersPath}
           >
             {this.messages.t('action.back')}
@@ -263,7 +263,7 @@ export default class UsersEdit {
               )}
             <this.theme.actionsContainer>
               <this.theme.actionButton
-                icon="keyboard_arrow_left"
+                iconName="keyboard_arrow_left"
                 style={ActionStyle.SECONDARY}
                 onClick={confirmCloseWithoutSaving.handleConfirmation(cancelEdit)}
               >
@@ -272,7 +272,7 @@ export default class UsersEdit {
               {
                 userId && (
                 <this.theme.actionButton
-                  icon="delete"
+                  iconName="delete"
                   style={ActionStyle.DANGER}
                   onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
                   isLoading={deletingLoader.isLoading}
@@ -281,7 +281,7 @@ export default class UsersEdit {
                 </this.theme.actionButton>
                 )
               }
-              <this.theme.actionButton icon="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
+              <this.theme.actionButton iconName="save" style={ActionStyle.PRIMARY} isLoading={savingLoader.isLoading}>
                 {this.messages.t('action.save')}
               </this.theme.actionButton>
             </this.theme.actionsContainer>
