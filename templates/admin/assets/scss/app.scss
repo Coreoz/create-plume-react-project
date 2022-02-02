@@ -1,16 +1,16 @@
 @import 'variables';
 
-@import 'layouts/index';
-@import 'pages/index';
-
 @import '@fontsource/roboto/latin-100.css';
 @import '@fontsource/roboto/latin-400.css';
 @import '@fontsource/roboto/latin-700.css';
 @import 'root';
+@import 'commons';
+@import 'mixins';
 @import 'popin';
 @import 'forms';
 @import 'actions';
 @import 'icons';
 @import 'material-override';
-@import 'commons';
-@import 'mixins';
+
+@import 'layouts/index';
+@import 'pages/index';
