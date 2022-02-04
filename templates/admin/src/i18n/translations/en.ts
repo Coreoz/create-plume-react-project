@@ -47,6 +47,7 @@ const enMessages: Translations = {
   'user.title-list': 'Users list',
   'user.title-create': 'User creation',
   'user.title-edit': 'User modification',
+  'user.add': 'Add user',
   'user.error-passwords-different': 'Password do not match its confirmation',
   'user.list.count': (count: number) => 'User count : ' + count,
   // sorts wording

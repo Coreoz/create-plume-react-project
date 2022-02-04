@@ -49,6 +49,7 @@ export type Translations = {
   'user.title-list': string,
   'user.title-create': string,
   'user.title-edit': string,
+  'user.add': string,
   'user.error-passwords-different': string,
   'user.list.count': (count: number) => string,
   // sorts wording

@@ -56,3 +56,14 @@ export function hasSelectedValues(currentFilters: Map<string, string[]>): boolea
   });
   return hasValues;
 }
+
+function normalize(str: string): string {
+  // normalize NFD will transpose è to e + `;
+  // replace will delete the `
+  return str.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+export function compare(a: string, b: string): boolean {
+  return normalize(a).includes(normalize(b));
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
@@ -6,9 +7,10 @@ import { FilterElementProps, SortElementProps } from '../../plume-admin-theme/li
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import userSorts, { NAME_DESC } from './UserSort';
 import MessageService from '../../../i18n/messages/MessageService';
-import { filteredList, handleFilterValue } from '../utils/FilterUtils';
+import { compare, filteredList, handleFilterValue } from '../utils/FilterUtils';
 import userFilters from './UserFilter';
 import UsersListResults from '../components/UsersListResults';
+import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -19,6 +21,7 @@ type Props = {
 export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }: Props) {
   const messages = getGlobalInstance(MessageService).t();
   const theme = getGlobalInstance(PlumeAdminTheme);
+  const history = useHistory();
 
   const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_DESC);
   const [currentUserFilters, setCurrentUserFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
@@ -28,10 +31,10 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
     if (!currentSearchBarFilter || currentSearchBarFilter === "") {
       return true;
     }
-    return user.lastName.includes(currentSearchBarFilter)
-      || user.firstName.includes(currentSearchBarFilter)
-      || user.userName.includes(currentSearchBarFilter)
-      || user.email.includes(currentSearchBarFilter)
+    return compare(user.lastName, currentSearchBarFilter)
+      || compare(user.firstName, currentSearchBarFilter)
+      || compare(user.userName, currentSearchBarFilter)
+      || compare(user.email, currentSearchBarFilter)
   }
 
   const sortedAndFilteredList = () => {
@@ -58,12 +61,15 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
         </theme.pageBlocColumn>
         <theme.pageBlocColumn column="50">
           <theme.actionsContainer>
-            <theme.actionLink
+            <theme.actionButton
               iconName="add"
-              linkTo={`${usersPath}/create`}
+              style={ActionStyle.PRIMARY}
+              onClick={() => {
+                history.push(`${usersPath}/create`);
+              }}
             >
-              {messages['action.add']}
-            </theme.actionLink>
+              {messages['user.add']}
+            </theme.actionButton>
           </theme.actionsContainer>
         </theme.pageBlocColumn>
       </theme.pageBloc>

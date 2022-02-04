@@ -47,6 +47,7 @@ const frMessages: Translations = {
   'user.title-list': 'Liste des utilisateurs',
   'user.title-create': 'Création d\'un utilisateur',
   'user.title-edit': 'Modification d\'un utilisateur',
+  'user.add': 'Ajouter un utilisateur',
   'user.list.count': (count: number) => 'Nombre d\'utilisateurs : ' + count,
   'user.error-passwords-different': 'Le mot de passe et sa confirmation sont différents',
   // sorts wording
