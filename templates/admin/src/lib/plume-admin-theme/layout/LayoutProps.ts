@@ -23,18 +23,24 @@ export type PanelProps = {
   children?: React.ReactNode;
 };
 
+export type ListSearchBarProps = {
+  onSearch: (event: any) => void,
+  placeHolder?: string,
+  children?: React.ReactNode,
+}
+
 export type ListElementsProps = {
-  children: React.ReactNode;
-  listLength: number;
-  isLoading?: boolean;
-  label?: string;
-  icon?: boolean
+  children?: React.ReactNode,
+  listLength: number,
+  isLoading?: boolean,
+  label?: string,
+  icon?: boolean,
 };
 
 export type ListSingleElementProps = {
   children: React.ReactNode,
   onSelectElement?: () => void,
-  cssClasses: string,
+  cssClasses?: string,
 };
 
 export type StatusDotProps = {
@@ -67,5 +73,5 @@ export type ListFilterMenuProps<T> = {
 
 export type ListHeaderProps = {
   listLength: number,
-  sortConfiguration: ListSortMenuProps,
+  sortConfiguration?: ListSortMenuProps,
 }

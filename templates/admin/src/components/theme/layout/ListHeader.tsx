@@ -10,11 +10,16 @@ function ListHeader({ listLength, sortConfiguration }: ListHeaderProps) {
   return (
     <div className="list-elements-heading">
       <h2>{messages['user.list.count'](listLength)}</h2>
-      <theme.listSortMenu
-        defaultSortPossibility={sortConfiguration.defaultSortPossibility}
-        sortPossibilities={sortConfiguration.sortPossibilities}
-        onSort={sortConfiguration.onSort}
-      />
+      {
+        sortConfiguration
+        && (
+          <theme.listSortMenu
+            defaultSortPossibility={sortConfiguration.defaultSortPossibility}
+            sortPossibilities={sortConfiguration.sortPossibilities}
+            onSort={sortConfiguration.onSort}
+          />
+        )
+      }
     </div>
   )
 }

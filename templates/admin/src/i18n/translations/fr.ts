@@ -19,6 +19,7 @@ const frMessages: Translations = {
   'label.creation-date': 'Date de création',
   'label.loading': 'Chargement...',
   'label.empty': 'Aucun élément',
+  'label.more-options': 'Plus d\'options',
   // common messages
   'message.changes-saved': 'Les modifications ont bien été enregistrées',
   'message.unsaved-data': 'Des modifications n\'ont pas été enregistrées. '

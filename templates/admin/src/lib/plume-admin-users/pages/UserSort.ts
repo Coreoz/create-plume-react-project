@@ -20,3 +20,17 @@ export const NAME_ASC: SortElementProps = {
     return b.lastName.localeCompare(a.lastName, 'fr', { ignorePunctuation: true });
   }
 }
+
+export function userSortsList() {
+  return [NAME_ASC, NAME_DESC];
+}
+
+export default function userSorts(): { [key: string]: SortElementProps } {
+  return Object.fromEntries(
+    new Map<string, SortElementProps>(
+      userSortsList().map(
+        (sortPossibility) => [sortPossibility.sortKey, sortPossibility]
+      )
+    )
+  );
+}

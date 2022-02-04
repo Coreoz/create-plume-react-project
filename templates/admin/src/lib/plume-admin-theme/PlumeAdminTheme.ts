@@ -5,6 +5,7 @@ import {
   ListElementsProps,
   ListFilterMenuProps,
   ListHeaderProps,
+  ListSearchBarProps,
   ListSingleElementProps,
   ListSortMenuProps,
   PanelProps,
@@ -26,6 +27,8 @@ export default abstract class PlumeAdminTheme {
   abstract panel: (props: PanelProps) => JSX.Element;
 
   abstract panelSeparator: () => JSX.Element;
+
+  abstract listSearchBar: (props: ListSearchBarProps) => JSX.Element;
 
   abstract listHeader: (props: ListHeaderProps) => JSX.Element;
 

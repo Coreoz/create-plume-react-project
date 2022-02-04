@@ -8,5 +8,4 @@ export default function installPlumeAdminUsersModule(injector: Injector) {
   injector.registerSingleton(UserApi);
   injector.registerSingleton(Users);
   injector.registerSingleton(UsersEdit);
-  injector.registerSingleton(UsersList);
 }

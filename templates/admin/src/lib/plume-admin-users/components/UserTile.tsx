@@ -24,7 +24,9 @@ export default function UserTile({ user, roles, onClick }: Props) {
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <theme.statusDot status={statusDotFromUser(!!user)} />
-      <span className="user-initials">{user.firstName.slice(0, 1).toUpperCase()}{user.lastName.slice(0, 1).toUpperCase()}</span>
+      <span className="user-initials">
+        {user.firstName.slice(0, 1).toUpperCase()}{user.lastName.slice(0, 1).toUpperCase()}
+      </span>
       <div className="user-data">
         <div className="data">
           <span className="label">{user.firstName} {user.lastName}</span>

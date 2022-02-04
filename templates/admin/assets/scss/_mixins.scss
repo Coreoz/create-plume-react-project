@@ -2,6 +2,10 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0 2px 3px;
 }
 
+@mixin box-shadow() {
+  box-shadow: rgba(0, 0, 0, 0.35) 0 2px 8px;
+}
+
 @mixin dot($size) {
   width: $size;
   height: $size;

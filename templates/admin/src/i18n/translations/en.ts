@@ -19,6 +19,7 @@ const enMessages: Translations = {
   'label.creation-date': 'Creation date',
   'label.loading': 'Loading...',
   'label.empty': 'No element',
+  'label.more-options': 'More options',
   // common messages
   'message.changes-saved': 'Changes have been successfully saved',
   'message.unsaved-data': 'There are unsaved changes. '

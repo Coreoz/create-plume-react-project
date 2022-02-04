@@ -21,6 +21,7 @@ export type Translations = {
   'label.creation-date': string,
   'label.loading': string,
   'label.empty': string,
+  'label.more-options': string,
   // common messages
   'message.changes-saved': string,
   'message.unsaved-data': string,

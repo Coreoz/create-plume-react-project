@@ -1,7 +1,7 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import MessageService from '../../../i18n/messages/MessageService';
-import { ListElementsProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { ListElementsProps, ListSingleElementProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
 
 type EmptyStateProps = {
   label: string;
@@ -15,12 +15,14 @@ function EmptyState({ label }: EmptyStateProps) {
   );
 }
 
-export default function ListElements({ listLength, isLoading = false, children, label }: ListElementsProps) {
+export function ListElements({ listLength, isLoading = false, children, label }: ListElementsProps) {
   const messages = getGlobalInstance(MessageService).t();
   const defaultLabel = messages['label.empty'];
   if (isLoading) {
     const loadingLabel = messages['label.loading'];
-    return <EmptyState label={loadingLabel} />
+    return (
+      <EmptyState label={loadingLabel} />
+    )
   }
   if (!listLength) {
     return (
@@ -29,6 +31,24 @@ export default function ListElements({ listLength, isLoading = false, children, 
   }
   return (
     <div className="list-elements">
+      {children}
+    </div>
+  );
+}
+
+export function ListSingleElement({ children, onSelectElement, cssClasses }: ListSingleElementProps) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`list-single-element${cssClasses ? ' ' + cssClasses : ''}`}
+      onClick={() => {
+        if (onSelectElement) {
+          onSelectElement();
+        }
+      }}
+      role={onSelectElement ? 'button' : 'presentation'}
+      aria-label="list-single-element"
+    >
       {children}
     </div>
   );

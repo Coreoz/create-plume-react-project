@@ -6,13 +6,13 @@ import FormField from './form/FormField';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 import InputText from './form/fields/InputText';
 import InputSelect from './form/fields/InputSelect';
-import ListElements from './layout/ListElements';
+import { ListElements, ListSingleElement } from './layout/ListElements';
 import StatusDot from './layout/StatusDot';
-import ListSingleElement from './layout/ListSingleElement';
 import ListHeader from './layout/ListHeader';
 import { PageBloc, PageBlocColumn } from './layout/PageBloc';
 import ListFilterMenu from './layout/ListFilterMenu';
 import ListSortMenu from './layout/ListSortMenu';
+import ListSearchBar from './layout/ListSearchBar';
 
 export default class AdminTheme implements PlumeAdminTheme {
   pageTitle = PageTitle;
@@ -30,6 +30,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   panel = Panel;
 
   panelSeparator = PanelSeparator;
+
+  listSearchBar = ListSearchBar;
 
   listHeader = ListHeader;
 
