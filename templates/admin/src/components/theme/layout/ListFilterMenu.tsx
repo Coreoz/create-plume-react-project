@@ -28,7 +28,7 @@ function ListFilterMenu<T>(
               <div key={key} className="filter">
                 <span className="filter-title">{messages[`${filteredObjectKey}.filter.${filterPossibility.filterKey}`]}</span>
                 {
-                  Array.from(rawList.map(filterPossibility.keyExtractor))
+                  Array.from(new Set<string>([...rawList.map(filterPossibility.keyExtractor)]))
                     .map((value: string) => (
                       <FormControlLabel
                         key={value}
