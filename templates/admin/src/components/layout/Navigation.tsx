@@ -76,10 +76,19 @@ const NestedItem = (
         {
           drawerOpen
           && (
-            <ListItemText primary={label} />
+            <>
+              <ListItemText primary={label} />
+              {
+                isItemOpened
+                  ? (
+                    <Icon>expand_less</Icon>
+                  ) : (
+                    <Icon>expand_more</Icon>
+                  )
+              }
+            </>
           )
         }
-        {isItemOpened ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
       </ListItem>
       <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
         <List component="div" disablePadding className="nested-items">
