@@ -3,7 +3,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import { Icon } from '@mui/material';
 import MessageService from '../../../i18n/messages/MessageService';
 import useToggle from '../../../lib/react-hook-toggle/ReactHookToggle';
-import { ListSearchBarProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { ListSearchBarProps } from '../../../lib/plume-admin-theme/list/ListProps';
 
 function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) {
   const messages = getGlobalInstance(MessageService).t();

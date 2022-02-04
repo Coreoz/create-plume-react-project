@@ -1,8 +1,5 @@
-import { FilterElementProps } from '../../plume-admin-theme/layout/LayoutProps';
+import { FilterElementProps } from '../../plume-admin-theme/list/ListProps';
 
-/**
- *
- */
 export function handleFilterValue(
   filterElement: FilterElementProps<any>,
   newValue: string,

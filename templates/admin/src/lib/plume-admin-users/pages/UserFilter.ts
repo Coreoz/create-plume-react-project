@@ -1,4 +1,4 @@
-import { FilterElementProps } from '../../plume-admin-theme/layout/LayoutProps';
+import { FilterElementProps } from '../../plume-admin-theme/list/ListProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 
 export const NAME: FilterElementProps<AdminUserDetails> = {

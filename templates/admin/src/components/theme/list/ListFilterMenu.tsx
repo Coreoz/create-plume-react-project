@@ -1,7 +1,7 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { ListFilterMenuProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { ListFilterMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
 import MessageService from '../../../i18n/messages/MessageService';
 
 function ListFilterMenu<T>(

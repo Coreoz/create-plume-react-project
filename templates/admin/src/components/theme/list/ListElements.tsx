@@ -1,7 +1,7 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import MessageService from '../../../i18n/messages/MessageService';
-import { ListElementsProps, ListSingleElementProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { ListElementsProps, ListSingleElementProps } from '../../../lib/plume-admin-theme/list/ListProps';
 
 type EmptyStateProps = {
   label: string;

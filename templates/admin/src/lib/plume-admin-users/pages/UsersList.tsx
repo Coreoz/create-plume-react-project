@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { FilterElementProps, SortElementProps } from '../../plume-admin-theme/layout/LayoutProps';
+import { FilterElementProps, SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import userSorts, { NAME_DESC } from './UserSort';
 import MessageService from '../../../i18n/messages/MessageService';

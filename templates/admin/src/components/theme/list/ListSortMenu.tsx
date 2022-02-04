@@ -1,7 +1,7 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { ListSortMenuProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
+import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
 import MessageService from '../../../i18n/messages/MessageService';
 
 function ListSortMenu({ sortPossibilities, onSort, defaultSortPossibility }: ListSortMenuProps) {
