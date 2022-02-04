@@ -49,11 +49,21 @@ const enMessages: Translations = {
   'user.title-edit': 'User modification',
   'user.error-passwords-different': 'Password do not match its confirmation',
   'user.list.count': (count: number) => 'User count : ' + count,
-  'user.sort.name_desc': 'Sort by descendant alphabetical order',
-  'user.sort.name_asc': 'Sort by ascendant alphabetical order',
-  'user.filter.title': 'Filters',
-  'user.filter.name': 'Name',
-  'user.filter.role': 'Role',
+  // sorts wording
+  'sort': {
+    'user': {
+      'name_desc': 'Sort by descendant alphabetical order',
+      'name_asc': 'Sort by ascendant alphabetical order',
+    },
+  },
+  // filters wording
+  'filter': {
+    'user': {
+      'title': 'Filters',
+      'name': 'Name',
+      'role': 'Role',
+    }
+  },
   // sample with pluralization
   'clicks.count': (count: number) => `There is ${count} click${count > 1 ? 's' : ''} !`,
   // errors

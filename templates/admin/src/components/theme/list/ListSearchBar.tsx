@@ -26,7 +26,7 @@ function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) 
         <input
           type="search"
           className="search-bar"
-          placeholder={placeHolder ? messages[placeHolder] : messages['action.search']}
+          placeholder={placeHolder ? placeHolder : messages['action.search']}
           onChange={onSearch}
         />
         {!!children && (

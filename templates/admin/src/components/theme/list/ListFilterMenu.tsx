@@ -19,14 +19,14 @@ function ListFilterMenu<T>(
 
   return (
     <div className="list-filter-menu">
-      <h2>{messages['user.filter.title']}</h2>
+      <h2>{(messages['filter'] as any)[filteredObjectKey]['title']}</h2>
       <div className="list-filters">
         {
           rawList
           && (
             Object.entries(filterPossibilities).map(([key, filterPossibility]) => (
               <div key={key} className="filter">
-                <span className="filter-title">{messages[`${filteredObjectKey}.filter.${filterPossibility.filterKey}`]}</span>
+                <span className="filter-title">{(messages['filter'] as any)[filteredObjectKey][filterPossibility.filterKey]}</span>
                 {
                   Array.from(new Set<string>([...rawList.map(filterPossibility.keyExtractor)]))
                     .map((value: string) => (

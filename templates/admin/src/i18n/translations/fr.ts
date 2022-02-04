@@ -48,12 +48,22 @@ const frMessages: Translations = {
   'user.title-create': 'Création d\'un utilisateur',
   'user.title-edit': 'Modification d\'un utilisateur',
   'user.list.count': (count: number) => 'Nombre d\'utilisateurs : ' + count,
-  'user.sort.name_desc': 'Trier par ordre alphabétique descendant',
-  'user.sort.name_asc': 'Trier par ordre alphabétique ascendant',
-  'user.filter.title': 'Filtres',
-  'user.filter.name': 'Nom',
-  'user.filter.role': 'Rôle',
   'user.error-passwords-different': 'Le mot de passe et sa confirmation sont différents',
+  // sorts wording
+  'sort': {
+    'user': {
+      'name_desc': 'Trier par ordre alphabétique descendant',
+      'name_asc': 'Trier par ordre alphabétique ascendant',
+    },
+  },
+  // filters wording
+  'filter': {
+    'user': {
+      'title': 'Filtres',
+      'name': 'Nom',
+      'role': 'Rôle',
+    },
+  },
   // sample with pluralization
   'clicks.count': (count: number) => `Il y a eu ${count} clic${count > 1 ? 's' : ''} !`,
   // errors

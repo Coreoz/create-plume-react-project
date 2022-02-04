@@ -85,6 +85,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             userRoles={usersWithRoles?.roles}
             usersPath={usersPath}
             sortConfiguration={{
+              sortedObjectKey: 'user',
               sortPossibilities: userSorts(),
               defaultSortPossibility: NAME_DESC,
               onSort: (to: SortElementProps) => {

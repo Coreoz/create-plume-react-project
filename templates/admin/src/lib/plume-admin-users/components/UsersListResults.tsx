@@ -2,7 +2,7 @@ import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useHistory } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { ListSortMenuProps } from '../../plume-admin-theme/layout/LayoutProps';
+import { ListSortMenuProps } from '../../plume-admin-theme/list/ListProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
 

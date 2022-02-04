@@ -4,7 +4,7 @@ import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
 import MessageService from '../../../i18n/messages/MessageService';
 
-function ListSortMenu({ sortPossibilities, onSort, defaultSortPossibility }: ListSortMenuProps) {
+function ListSortMenu({ sortedObjectKey, sortPossibilities, onSort, defaultSortPossibility }: ListSortMenuProps) {
   const messages = getGlobalInstance(MessageService).t();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
@@ -30,7 +30,7 @@ function ListSortMenu({ sortPossibilities, onSort, defaultSortPossibility }: Lis
               key={sortKey}
               value={sortKey}
             >
-              {messages[`user.sort.${sortKey.toLowerCase()}`]}
+              {(messages['sort'] as any)[sortedObjectKey][sortKey.toLowerCase()]}
             </MenuItem>
           ))
         }

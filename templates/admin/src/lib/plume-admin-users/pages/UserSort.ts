@@ -1,4 +1,4 @@
-import { SortElementProps } from '../../plume-admin-theme/layout/LayoutProps';
+import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 
 export const NAME_DESC: SortElementProps = {
