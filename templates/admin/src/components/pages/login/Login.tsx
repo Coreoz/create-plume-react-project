@@ -7,9 +7,6 @@ import SessionService from '../../../services/session/SessionService';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import { SessionCredentials } from '../../../api/session/SessionApi';
-import FormField from '../../theme/form/FormField';
-import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
-import InputText from '../../theme/form/fields/InputText';
 import { FORGOT_PASSWORD, HOME } from '../../Routes';
 import MessageService from '../../../i18n/messages/MessageService';
 import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
@@ -51,8 +48,8 @@ export default function Login() {
         }
         <div className="login-label">{messages['login.title']}</div>
         <form onSubmit={handleSubmit(tryAuthenticate)}>
-          <FormField inputId="userName" error={errors.userName}>
-            <InputText
+          <theme.formField inputId="userName" error={errors.userName}>
+            <theme.inputText
               label={messages['users.USERNAME']}
               control={control}
               type="text"
@@ -60,9 +57,9 @@ export default function Login() {
               rules={{ required: true }}
               useNameAsId
             />
-          </FormField>
-          <FormField inputId="password" error={errors.password}>
-            <InputText
+          </theme.formField>
+          <theme.formField inputId="password" error={errors.password}>
+            <theme.inputText
               label={messages['users.PASSWORD']}
               control={control}
               type="password"
@@ -71,7 +68,7 @@ export default function Login() {
               rules={{ required: true }}
               useNameAsId
             />
-          </FormField>
+          </theme.formField>
           <theme.actionsContainer>
             <theme.actionButton isLoading={loader.isLoading} style={ActionStyle.PRIMARY}>
               {messages['action.authenticate']}
