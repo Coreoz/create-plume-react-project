@@ -8,6 +8,7 @@ const frMessages: Translations = {
   'action.delete': 'Supprimer',
   'action.search': 'Rechercher',
   'action.add': 'Ajouter',
+  'action.update': 'Modifier',
   'action.authenticate': 'Me connecter',
   'action.disconnect': 'Me déconnecter',
   'action.google.authenticate': 'Se connecter avec Google',
@@ -17,6 +18,7 @@ const frMessages: Translations = {
   // common labels
   'label.creation-date': 'Date de création',
   'label.loading': 'Chargement...',
+  'label.empty': 'Aucun élément',
   // common messages
   'message.changes-saved': 'Les modifications ont bien été enregistrées',
   'message.unsaved-data': 'Des modifications n\'ont pas été enregistrées. '
@@ -44,6 +46,12 @@ const frMessages: Translations = {
   'user.title-list': 'Liste des utilisateurs',
   'user.title-create': 'Création d\'un utilisateur',
   'user.title-edit': 'Modification d\'un utilisateur',
+  'user.list.count': (count: number) => 'Nombre d\'utilisateurs : ' + count,
+  'user.sort.name_desc': 'Trier par ordre alphabétique descendant',
+  'user.sort.name_asc': 'Trier par ordre alphabétique ascendant',
+  'user.filter.title': 'Filtres',
+  'user.filter.name': 'Nom',
+  'user.filter.role': 'Rôle',
   'user.error-passwords-different': 'Le mot de passe et sa confirmation sont différents',
   // sample with pluralization
   'clicks.count': (count: number) => `Il y a eu ${count} clic${count > 1 ? 's' : ''} !`,

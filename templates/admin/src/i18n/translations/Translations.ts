@@ -10,6 +10,7 @@ export type Translations = {
   'action.delete': string,
   'action.search': string,
   'action.add': string,
+  'action.update': string,
   'action.authenticate': string,
   'action.disconnect': string,
   'action.google.authenticate': string
@@ -19,6 +20,7 @@ export type Translations = {
   // common labels
   'label.creation-date': string,
   'label.loading': string,
+  'label.empty': string,
   // common messages
   'message.changes-saved': string,
   'message.unsaved-data': string,
@@ -47,6 +49,12 @@ export type Translations = {
   'user.title-create': string,
   'user.title-edit': string,
   'user.error-passwords-different': string,
+  'user.list.count': (count: number) => string,
+  'user.sort.name_desc': string,
+  'user.sort.name_asc': string,
+  'user.filter.title': string,
+  'user.filter.name': string,
+  'user.filter.role': string,
   // sample with pluralization
   'clicks.count': (count: number) => string,
   // errors

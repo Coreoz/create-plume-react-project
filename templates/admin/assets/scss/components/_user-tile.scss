@@ -1,0 +1,70 @@
+.user-tile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+
+  * {
+    flex-shrink: 0;
+  }
+
+  .user-initials {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: $secondary-color;
+    text-align: center;
+    line-height: 50px;
+    background: $gray-lighter;
+  }
+
+  .user-data {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    .data {
+      display: flex;
+      height: 100%;
+      width: 160px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 $spacer-4;
+      margin-left: $spacer-4;
+
+      .label {
+        color: black;
+        text-transform: uppercase;
+      }
+
+      .value {
+        color: $gray;
+        text-align: right;
+
+        &--accent {
+          padding: .5rem;
+          border-radius: .5rem;
+          text-transform: uppercase;
+          border: 1px solid $orange;
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  .action-button {
+    & > button {
+      background-color: white;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}

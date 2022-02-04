@@ -8,6 +8,7 @@ const enMessages: Translations = {
   'action.delete': 'Delete',
   'action.search': 'Search',
   'action.add': 'Add',
+  'action.update': 'Update',
   'action.authenticate': 'Log in',
   'action.disconnect': 'Log out',
   'action.google.authenticate': 'Log in with Google',
@@ -17,6 +18,7 @@ const enMessages: Translations = {
   // common labels
   'label.creation-date': 'Creation date',
   'label.loading': 'Loading...',
+  'label.empty': 'No element',
   // common messages
   'message.changes-saved': 'Changes have been successfully saved',
   'message.unsaved-data': 'There are unsaved changes. '
@@ -45,6 +47,12 @@ const enMessages: Translations = {
   'user.title-create': 'User creation',
   'user.title-edit': 'User modification',
   'user.error-passwords-different': 'Password do not match its confirmation',
+  'user.list.count': (count: number) => 'User count : ' + count,
+  'user.sort.name_desc': 'Sort by descendant alphabetical order',
+  'user.sort.name_asc': 'Sort by ascendant alphabetical order',
+  'user.filter.title': 'Filters',
+  'user.filter.name': 'Name',
+  'user.filter.role': 'Role',
   // sample with pluralization
   'clicks.count': (count: number) => `There is ${count} click${count > 1 ? 's' : ''} !`,
   // errors
