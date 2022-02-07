@@ -23,15 +23,21 @@ export default function UserTile({ user, roles, onClick }: Props) {
   }
   return (
     <theme.listSingleElement cssClasses="user-tile">
-      <theme.statusDot status={statusDotFromUser(!!user)} />
-      <span className="user-initials">
-        {user.firstName.slice(0, 1).toUpperCase()}{user.lastName.slice(0, 1).toUpperCase()}
-      </span>
-      <div className="user-data">
+      <div className="user-data user-data--id">
+        <div className="data">
+          <theme.statusDot status={statusDotFromUser(!!user)} />
+        </div>
+        <div className="data">
+          <span className="user-initials">
+            {user.firstName.slice(0, 1).toUpperCase()}{user.lastName.slice(0, 1).toUpperCase()}
+          </span>
+        </div>
         <div className="data">
           <span className="label">{user.firstName} {user.lastName}</span>
           <span className="value">{user.email}</span>
         </div>
+      </div>
+      <div className="user-data">
         <div className="data">
           <span className="value value--accent">{roles.get(user.idRole)}</span>
         </div>

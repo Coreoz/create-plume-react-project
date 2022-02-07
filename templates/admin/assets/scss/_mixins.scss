@@ -14,3 +14,16 @@
   margin-right: $spacer-4;
   flex-shrink: 0;
 }
+
+// Mixins for media query
+@mixin tablet {
+  @media screen and (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}

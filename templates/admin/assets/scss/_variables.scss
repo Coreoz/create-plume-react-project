@@ -56,11 +56,12 @@ $height-nav: 6rem;
 $forms-input-height: 53.13px;
 $forms-input-horizontal-padding: 12px;
 
-// variable animiations
-$animation-timing: 0.25s;
-
 // screen sizes
 $width-small-screen-px: 800;
 $width-medium-screen-px: 1150;
 
 $app-max-width: 1200px;
+
+// BREAKPOINTS
+$breakpoint-tablet: 1100px; // above it's a big laptop
+$breakpoint-mobile: 768px; // above it's a tablet, under we use mobile

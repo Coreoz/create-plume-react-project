@@ -2,39 +2,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  flex-wrap: wrap;
 
   * {
     flex-shrink: 0;
   }
 
   .user-initials {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     color: $secondary-color;
     text-align: center;
-    line-height: 50px;
+    line-height: 35px;
     background: $gray-lighter;
   }
 
   .user-data {
-    width: 60%;
+    width: 40%;
     height: 100%;
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: flex-start;
+    font-size: $font-size-little;
 
     .data {
       display: flex;
-      height: 100%;
-      width: 160px;
+      height: 40px;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      padding: 0 $spacer-4;
-      margin-left: $spacer-4;
+      padding: 0 $spacer-2;
+      margin-left: $spacer-3;
 
       .label {
         color: black;
@@ -46,12 +46,29 @@
         text-align: right;
 
         &--accent {
+          width: 110px;
+          font-size: $font-size-mini;
           padding: .5rem;
           border-radius: .5rem;
           text-transform: uppercase;
           border: 1px solid $orange;
           color: $orange;
+          text-align: center;
         }
+
+        &--little {
+          font-size: $font-size-mini;
+        }
+      }
+    }
+
+    &--id {
+      align-content: center;
+      justify-content: flex-start;
+
+      .data {
+        margin-left: $spacer-1;
+        padding: 0 $spacer-2;
       }
     }
   }
