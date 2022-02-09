@@ -3,7 +3,7 @@ import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 import { Translations } from '../translations/Translations';
 import LocaleService from '../locale/LocaleService';
 import enMessages from '../translations/en';
-import { HttpPlumeError } from '../../lib/plume-http/client/PlumeHttpResponse';
+import { HttpError } from '../../lib/plume-http/client/HttpResponse';
 
 export default class MessageService {
   private messages = frMessages;
@@ -28,7 +28,7 @@ export default class MessageService {
    * Try to compute the corresponding error message and return the right translation.
    * If no message could be found, the error code is returned
    */
-  httpError(error: HttpPlumeError): string {
+  httpError(error: HttpError): string {
     const translatedArguments = (error.statusArguments ?? []).map((argument) => {
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
       const translation = (this.t() as any)[argument];

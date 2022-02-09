@@ -1,7 +1,7 @@
 /**
  * Represents a HTTP error with a code and optional arguments
  */
-export type HttpPlumeError = {
+export type HttpError = {
   /**
    * A code that enables to identify the error, for example `INTERNAL_ERROR` or `FORBIDDEN_ERROR`.
    */
@@ -16,10 +16,13 @@ export type HttpPlumeError = {
   statusArguments?: string[],
 };
 
-export type HttpPlumeResponse<T> = {
-  error?: HttpPlumeError,
+export type HttpResponse<T> = {
+  error?: HttpError,
   response?: T,
 };
+
+export const toErrorResponsePromise = <T>(error: HttpError): Promise<HttpResponse<T>> => Promise
+  .resolve<HttpResponse<T>>({ error });
 
 /**
  * A generic error used to represent an unknown error in an execution.

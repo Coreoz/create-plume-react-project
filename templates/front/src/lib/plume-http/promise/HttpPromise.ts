@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
-import { genericError, HttpPlumeError, HttpPlumeResponse } from '../client/PlumeHttpResponse';
+import { genericError, HttpError, HttpResponse } from '../client/HttpResponse';
 
-const logger = new Logger('PlumeHttpPromise');
+const logger = new Logger('HttpPromise');
 
 /**
  * A function that takes a parameter of type `P` and returns a result of type `R`
@@ -11,23 +11,23 @@ export interface PromiseFunction<P, R> {
 }
 
 /**
- * Process a {@link HttpPlumeResponse} to throw the {@link HttpPlumeResponse.error} if it exists.
+ * Process a {@link HttpResponse} to throw the {@link HttpResponse.error} if it exists.
  *
- * Should be called in the {@link Promise.then} of a `Promise<HttpPlumeResponse<T>>`
+ * Should be called in the {@link Promise.then} of a `Promise<HttpResponse<T>>`
  * to convert it to a `Promise<T>`.
  *
  * For common usage, {@link unwrapHttpPromise} should be preferred as it deals better with TS types.
  * @param httpResponse The response to be processed.
  */
-export function processHttpResponse<T>(httpResponse: HttpPlumeResponse<T>): T {
+export function processHttpResponse<T>(httpResponse: HttpResponse<T>): T {
   if (httpResponse.error !== undefined) {
-    // We actually want to through an object literal and not and `Error`
+    // We actually want to throw an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw httpResponse.error;
   }
   if (httpResponse.response === undefined) {
     logger.error('Weird, the http result is not recognized');
-    // We actually want to through an object literal and not and `Error`
+    // We actually want to throw an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw genericError;
   }
@@ -35,23 +35,23 @@ export function processHttpResponse<T>(httpResponse: HttpPlumeResponse<T>): T {
 }
 
 /**
- * Convert a `Promise<HttpPlumeResponse<T>>` to a `Promise<T>`.
+ * Convert a `Promise<HttpResponse<T>>` to a `Promise<T>`.
  *
- * In case an HTTP error is returned by `HttpPlumeResponse<T>`, a rejected `Promise` is issued
- * with the error object {@link HttpPlumeError}
+ * In case an HTTP error is returned by `HttpResponse<T>`, a rejected `Promise` is issued
+ * with the error object {@link HttpError}
  * @param httpPromise The `Promise` to be unwrapped
  */
-export function unwrapHttpPromise<T>(httpPromise: Promise<HttpPlumeResponse<T>>): Promise<T> {
+export function unwrapHttpPromise<T>(httpPromise: Promise<HttpResponse<T>>): Promise<T> {
   return httpPromise.then(processHttpResponse);
 }
 
 /**
- * Verify is an object seems to be a {@link HttpPlumeError}.
+ * Verify is an object seems to be a {@link HttpError}.
  *
- * Returns `true` if the object seems to be a {@link HttpPlumeError}, else `false`.
+ * Returns `true` if the object seems to be a {@link HttpError}, else `false`.
  */
-export function isHttpPlumeError(object: unknown) {
-  return object && typeof object === 'object' && (object as HttpPlumeError).errorCode !== undefined;
+export function isHttpError(object: unknown) {
+  return object && typeof object === 'object' && (object as HttpError).errorCode !== undefined;
 }
 
 export function safeThen<P, R>(thenFunction: PromiseFunction<P, R>, debugContext?: object): PromiseFunction<P, R> {
@@ -59,8 +59,8 @@ export function safeThen<P, R>(thenFunction: PromiseFunction<P, R>, debugContext
     try {
       return thenFunction(parameter);
     } catch (error) {
-      if (isHttpPlumeError(error)) {
-        // If the then function has thrown a HttpPlumeError object, we assume this is legitimate
+      if (isHttpError(error)) {
+        // If the then function has thrown a HttpError object, we assume this is legitimate
         throw error;
       }
       logger.error('Error applying then function', { debugContext, parameter }, error);
@@ -71,15 +71,15 @@ export function safeThen<P, R>(thenFunction: PromiseFunction<P, R>, debugContext
   };
 }
 
-export function safeCatch<R>(catchFunction: PromiseFunction<HttpPlumeError, R>, debugContext?: object)
+export function safeCatch<R>(catchFunction: PromiseFunction<HttpError, R>, debugContext?: object)
   : PromiseFunction<unknown, R> {
   return (httpError: unknown) => {
-    if (isHttpPlumeError(httpError)) {
+    if (isHttpError(httpError)) {
       try {
-        return catchFunction(httpError as HttpPlumeError);
+        return catchFunction(httpError as HttpError);
       } catch (error) {
-        if (isHttpPlumeError(error)) {
-          // If the catch function has thrown a HttpPlumeError object, we assume this is legitimate
+        if (isHttpError(error)) {
+          // If the catch function has thrown a HttpError object, we assume this is legitimate
           throw error;
         }
         logger.error('Error applying catch function', { debugContext, httpError }, error);
@@ -88,7 +88,7 @@ export function safeCatch<R>(catchFunction: PromiseFunction<HttpPlumeError, R>, 
         throw genericError;
       }
     }
-    logger.error('Error thrown is not an httpError', { debugContext, httpError });
+    logger.error('Error thrown is not an httpError', { debugContext }, httpError);
     // We actually want to through an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw genericError;
@@ -104,7 +104,7 @@ export function safeCatch<R>(catchFunction: PromiseFunction<HttpPlumeError, R>, 
  *
  * It also contains a `debugContext` that is used for logging in case an error occurs.
  */
-export default class PlumeHttpPromise<T> {
+export default class HttpPromise<T> {
   private isThenAttached: boolean;
 
   private isCaughtAttached: boolean;
@@ -139,22 +139,22 @@ export default class PlumeHttpPromise<T> {
    * The function can:
    * - Just execute some code using the result
    * - Transform the result into another object
-   * - Throw an error of type {@link HttpPlumeError} that will trigger the catch function
+   * - Throw an error of type {@link HttpError} that will trigger the catch function
    *
    * If the {@link thenFunction} throws an error:
    * - The error will be caught and logged
    * - A {@link genericError} will be thrown
    *
-   * The then function returns the `this` instance of {@link PlumeHttpPromise} containing and updating `Promise`.
-   * If {@link thenFunction} has no return statement, a `PlumeHttpPromise<void>` will be returned,
-   * else a `PlumeHttpPromise` parametrized with the returned type will be returned.
+   * The then function returns the `this` instance of {@link HttpPromise} containing and updating `Promise`.
+   * If {@link thenFunction} has no return statement, a `HttpPromise<void>` will be returned,
+   * else a `HttpPromise` parametrized with the returned type will be returned.
    *
    * @param thenFunction The code that will be executed after the `Promise` has been resolved.
    */
-  then<R = void>(thenFunction: PromiseFunction<T, R>): PlumeHttpPromise<R> {
+  then<R = void>(thenFunction: PromiseFunction<T, R>): HttpPromise<R> {
     this.isThenAttached = true;
-    this.promise = this.promise.then(safeThen(thenFunction));
-    return this as unknown as PlumeHttpPromise<R>;
+    this.promise = this.promise.then(safeThen(thenFunction, this.debugContext));
+    return this as unknown as HttpPromise<R>;
   }
 
   /**
@@ -171,13 +171,13 @@ export default class PlumeHttpPromise<T> {
    * - The error will be caught and logged
    * - A {@link genericError} will be thrown
    *
-   * @param catchFunction The code that will do something with the {@link HttpPlumeError}
+   * @param catchFunction The code that will do something with the {@link HttpError}
    * and possibility recover the `Promise`.
    */
-  catch<R = void>(catchFunction: PromiseFunction<HttpPlumeError, R>): PlumeHttpPromise<R | T> {
+  catch<R = void>(catchFunction: PromiseFunction<HttpError, R>): HttpPromise<R | T> {
     this.isCaughtAttached = true;
-    this.promise = this.promise.catch(safeCatch(catchFunction));
-    return this as unknown as PlumeHttpPromise<R>;
+    this.promise = this.promise.catch(safeCatch(catchFunction, this.debugContext));
+    return this as unknown as HttpPromise<R>;
   }
 
   /**
@@ -199,7 +199,7 @@ export default class PlumeHttpPromise<T> {
   /**
    * Returns the debug context if it exists.
    *
-   * This should be used only to make copies to the {@link PlumeHttpPromise}.
+   * This should be used only to make copies to the {@link HttpPromise}.
    */
   getDebugContext(): object | undefined {
     return this.debugContext;
