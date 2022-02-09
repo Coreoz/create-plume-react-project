@@ -24,7 +24,7 @@ const mockedFetch = (): Promise<Response> => {
   return Promise.resolve(new Response(mockedFetchResponseBody, mockedFetchResponseStatus));
 };
 
-describe('Tests on Login', () => {
+describe('Tests fetch client', () => {
   const oldFetch = global.fetch;
   global.fetch = mockedFetch;
 
