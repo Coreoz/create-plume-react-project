@@ -1,13 +1,13 @@
-import { FilterElementProps } from '../../plume-admin-theme/list/ListProps';
+import { ObjectFilterProps } from '../../plume-admin-theme/list/ListProps';
 
-export function handleFilterValue(
-  filterElement: FilterElementProps<any>,
+export function checkValueForFilter(
+  filterElementKey: string,
   newValue: string,
   isChecked: boolean,
   allValues: Map<string, string[]>
 ): Map<string, string[]> {
   const currentFiltersClone: Map<string, string[]> = new Map<string, string[]>(allValues);
-  let currentFiltersForKey = currentFiltersClone.get(filterElement.filterKey);
+  let currentFiltersForKey = currentFiltersClone.get(filterElementKey);
   if (!currentFiltersForKey) {
     currentFiltersForKey = [];
   }
@@ -17,12 +17,12 @@ export function handleFilterValue(
   } else if (isChecked) {
     currentFiltersForKey.push(newValue);
   }
-  currentFiltersClone.set(filterElement.filterKey, currentFiltersForKey);
+  currentFiltersClone.set(filterElementKey, currentFiltersForKey);
 
   return currentFiltersClone;
 }
 
-export function applyFilter<T>(listToFilter: T[], filter: FilterElementProps<T>, selectedValues: string[]): T[] {
+export function applyFilter<T>(listToFilter: T[], filter: ObjectFilterProps<T>, selectedValues: string[]): T[] {
   if (selectedValues.length === 0) {
     return listToFilter;
   }
@@ -33,15 +33,14 @@ export function applyFilter<T>(listToFilter: T[], filter: FilterElementProps<T>,
 export function filteredList<T>(
   rawList: T[],
   currentFilters: Map<string, string[]>,
-  declaredFilters: { [key: string]: FilterElementProps<T> }
+  declaredFilters: ObjectFilterProps<T>[]
 ): T[] {
   if (!hasSelectedValues(currentFilters)) {
     return rawList;
   }
   let result: T[] = rawList;
-  currentFilters.forEach((value: string[], key: string) => {
-    const filter: FilterElementProps<T> = declaredFilters[key];
-    result = applyFilter(result, filter, value);
+  declaredFilters.forEach((declaredFilter: ObjectFilterProps<T>) => {
+    result = applyFilter(result, declaredFilter, currentFilters.get(declaredFilter.filterKey) || []);
   });
   return result;
 }
@@ -60,10 +59,11 @@ export function hasSelectedValues(currentFilters: Map<string, string[]>): boolea
 function normalize(str: string): string {
   // normalize NFD will transpose è to e + `;
   // replace will delete the `
-  return str.normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+  return str.normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
 }
+
 export function compare(a: string, b: string): boolean {
   return normalize(a).includes(normalize(b));
 }

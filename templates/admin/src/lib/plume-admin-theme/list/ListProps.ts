@@ -30,17 +30,31 @@ export type ListSortMenuProps = {
   onSort: (sortElement: SortElementProps) => void,
 }
 
-export type FilterElementProps<T> = {
+export type FilterProps = {
   filterKey: string,
+}
+
+export interface ObjectFilterProps<T> extends FilterProps {
   keyExtractor: (a: T) => string,
 }
 
-export type ListFilterMenuProps<T> = {
-  filteredObjectKey: string,
-  filterPossibilities: { [key: string]: FilterElementProps<T> },
-  onFilter: (filterElement: FilterElementProps<T>, newValue: string, isChecked: boolean) => void,
-  activeFilters: Map<string, string[]>,
-  rawList: T[] | undefined,
+export interface RawFilterProps extends FilterProps {
+  possibleValues: string[],
+}
+
+export type ListFiltersProps = {
+  filterMenuKey: string,
+  onFilterValueClicked: (filterKey: string, valueSelected: string, isChecked: boolean) => void,
+  selectedValues: Map<string, string[]>,
+}
+
+export interface ListRawFiltersProps extends ListFiltersProps {
+  filters: RawFilterProps[],
+}
+
+export interface ListObjectFiltersProps<T> extends ListFiltersProps {
+  filters: ObjectFilterProps<T>[],
+  rawList: T[],
 }
 
 export type ListHeaderProps = {

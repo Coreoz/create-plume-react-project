@@ -1,16 +1,16 @@
+import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getGlobalInstance } from 'plume-ts-di';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
-import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { FilterElementProps, SortElementProps } from '../../plume-admin-theme/list/ListProps';
-import { AdminUserDetails } from '../api/AdminUserTypes';
-import userSorts, { NAME_DESC } from './UserSort';
 import MessageService from '../../../i18n/messages/MessageService';
-import { compare, filteredList, handleFilterValue } from '../utils/FilterUtils';
-import userFilters from './UserFilter';
-import UsersListResults from '../components/UsersListResults';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
+import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { AdminUserDetails } from '../api/AdminUserTypes';
+import UsersListResults from '../components/UsersListResults';
+import { checkValueForFilter, compare, filteredList } from '../utils/FilterUtils';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import userFilters from './UserFilter';
+import userSorts, { NAME_DESC } from './UserSort';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -75,14 +75,14 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       </theme.pageBloc>
       <theme.pageBloc>
         <theme.pageBlocColumn column="25">
-          <theme.listFilterMenu
-            filteredObjectKey="user"
-            filterPossibilities={userFilters(usersWithRoles?.roles)}
-            onFilter={(filterElement: FilterElementProps<AdminUserDetails>, value: string, isChecked: boolean) => {
-              setCurrentUserFilters(handleFilterValue(filterElement, value, isChecked, currentUserFilters));
+          <theme.listObjectFilters
+            filterMenuKey="user"
+            filters={userFilters(usersWithRoles?.roles)}
+            onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
+              setCurrentUserFilters(checkValueForFilter(filterElementKey, valueSelected, isChecked, currentUserFilters));
             }}
-            activeFilters={currentUserFilters}
-            rawList={usersWithRoles?.users}
+            selectedValues={currentUserFilters}
+            rawList={usersWithRoles?.users || []}
           />
         </theme.pageBlocColumn>
         <theme.pageBlocColumn column="75">
