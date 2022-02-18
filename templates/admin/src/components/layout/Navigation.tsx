@@ -1,14 +1,13 @@
+import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
+import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { getGlobalInstance } from 'plume-ts-di';
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
-import SessionService from '../../services/session/SessionService';
-import Permission from '../../services/session/Permission';
-import { HOME, USERS } from '../Routes';
-import { WithChildren } from '../../lib/ts-react-children-type/WithChildren';
-import { IconType } from '../theme/IconType';
 import MessageService from '../../i18n/messages/MessageService';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
+import Permission from '../../services/session/Permission';
+import SessionService from '../../services/session/SessionService';
+import { HOME, USERS } from '../Routes';
+import { IconType } from '../theme/IconType';
 
 type LinkListItemProps = {
   icon: IconType,
@@ -43,13 +42,13 @@ const LinkListItem = (
   );
 }
 
-type NestedItemProps = WithChildren<{
+type NestedItemProps = {
   icon?: IconType;
   opened?: boolean;
   label: string;
   drawerOpen: boolean;
   children?: React.ReactNode;
-}>;
+};
 
 const NestedItem = (
   {
@@ -130,7 +129,11 @@ export default function Navigation() {
         {
           sessionService.hasPermission(Permission.MANAGE_USERS)
           && (
-            <NestedItem icon="manage_accounts" label={messages['nav.users']} drawerOpen={isDrawerOpened}>
+            <NestedItem
+              icon="manage_accounts"
+              label={messages['nav.users']}
+              drawerOpen={isDrawerOpened}
+            >
               <LinkListItem
                 icon="account_circle"
                 route={USERS}
