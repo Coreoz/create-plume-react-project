@@ -1,14 +1,17 @@
-import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
 import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import MessageService from '../../../i18n/messages/MessageService';
+import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
 
 function ListSortMenu({ sortedObjectKey, sortPossibilities, onSort, defaultSortPossibility }: ListSortMenuProps) {
   const messages = getGlobalInstance(MessageService).t();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
-    const sortChoice = sortPossibilities[event.target.value];
+    const sortChoice = sortPossibilities.filter(
+      element => element.sortKey.toLowerCase()
+        .localeCompare(event.target.value.toString().toLowerCase())
+    )[0];
     if (!sortChoice) {
       return;
     }
@@ -25,12 +28,12 @@ function ListSortMenu({ sortedObjectKey, sortPossibilities, onSort, defaultSortP
         IconComponent={() => <Icon>expand_more</Icon>}
       >
         {
-          Object.keys(sortPossibilities).map((sortKey) => (
+          sortPossibilities.map((sortElement) => (
             <MenuItem
-              key={sortKey}
-              value={sortKey}
+              key={sortElement.sortKey}
+              value={sortElement.sortKey}
             >
-              {(messages['sort'] as any)[sortedObjectKey][sortKey.toLowerCase()]}
+              {(messages['sort'] as any)[sortedObjectKey][sortElement.sortKey.toLowerCase()]}
             </MenuItem>
           ))
         }

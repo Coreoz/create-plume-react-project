@@ -10,7 +10,7 @@ import UsersListResults from '../components/UsersListResults';
 import { checkValueForFilter, compare, filteredList } from '../utils/FilterUtils';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import userFilters from './UserFilter';
-import userSorts, { NAME_DESC } from './UserSort';
+import userSortsList, { NAME_DESC } from './UserSort';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -92,7 +92,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             usersPath={usersPath}
             sortConfiguration={{
               sortedObjectKey: 'user',
-              sortPossibilities: userSorts(),
+              sortPossibilities: userSortsList(),
               defaultSortPossibility: NAME_DESC,
               onSort: (to: SortElementProps) => {
                 setCurrentSorting(to);

@@ -21,16 +21,6 @@ export const NAME_ASC: SortElementProps = {
   }
 }
 
-export function userSortsList() {
+export default function userSortsList() {
   return [NAME_ASC, NAME_DESC];
-}
-
-export default function userSorts(): { [key: string]: SortElementProps } {
-  return Object.fromEntries(
-    new Map<string, SortElementProps>(
-      userSortsList().map(
-        (sortPossibility) => [sortPossibility.sortKey, sortPossibility]
-      )
-    )
-  );
 }

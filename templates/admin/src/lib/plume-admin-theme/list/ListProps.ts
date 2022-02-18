@@ -25,7 +25,7 @@ export type ListSingleElementProps = {
 
 export type ListSortMenuProps = {
   sortedObjectKey: string,
-  sortPossibilities: { [key: string]: SortElementProps },
+  sortPossibilities: SortElementProps[],
   defaultSortPossibility: SortElementProps,
   onSort: (sortElement: SortElementProps) => void,
 }
