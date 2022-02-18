@@ -25,7 +25,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    font-size: $font-size-little;
+    font-size: $font-size-normal;
 
     .data {
       display: flex;
@@ -47,7 +47,7 @@
 
         &--accent {
           width: 110px;
-          font-size: $font-size-mini;
+          font-size: $font-size-little;
           padding: .5rem;
           border-radius: .5rem;
           text-transform: uppercase;
@@ -57,7 +57,7 @@
         }
 
         &--little {
-          font-size: $font-size-mini;
+          font-size: $font-size-little;
         }
       }
     }

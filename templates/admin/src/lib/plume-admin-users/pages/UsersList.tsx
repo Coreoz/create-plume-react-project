@@ -74,7 +74,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="25">
+        <theme.pageBlocColumn column="20">
           <theme.listObjectFilters
             filterMenuKey="user"
             filters={userFilters(usersWithRoles?.roles)}
@@ -85,7 +85,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             rawList={usersWithRoles?.users || []}
           />
         </theme.pageBlocColumn>
-        <theme.pageBlocColumn column="75">
+        <theme.pageBlocColumn column="80">
           <UsersListResults
             userList={sortedAndFilteredList()}
             userRoles={usersWithRoles?.roles}
