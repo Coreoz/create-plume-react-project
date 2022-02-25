@@ -16,8 +16,17 @@ export type HttpError = {
   statusArguments?: string[],
 };
 
+/**
+ * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}
+ */
 export type HttpResponse<T> = {
+  /**
+   * Contains the response error that should be present only if the response must be considered as an error
+   */
   error?: HttpError,
+  /**
+   * Contains the response of an API call, it should be present only if the response is not considered as an error
+   */
   response?: T,
 };
 
