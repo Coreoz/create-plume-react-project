@@ -26,6 +26,49 @@ Basic usage of the library can be found in:
 - The API client declaration: <https://github.com/Coreoz/create-plume-react-project/blob/master/templates/admin/src/api/ApiHttpClient.ts>
 - An API client usage (here authentication): <https://github.com/Coreoz/create-plume-react-project/blob/master/templates/admin/src/api/session/SessionApi.ts>
 
+Main components example
+-----------------------
+To consume an API, there is 3 steps:
+1. Configure the API client: this will build a request and with the attached HTTP client. The API client will generally be the same for all endpoints of the same host. More API clients may be needed to differentiate public and authenticated parts of the whole host API catalog.
+2. Configure each API endpoint
+3. Consume the API endpoint
+
+Here are sample for these 3 steps:
+### Configure the API client
+This function be called for each API endpoint identified by a Method and a Path.
+A request builder will be returned, when executed, this request will return a [HttpPromise<T>](#httppromise).
+
+```typescript
+restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
+  return new HttpRequest<HttpPromise<T>>(
+    // the base API client
+    (httpRequest) => new HttpPromise<T>(
+      // unwrapHttpPromise enables to transforme a Promise<HttpResponse<T>> result to a HttpPromise<T> result
+      // while defaultJsonFetchClient will connect take care of HTTP exchange and try to parse the result to a JSON T object (the generic parameter that represents the type we are waiting for)
+      unwrapHttpPromise(defaultJsonFetchClient(httpRequest)),
+      httpRequest,
+    ),
+    // the base URL, e.g. https://google.fr/api
+    baseUrl,
+    // the method, e.g. HttpMethod.GET
+    method,
+    // the path, e.g. /users/123/addresses
+    path,
+  );
+}
+```
+
+TODO
+2. Configure each API endpoint
+3. Consume the API endpoint
+
+Main concepts
+-------------
+TODO describe main structures
+
+### HttpPromise
+TODO
+
 Step by step custom usage
 -------------------------
 Here are the steps to use any custom API:
