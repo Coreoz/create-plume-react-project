@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import {
+  DependencyList, useEffect, useRef, useState,
+} from 'react';
 import { DataLoader } from './observableLoaderHook';
-import { useOnComponentMounted, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 import useLoader, { LoadingPromise } from './promiseLoaderHook';
 
 /**
@@ -11,8 +12,9 @@ import useLoader, { LoadingPromise } from './promiseLoaderHook';
  *
  * @param dataPromise The function that makes the call that returns a `Promise`.
  * This function is called as soon as the component has been mounted, see {@link useOnComponentMounted}.
+ * @param dependencies The dependencies that once updated should make the loader to reload the data
  */
-export default function useDataLoader<T>(dataPromise: () => LoadingPromise<T>): DataLoader<T> {
+export default function useDataLoader<T>(dataPromise: () => LoadingPromise<T>, dependencies: DependencyList = []): DataLoader<T> {
   const [data, setData] = useState<T>();
   const isMountedRef = useRef<boolean>(true);
   const loader = useLoader();
@@ -23,11 +25,15 @@ export default function useDataLoader<T>(dataPromise: () => LoadingPromise<T>): 
     }
   }));
 
-  useOnComponentMounted(dataLoader);
+  useEffect(() => {
+    // load the data as soon as the component is mounted or when the dependencies change
+    dataLoader();
 
-  useOnComponentUnMounted(() => {
-    isMountedRef.current = false;
-  });
+    return () => {
+      // mark the component as unmounted
+      isMountedRef.current = false;
+    };
+  }, dependencies);
 
   return {
     isLoaded: loader.isLoaded,
