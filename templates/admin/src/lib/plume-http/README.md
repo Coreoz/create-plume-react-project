@@ -107,26 +107,10 @@ Http errors can be:
 
 #### Errors raised by the library
 The errors handled by the library are:
-- NETWORK_ERROR: It means the remote API could not be contacted, it is likely due to poor network connection on the client side
-- TIMEOUT_ERROR: It means the remote API could be contact but no result has been returned after the timeout delay. It might also be due to poor network connection, but it can also be due to an API issue. The default timeout is 20 seconds, but that can be configured
-- FORBIDDEN_ERROR:
-- INTERNAL_ERROR: 
-
-export const genericError = {
-errorCode: 'INTERNAL_ERROR',
-};
-
-export const networkError = {
-errorCode: 'NETWORK_ERROR',
-};
-
-export const timeoutError = {
-errorCode: 'TIMEOUT_ERROR',
-};
-
-export const forbiddenError = {
-errorCode: 'FORBIDDEN_ERROR',
-};
+- **NETWORK_ERROR**: It means the remote API could not be contacted, it is likely due to poor network connection on the client side
+- **TIMEOUT_ERROR**: It means the remote API could be contact but no result has been returned after the timeout delay. It might also be due to poor network connection, but it can also be due to an API issue. The default timeout is 20 seconds, but that can be configured
+- **FORBIDDEN_ERROR**: It means the API returned a 403 response. This error is raised by the [validator](#TODO) `validateBasicStatusCodes` 
+- **INTERNAL_ERROR**: TODO
 
 Step by step custom usage
 -------------------------
@@ -168,3 +152,4 @@ export type HttpResponse<T> = {
 TODO provide a sample + add docs to methods
 
 #### Add status validator
+]
