@@ -58,9 +58,40 @@ restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
 }
 ```
 
-TODO
-2. Configure each API endpoint
-3. Consume the API endpoint
+### Configure each API endpoint
+Here the goal is to configure the specific API call to an endpoint. So the previous [API client](#configure-the-api-client) created will be used.
+
+In the following example:
+- The endpoint is `/admin/session` to authenticate a user by verifying its credentials
+- This endpoint takes a JSON object as a body argument that complies to the TS type `SessionCredentials`
+- This endpoint returns a JSON object that complies to the TS type `SessionToken`
+
+```typescript
+authenticate(credentials: SessionCredentials): HttpPromise<SessionToken>  {
+  return httpClient
+    .restRequest<SessionToken>(HttpMethod.POST, '/admin/session')
+    .jsonBody(credentials)
+    // this line will execute the request on the httpClient and return the result promise
+    .execute();
+}
+```
+
+### Consume the API endpoint
+Here the previous configured [API endpoint call](#configure-each-api-endpoint) will be used to actually make the call inside the project logic.
+
+```typescript
+authenticate(credentials: SessionCredentials) {
+  sessionApi
+    .authenticate(credentials)
+    .then((sessionToken: SessionToken) => {
+      console.log(`Session created ${sessionToken.webSessionToken}, should grant access to the user`);
+    })
+    .catch((httpError: HttpError) => {
+      // see below to have a look of the error codes handled by the library and how to configure you owns errors
+      console.log(`Authentication failed, error code: ${httpError.errorCode}`);
+    });
+}
+```
 
 Main concepts
 -------------
@@ -68,6 +99,34 @@ TODO describe main structures
 
 ### HttpPromise
 TODO
+
+### HttpError
+Http errors can be:
+- Raised by the library, in that case the work will only be to if necessary display the correct error message
+- Raised by the project that configured the library to a specific API that raises its own errors
+
+#### Errors raised by the library
+The errors handled by the library are:
+- NETWORK_ERROR: It means the remote API could not be contacted, it is likely due to poor network connection on the client side
+- TIMEOUT_ERROR: It means the remote API could be contact but no result has been returned after the timeout delay. It might also be due to poor network connection, but it can also be due to an API issue. The default timeout is 20 seconds, but that can be configured
+- FORBIDDEN_ERROR:
+- INTERNAL_ERROR: 
+
+export const genericError = {
+errorCode: 'INTERNAL_ERROR',
+};
+
+export const networkError = {
+errorCode: 'NETWORK_ERROR',
+};
+
+export const timeoutError = {
+errorCode: 'TIMEOUT_ERROR',
+};
+
+export const forbiddenError = {
+errorCode: 'FORBIDDEN_ERROR',
+};
 
 Step by step custom usage
 -------------------------

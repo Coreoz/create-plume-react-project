@@ -62,3 +62,15 @@ const httpClient = (httpRequest: HttpRequest<unknown>): Promise<Response> => {
   .finally(() => clearTimeout(timeoutHandle));
 };
 ```
+
+Timeout
+-------
+By default, the request global timeout is 20 seconds (connect + wait + read). This can be configured using the request `options` method:
+```typescript
+const response: Promise<Response> = new HttpRequest<...>(...)
+  .queryParams(...)
+  // 60 seconds timeout
+  .options({ timeoutInMillis: 60000 })
+  .execute();
+```
+
