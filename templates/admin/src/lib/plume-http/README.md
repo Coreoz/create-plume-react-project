@@ -97,6 +97,13 @@ Main concepts
 -------------
 TODO describe main structures
 
+### HttpRequest
+TODO
+
+### FetchResponseHandler
+
+### HttpResponse
+
 ### HttpPromise
 TODO
 
@@ -110,7 +117,7 @@ The errors handled by the library are:
 - **NETWORK_ERROR**: It means the remote API could not be contacted, it is likely due to poor network connection on the client side
 - **TIMEOUT_ERROR**: It means the remote API could be contact but no result has been returned after the timeout delay. It might also be due to poor network connection, but it can also be due to an API issue. The default timeout is 20 seconds, but that can be configured
 - **FORBIDDEN_ERROR**: It means the API returned a 403 response. This error is raised by the [validator](#TODO) `validateBasicStatusCodes` 
-- **INTERNAL_ERROR**: TODO
+- **INTERNAL_ERROR**: It means a parsing error occurred: a `then` function provided to a `HttpPromise.then()` function raised an error, the parsing of the JSON object raised an error, the server returned a non JSON response, etc. Since this error is related to a developer error or a backend error, we generally want to display the same generic error to an end user. If this error is not suitable for a project, it is possible to get rid of this by having customized [validator](#TODO) and wrapping `then` and `catch` functions provided to [HttpPromise](#httppromise) to make sure these functions never fails or raised custom [HttpError](#httperror)
 
 Step by step custom usage
 -------------------------
@@ -152,4 +159,13 @@ export type HttpResponse<T> = {
 TODO provide a sample + add docs to methods
 
 #### Add status validator
-]
+TODO
+
+Advanced usages
+---------------
+
+### SynchronizedHttpPromise
+TODO
+
+### PromiseMonitor
+TODO

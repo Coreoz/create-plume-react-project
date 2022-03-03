@@ -199,7 +199,7 @@ export default class HttpPromise<T> {
   /**
    * Returns the debug context if it exists.
    *
-   * This should be used only to make copies to the {@link HttpPromise}.
+   * This should be used only to make copies to the {@link HttpPromise} or to display debugging information.
    */
   getDebugContext(): object | undefined {
     return this.debugContext;
