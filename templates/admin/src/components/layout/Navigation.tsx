@@ -89,7 +89,7 @@ const NestedItem = (
           )
         }
       </ListItem>
-      <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
+      <Collapse in={drawerOpen && isItemOpened} timeout="auto" unmountOnExit>
         <List component="div" disablePadding className="nested-items">
           {children}
         </List>
