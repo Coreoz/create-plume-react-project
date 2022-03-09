@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
 import { Button, CircularProgress, Icon, } from '@mui/material';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
 } from '../../../lib/plume-admin-theme/action/ActionProps';
+import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 
 function imageOrIconNameToIcon(image?: string, iconName?: string): JSX.Element | HTMLImageElement | null {
   if (!image && !iconName) {
@@ -80,7 +80,7 @@ export function ActionButton(
         isLoading
         && (
           <div className="loading-progress">
-            <CircularProgress size="auto" />
+            <CircularProgress size="100%" color="inherit" />
           </div>
         )
       }
