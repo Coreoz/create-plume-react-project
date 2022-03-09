@@ -95,14 +95,23 @@ authenticate(credentials: SessionCredentials) {
 
 Main concepts
 -------------
-TODO describe main structures
+Basic types are:
+- [HttpRequest](#httprequest): request configuration
+- [FetchResponseHandler](#fetchresponsehandler): raw `fetch` `Response` validation/transformation
+- [HttpResponse](#httpresponse): the response created from a [FetchResponseHandler](#fetchresponsehandler)
+
+On top of that, the [HttpPromise](#httppromise) is often used on a [HttpResponse](#httpresponse) object to:
+- Ease the usage of the Promise
+- Make sure to have logs in case an error occurred even though a `catch` statement is not set
 
 ### HttpRequest
-TODO
-
-### FetchResponseHandler
+It represents a request that will be executed by an HttpClient.
+This is the main object defined in [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder).
+See directly the type source for documentation: <https://github.com/Coreoz/simple-http-request-builder/tree/master/src/HttpRequest.ts>
 
 ### HttpResponse
+
+### FetchResponseHandler
 
 ### HttpPromise
 TODO
