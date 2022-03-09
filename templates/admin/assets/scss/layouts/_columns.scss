@@ -3,82 +3,83 @@
   margin: $spacer-5 0;
 
   .column {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink:  1;
 
     & ~ .column{
       margin-left: $spacer-4;
     }
 
     &--10 {
-      flex: 1;
+      width: 10%
     }
 
     &--15 {
-      flex: 1.5;
+      width: 15%
     }
 
     &--20 {
-      flex: 2;
+      width: 20%
     }
 
     &--25 {
-      flex: 2.5;
+      width: 25%
     }
 
     &--30 {
-      flex: 3;
+      width: 30%
     }
 
     &--35 {
-      flex: 3.5;
+      width: 35%
     }
 
     &--40 {
-      flex: 4;
+      width: 40%
     }
 
     &--45 {
-      flex: 4.5;
+      width: 45%
     }
 
     &--50 {
-      flex: 5;
+      width: 50%
     }
 
     &--55 {
-      flex: 5.5;
+      width: 55%
     }
 
     &--60 {
-      flex: 6;
+      width: 60%
     }
 
     &--65 {
-      flex: 6.5;
+      width: 65%
     }
 
     &--70 {
-      flex: 7;
+      width: 70%
     }
 
     &--75 {
-      flex: 7.5;
+      width: 75%
     }
 
     &--80 {
-      flex: 8;
+      width: 80%
     }
 
     &--85 {
-      flex: 8.5;
+      width: 85%
     }
 
     &--90 {
-      flex: 9;
+      width: 90%
     }
 
     &--95 {
-      flex: 9.5;
+      width: 95%
     }
   }
 }
