@@ -46,9 +46,11 @@ HTTP Client sample using fetch
 This sample is from [Simple HTTP Fetch Client](https://github.com/Coreoz/simple-http-request-builder) library.
 
 ```typescript
-const httpClient = (httpRequest: HttpRequest<unknown>): Promise<Response> => { 
-  const controller = new AbortController();
-  const timeoutHandle = setTimeout(() => controller.abort(), httpRequest.optionValues.timeoutInMillis);
+const httpClient = (httpRequest: HttpRequest<unknown>): Promise<Response> => {
+  const timeoutHandle = setTimeout(
+    () => httpRequest.optionValues.timeoutAbortController.abort(),
+    httpRequest.optionValues.timeoutInMillis,
+  );
   return fetch(
     httpRequest.buildUrl(),
     {
@@ -56,7 +58,7 @@ const httpClient = (httpRequest: HttpRequest<unknown>): Promise<Response> => {
       method: httpRequest.method,
       body: httpRequest.bodyValue,
       credentials: 'same-origin',
-      signal: controller.signal,
+      signal: httpRequest.optionValues.timeoutAbortController.signal,
     },
   )
   .finally(() => clearTimeout(timeoutHandle));
@@ -74,3 +76,17 @@ const response: Promise<Response> = new HttpRequest<...>(...)
   .execute();
 ```
 
+Request cancellation
+--------------------
+To cancel the request manually, it is also possible to specify the `AbortController` as an option:
+```typescript
+const abortController = new AbortController();
+const response: Promise<Response> = new HttpRequest<...>(...)
+  .queryParams(...)
+  // 60 seconds timeout
+  .options({ timeoutAbortController: abortController })
+  .execute();
+
+// then later, the promise can be manually stopped if it hasn't been resolved
+abortController.abort(); // the promise is now cancelled
+```

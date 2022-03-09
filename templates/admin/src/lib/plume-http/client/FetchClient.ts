@@ -11,8 +11,10 @@ import {
 const logger = new Logger('FetchClient');
 
 export const fetchClientExecutor = (httpRequest: HttpRequest<unknown>): Promise<Response> => {
-  const controller = new AbortController();
-  const timeoutHandle = setTimeout(() => controller.abort(), httpRequest.optionValues.timeoutInMillis);
+  const timeoutHandle = setTimeout(
+    () => httpRequest.optionValues.timeoutAbortController.abort(),
+    httpRequest.optionValues.timeoutInMillis,
+  );
   return fetch(
     httpRequest.buildUrl(),
     {
@@ -20,7 +22,7 @@ export const fetchClientExecutor = (httpRequest: HttpRequest<unknown>): Promise<
       method: httpRequest.method,
       body: httpRequest.bodyValue,
       credentials: 'same-origin',
-      signal: controller.signal,
+      signal: httpRequest.optionValues.timeoutAbortController.signal,
     },
   )
     .finally(() => clearTimeout(timeoutHandle));

@@ -15,6 +15,10 @@ export type HttpOptions = {
    * The request timeout in milliseconds. Default timeout is {@link HTTP_DEFAULT_TIMEOUT_IN_MILLIS}.
    */
   timeoutInMillis: number,
+  /**
+   * The {@link AbortController} that will be used to cancel the request once the timeout is reach.
+   */
+  timeoutAbortController: AbortController,
 };
 
 /**
@@ -92,12 +96,14 @@ export default class HttpRequest<T> {
    * @param method The HTTP method used for the request, see {@link HttpMethod}
    * @param path The path of the endpoint to call, it should be composed with a leading slash
    * and will be appended to the {@link baseUrl}. A valid path is: /users
+   * @param options The options used for the request
    */
   constructor(
     httpClient: (request: HttpRequest<unknown>) => T,
     baseUrl: string,
     method: HttpMethod,
     path: string,
+    options?: Partial<HttpOptions>,
   ) {
     this.httpClient = httpClient;
     this.baseUrl = baseUrl;
@@ -107,7 +113,8 @@ export default class HttpRequest<T> {
     this.queryParamsValue = [];
     this.bodyValue = undefined;
     this.optionValues = {
-      timeoutInMillis: HTTP_DEFAULT_TIMEOUT_IN_MILLIS,
+      timeoutInMillis: options?.timeoutInMillis ?? HTTP_DEFAULT_TIMEOUT_IN_MILLIS,
+      timeoutAbortController: options?.timeoutAbortController ?? new AbortController(),
     };
   }
 
