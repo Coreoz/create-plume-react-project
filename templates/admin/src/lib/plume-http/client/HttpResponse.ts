@@ -17,7 +17,9 @@ export type HttpError = {
 };
 
 /**
- * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}
+ * This object represents the successful or failed HTTP response.
+ *
+ * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}.
  */
 export type HttpResponse<T> = {
   /**

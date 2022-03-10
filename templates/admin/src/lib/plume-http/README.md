@@ -104,14 +104,31 @@ On top of that, the [HttpPromise](#httppromise) is often used on a [HttpResponse
 - Ease the usage of the Promise
 - Make sure to have logs in case an error occurred even though a `catch` statement is not set
 
+TODO put links towards each type source code
+
 ### HttpRequest
 It represents a request that will be executed by an HttpClient.
 This is the main object defined in [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder).
 See directly the type source for documentation: <https://github.com/Coreoz/simple-http-request-builder/tree/master/src/HttpRequest.ts>
 
 ### HttpResponse
+This object represents the successful or failed HTTP response.
+It is returned by an HttpClient and by a [FetchResponseHandler](#fetchresponsehandler).
+HTTP failures are represented by an [error](#httperror).
 
 ### FetchResponseHandler
+Handlers are executed after a successful HTTP response is available: this means a 200 HTTP response has been received.
+These handlers will:
+- Validate some preconditions and if necessary return an error result
+- Return a result
+
+So a handler can:
+- Either return a result (which can be a successful result or an error), in that case following handlers **will not be executed**
+- Either return `undefined`, in that case following handlers **will be executed**
+
+Expected results should be of type [HttpResponse](#httpresponse).
+
+TODO provide a sample
 
 ### HttpPromise
 TODO
@@ -139,35 +156,12 @@ const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpRespo
 ```
 
 ### Add response handlers
-Handlers are executed after a successful response is available.
-These handlers will:
-- Validate some preconditions and if necessary return an error result
-- Return a result
+TODO
 
-So a handler can:
-- Either return a result (which can be a successful result or an error), in that case following handlers **will not be executed**
-- Either return `undefined`, in that case following handlers **will be executed**
+#### Add validators
+TODO
 
-Expected results should be of type `HttpResponse`:
-```typescript
-/**
- * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}
- */
-export type HttpResponse<T> = {
-  /**
-   * Contains the response error that should be present only if the response must be considered as an error
-   */
-  error?: HttpError,
-  /**
-   * Contains the response of an API call, it should be present only if the response is not considered as an error
-   */
-  response?: T,
-};
-```
-
-TODO provide a sample + add docs to methods
-
-#### Add status validator
+#### Add a response mapper
 TODO
 
 Advanced usages
