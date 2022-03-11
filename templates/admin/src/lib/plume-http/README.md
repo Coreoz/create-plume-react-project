@@ -117,7 +117,7 @@ It is returned by an HttpClient and by a [FetchResponseHandler](#fetchresponseha
 HTTP failures are represented by an [error](#httperror).
 
 ### FetchResponseHandler
-Handlers are executed after a successful HTTP response is available: this means a 200 HTTP response has been received.
+Handlers are executed after a successful HTTP response is available: this means an HTTP response has been received (whichever the response statut, 200, 400 or 500...).
 These handlers will:
 - Validate some preconditions and if necessary return an error result
 - Return a result
@@ -126,7 +126,7 @@ So a handler can:
 - Either return a result (which can be a successful result or an error), in that case following handlers **will not be executed**
 - Either return `undefined`, in that case following handlers **will be executed**
 
-Expected results should be of type [HttpResponse](#httpresponse).
+Expected results should be of type `Promise` of [HttpResponse](#httpresponse).
 
 TODO provide a sample
 

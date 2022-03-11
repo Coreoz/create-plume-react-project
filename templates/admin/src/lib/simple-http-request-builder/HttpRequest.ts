@@ -22,6 +22,16 @@ export type HttpOptions = {
 };
 
 /**
+ * A client that executes an {@link HttpRequest HTTP request}.
+ *
+ * @template T The result type of the execution of the {@link HttpRequest}
+ * @return The result of the execution of the {@link HttpRequest}
+ */
+export interface HttpClient<T> {
+  (request: HttpRequest<unknown>): T;
+}
+
+/**
  * 20 seconds timeout.
  */
 export const HTTP_DEFAULT_TIMEOUT_IN_MILLIS = 20000;
@@ -37,7 +47,7 @@ export default class HttpRequest<T> {
    *
    * This value is set in the {@link constructor}.
    */
-  readonly httpClient: (request: HttpRequest<unknown>) => T;
+  readonly httpClient: HttpClient<T>;
 
   /**
    * The base URL. A valid base URL is: http://hostname/api
@@ -99,7 +109,7 @@ export default class HttpRequest<T> {
    * @param options The options used for the request
    */
   constructor(
-    httpClient: (request: HttpRequest<unknown>) => T,
+    httpClient: HttpClient<T>,
     baseUrl: string,
     method: HttpMethod,
     path: string,

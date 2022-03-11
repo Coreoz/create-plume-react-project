@@ -1,7 +1,9 @@
 Create Plume React Project
 ==========================
 
-React Plume project archetypes.
+React Plume project archetypes that enables to create [typescript](https://github.com/microsoft/TypeScript)
+[React](https://github.com/facebook/react) projects
+with dependency injection and the observable pattern to manage the application global state. 
 
 Usage
 -----
