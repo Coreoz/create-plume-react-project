@@ -104,8 +104,6 @@ On top of that, the [HttpPromise](#httppromise) is often used on a [HttpResponse
 - Ease the usage of the Promise
 - Make sure to have logs in case an error occurred even though a `catch` statement is not set
 
-TODO put links towards each type source code
-
 ### HttpRequest
 It represents a request that will be executed by an HttpClient.
 This is the main object defined in [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder).
@@ -115,6 +113,7 @@ See directly the type source for documentation: <https://github.com/Coreoz/simpl
 This object represents the successful or failed HTTP response.
 It is returned by an HttpClient and by a [FetchResponseHandler](#fetchresponsehandler).
 HTTP failures are represented by an [error](#httperror).
+See directly the type source for documentation: <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/client/HttpResponse.ts>
 
 ### FetchResponseHandler
 Handlers are executed after a successful HTTP response is available: this means an HTTP response has been received (whichever the response statut, 200, 400 or 500...).
@@ -128,15 +127,25 @@ So a handler can:
 
 Expected results should be of type `Promise` of [HttpResponse](#httpresponse).
 
-TODO provide a sample
+Here are two sample usage:
+- A handler that validate the HTTP status code: <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/client/FetchStatusValidators.ts>
+- A handler that return a JSON results (the function is named `toJsonResponse`): <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/client/JsonFetchClient.ts>
 
 ### HttpPromise
-TODO
+A mutable safe `Promise` that ensures:
+- Either a then function is provided or either an info log statement will be issued
+- Either a catch function is provided or either a warning log statement will be issued
+- Then and Catch functions are wrapped to ensure that if an error occurs during the execution,
+  an error statement is issued
+
+See directly the type source for documentation: <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/promise/HttpPromise.ts>
 
 ### HttpError
 Http errors can be:
 - Raised by the library, in that case the work will only be to if necessary display the correct error message
 - Raised by the project that configured the library to a specific API that raises its own errors
+
+See directly the type source for documentation: <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/client/HttpResponse.ts>
 
 #### Errors raised by the library
 The errors handled by the library are:
@@ -150,18 +159,21 @@ Step by step custom usage
 Here are the steps to use any custom API:
 
 ### Create a basic API client
+Start by creating a proxy to the `fetchClient` method:
 ```typescript
-// for just create a proxy to the fetchClient method
 const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpResponse<T>> => fetchClient(httpRequest);
 ```
 
-### Add response handlers
-TODO
+### Add validators
+By default, these validators are provided:
+- **validateBasicStatusCodes**: It raises an error if the status code is 403, and it returns an empty response if the status code is 200
+- **jsonContentTypeValidator**: It verifies the response content-type is JSON
+- **contentTypeValidator**: It is used to create response content-type validator like `jsonContentTypeValidator`
 
-#### Add validators
-TODO
+### Add a response mapper
+TODO mapper + ok validation
 
-#### Add a response mapper
+### Create a request builder maker
 TODO
 
 Advanced usages

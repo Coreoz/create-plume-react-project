@@ -1,34 +1,22 @@
 import { Logger } from 'simple-logging-system';
-import { genericError, HttpResponse, toErrorResponsePromise } from './HttpResponse';
+import { genericError, HttpResponse } from './HttpResponse';
 import fetchClient, { FetchResponseHandler } from './FetchClient';
 import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 import validateBasicStatusCodes from './FetchStatusValidators';
+import contentTypeValidator from './ContentTypeValidator';
 
 const logger = new Logger('JsonFetchClient');
 
 /**
- * A {@link FetchResponseHandler} that verify the content type of a {@link Response}
+ * A {@link FetchResponseHandler} that verify that the content type of a {@link Response} is JSON
  * using the `content-type` response HTTP header.
  *
- * By default the `application/json` is looked for.
+ * See {@link contentTypeValidator} for the content type validation.
+ *
  * @param response The {@link Response} to validate
- * @param jsonContentType The content type to look for in `content-type` response HTTP header.
- * Note that the `jsonContentType` can be a partial type. For example if `jsonContentType = 'json'`,
- * then a response with the header `application/vnd.myapp.type.v1+json` will be valid.
  */
-export const jsonContentTypeValidator: FetchResponseHandler = (
-  response: Response,
-  jsonContentType: string = 'application/json',
-) => {
-  // make sure the response is a JSON one
-  const contentType = response.headers.get('content-type');
-  if (contentType === null || contentType.indexOf(jsonContentType) === -1) {
-    logger.error('Response type is not JSON', response);
-    return toErrorResponsePromise(genericError);
-  }
-
-  return undefined;
-};
+export const jsonContentTypeValidator:
+FetchResponseHandler = (response: Response) => contentTypeValidator(response, 'json');
 
 /**
  * A mapper that will handle non-successful HTTP responses that have however a JSON body.
