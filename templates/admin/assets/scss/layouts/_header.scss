@@ -1,8 +1,8 @@
 #main-header {
   display: flex;
   align-items: center;
-  height: 70px;
-  border-bottom: 1px solid $separator-color;
+  height: $height-header;
+  border-bottom: $separator;
 
   h1 {
     padding: $spacer-4 0;
@@ -21,7 +21,7 @@
       align-items: center;
       height: 100%;
       padding: 0 $spacer-5;
-      border-left: 1px solid $separator-color;
+      border-left: $separator;
       color: $secondary-color;
 
       button {
@@ -54,6 +54,6 @@
   min-width: 75px;
   text-align: center;
   padding: 0 $spacer-4 $spacer-2 $spacer-4;
-  border-bottom: 1px solid $separator-color;
+  border-bottom: $separator;
   margin-bottom: $spacer-3;
 }
