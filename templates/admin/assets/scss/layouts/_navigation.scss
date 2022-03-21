@@ -3,7 +3,7 @@
   height: 100%;
   transition: width .3s ease-in;
   overflow: visible;
-  border-right: 1px solid $separator-color;
+  border-right: $separator;
   font-size: $font-size-normal;
   position: relative;
 
@@ -17,7 +17,8 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    top: 20px;
+    // $height-header / 2 - button height / 2
+    top: calc((#{$height-header} / 2) - 15px);
     right: 0;
     transform: translateX(50%);
     z-index: 1;

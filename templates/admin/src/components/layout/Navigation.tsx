@@ -1,102 +1,14 @@
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+
+import { Icon, List, } from '@mui/material';
+import { getGlobalInstance } from 'plume-ts-di';
 import MessageService from '../../i18n/messages/MessageService';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
 import { HOME, USERS } from '../Routes';
-import { IconType } from '../theme/IconType';
-
-type LinkListItemProps = {
-  icon: IconType,
-  route: string,
-  label: string,
-  drawerOpen: boolean,
-};
-
-const LinkListItem = (
-  {
-    icon, route, label, drawerOpen
-  }: LinkListItemProps
-) => {
-  const routeMatch = useRouteMatch({ path: route, exact: false });
-  return (
-    <ListItem
-      button
-      component={Link}
-      to={route}
-      className={routeMatch ? 'active list-item' : 'list-item'}
-    >
-      <ListItemIcon>
-        <Icon fontSize="large">{icon}</Icon>
-      </ListItemIcon>
-      {
-        drawerOpen
-        && (
-          <ListItemText primary={label} />
-        )
-      }
-    </ListItem>
-  );
-}
-
-type NestedItemProps = {
-  icon?: IconType;
-  opened?: boolean;
-  label: string;
-  drawerOpen: boolean;
-  children?: React.ReactNode;
-};
-
-const NestedItem = (
-  {
-    icon, label, opened, children, drawerOpen,
-  }: NestedItemProps
-) => {
-  const [isItemOpened, toggleItemOpening] = useToggle(opened ?? true);
-
-  return (
-    <>
-      <ListItem
-        button
-        component="a"
-        onClick={toggleItemOpening}
-      >
-        {
-          icon
-          && (
-            <ListItemIcon>
-              <Icon fontSize="large">{icon}</Icon>
-            </ListItemIcon>
-          )
-        }
-        {
-          drawerOpen
-          && (
-            <>
-              <ListItemText primary={label} />
-              {
-                isItemOpened
-                  ? (
-                    <Icon>expand_less</Icon>
-                  ) : (
-                    <Icon>expand_more</Icon>
-                  )
-              }
-            </>
-          )
-        }
-      </ListItem>
-      <Collapse in={drawerOpen && isItemOpened} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding className="nested-items">
-          {children}
-        </List>
-      </Collapse>
-    </>
-  );
-};
+import LinkListItem from './LinkListItem';
+import NestedListItem from './NestedListItem';
 
 export default function Navigation() {
   const sessionService = getGlobalInstance(SessionService);
@@ -129,7 +41,7 @@ export default function Navigation() {
         {
           sessionService.hasPermission(Permission.MANAGE_USERS)
           && (
-            <NestedItem
+            <NestedListItem
               icon="manage_accounts"
               label={messages['nav.users']}
               drawerOpen={isDrawerOpened}
@@ -140,7 +52,7 @@ export default function Navigation() {
                 label={messages['nav.user-list']}
                 drawerOpen={isDrawerOpened}
               />
-            </NestedItem>
+            </NestedListItem>
           )
         }
       </List>
