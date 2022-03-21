@@ -165,13 +165,23 @@ const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpRespo
 ```
 
 ### Add validators
+The goal here is to verify that the result is excepted and correct.
+
 By default, these validators are provided:
 - **validateBasicStatusCodes**: It raises an error if the status code is 403, and it returns an empty response if the status code is 200
 - **jsonContentTypeValidator**: It verifies the response content-type is JSON
 - **contentTypeValidator**: It is used to create response content-type validator like `jsonContentTypeValidator`
 
 ### Add a response mapper
-TODO mapper + ok validation
+The goal here is to parse the response's body and return the correct object. For example to parse a JSON content:
+1. The JSON body should be parsed (using `response.json()`)
+2. Depending on the status code:
+   1. If the status code is 2xx, the response object should be appended to the field `HttpResponse.response`
+   2. Else the response is an error, the error might be categorized, it should then be appended to the field `HttpResponse.error`
+3. If the JSON parsing failed, an error should be to the field `HttpResponse.error`
+
+All these actions are implemented in the function `(response: Response, jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper): Promise<HttpResponse<unknown>>`.
+TODO finish this
 
 ### Create a request builder maker
 TODO

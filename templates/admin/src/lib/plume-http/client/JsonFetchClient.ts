@@ -60,10 +60,10 @@ export const defaultJsonErrorMapper: JsonErrorMapper = (response: Response, json
  * @param jsonErrorMapper The {@link JsonErrorMapper} that will handle the parsed JSON object in case
  * the HTTP response is not successful (status code is not 2xx)
  */
-export const toJsonResponse: FetchResponseHandler = (
+export const toJsonResponse = (
   response: Response,
   jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper,
-) => response
+): Promise<HttpResponse<unknown>> => response
   .json()
   .then((json) => {
     if (response.ok) {
