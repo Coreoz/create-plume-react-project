@@ -9,6 +9,7 @@ import SessionService from '../../services/session/SessionService';
 import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
+import plume from "../../../assets/icons/plume_logo.png";
 
 export default function Navigation() {
   const sessionService = getGlobalInstance(SessionService);
@@ -27,7 +28,7 @@ export default function Navigation() {
       </button>
 
       <div className="app-info">
-        <img src="/assets/icons/plume_logo.png" className="logo" alt="logo" />
+        <img src={plume} className="logo" alt="logo" />
         <span>{messages['app.name']}</span>
       </div>
 
