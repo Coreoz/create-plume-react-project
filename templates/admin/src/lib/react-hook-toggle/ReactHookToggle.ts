@@ -9,7 +9,7 @@ export default function useToggle(initialState: boolean = false): [boolean, () =
   return [
     value,
     useCallback(() => {
-      setValue(!value);
-    }, [value]),
+      setValue((previousValue: boolean) => !previousValue);
+    }, []),
   ];
 }

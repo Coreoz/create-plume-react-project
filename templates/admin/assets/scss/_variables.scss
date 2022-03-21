@@ -22,8 +22,8 @@ $gray-text: #ABABAB;
 $gray-dark: #444444;
 
 // font-size
-$font-size-mini: 11px;
-$font-size-small: 13px;
+$font-size-mini: 0.4rem;
+$font-size-small: 0.6rem;
 $font-size-little: 0.9rem;
 $font-size-normal: 1rem;
 $font-size-medium: 1.2rem;
@@ -46,13 +46,13 @@ $spacer-10: 10rem;
 $button-height: 24px;
 
 // variable components
-$height-header: 8rem;
-$height-nav: 6rem;
-$forms-input-height: 53.13px;
-$forms-input-horizontal-padding: 12px;
+$height-header: 6rem;
 
-// variable animiations
+// variable animations
 $animation-timing: 0.25s;
+
+/// separators
+$separator: 1px solid $separator-color;
 
 // screen sizes
 $width-small-screen-px: 800;
