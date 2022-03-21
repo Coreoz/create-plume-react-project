@@ -42,7 +42,7 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
               <DropdownMenu label={getInitialLettersOfUser() || ''} id="user-menu">
                 <div id="user-name">{currentUser.fullName}</div>
                 <MenuItem
-                  onClick={sessionService.disconnect}
+                  onClick={() => sessionService.disconnect()}
                 >
                   {messages['action.disconnect']}
                 </MenuItem>
