@@ -16,21 +16,26 @@ export type HttpError = {
   statusArguments?: string[],
 };
 
-/**
- * This object represents the successful or failed HTTP response.
- *
- * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}.
- */
-export type HttpResponse<T> = {
-  /**
-   * Contains the response error that should be present only if the response must be considered as an error
-   */
-  error?: HttpError,
+export type HttpResponseSuccess<T> = {
   /**
    * Contains the response of an API call, it should be present only if the response is not considered as an error
    */
-  response?: T,
+  response: T,
 };
+
+export type HttpResponseError = {
+  /**
+   * Contains the response error that should be present only if the response must be considered as an error
+   */
+  error: HttpError,
+};
+
+/**
+ * This object represents either the successful or the failed HTTP response.
+ *
+ * The expected `Promise` response returned by {@link fetchClient} or by {@link FetchResponseHandler}.
+ */
+export type HttpResponse<T> = HttpResponseSuccess<T> | HttpResponseError;
 
 export const toErrorResponsePromise = <T>(error: HttpError): Promise<HttpResponse<T>> => Promise
   .resolve<HttpResponse<T>>({ error });

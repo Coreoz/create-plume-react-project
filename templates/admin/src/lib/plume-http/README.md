@@ -3,6 +3,8 @@ Simple HTTP Fetch Client
 An implementation of the library [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder) with fetch.
 
 This library provides a generic HTTP client to simplify the HTTP exchanges with a REST and non-REST remote servers.
+In other words, this library can be used to consume every type of API that uses the request/response pattern.
+So this library **should not be used** to consume websockets.
 
 Though this library works seamlessly with [Jersey module of Plume Framework](https://github.com/Coreoz/Plume/tree/master/plume-web-jersey), it can be easily adapted to work with any backend API.
 
@@ -180,8 +182,42 @@ The goal here is to parse the response's body and return the correct object. For
    2. Else the response is an error, the error might be categorized, it should then be appended to the field `HttpResponse.error`
 3. If the JSON parsing failed, an error should be to the field `HttpResponse.error`
 
-All these actions are implemented in the function `(response: Response, jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper): Promise<HttpResponse<unknown>>`.
-TODO finish this
+All these actions are implemented in the function `toJsonResponse(response: Response, jsonErrorMapper: JsonErrorMapper = defaultJsonErrorMapper): Promise<HttpResponse<unknown>>`:
+- Parameter `response` is the `fetch` `Response` to parse
+- Parameter `jsonErrorMapper` is the `JsonErrorMapper` that will handle the parsed JSON object in case
+  the HTTP response is not successful: i.e. status code is not 2xx
+
+So to configuring the JSON response mapper for a dedicated API should look like this:
+```typescript
+// First the error mapper should be configured
+// Here what is important is to create errors that will be handled later:
+//  either for processing or for displaying to the user
+// So if an API should be consumed and the errors are more or less ignored,
+//  the implementation should contain a simple logger statement with a genericError
+const apiJsonErrorMapper: JsonErrorMapper = (response: Response, json: any) => {
+  // The mapping can be done using the response object
+  if (response.status === 401) {
+    // a custom error that could be created for the need of the project
+    return insufficientPermissionsError;
+  }
+  // The mapping can be done using the JSON response body object
+  if (typeof json.errorCode !== 'undefined') {
+    return { error: json };
+  }
+  // If the error is not recognized a generic error should be issued
+  logger.error('Unrecognized JSON error', response);
+  return { error: genericError };
+};
+```
+
+Once this error mapper is configured, the response mapper function can be configured:
+```typescript
+// TODO finish this
+const toApiJsonResponse
+: FetchResponseHandler = (response) => toJsonResponse(response, apiJsonErrorMapper);
+```
+
+Note that if an API is using XML or any other language, the method `toJsonResponse` should be rewritten to accept this specific language.
 
 ### Create a request builder maker
 TODO
