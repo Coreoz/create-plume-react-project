@@ -1,10 +1,10 @@
 Simple HTTP Fetch Client
 ========================
-An implementation of the library [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder) with fetch.
+An implementation of the library [Simple HTTP Request Builder](https://github.com/Coreoz/simple-http-request-builder) with [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
-This library provides a generic HTTP client to simplify the HTTP exchanges with a REST and non-REST remote servers.
+This library provides a framework for creating a REST HTTP client in TypeScript and JavaScript.
 In other words, this library can be used to consume every type of API that uses the request/response pattern.
-So this library **should not be used** to consume websockets.
+But this library **should not be used** to consume websockets.
 
 Though this library works seamlessly with [Jersey module of Plume Framework](https://github.com/Coreoz/Plume/tree/master/plume-web-jersey), it can be easily adapted to work with any backend API.
 
