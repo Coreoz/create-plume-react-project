@@ -166,6 +166,11 @@ Start by creating a proxy to the `fetchClient` method:
 const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpResponse<T>> => fetchClient(httpRequest);
 ```
 
+Note that the function `fetchClient` takes rest parameters/varargs of type [FetchResponseHandler](#fetchresponsehandler).
+These parameters enable to customize the client. This is covered in the next following sections:
+- [Validators](#add-validators)
+- [Response mapper](#add-a-response-mapper)
+
 ### Add validators
 The goal here is to verify that the result is excepted and correct.
 
@@ -173,6 +178,15 @@ By default, these validators are provided:
 - **validateBasicStatusCodes**: It raises an error if the status code is 403, and it returns an empty response if the status code is 200
 - **jsonContentTypeValidator**: It verifies the response content-type is JSON
 - **contentTypeValidator**: It is used to create response content-type validator like `jsonContentTypeValidator`
+
+Once validators are added, our API client should look like this:
+```typescript
+const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpResponse<T>> => fetchClient(
+  httpRequest,
+  // here are the response validators for our custom API
+  validateBasicStatusCodes, jsonContentTypeValidator,
+);
+```
 
 ### Add a response mapper
 The goal here is to parse the response's body and return the correct object. For example to parse a JSON content:
@@ -212,21 +226,47 @@ const apiJsonErrorMapper: JsonErrorMapper = (response: Response, json: any) => {
 
 Once this error mapper is configured, the response mapper function can be configured:
 ```typescript
-// TODO finish this
+// The response mapper is creating by configuring toJsonResponse with our custom apiJsonErrorMapper
 const toApiJsonResponse
 : FetchResponseHandler = (response) => toJsonResponse(response, apiJsonErrorMapper);
 ```
 
-Note that if an API is using XML or any other language, the method `toJsonResponse` should be rewritten to accept this specific language.
+Finally, the API client can be configured with the response mapper:
+```typescript
+const apiFetchClient = <T>(httpRequest: HttpRequest<unknown>): Promise<HttpResponse<T>> => fetchClient(
+  httpRequest,
+  // here are the response validators for our custom API
+  validateBasicStatusCodes, jsonContentTypeValidator,
+  // the response mapper
+  toApiJsonResponse,
+);
+```
 
-### Create a request builder maker
-TODO
+This can then be used following the [main components example](#main-components-example) described above
+by replacing `defaultJsonFetchClient` by `apiFetchClient`.
+
+Note that if an API is using XML or any other language, the method `toJsonResponse` should be rewritten to accept this specific language.
 
 Advanced usages
 ---------------
+Some components that can be used for specific use cases are described here.
 
 ### SynchronizedHttpPromise
-TODO
+The use case addressed here is: *How to avoid calling multiple times the same API whereas the first call has not yet been resolved*.
+So for example:
+- Multiple components need to get a configuration value that is available through an API
+- The result of the API is put in cache
+- But by default, when loading the application, the API will be called multiple times because the first call did not yet resolve
+
+The [SynchronizedHttpPromise](https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/promise/SynchronizedHttpPromise.ts)
+will ensure there is only one [HttpPromise](#httppromise) running at a time.
 
 ### PromiseMonitor
-TODO
+This class enables to check what are the status of promises that are being executed.
+
+A use case is Server-Side-Rendering:
+- After a first render
+- It is interesting to watch the promises that are being executed
+- And when all promises have revolved, it is guessable that all the data are ready for the application to rerender again
+
+For more information, see the corresponding source code: <https://github.com/Coreoz/simple-http-fetch-client/tree/master/src/promise/PromiseMonitor.ts>

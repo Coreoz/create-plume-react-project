@@ -14,7 +14,10 @@ import useLoader, { LoadingPromise } from './promiseLoaderHook';
  * This function is called as soon as the component has been mounted, see {@link useOnComponentMounted}.
  * @param dependencies The dependencies that once updated should make the loader to reload the data
  */
-export default function useDataLoader<T>(dataPromise: () => LoadingPromise<T>, dependencies: DependencyList = []): DataLoader<T> {
+export default function useDataLoader<T>(
+  dataPromise: () => LoadingPromise<T>,
+  dependencies: DependencyList = [],
+): DataLoader<T> {
   const [data, setData] = useState<T>();
   const isMountedRef = useRef<boolean>(true);
   const loader = useLoader();

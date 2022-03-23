@@ -20,7 +20,7 @@ export interface PromiseFunction<P, R> {
  * @param httpResponse The response to be processed.
  */
 export function processHttpResponse<T>(httpResponse: HttpResponse<T>): T {
-  if (httpResponse.error !== undefined) {
+  if ('error' in httpResponse) {
     // We actually want to throw an object literal and not and `Error`
     // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw httpResponse.error;
