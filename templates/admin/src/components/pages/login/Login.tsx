@@ -1,18 +1,18 @@
-import React from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-import { getGlobalInstance } from 'plume-ts-di';
-import { useForm } from 'react-hook-form';
-import { Alert } from '@mui/material';
-import SessionService from '../../../services/session/SessionService';
-import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import { SessionCredentials } from '../../../api/session/SessionApi';
-import { FORGOT_PASSWORD, HOME } from '../../Routes';
-import MessageService from '../../../i18n/messages/MessageService';
-import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
-import appLogo from '/assets/icons/plume_logo.png';
-import googleLogo from '/assets/icons/google_icon.png';
 import appleLogo from '/assets/icons/apple_icon.png';
+import googleLogo from '/assets/icons/google_icon.png';
+import appLogo from '/assets/icons/plume_logo.png';
+import { Alert, Link } from '@mui/material';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Redirect, useHistory } from 'react-router-dom';
+import { SessionCredentials } from '../../../api/session/SessionApi';
+import MessageService from '../../../i18n/messages/MessageService';
+import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
+import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
+import SessionService from '../../../services/session/SessionService';
+import { FORGOT_PASSWORD, HOME } from '../../Routes';
 
 export default function Login() {
   const theme = getGlobalInstance(PlumeAdminTheme);
@@ -76,7 +76,9 @@ export default function Login() {
           </theme.actionsContainer>
         </form>
         <div className="forgotten-password">
-          <a href="" onClick={() => history.push(FORGOT_PASSWORD)}>{messages['login.actions.forgot']}</a>
+          <Link linkTo={FORGOT_PASSWORD} >
+            {messages['login.actions.forgot']}
+          </Link>
         </div>
         <theme.panelSeparator />
         <theme.actionsContainer cssClasses="actions--column">

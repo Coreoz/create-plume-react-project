@@ -19,9 +19,9 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
   const sessionService = getGlobalInstance(SessionService);
   const messages = getGlobalInstance(MessageService).t();
 
-  const getInitialLettersOfUser = () => {
+  const getInitialLettersOfUser = (): string => {
     const parts = currentUser?.fullName?.split(' ');
-    return parts?.map((part) => part.charAt(0)).join('');
+    return parts?.map((part) => part.charAt(0)).join('') || '';
   };
 
   if (!currentUser) {
@@ -39,7 +39,7 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
           />
         </div>
           <div className="header_action header_action--circle">
-            <DropdownMenu label={getInitialLettersOfUser() || ''} id="user-menu">
+            <DropdownMenu label={getInitialLettersOfUser()} id="user-menu">
               <div id="user-name">{currentUser.fullName}</div>
               <MenuItem
                 onClick={() => sessionService.disconnect()}
