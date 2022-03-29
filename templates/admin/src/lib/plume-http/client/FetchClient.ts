@@ -1,5 +1,5 @@
 import { Logger } from 'simple-logging-system';
-import HttpRequest, { HttpClient } from '../../simple-http-request-builder/HttpRequest';
+import { HttpRequest, HttpClient } from 'simple-http-request-builder';
 import {
   genericError,
   HttpResponse,

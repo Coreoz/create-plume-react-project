@@ -1,5 +1,4 @@
-import HttpMethod from '../lib/simple-http-request-builder/HttpMethod';
-import HttpRequest from '../lib/simple-http-request-builder/HttpRequest';
+import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
 import HttpPromise from '../lib/plume-http/promise/HttpPromise';
 import SessionService from '../services/session/SessionService';
 import ApiHttpClient from './ApiHttpClient';

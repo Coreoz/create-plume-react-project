@@ -1,5 +1,5 @@
+import { HttpMethod } from 'simple-http-request-builder';
 import ApiHttpClient from '../ApiHttpClient';
-import HttpMethod from '../../lib/simple-http-request-builder/HttpMethod';
 
 export type SessionCredentials = {
   userName: string,

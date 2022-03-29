@@ -1,5 +1,4 @@
-import HttpMethod from '../simple-http-request-builder/HttpMethod';
-import HttpRequest from '../simple-http-request-builder/HttpRequest';
+import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
 import HttpPromise from '../plume-http/promise/HttpPromise';
 
 /**

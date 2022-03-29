@@ -1,5 +1,4 @@
-import HttpMethod from '../lib/simple-http-request-builder/HttpMethod';
-import HttpRequest from '../lib/simple-http-request-builder/HttpRequest';
+import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
 import HttpPromise, { unwrapHttpPromise } from '../lib/plume-http/promise/HttpPromise';
 import defaultJsonFetchClient from '../lib/plume-http/client/JsonFetchClient';
 import fetchClient from '../lib/plume-http/client/FetchClient';

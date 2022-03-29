@@ -1,8 +1,7 @@
+import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
 import ApiHttpClient from '../../../api/ApiHttpClient';
-import HttpMethod from '../../simple-http-request-builder/HttpMethod';
 import { genericError, networkError, timeoutError } from '../client/HttpResponse';
 import fetchClient from '../client/FetchClient';
-import HttpRequest from '../../simple-http-request-builder/HttpRequest';
 import { unwrapHttpPromise } from '../promise/HttpPromise';
 
 let mockedFetchResponseBody: string | undefined;
