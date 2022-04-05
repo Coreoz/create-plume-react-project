@@ -1,14 +1,14 @@
-@import 'variables';
+@use 'variables' as *;
 
-@import 'layouts/index';
-@import 'pages/index';
+@use 'layouts/index' as *;
+@use 'pages/index' as *;
 
-@import '@fontsource/roboto/latin-100.css';
-@import '@fontsource/roboto/latin-400.css';
-@import '@fontsource/roboto/latin-700.css';
-@import 'root';
-@import 'popin';
-@import 'forms';
-@import 'actions';
-@import 'icons';
-@import 'material-override';
+@use '@fontsource/roboto/latin-100.css' as *;
+@use '@fontsource/roboto/latin-400.css' as *;
+@use '@fontsource/roboto/latin-700.css' as *;
+@use 'root' as *;
+@use 'popin' as *;
+@use 'forms' as *;
+@use 'actions' as *;
+@use 'icons' as *;
+@use 'material-override' as *;
