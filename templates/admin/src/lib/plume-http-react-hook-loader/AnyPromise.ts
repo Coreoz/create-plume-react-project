@@ -1,4 +1,4 @@
-import { PromiseFunction } from '../plume-http/promise/HttpPromise';
+import { PromiseFunction } from 'simple-http-rest-client';
 
 /**
  * Any Promise-like (compatible with regular Promise) that provides then and catch method for errors.

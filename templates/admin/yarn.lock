@@ -8400,6 +8400,16 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"simple-http-rest-client@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "simple-http-rest-client@npm:1.0.0"
+  dependencies:
+    simple-http-request-builder: ^1.0.1
+    simple-logging-system: ^1.1.0
+  checksum: cb053d606cd83a09104a05ee2d5752478c9337ecba6aaf14eecc0771c52ec3cbd05ff75486300e07d18aaba4ecdc582f8f7abd7e70d94f79e88ae43fa467e578
+  languageName: node
+  linkType: hard
+
 "simple-job-scheduler@npm:^1.1.2":
   version: 1.1.2
   resolution: "simple-job-scheduler@npm:1.1.2"
@@ -9162,6 +9172,7 @@ resolve@^2.0.0-next.3:
     react-toastify: ^8.0.0
     sass: ^1.38.1
     simple-http-request-builder: ^1.0.1
+    simple-http-rest-client: ^1.0.0
     simple-job-scheduler: ^1.1.2
     simple-logging-system: ^1.1.0
     stylelint: ^13.13.1

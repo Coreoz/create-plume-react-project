@@ -18,6 +18,7 @@
     "react-router-dom": "^5.2.0",
     "react-toastify": "^8.0.0",
     "simple-http-request-builder": "^1.0.1",
+    "simple-http-rest-client": "^1.0.0",
     "simple-job-scheduler": "^1.1.2",
     "simple-logging-system": "^1.1.0",
     "validator": "^13.6.0"
@@ -74,8 +75,8 @@
     "safari >= 12"
   ],
   "scripts": {
-    "start": "concurrently \"npm run watch-ts\" \"npm run watch-js\"",
-    "watch-ts": "ttsc -w",
+    "start": "concurrently \"yarn run watch-ts\" \"yarn run watch-js\"",
+    "watch-ts": "ttsc --project tsconfig.json -w",
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint 'assets/scss/**/*.scss'",

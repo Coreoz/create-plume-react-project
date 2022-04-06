@@ -1,5 +1,5 @@
 import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
-import HttpPromise from '../lib/plume-http/promise/HttpPromise';
+import { HttpPromise } from 'simple-http-rest-client';
 import SessionService from '../services/session/SessionService';
 import ApiHttpClient from './ApiHttpClient';
 import PlumeAdminHttpClient from '../lib/plume-admin-api/PlumeHttpClient';
