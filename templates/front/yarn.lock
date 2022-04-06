@@ -7791,6 +7791,23 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"simple-http-request-builder@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "simple-http-request-builder@npm:1.0.1"
+  checksum: 3294ed107a11ce1aea4052233ec06509e9bf5d4d87f0daaf38379c43626f706267410ed770aeb2ddd3bcb4818e557bd7dafa41d17fb3df5a58f7c1a8a1545465
+  languageName: node
+  linkType: hard
+
+"simple-http-rest-client@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "simple-http-rest-client@npm:1.0.0"
+  dependencies:
+    simple-http-request-builder: ^1.0.1
+    simple-logging-system: ^1.1.0
+  checksum: cb053d606cd83a09104a05ee2d5752478c9337ecba6aaf14eecc0771c52ec3cbd05ff75486300e07d18aaba4ecdc582f8f7abd7e70d94f79e88ae43fa467e578
+  languageName: node
+  linkType: hard
+
 "simple-job-scheduler@npm:^1.1.2":
   version: 1.1.2
   resolution: "simple-job-scheduler@npm:1.1.2"
@@ -8532,6 +8549,8 @@ resolve@^2.0.0-next.3:
     react-router: ^5.2.0
     react-router-dom: ^5.2.0
     sass: ^1.38.1
+    simple-http-request-builder: ^1.0.1
+    simple-http-rest-client: ^1.0.0
     simple-job-scheduler: ^1.1.2
     simple-logging-system: ^1.1.0
     stylelint: ^13.13.1
