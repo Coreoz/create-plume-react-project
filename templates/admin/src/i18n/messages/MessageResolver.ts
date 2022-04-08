@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
-import MessageService from './MessageService';
-import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
 import { HttpError } from '../../lib/plume-http/client/HttpResponse';
+import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
+import MessageService from './MessageService';
 
 const logger = new Logger('MessageResolver');
 
@@ -14,8 +14,11 @@ export default class MessageResolver implements PlumeMessageResolver {
   }
 
   private messageResolver = (messageKey: string, ...messageArgs: string[]): string => {
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const translation = (this.messages.t() as any)[messageKey];
+    const translation = messageKey.split('.')
+      .reduce(
+        (p, c) => p?.[c],
+        this.messages.t(),
+      );
     if (translation === undefined) {
       logger.info(`No translation for '${messageKey}'`);
       return messageKey;

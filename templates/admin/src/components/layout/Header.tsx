@@ -26,7 +26,7 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
 
   return (
     <header id="main-header">
-      <h1 className="section_name">{messages['app.name']}</h1>
+      <h1 className="section_name">{messages.app.name}</h1>
       <div className="header_actions">
         <div className="header_action">
           <LocaleSelector
@@ -44,7 +44,7 @@ export default function Header({ currentLocale, currentUser }: HeaderProps) {
                 <MenuItem
                   onClick={() => sessionService.disconnect()}
                 >
-                  {messages['action.disconnect']}
+                  {messages.action.disconnect}
                 </MenuItem>
               </DropdownMenu>
             </div>
