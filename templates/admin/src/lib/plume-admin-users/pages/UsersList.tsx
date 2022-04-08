@@ -1,9 +1,9 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolver from '../../plume-messages/MessageResolver';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -16,7 +16,7 @@ export default class UsersList {
 
   render = ({ usersWithRoles, usersPath }: Props) => (
     <>
-      <this.theme.pageTitle>{this.messages.t('user.title-list')}</this.theme.pageTitle>
+      <this.theme.pageTitle>{this.messages.t('user.title_list')}</this.theme.pageTitle>
       <this.theme.actionsContainer>
         <this.theme.actionLink
           iconName="add"
@@ -30,12 +30,12 @@ export default class UsersList {
           <table>
             <thead>
               <tr>
-                <th>{this.messages.t('users.USERNAME')}</th>
-                <th>{this.messages.t('users.EMAIL')}</th>
-                <th>{this.messages.t('users.FIRSTNAME')}</th>
-                <th>{this.messages.t('users.LASTNAME')}</th>
-                <th>{this.messages.t('users.ROLE')}</th>
-                <th>{this.messages.t('label.creation-date')}</th>
+                <th>{this.messages.t('users.userName')}</th>
+                <th>{this.messages.t('users.email')}</th>
+                <th>{this.messages.t('users.firstName')}</th>
+                <th>{this.messages.t('users.lastName')}</th>
+                <th>{this.messages.t('users.role')}</th>
+                <th>{this.messages.t('label.creation_date')}</th>
               </tr>
             </thead>
             <tbody>
