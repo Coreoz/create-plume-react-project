@@ -3,6 +3,8 @@ import { HttpError } from '../../lib/plume-http/client/HttpResponse';
 import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
 import MessageService from './MessageService';
 
+type KeyFunction = (...messageArgs: string[]) => string;
+
 const logger = new Logger('MessageResolver');
 
 /**
@@ -16,7 +18,7 @@ export default class MessageResolver implements PlumeMessageResolver {
   private messageResolver = (messageKey: string, ...messageArgs: string[]): string => {
     const translation = messageKey.split('.')
       .reduce(
-        (p, c) => p?.[c],
+        (p, c) => (p as any)?.[c],
         this.messages.t(),
       );
     if (translation === undefined) {
@@ -24,9 +26,9 @@ export default class MessageResolver implements PlumeMessageResolver {
       return messageKey;
     }
     if (typeof translation === 'function') {
-      return translation(...messageArgs);
+      return (translation as KeyFunction)(...messageArgs);
     }
-    return translation;
+    return translation as never;
   };
 
   // implementing PlumeMessageResolver

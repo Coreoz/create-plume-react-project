@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className="admin-page">
-      <h1>{messages['home.title']}</h1>
+      <h1>{messages.home.title}</h1>
     </div>
   );
 }
