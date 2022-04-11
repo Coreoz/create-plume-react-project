@@ -1,18 +1,18 @@
-import React from 'react';
 import { useObservable } from 'micro-observables';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Logger } from 'simple-logging-system';
 import { ToastContainer } from 'react-toastify';
-import Router from './layout/Router';
-import Navigation from './layout/Navigation';
-import SessionService from '../services/session/SessionService';
-import Header from './layout/Header';
-import Login from './pages/login/Login';
-import ConditionalRoute from './theme/routes/ConditionalRoute';
-import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
-import NotificationRenderer from './theme/NotificationRenderer';
+import { Logger } from 'simple-logging-system';
 import LocaleService from '../i18n/locale/LocaleService';
 import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
+import SessionService from '../services/session/SessionService';
+import Header from './layout/Header';
+import Navigation from './layout/Navigation';
+import Router from './layout/Router';
+import Login from './pages/login/Login';
+import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
+import NotificationRenderer from './theme/NotificationRenderer';
+import ConditionalRoute from './theme/routes/ConditionalRoute';
 
 const logger = new Logger('App');
 
@@ -41,7 +41,6 @@ export default class App {
         <Switch>
           <Route exact path="/login">
             <div className="login-layout">
-              <Header currentLocale={currentLocale} currentUser={currentUser} />
               <Login />
             </div>
           </Route>

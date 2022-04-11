@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 @mixin box-shadow-button() {
   box-shadow: rgba(0, 0, 0, 0.24) 0 2px 3px;
 }

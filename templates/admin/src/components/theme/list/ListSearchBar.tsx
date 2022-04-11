@@ -26,7 +26,7 @@ function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) 
         <input
           type="search"
           className="search-bar"
-          placeholder={placeHolder ? placeHolder : messages['action.search']}
+          placeholder={placeHolder ? placeHolder : messages.action.search}
           onChange={onSearch}
         />
         {!!children && (
@@ -34,7 +34,7 @@ function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) 
             type="button"
             onClick={toggleDisplayMoreOptions}
           >
-            {messages['label.more-options']}
+            {messages.label.more_options}
           </button>
         )}
       </div>

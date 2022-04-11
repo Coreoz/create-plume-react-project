@@ -46,7 +46,7 @@ export default function UserTile({ user, roles, onClick }: Props) {
         </div>
       </div>
       <theme.actionButton cssClasses="action-button" onClick={() => onClick()}>
-        {messages['action.update']}
+        {messages.action.update}
       </theme.actionButton>
     </theme.listSingleElement>
   )

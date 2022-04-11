@@ -9,7 +9,7 @@ import SessionService from '../../services/session/SessionService';
 import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
-import plume from "../../../assets/icons/plume_logo.png";
+import plumeLogo from "../../../assets/icons/plume_logo.png";
 
 export default function Navigation() {
   const sessionService = getGlobalInstance(SessionService);
@@ -28,15 +28,15 @@ export default function Navigation() {
       </button>
 
       <div className="app-info">
-        <img src={plume} className="logo" alt="logo" />
-        <span>{messages['app.name']}</span>
+        <img src={plumeLogo} className="logo" alt="logo" />
+        <span>{messages.app.name}</span>
       </div>
 
       <List className="navigation">
         <LinkListItem
           icon="home"
           route={HOME}
-          label={messages['nav.home']}
+          label={messages.nav.home}
           drawerOpen={isDrawerOpened}
         />
         {
@@ -44,13 +44,13 @@ export default function Navigation() {
           && (
             <NestedListItem
               icon="manage_accounts"
-              label={messages['nav.users']}
+              label={messages.nav.users}
               drawerOpen={isDrawerOpened}
             >
               <LinkListItem
                 icon="account_circle"
                 route={USERS}
-                label={messages['nav.user-list']}
+                label={messages.nav.user_list}
                 drawerOpen={isDrawerOpened}
               />
             </NestedListItem>

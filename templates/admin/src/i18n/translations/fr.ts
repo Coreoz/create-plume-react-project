@@ -1,55 +1,81 @@
 import { Translations } from './Translations';
 
 const frMessages: Translations = {
+  app: {
+    name: 'Plume admin',
+    baseline: 'Espace d\'administration',
+  },
   // actions
-  'action.back': 'Retour',
-  'action.cancel': 'Annuler',
-  'action.save': 'Enregistrer',
-  'action.delete': 'Supprimer',
-  'action.search': 'Rechercher',
-  'action.add': 'Ajouter',
-  'action.update': 'Modifier',
-  'action.authenticate': 'Me connecter',
-  'action.disconnect': 'Me déconnecter',
-  'action.google.authenticate': 'Se connecter avec Google',
-  'action.apple.authenticate': 'Se connecter avec Apple',
-  'action.keep-editing': 'Rester sur la page',
-  'action.close-without-saving': 'Fermer sans sauvegarder',
+  action: {
+    back: 'Retour',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    delete: 'Supprimer',
+    search: 'Rechercher',
+    add: 'Ajouter',
+    update: 'Modifier',
+    authenticate: 'Me connecter',
+    disconnect: 'Me déconnecter',
+    keep_editing: 'Rester sur la page',
+    close_without_saving: 'Fermer sans sauvegarder',
+    google: {
+      authenticate: 'Se connecter avec Google'
+    },
+    apple: {
+      authenticate: 'Se connecter avec Apple'
+    },
+  },
   // common labels
-  'label.creation-date': 'Date de création',
-  'label.loading': 'Chargement...',
-  'label.empty': 'Aucun élément',
-  'label.more-options': 'Plus d\'options',
+  label: {
+    creation_date: 'Date de création',
+    loading: 'Chargement...',
+    empty: 'Aucun élément',
+    more_options: 'Plus d\'options',
+  },
   // common messages
-  'message.changes-saved': 'Les modifications ont bien été enregistrées',
-  'message.unsaved-data': 'Des modifications n\'ont pas été enregistrées. '
-    + 'Si vous voulez enregistrer ces modifications, cliquez sur le bouton "Rester sur la page"',
-  'message.confirm-delete': 'Pour confirmer la suppression, cliquez sur le bouton "Supprimer"',
+  message: {
+    changes_saved: 'Les modifications ont bien été enregistrées',
+    unsaved_data: 'Des modifications n\'ont pas été enregistrées. '
+      + 'Si vous voulez enregistrer ces modifications, cliquez sur le bouton "Rester sur la page"',
+    confirm_delete: 'Pour confirmer la suppression, cliquez sur le bouton "Supprimer"',
+  },
   // navigation
-  'app.name': 'Plume',
-  'app.baseline': 'Espace d\'administration',
-  'nav.home': 'Accueil',
-  'nav.users': 'Gestion des utilisateurs',
-  'nav.user-list': 'Utilisateurs',
+  nav: {
+    home: 'Accueil',
+    users: 'Gestion des utilisateurs',
+    user_list: 'Utilisateurs',
+  },
   // home
-  'home.title': 'Page d\'accueil',
-  'login.title': 'Se connecter',
-  'login.actions.forgot': 'J\'ai oublié mon mot de passe',
+  home: {
+    title: 'Page d\'accueil',
+  },
+  login: {
+    title: 'Se connecter',
+    actions: {
+      forgot: 'J\'ai oublié mon mot de passe',
+    }
+  },
   // users
-  'users.USERNAME': 'Nom d\'utilisateur',
-  'users.PASSWORD': 'Mot de passe',
-  'users.PASSWORD_CONFIRM': 'Confirmation du mot de passe',
-  'users.EMAIL': 'E-mail',
-  'users.FIRSTNAME': 'Prénom',
-  'users.LASTNAME': 'Nom',
-  'users.ROLE': 'Rôle',
+  users: {
+    userName: 'Nom d\'utilisateur',
+    password: 'Mot de passe',
+    password_confirm: 'Confirmation du mot de passe',
+    email: 'E-mail',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    role: 'Rôle',
+  },
   // pages users
-  'user.title-list': 'Liste des utilisateurs',
-  'user.title-create': 'Création d\'un utilisateur',
-  'user.title-edit': 'Modification d\'un utilisateur',
-  'user.add': 'Ajouter un utilisateur',
-  'user.list.count': (count: number) => 'Nombre d\'utilisateurs : ' + count,
-  'user.error-passwords-different': 'Le mot de passe et sa confirmation sont différents',
+  user: {
+    title_list: 'Liste des utilisateurs',
+    title_create: 'Création d\'un utilisateur',
+    title_edit: 'Modification d\'un utilisateur',
+    add: 'Ajouter un utilisateur',
+    error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
+    list: {
+      count: (count: number) => 'Nombre d\'utilisateurs : ' + count,
+    }
+  },
   // sorts wording
   'sort': {
     'user': {
@@ -65,11 +91,13 @@ const frMessages: Translations = {
       'role': 'Rôle',
     },
   },
-  // sample with pluralization
-  'clicks.count': (count: number) => `Il y a eu ${count} clic${count > 1 ? 's' : ''} !`,
   // errors
-  'error.field.required': 'Le champ est requis',
-  'error.field.email-wrong-format': 'L\'adresse e-mail saisie semble être incorrecte',
+  error: {
+    field: {
+      required: 'Le champ est requis',
+      email_wrong_format: 'L\'adresse e-mail saisie semble être incorrecte',
+    },
+  },
   'http-errors': {
     INTERNAL_ERROR: 'Une erreur inattendue s\'est produite',
     NETWORK_ERROR: 'Erreur réseau, votre connexion internet semble indisponible',
@@ -77,7 +105,7 @@ const frMessages: Translations = {
     FORBIDDEN_ERROR: 'Il semble que vous n\'avez pas accès à cette ressource ou à cette action',
     WRONG_LOGIN_OR_PASSWORD: 'Nom d\'utilisateur ou mot de passe incorrect',
     // eslint-disable-next-line max-len
-    TOO_MANY_WRONG_ATTEMPS: (seconds: string) => `Suite à des erreurs dans la saisie de vos identifiants, votre compte est verrouillé pendant ${seconds} secondes, veuillez-vous reconnecter ultérieurement`,
+    TOO_MANY_WRONG_ATTEMPTS: (seconds: string) => `Suite à des erreurs dans la saisie de vos identifiants, votre compte est verrouillé pendant ${seconds} secondes, veuillez-vous reconnecter ultérieurement`,
     FIELD_REQUIRED: (fieldName: string) => `Le champ '${fieldName}' est requis`,
     MESSAGE: (message: string) => message,
   },

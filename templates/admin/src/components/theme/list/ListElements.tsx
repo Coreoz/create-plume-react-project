@@ -17,9 +17,9 @@ function EmptyState({ label }: EmptyStateProps) {
 
 export function ListElements({ listLength, isLoading = false, children, label }: ListElementsProps) {
   const messages = getGlobalInstance(MessageService).t();
-  const defaultLabel = messages['label.empty'];
+  const defaultLabel = messages.label.empty;
   if (isLoading) {
-    const loadingLabel = messages['label.loading'];
+    const loadingLabel = messages.label.loading;
     return (
       <EmptyState label={loadingLabel} />
     )

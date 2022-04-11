@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .columns-container {
   display: flex;
   margin: $spacer-5 0;

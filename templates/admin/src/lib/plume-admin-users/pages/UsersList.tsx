@@ -50,7 +50,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
 
   return (
     <>
-      <theme.pageTitle>{messages['user.title-list']}</theme.pageTitle>
+      <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
       <theme.pageBloc>
         <theme.pageBlocColumn column="50">
           <theme.listSearchBar
@@ -68,7 +68,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
                 history.push(`${usersPath}/create`);
               }}
             >
-              {messages['user.add']}
+              {messages.user.add}
             </theme.actionButton>
           </theme.actionsContainer>
         </theme.pageBlocColumn>

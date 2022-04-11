@@ -9,7 +9,7 @@ function ListHeader({ listLength, sortConfiguration }: ListHeaderProps) {
   const theme = getGlobalInstance(PlumeAdminTheme);
   return (
     <div className="list-elements-heading">
-      <h2>{messages['user.list.count'](listLength)}</h2>
+      <h2>{messages.user.list.count(listLength)}</h2>
       {
         sortConfiguration
         && (
