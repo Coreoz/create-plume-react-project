@@ -8,7 +8,7 @@ import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 
 type Props = {
   user: AdminUserDetails,
-  roles: Map<string, string>,
+  roles: Map<string, string> | undefined,
   onClick: () => void,
 }
 export default function UserTile({ user, roles, onClick }: Props) {
@@ -38,9 +38,14 @@ export default function UserTile({ user, roles, onClick }: Props) {
         </div>
       </div>
       <div className="user-data">
-        <div className="data">
-          <span className="value value--accent">{roles.get(user.idRole)}</span>
-        </div>
+        {
+          roles
+          && (
+            <div className="data">
+              <span className="value value--accent">{roles.get(user.idRole)}</span>
+            </div>
+          )
+        }
         <div className="data">
           <span className="value value--little">{dayjs(user.creationDate).format('L LT')}</span>
         </div>

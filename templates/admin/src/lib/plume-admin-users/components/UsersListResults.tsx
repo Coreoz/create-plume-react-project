@@ -33,7 +33,7 @@ function UsersListResults({ userList, userRoles, sortConfiguration, usersPath, i
                   history.push(`${usersPath}/${user.id}`)
                 }}
                 user={user}
-                roles={userRoles || new Map<string, string>()}
+                roles={userRoles}
               />
             ))
           )

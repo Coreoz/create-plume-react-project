@@ -4,14 +4,22 @@ import React from 'react';
 import MessageService from '../../../i18n/messages/MessageService';
 import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
 
-function ListSortMenu({ sortedObjectKey, sortPossibilities, onSort, defaultSortPossibility }: ListSortMenuProps) {
+function ListSortMenu(
+  {
+    sortedObjectKey,
+    sortPossibilities,
+    onSort,
+    defaultSortPossibility
+  }: ListSortMenuProps
+) {
   const messages = getGlobalInstance(MessageService).t();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
-    const sortChoice = sortPossibilities.filter(
-      element => element.sortKey.toLowerCase()
-        .localeCompare(event.target.value.toString().toLowerCase())
-    )[0];
+    const sortChoice = sortPossibilities.find(
+      element =>
+        element.sortKey.toLowerCase()
+          .localeCompare(event.target.value.toString().toLowerCase()) === 0
+    );
     if (!sortChoice) {
       return;
     }
@@ -33,7 +41,7 @@ function ListSortMenu({ sortedObjectKey, sortPossibilities, onSort, defaultSortP
               key={sortElement.sortKey}
               value={sortElement.sortKey}
             >
-              {(messages['sort'] as any)[sortedObjectKey][sortElement.sortKey.toLowerCase()]}
+              {(messages.sort as any)[sortedObjectKey][sortElement.sortKey.toLowerCase()]}
             </MenuItem>
           ))
         }
