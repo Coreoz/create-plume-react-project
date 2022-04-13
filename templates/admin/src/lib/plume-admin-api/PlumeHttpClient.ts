@@ -1,6 +1,5 @@
-import HttpMethod from '../simple-http-request-builder/HttpMethod';
-import HttpRequest from '../simple-http-request-builder/HttpRequest';
-import HttpPromise from '../plume-http/promise/HttpPromise';
+import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
+import { HttpPromise } from 'simple-http-rest-client';
 
 /**
  * The HTTP API client used for Plume admin.

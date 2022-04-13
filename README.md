@@ -1,11 +1,13 @@
 Create Plume React Project
 ==========================
 
-React Plume project archetypes.
+React Plume project archetypes that enables to create [React](https://github.com/facebook/react)
+with [TypeScript](https://github.com/microsoft/TypeScript) projects
+with dependency injection and the observable pattern to manage the application global state. 
 
 Usage
 -----
-Create a new project in the current folder with: `npm init plume-react-project --template admin --projectName admin-vel`
+Create a new project in the current folder with: `npm init plume-react-project@latest --template admin --projectName admin-vel`
 
 Once project is created, it can be started with:
 1. `yarn` to resolve dependencies
@@ -13,8 +15,8 @@ Once project is created, it can be started with:
 
 Options
 -------
-Options are passed using this syntax: `npm init plume-react-project --[optionName] [value]`
-So the `template` option can be used like this: `npm init plume-react-project --template admin`
+Options are passed using this syntax: `npm init plume-react-project@latest --[optionName] [value]`
+So the `template` option can be used like this: `npm init plume-react-project@latest --template admin`
 
 | Name              | Default value                          | Available values        | Description                                                           |
 |-------------------|----------------------------------------|-------------------------|-----------------------------------------------------------------------|
@@ -31,7 +33,10 @@ To set up the development environment to work on this create cli:
 2. run `yarn build`
 3. run `npm link`
 
-Then it is possible to open a new terminal anywhere on the local computer and run: `npm init plume-react-project --template admin --projectName admin-vel`
+Then it is possible to open a new terminal anywhere on the local computer and run: `npm init plume-react-project@latest --template admin --projectName admin-vel`
+
+This `@latest` is important, else an older cached version of the CLI can be used by NPM,
+see https://github.com/npm/cli/issues/2329 for details.
 
 To test new changes, `yarn build` should be run.
 
