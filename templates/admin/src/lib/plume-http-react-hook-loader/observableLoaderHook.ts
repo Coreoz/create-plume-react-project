@@ -1,6 +1,6 @@
 import { Observable, useObservable } from 'micro-observables';
 import { useRef, useState } from 'react';
-import { HttpError } from '../plume-http/client/HttpResponse';
+import { HttpError } from 'simple-http-rest-client';
 import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**

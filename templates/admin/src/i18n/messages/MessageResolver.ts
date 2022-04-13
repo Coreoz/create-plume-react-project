@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
-import { HttpError } from '../../lib/plume-http/client/HttpResponse';
-import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
+import { HttpError } from 'simple-http-rest-client';
 import MessageService from './MessageService';
+import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
 
 type KeyFunction = (...messageArgs: string[]) => string;
 

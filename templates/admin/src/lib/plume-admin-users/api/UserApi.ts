@@ -1,4 +1,4 @@
-import HttpMethod from '../../simple-http-request-builder/HttpMethod';
+import { HttpMethod } from 'simple-http-request-builder';
 import { AdminUserDetails, AdminUserParameters, AdminUsersDetails } from './AdminUserTypes';
 import PlumeAdminHttpClient from '../../plume-admin-api/PlumeHttpClient';
 
