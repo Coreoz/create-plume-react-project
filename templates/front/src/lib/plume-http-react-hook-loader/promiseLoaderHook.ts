@@ -1,14 +1,32 @@
-import { useState } from 'react';
-import { HttpPlumeError } from '../plume-http/client/PlumeHttpResponse';
+import { useRef, useState } from 'react';
+import { Logger } from 'simple-logging-system';
+import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
+import { AnyPromise } from './AnyPromise';
+import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+
+const logger = new Logger('promiseLoaderHook');
 
 /**
  * Any Promise-like that provides then and catch method for errors.
  *
- * Errors must be of type {@link HttpPlumeError}
+ * Errors must be of type {@link HttpError}.
+ *
+ * {@link HttpPromise} are natively compatible with {@link LoadingPromise}.
  */
-export type LoadingPromise = {
-  then: (consumer: () => void) => LoadingPromise,
-  catch: (consumer: (error: HttpPlumeError) => void) => LoadingPromise,
+export type LoadingPromise<T> = AnyPromise<T, HttpError>;
+
+/**
+ * Since {@link LoaderState.monitor} can be used without errors with raw {@link Promise}
+ * that does not use {@link HttpError}, errors need to be checked.
+ */
+const sanitizePromiseError = (error: HttpError) => {
+  if (isHttpError(error)) {
+    return error;
+  }
+  logger.debug('Promise error is not an HttpError,'
+    + 'if you monitor for loading raw Promise, make sure to: 1/ catch errors 2/ transform it'
+    + 'to HttpError 3/ throw it', error);
+  return genericError;
 };
 
 /**
@@ -21,7 +39,7 @@ export type LoaderState = {
   /**
    * The error that might have occurred during the loading of the monitored `Promise`, see {@link monitor}
    */
-  error?: HttpPlumeError,
+  error?: HttpError,
   /**
    * If the `Promise` is still running and waiting for result
    */
@@ -31,10 +49,10 @@ export type LoaderState = {
    */
   isLoaded: boolean,
   /**
-   * The main function provided by the hook {@link useLoader} to monitor the loading of a `Promise`
+   * The main function provided by the hook {@link useLoader} to monitor the loading of a {@link LoadingPromise}.
    * @param httpPromise The `Promise` that needs to be monitored: is it loading? Has it raised any error?
    */
-  monitor: (httpPromise: LoadingPromise) => void;
+  monitor: (httpPromise: LoadingPromise<unknown>) => void;
 };
 
 /**
@@ -43,8 +61,13 @@ export type LoaderState = {
  * This hooks does not take any parameter, the `Promise` using the returned method {@link LoaderState.monitor}
  */
 export default function useLoader(): LoaderState {
+  const isMountedRef = useRef<boolean>(true);
   const [loadingState, setLoadingState] = useState<boolean>();
-  const [loadingError, setLoadingError] = useState<HttpPlumeError>();
+  const [loadingError, setLoadingError] = useState<HttpError>();
+
+  useOnComponentUnMounted(() => {
+    isMountedRef.current = false;
+  });
 
   return {
     isLoading: loadingState ?? false,
@@ -54,10 +77,18 @@ export default function useLoader(): LoaderState {
       setLoadingState(true);
       setLoadingError(undefined);
       return httpPromise
-        .then(() => setLoadingState(false))
+        .then(() => {
+          // don't update state if the component is unmounted to avoid errors
+          if (isMountedRef.current) {
+            setLoadingState(false);
+          }
+        })
         .catch((error) => {
-          setLoadingError(error);
-          setLoadingState(false);
+          // don't update state if the component is unmounted to avoid errors
+          if (isMountedRef.current) {
+            setLoadingError(sanitizePromiseError(error));
+            setLoadingState(false);
+          }
         });
     },
   };

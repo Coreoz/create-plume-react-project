@@ -1,18 +1,10 @@
 import { useRef, useState } from 'react';
 import { Logger } from 'simple-logging-system';
-import { genericError, HttpError } from '../plume-http/client/HttpResponse';
-import { isHttpError, PromiseFunction } from '../plume-http/promise/HttpPromise';
+import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
+import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 const logger = new Logger('promiseLoaderHook');
-
-/**
- * Any Promise-like (compatible with regular Promise) that provides then and catch method for errors.
- */
-export type AnyPromise<T, E = unknown> = {
-  then: <R = void>(thenFunction: PromiseFunction<T, R>) => AnyPromise<R, E>,
-  catch: <R = void>(catchFunction: PromiseFunction<E, R>) => AnyPromise<R | T, E>,
-};
 
 /**
  * Any Promise-like that provides then and catch method for errors.

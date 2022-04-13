@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
+import { HttpError } from 'simple-http-rest-client';
 import MessageService from './MessageService';
 import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
-import { HttpError } from '../../lib/plume-http/client/HttpResponse';
 
 const logger = new Logger('MessageResolver');
 
