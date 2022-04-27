@@ -13,7 +13,7 @@ function ListHeader({ listLength, sortConfiguration }: ListHeaderProps) {
       {
         sortConfiguration
         && (
-          <theme.listSortMenu
+          <theme.sortMenu
             sortedObjectKey={sortConfiguration.sortedObjectKey}
             defaultSortPossibility={sortConfiguration.defaultSortPossibility}
             sortPossibilities={sortConfiguration.sortPossibilities}

@@ -1,19 +1,19 @@
-import React, { useRef } from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
 import { Icon } from '@mui/material';
-import MessageService from '../../../i18n/messages/MessageService';
-import useToggle from '../../../lib/react-hook-toggle/ReactHookToggle';
-import { ListSearchBarProps } from '../../../lib/plume-admin-theme/list/ListProps';
+import { getGlobalInstance } from 'plume-ts-di';
+import React, { MouseEvent, useRef } from 'react';
+import MessageService from '../../../../i18n/messages/MessageService';
+import { SearchBarProps } from '../../../../lib/plume-admin-theme/list/search/SearchProps';
+import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
 
-function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) {
+function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
   const messages = getGlobalInstance(MessageService).t();
   const anchorEl = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const [displayMoreOptions, toggleDisplayMoreOptions] = useToggle(false);
 
-  const handleClickOutside = (event: HTMLDivElement | any) => {
-    if (!(wrapperRef.current && !wrapperRef?.current?.contains(event.target))) {
+  const handleClickOutside = (event: MouseEvent<HTMLDivElement>) => {
+    if (!(wrapperRef.current && !wrapperRef?.current?.contains(event.target as Node))) {
       return;
     }
     toggleDisplayMoreOptions();
@@ -52,5 +52,5 @@ function ListSearchBar({ onSearch, placeHolder, children }: ListSearchBarProps) 
   )
 }
 
-export default (ListSearchBar);
+export default (SearchBar);
 

@@ -9,14 +9,16 @@ import {
   StatusDotProps
 } from './layout/LayoutProps';
 import {
+  MultipleChoiceObjectFilterMenuProps,
+  MultipleChoiceRawFilterMenuProps,
+} from './list/filter/FilterProps';
+import {
   ListElementsProps,
   ListHeaderProps,
-  ListObjectFiltersProps,
-  ListRawFiltersProps,
-  ListSearchBarProps,
   ListSingleElementProps,
-  ListSortMenuProps,
 } from './list/ListProps';
+import { SortMenuProps } from './list/sort/SortProps'
+import { SearchBarProps } from './list/search/SearchProps'
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
@@ -31,15 +33,15 @@ export default abstract class PlumeAdminTheme {
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract listSearchBar: (props: ListSearchBarProps) => JSX.Element;
+  abstract searchBar: (props: SearchBarProps) => JSX.Element;
+
+  abstract sortMenu: (props: SortMenuProps) => JSX.Element;
+
+  abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
+
+  abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
 
   abstract listHeader: (props: ListHeaderProps) => JSX.Element;
-
-  abstract listSortMenu: (props: ListSortMenuProps) => JSX.Element;
-
-  abstract listFilters: (props: ListRawFiltersProps) => JSX.Element;
-
-  abstract listObjectFilters: <T>(props: ListObjectFiltersProps<T>) => JSX.Element;
 
   abstract listElements: (props: ListElementsProps) => JSX.Element;
 

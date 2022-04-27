@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MessageService from '../../../i18n/messages/MessageService';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UsersListResults from '../components/UsersListResults';
@@ -53,7 +53,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
       <theme.pageBloc>
         <theme.pageBlocColumn column="50">
-          <theme.listSearchBar
+          <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
               setCurrentSearchBarFilter(event.target.value);
             }}
@@ -75,7 +75,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       </theme.pageBloc>
       <theme.pageBloc>
         <theme.pageBlocColumn column="20">
-          <theme.listObjectFilters
+          <theme.multipleChoiceObjectFilterMenu
             filterMenuKey="user"
             filters={userFilters(usersWithRoles?.roles)}
             onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {

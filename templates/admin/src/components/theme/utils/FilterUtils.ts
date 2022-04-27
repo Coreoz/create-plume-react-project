@@ -1,4 +1,4 @@
-import { ObjectFilterProps } from '../../../lib/plume-admin-theme/list/ListProps';
+import { ObjectFilterProps } from '../../../lib/plume-admin-theme/list/filter/FilterProps';
 
 /**
  * This method is called every time a filter is clicked

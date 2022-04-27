@@ -2,14 +2,14 @@ import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useHistory } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { ListSortMenuProps } from '../../plume-admin-theme/list/ListProps';
+import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
 
 type Props = {
   userList: AdminUserDetails[],
   userRoles: Map<string, string> | undefined,
-  sortConfiguration: ListSortMenuProps,
+  sortConfiguration: SortMenuProps,
   usersPath: string,
   isLoading?: boolean,
 }

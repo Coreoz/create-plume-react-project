@@ -1,16 +1,16 @@
 import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
-import { ListSortMenuProps } from '../../../lib/plume-admin-theme/list/ListProps';
+import MessageService from '../../../../i18n/messages/MessageService';
+import { SortMenuProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
 
-function ListSortMenu(
+function SortMenu(
   {
     sortedObjectKey,
     sortPossibilities,
     onSort,
     defaultSortPossibility
-  }: ListSortMenuProps
+  }: SortMenuProps
 ) {
   const messages = getGlobalInstance(MessageService).t();
 
@@ -50,5 +50,5 @@ function ListSortMenu(
   )
 }
 
-export default (ListSortMenu);
+export default (SortMenu);
 

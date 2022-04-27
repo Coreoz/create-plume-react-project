@@ -1,15 +1,15 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
+import MessageService from '../../../../i18n/messages/MessageService';
 import {
-  ListObjectFiltersProps,
-  ListRawFiltersProps,
+  MultipleChoiceObjectFilterMenuProps,
+  MultipleChoiceRawFilterMenuProps,
   ObjectFilterProps
-} from '../../../lib/plume-admin-theme/list/ListProps';
+} from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
 
 /**
- * ListObjectFilters generates filters for a give object type
+ * MultipleChoiceObjectFilterMenu generates filters for a give object type
  * @param filterMenuKey the key in translation file to be used
  * @param onFilterValueClicked function executed when a checkbox is clicked
  * @param filters The filters for the given type.
@@ -17,19 +17,18 @@ import {
  *                Each filter must contain a key filter for identification
  * @param rawList the whole given type list to be filtered
  * @param selectedValues the map of the current selected values by key filter
- * @constructor
  */
-export function ListObjectFilters<T>(
+export function MultipleChoiceObjectFilterMenu<T>(
   {
     filterMenuKey,
     onFilterValueClicked,
     filters,
     rawList,
     selectedValues
-  }: ListObjectFiltersProps<T>
+  }: MultipleChoiceObjectFilterMenuProps<T>
 ) {
   return (
-    <ListFilters
+    <MultipleChoiceFilterMenu
       filterMenuKey={filterMenuKey}
       onFilterValueClicked={onFilterValueClicked}
       filters={
@@ -52,10 +51,9 @@ export function ListObjectFilters<T>(
  *                Each filter must contain a key filter for identification
  * @param onFilterValueClicked function executed when a checkbox is clicked
  * @param selectedValues the map of the current selected values by key filter
- * @constructor
  */
-function ListFilters(
-  { filterMenuKey, filters, onFilterValueClicked, selectedValues }: ListRawFiltersProps
+function MultipleChoiceFilterMenu(
+  { filterMenuKey, filters, onFilterValueClicked, selectedValues }: MultipleChoiceRawFilterMenuProps
 ) {
   const messages = getGlobalInstance(MessageService).t();
   const CHECK_BOX_SIZE = 'small';
@@ -98,4 +96,4 @@ function ListFilters(
   )
 }
 
-export default (ListFilters);
+export default (MultipleChoiceFilterMenu);

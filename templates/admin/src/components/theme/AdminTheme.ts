@@ -8,10 +8,10 @@ import PageTitle from './layout/PageTitle';
 import { Panel, PanelSeparator } from './layout/Panel';
 import StatusDot from './layout/StatusDot';
 import { ListElements, ListSingleElement } from './list/ListElements';
-import ListFilters, { ListObjectFilters } from './list/ListFilters';
+import MultipleChoiceFilterMenu, { MultipleChoiceObjectFilterMenu } from './list/filter/MultipleChoiceFilterMenu';
 import ListHeader from './list/ListHeader';
-import ListSearchBar from './list/ListSearchBar';
-import ListSortMenu from './list/ListSortMenu';
+import SearchBar from './list/search/SearchBar';
+import SortMenu from './list/sort/SortMenu';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
@@ -31,15 +31,15 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   panelSeparator = PanelSeparator;
 
-  listSearchBar = ListSearchBar;
+  searchBar = SearchBar;
+
+  sortMenu = SortMenu;
+
+  multipleChoiceFilterMenu = MultipleChoiceFilterMenu;
+
+  multipleChoiceObjectFilterMenu = MultipleChoiceObjectFilterMenu;
 
   listHeader = ListHeader;
-
-  listSortMenu = ListSortMenu;
-
-  listFilters = ListFilters;
-
-  listObjectFilters = ListObjectFilters;
 
   listElements = ListElements;
 

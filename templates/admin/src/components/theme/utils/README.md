@@ -4,7 +4,7 @@ Plume admin Theme
 Creating a generic list filter
 ------------------------------
 
-A filter is wrapped into a 'listObjectFilters' component that handles the display.
+A filter is wrapped into a 'multipleChoiceFilterMenu' component that handles the display.
 The filters selected must be managed by the component that calls the filter wrapper.
 
 1. Create a filter of type RawFilterProps:
@@ -14,13 +14,13 @@ export const GENDER: RawFilterProps = {
   possibleValues: ['MR, 'MME'],
 };
 ```
-2. Create a 'listFilters' from your Admin Theme
+2. Create a 'multipleChoiceFilterMenu' from your Admin Theme
     1. Provide a 'filterMenuKey': that will be the useful for the state storage: `filterMenuKey="user"`
     2. Provide the filters you created: `filters={userFilters}`
     3. Provide the callback that will be executed when a filter is clicked: `onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {}}`
     4. Provide the current filters state: `selectedValues={currentUserFilters}`
 ```
-<theme.listFilters
+<theme.multipleChoiceFilterMenu
       filterMenuKey="user"
       filters={userFilters(usersWithRoles?.roles)}
       onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
@@ -50,7 +50,7 @@ export const NAME: ObjectFilterProps<User> = {
   keyExtractor: (user: User) => user.lastName,
 };
 ```
-2. Create a 'listObjectFilters' from your Admin Theme
+2. Create a 'multipleChoiceObjectFilterMenu' from your Admin Theme
     1. Provide a 'filterMenuKey', that will be the useful for the state storage: `filterMenuKey="user"`
     2. Provide the filters you created: `filters={userFilters}`
     3. Provide the callback that will be called when the filters will change: `onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {}}`
@@ -58,7 +58,7 @@ export const NAME: ObjectFilterProps<User> = {
     5. Provide the whole list in which you want to filter
 
 ```
-<theme.listObjectFilters
+<theme.multipleChoiceObjectFilterMenu
       filterMenuKey="user"
       filters={userFilters}
       onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
@@ -72,7 +72,7 @@ export const NAME: ObjectFilterProps<User> = {
 Creating a generic list sorting
 -------------------------------
 
-A sort entry is wrapped into a 'listSortMenu' component that handles the display.
+A sort entry is wrapped into a 'SortMenu' component that handles the display.
 
 1. Create a sort object of type SortElementProps. You can use the method createCompareSorting in the SortUtils to help you achieve that.
 ```
@@ -84,7 +84,7 @@ export const NAME_DESC: SortElementProps = {
   )
 }
 ```
-2. Create a 'listSortMenu' from your Admin Theme
+2. Create a 'SortMenu' from your Admin Theme
    1. Provide a 'sortedObjectKey', that will be the useful for the state storage:`sortedObjectKey="User"`
    2. Provide the default sort possibility, that will be the first sort object selected:`defaultSortPossibility={NAME_DESC}`
    3. Provide the sort possibilities: `sortPossibilities={sortPossibilities}`

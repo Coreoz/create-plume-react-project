@@ -1,4 +1,4 @@
-import { SortElementProps } from '../../plume-admin-theme/list/ListProps';
+import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import { createCompareSorting } from '../../../components/theme/utils/SortUtils';
 
