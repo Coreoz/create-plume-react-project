@@ -1,6 +1,7 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useHistory } from 'react-router-dom';
+import MessageService from '../../../i18n/messages/MessageService';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
@@ -15,13 +16,14 @@ type Props = {
 }
 
 function UsersListResults({ userList, userRoles, sortConfiguration, usersPath, isLoading }: Props) {
+  const messages = getGlobalInstance(MessageService).t();
   const theme = getGlobalInstance(PlumeAdminTheme);
   const history = useHistory();
 
   return (
     <>
       <theme.listHeader
-        listLength={userList.length}
+        listTitle={messages.user.list.count(userList.length)}
         sortConfiguration={sortConfiguration}
       />
       <theme.listElements isLoading={isLoading} listLength={userList.length}>

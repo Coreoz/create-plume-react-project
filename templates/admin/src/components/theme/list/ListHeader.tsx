@@ -1,15 +1,18 @@
-import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import { ListHeaderProps } from '../../../lib/plume-admin-theme/list/ListProps';
-import MessageService from '../../../i18n/messages/MessageService';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 
-function ListHeader({ listLength, sortConfiguration }: ListHeaderProps) {
-  const messages = getGlobalInstance(MessageService).t();
+function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
   const theme = getGlobalInstance(PlumeAdminTheme);
   return (
     <div className="list-elements-heading">
-      <h2>{messages.user.list.count(listLength)}</h2>
+      {
+        listTitle
+        && (
+          <h2>{listTitle}</h2>
+        )
+      }
       {
         sortConfiguration
         && (

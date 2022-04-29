@@ -15,6 +15,6 @@ export type ListSingleElementProps = {
 };
 
 export type ListHeaderProps = {
-  listLength: number,
+  listTitle?: string,
   sortConfiguration?: SortMenuProps,
 }
