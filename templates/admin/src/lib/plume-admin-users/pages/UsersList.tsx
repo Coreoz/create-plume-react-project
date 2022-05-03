@@ -28,14 +28,14 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
   const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
 
   const applySearchBarFilter = (user: AdminUserDetails) => {
-    if (!currentSearchBarFilter || currentSearchBarFilter === "") {
+    if (!currentSearchBarFilter || currentSearchBarFilter === '') {
       return true;
     }
     return rawIncludes(user.lastName, currentSearchBarFilter)
       || rawIncludes(user.firstName, currentSearchBarFilter)
       || rawIncludes(user.userName, currentSearchBarFilter)
-      || rawIncludes(user.email, currentSearchBarFilter)
-  }
+      || rawIncludes(user.email, currentSearchBarFilter);
+  };
 
   const sortedAndFilteredList = () => {
     if (!usersWithRoles) {
@@ -46,7 +46,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
     return filteredList<AdminUserDetails>(userList, currentUserFilters, userFilters(usersWithRoles.roles))
       .filter(applySearchBarFilter)
       .sort(currentSorting.sortFunction);
-  }
+  };
 
   return (
     <>
@@ -79,7 +79,9 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             filterMenuKey="user"
             filters={userFilters(usersWithRoles?.roles)}
             onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
-              setCurrentUserFilters(checkValueForFilter(filterElementKey, valueSelected, isChecked, currentUserFilters));
+              setCurrentUserFilters(
+                checkValueForFilter(filterElementKey, valueSelected, isChecked, currentUserFilters),
+              );
             }}
             selectedValues={currentUserFilters}
             rawList={usersWithRoles?.users || []}

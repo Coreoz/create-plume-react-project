@@ -10,7 +10,8 @@ type Props = {
   user: AdminUserDetails,
   roles: Map<string, string> | undefined,
   onClick: () => void,
-}
+};
+
 export default function UserTile({ user, roles, onClick }: Props) {
   const messages = getGlobalInstance(MessageService).t();
   const theme = getGlobalInstance(PlumeAdminTheme);
@@ -20,7 +21,7 @@ export default function UserTile({ user, roles, onClick }: Props) {
       return Status.OK;
     }
     return Status.WARN;
-  }
+  };
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <div className="user-data user-data--id">
@@ -29,11 +30,13 @@ export default function UserTile({ user, roles, onClick }: Props) {
         </div>
         <div className="data">
           <span className="user-initials">
-            {user.firstName.slice(0, 1).toUpperCase()}{user.lastName.slice(0, 1).toUpperCase()}
+            {`${user.firstName.slice(0, 1).toUpperCase()}${user.lastName.slice(0, 1).toUpperCase()}`}
           </span>
         </div>
         <div className="data">
-          <span className="label">{user.firstName} {user.lastName}</span>
+          <span className="label">
+            {`${user.firstName} ${user.lastName}`}
+          </span>
           <span className="value">{user.email}</span>
         </div>
       </div>
@@ -54,5 +57,5 @@ export default function UserTile({ user, roles, onClick }: Props) {
         {messages.action.update}
       </theme.actionButton>
     </theme.listSingleElement>
-  )
+  );
 }

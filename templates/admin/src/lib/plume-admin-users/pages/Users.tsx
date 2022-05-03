@@ -38,7 +38,7 @@ export default class Users {
     const updateUsersAndRoles = () => userLoader.monitor(
       this.userApi
         .fetchAll()
-        .then(setUsersAndIndexRoles)
+        .then(setUsersAndIndexRoles),
     );
 
     // users are loaded from the main component, so it can be reused in the two sub component list & edit
