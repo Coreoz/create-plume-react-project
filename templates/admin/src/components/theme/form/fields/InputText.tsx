@@ -19,8 +19,8 @@ export default function InputText(
     autoComplete,
     shouldUnregister,
     multiline,
-    rows
-  }: InputTextProps
+    rows,
+  }: InputTextProps,
 ) {
   const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
   const required = rules?.required || '';

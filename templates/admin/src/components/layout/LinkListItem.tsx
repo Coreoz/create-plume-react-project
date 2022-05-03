@@ -1,4 +1,6 @@
-import { Icon, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  Icon, ListItem, ListItemIcon, ListItemText,
+} from '@mui/material';
 import React from 'react';
 
 import { Link, useRouteMatch } from 'react-router-dom';
@@ -14,8 +16,8 @@ type LinkListItemProps = {
 
 const LinkListItem = (
   {
-    icon, route, label, drawerOpen
-  }: LinkListItemProps
+    icon, route, label, drawerOpen,
+  }: LinkListItemProps,
 ) => {
   const routeMatch = useRouteMatch({ path: route, exact: false });
   return (
@@ -36,6 +38,6 @@ const LinkListItem = (
       }
     </ListItem>
   );
-}
+};
 
 export default (LinkListItem);

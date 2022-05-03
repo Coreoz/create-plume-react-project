@@ -23,7 +23,7 @@ const enMessages: Translations = {
     },
     apple: {
       authenticate: 'Log in with Apple',
-    }
+    },
   },
   // common labels
   label: {
@@ -53,7 +53,7 @@ const enMessages: Translations = {
     title: 'Please authenticate',
     actions: {
       forgot: 'I forget my password',
-    }
+    },
   },
   // users
   users: {
@@ -73,30 +73,30 @@ const enMessages: Translations = {
     add: 'Add user',
     error_passwords_different: 'Password do not match its confirmation',
     list: {
-      count: (count: number) => 'User count : ' + count,
-    }
+      count: (count: number) => `User count : ${count}`,
+    },
   },
   // sorts wording
-  'sort': {
-    'user': {
-      'name_desc': 'Sort by descendant alphabetical order',
-      'name_asc': 'Sort by ascendant alphabetical order',
+  sort: {
+    user: {
+      name_desc: 'Sort by descendant alphabetical order',
+      name_asc: 'Sort by ascendant alphabetical order',
     },
   },
   // filters wording
-  'filter': {
-    'user': {
-      'title': 'Filters',
-      'name': 'Name',
-      'role': 'Role',
-    }
+  filter: {
+    user: {
+      title: 'Filters',
+      name: 'Name',
+      role: 'Role',
+    },
   },
   // errors
   error: {
     field: {
       required: 'Field is required',
       email_wrong_format: 'The input email address is invalid',
-    }
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',

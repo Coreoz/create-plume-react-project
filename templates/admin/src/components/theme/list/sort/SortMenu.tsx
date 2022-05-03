@@ -2,23 +2,25 @@ import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import MessageService from '../../../../i18n/messages/MessageService';
-import { SortMenuProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
+import {
+  SortElementProps,
+  SortMenuProps,
+} from '../../../../lib/plume-admin-theme/list/sort/SortProps';
 
 function SortMenu(
   {
     sortedObjectKey,
     sortPossibilities,
     onSort,
-    defaultSortPossibility
-  }: SortMenuProps
+    defaultSortPossibility,
+  }: SortMenuProps,
 ) {
   const messages = getGlobalInstance(MessageService).t();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
     const sortChoice = sortPossibilities.find(
-      element =>
-        element.sortKey.toLowerCase()
-          .localeCompare(event.target.value.toString().toLowerCase()) === 0
+      (element: SortElementProps) => element.sortKey.toLowerCase()
+        .localeCompare(event.target.value.toString().toLowerCase()) === 0,
     );
     if (!sortChoice) {
       return;
@@ -47,8 +49,7 @@ function SortMenu(
         }
       </Select>
     </div>
-  )
+  );
 }
 
 export default (SortMenu);
-

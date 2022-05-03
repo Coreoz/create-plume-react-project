@@ -7,16 +7,16 @@ export const NAME_DESC: SortElementProps = {
   sortFunction: createCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.lastName,
     false,
-  )
-}
+  ),
+};
 
 export const NAME_ASC: SortElementProps = {
   sortKey: 'NAME_ASC',
   sortFunction: createCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.lastName,
     true,
-  )
-}
+  ),
+};
 
 export default function userSortsList() {
   return [NAME_ASC, NAME_DESC];

@@ -5,8 +5,64 @@ import MessageService from '../../../../i18n/messages/MessageService';
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
-  ObjectFilterProps
+  ObjectFilterProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
+
+/**
+ * ListFilters is a generic component for filtering in a list
+ * @param filterMenuKey the key in translation file to be used
+ * @param filters The filters to be displayed.
+ *                Each filter must contain possible values
+ *                Each filter must contain a key filter for identification
+ * @param onFilterValueClicked function executed when a checkbox is clicked
+ * @param selectedValues the map of the current selected values by key filter
+ */
+function MultipleChoiceFilterMenu(
+  {
+    filterMenuKey, filters, onFilterValueClicked, selectedValues,
+  }: MultipleChoiceRawFilterMenuProps,
+) {
+  const messages = getGlobalInstance(MessageService).t();
+  const CHECK_BOX_SIZE = 'small';
+
+  return (
+    <div className="list-filter-menu">
+      <h2>{(messages.filter as any)[filterMenuKey].title}</h2>
+      <div className="list-filters">
+        {
+          filters.map((filterPossibility) => (
+            <div key={filterPossibility.filterKey} className="filter">
+              <span className="filter-title">
+                {(messages.filter as any)[filterMenuKey][filterPossibility.filterKey]}
+              </span>
+              {
+                Array.from(new Set<string>([...filterPossibility.possibleValues]))
+                  .map((value: string) => (
+                    <FormControlLabel
+                      key={value}
+                      label={value}
+                      control={(
+                        <Checkbox
+                          value={value}
+                          size={CHECK_BOX_SIZE}
+                          checked={selectedValues.get(filterPossibility.filterKey)?.includes(value) || false}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onFilterValueClicked(filterPossibility.filterKey, value, e.target.checked);
+                          }}
+                        />
+                      )}
+                    />
+                  ))
+              }
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+}
+
+export default (MultipleChoiceFilterMenu);
 
 /**
  * MultipleChoiceObjectFilterMenu generates filters for a give object type
@@ -24,8 +80,8 @@ export function MultipleChoiceObjectFilterMenu<T>(
     onFilterValueClicked,
     filters,
     rawList,
-    selectedValues
-  }: MultipleChoiceObjectFilterMenuProps<T>
+    selectedValues,
+  }: MultipleChoiceObjectFilterMenuProps<T>,
 ) {
   return (
     <MultipleChoiceFilterMenu
@@ -40,60 +96,5 @@ export function MultipleChoiceObjectFilterMenu<T>(
       }
       selectedValues={selectedValues}
     />
-  )
+  );
 }
-
-/**
- * ListFilters is a generic component for filtering in a list
- * @param filterMenuKey the key in translation file to be used
- * @param filters The filters to be displayed.
- *                Each filter must contain possible values
- *                Each filter must contain a key filter for identification
- * @param onFilterValueClicked function executed when a checkbox is clicked
- * @param selectedValues the map of the current selected values by key filter
- */
-function MultipleChoiceFilterMenu(
-  { filterMenuKey, filters, onFilterValueClicked, selectedValues }: MultipleChoiceRawFilterMenuProps
-) {
-  const messages = getGlobalInstance(MessageService).t();
-  const CHECK_BOX_SIZE = 'small';
-
-  return (
-    <div className="list-filter-menu">
-      <h2>{(messages['filter'] as any)[filterMenuKey]['title']}</h2>
-      <div className="list-filters">
-        {
-          filters.map((filterPossibility) => (
-            <div key={filterPossibility.filterKey} className="filter">
-                <span className="filter-title">
-                  {(messages['filter'] as any)[filterMenuKey][filterPossibility.filterKey]}
-                </span>
-              {
-                Array.from(new Set<string>([...filterPossibility.possibleValues]))
-                  .map((value: string) => (
-                      <FormControlLabel
-                        key={value}
-                        label={value}
-                        control={(
-                          <Checkbox
-                            value={value}
-                            size={CHECK_BOX_SIZE}
-                            checked={selectedValues.get(filterPossibility.filterKey)?.includes(value) || false}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              onFilterValueClicked(filterPossibility.filterKey, value, e.target.checked);
-                            }}
-                          />
-                        )}
-                      />
-                    )
-                  )
-              }
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  )
-}
-
-export default (MultipleChoiceFilterMenu);

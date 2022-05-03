@@ -26,7 +26,7 @@ function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
         <input
           type="search"
           className="search-bar"
-          placeholder={placeHolder ? placeHolder : messages.action.search}
+          placeholder={placeHolder ?? messages.action.search}
           onChange={onSearch}
         />
         {!!children && (
@@ -49,8 +49,7 @@ function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
         )
       }
     </div>
-  )
+  );
 }
 
 export default (SearchBar);
-

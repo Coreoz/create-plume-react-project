@@ -25,7 +25,7 @@ function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
         )
       }
     </div>
-  )
+  );
 }
 
 export default (ListHeader);
