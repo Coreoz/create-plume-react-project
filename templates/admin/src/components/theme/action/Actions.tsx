@@ -33,7 +33,7 @@ function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary'
 }
 
 function classesToCssClass(cssClasses: string | undefined): string {
-  if (cssClasses) {
+  if (!cssClasses) {
     return '';
   }
   return ` ${cssClasses}`;
