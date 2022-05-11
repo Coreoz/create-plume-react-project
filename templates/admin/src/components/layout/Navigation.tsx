@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon, List, } from '@mui/material';
+import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import MessageService from '../../i18n/messages/MessageService';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
@@ -9,7 +9,7 @@ import SessionService from '../../services/session/SessionService';
 import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
-import plumeLogo from "../../../assets/icons/plume_logo.png";
+import plumeLogo from '../../../assets/icons/plume_logo.png';
 
 export default function Navigation() {
   const sessionService = getGlobalInstance(SessionService);

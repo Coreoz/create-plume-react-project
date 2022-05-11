@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText, } from '@mui/material';
+import {
+  Collapse, Icon, List, ListItem, ListItemIcon, ListItemText,
+} from '@mui/material';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
 
@@ -15,7 +17,7 @@ type NestedItemProps = {
 const NestedListItem = (
   {
     icon, label, opened, children, drawerOpen,
-  }: NestedItemProps
+  }: NestedItemProps,
 ) => {
   const [isItemOpened, toggleItemOpening] = useToggle(opened ?? true);
 
