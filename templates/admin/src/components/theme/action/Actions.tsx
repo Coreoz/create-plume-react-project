@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Icon, } from '@mui/material';
+import { Button, CircularProgress, Icon } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -15,7 +15,7 @@ function imageOrIconNameToIcon(image?: string, iconName?: string): JSX.Element |
   if (iconName) {
     return (
       <Icon>{iconName}</Icon>
-    )
+    );
   }
   return (
     <img src={image} className="button-icon" alt="icon" />
@@ -32,9 +32,16 @@ function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary'
   return actionStyle;
 }
 
+function classesToCssClass(cssClasses: string | undefined): string {
+  if (cssClasses) {
+    return '';
+  }
+  return ` ${cssClasses}`;
+}
+
 export function ActionsContainer({ children, cssClasses }: ActionContainerProps) {
   return (
-    <div className={`actions${cssClasses ? ' ' + cssClasses : ''}`}>
+    <div className={`actions${classesToCssClass(cssClasses)}`}>
       {children}
     </div>
   );
@@ -43,7 +50,7 @@ export function ActionsContainer({ children, cssClasses }: ActionContainerProps)
 export function ActionLink(
   {
     style, icon, linkTo, children,
-  }: ActionLinkProps
+  }: ActionLinkProps,
 ) {
   return (
     <Button
@@ -61,11 +68,15 @@ export function ActionLink(
 
 export function ActionButton(
   {
-    style, icon, iconName, cssClasses, onClick, isLoading, children
-  }: ActionButtonProps
+    style, icon, iconName, cssClasses, onClick, isLoading, children,
+  }: ActionButtonProps,
 ) {
   return (
-    <div className={`action-container loading-button${cssClasses ? ' ' + cssClasses : ''}`}>
+    <div
+      className={
+        `action-container loading-button${classesToCssClass(cssClasses)}${isLoading ? ' loading-button--loading' : ''}`
+      }
+    >
       <Button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}

@@ -42,7 +42,12 @@ export default function Login() {
         {
           loader.error
           && (
-            <Alert className="form-errors" severity="error">{messageService.httpError(loader.error)}</Alert>
+            <Alert
+              className="form-errors"
+              severity="error"
+            >
+              {messageService.httpError(loader.error)}
+            </Alert>
           )
         }
         <div className="login-label">{messages.login.title}</div>

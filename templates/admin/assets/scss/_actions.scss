@@ -29,6 +29,12 @@
   .loading-button {
     position: relative;
 
+    &--loading {
+      button {
+        color: transparent;
+      }
+    }
+
     .loading-progress {
       height: $button-height;
       width: $button-height;
