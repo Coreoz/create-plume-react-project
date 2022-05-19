@@ -10,7 +10,7 @@ import UsersListResults from '../components/UsersListResults';
 import { checkValueForFilter, filteredList, rawIncludes } from '../../../components/theme/utils/FilterUtils';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import userFilters from './UserFilter';
-import userSortsList, { NAME_ASC, NAME_DESC } from './UserSort';
+import userSortsList, { NAME_ASC } from './UserSort';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -37,7 +37,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       || rawIncludes(user.email, currentSearchBarFilter);
   };
 
-  const sortedAndFilteredList = () => {
+  const sortedAndFilteredList = (): AdminUserDetails[] => {
     if (!usersWithRoles) {
       return [];
     }
@@ -95,7 +95,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             sortConfiguration={{
               sortedObjectKey: 'user',
               sortPossibilities: userSortsList(),
-              defaultSortPossibility: NAME_DESC,
+              defaultSortPossibility: NAME_ASC,
               onSort: (to: SortElementProps) => {
                 setCurrentSorting(to);
               },

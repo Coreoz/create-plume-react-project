@@ -53,7 +53,7 @@ export function ListSingleElement(
   return (
     <div
       aria-hidden="true"
-      className={`list-single-element${cssClasses ?? ''}`}
+      className={`list-single-element ${cssClasses ?? ''}`}
       onClick={() => {
         if (onSelectElement) {
           onSelectElement();

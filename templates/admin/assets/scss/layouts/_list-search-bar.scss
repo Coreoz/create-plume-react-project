@@ -38,6 +38,24 @@
       }
     }
 
+    svg {
+      stroke: $primary-color;
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translate(-1rem, -50%);
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      border: none;
+      background: transparent;
+      transform: translateY(-50%);
+      color: $secondary-color;
+    }
+
     .more-options-container {
       .radio-buttons-container {
         display: flex;
@@ -46,7 +64,7 @@
   }
 
   .more-options-backdrop {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;

@@ -1,6 +1,6 @@
 export type FilterProps = {
   filterKey: string,
-}
+};
 
 export interface ObjectFilterProps<T> extends FilterProps {
   keyExtractor: (a: T) => string,
@@ -12,7 +12,7 @@ export interface RawFilterProps extends FilterProps {
 
 type FilterMenuProps = {
   filterMenuKey: string,
-}
+};
 
 export interface MultipleChoiceFilterMenuProps extends FilterMenuProps {
   onFilterValueClicked: (filterKey: string, valueSelected: string, isChecked: boolean) => void,

@@ -29,23 +29,27 @@ function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
           placeholder={placeHolder ?? messages.action.search}
           onChange={onSearch}
         />
-        {!!children && (
-          <button
-            type="button"
-            onClick={toggleDisplayMoreOptions}
-          >
-            {messages.label.more_options}
-          </button>
-        )}
+        {
+          !!children
+          && (
+            <button
+              type="button"
+              onClick={toggleDisplayMoreOptions}
+            >
+              {messages.label.more_options}
+            </button>
+          )
+        }
       </div>
       {
         displayMoreOptions
         && (
-          <div aria-hidden className="more-options-backdrop" onClick={handleClickOutside}>
+          <>
+            <div aria-hidden className="more-options-backdrop" onClick={handleClickOutside} />
             <div className="more-options-container" ref={wrapperRef}>
               {children}
             </div>
-          </div>
+          </>
         )
       }
     </div>
