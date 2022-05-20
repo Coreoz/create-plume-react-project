@@ -7,7 +7,13 @@ import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UsersListResults from '../components/UsersListResults';
-import { checkValueForFilter, filteredList, rawIncludes } from '../../../components/theme/utils/FilterUtils';
+import {
+  applyFilters,
+  checkValueForFilter,
+  createFiltersFromSelected,
+  createIncludesFilter,
+  rawIncludes,
+} from '../../../components/theme/utils/FilterUtils';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import userFilters from './UserFilter';
 import userSortsList, { NAME_ASC } from './UserSort';
@@ -43,8 +49,14 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
     }
     // creating a clone in order to leave the original order in the list wherever it is used
     const userList = usersWithRoles.users;
-    return filteredList<AdminUserDetails>(userList, currentUserFilters, userFilters(usersWithRoles.roles))
+    const filtersToApply = createFiltersFromSelected(
+      currentUserFilters,
+      userFilters(usersWithRoles.roles),
+      createIncludesFilter,
+    );
+    return userList
       .filter(applySearchBarFilter)
+      .filter(applyFilters<AdminUserDetails>(filtersToApply))
       .sort(currentSorting.sortFunction);
   };
 
