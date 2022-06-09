@@ -3,7 +3,6 @@ import { Translations } from './Translations';
 const frMessages: Translations = {
   app: {
     name: 'Plume admin',
-    baseline: 'Espace d\'administration',
   },
   // actions
   action: {
@@ -17,12 +16,6 @@ const frMessages: Translations = {
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
     close_without_saving: 'Fermer sans sauvegarder',
-    google: {
-      authenticate: 'Se connecter avec Google'
-    },
-    apple: {
-      authenticate: 'Se connecter avec Apple'
-    },
   },
   // common labels
   label: {
@@ -48,9 +41,6 @@ const frMessages: Translations = {
   },
   login: {
     title: 'Se connecter',
-    actions: {
-      forgot: 'J\'ai oublié mon mot de passe',
-    }
   },
   // users
   users: {

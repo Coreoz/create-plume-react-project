@@ -1,18 +1,16 @@
-import appleLogo from '/assets/icons/apple_icon.png';
-import googleLogo from '/assets/icons/google_icon.png';
 import appLogo from '/assets/icons/plume_logo.png';
 import { Alert } from '@mui/material';
-import { Link, Redirect } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Redirect } from 'react-router-dom';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import MessageService from '../../../i18n/messages/MessageService';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import SessionService from '../../../services/session/SessionService';
-import { FORGOT_PASSWORD, HOME } from '../../Routes';
+import { HOME } from '../../Routes';
 
 export default function Login() {
   const theme = getGlobalInstance(PlumeAdminTheme);
@@ -37,7 +35,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <img src={appLogo} className="app-icon" alt="logo" />
-      <h2 className="login-subtitle">{messages.app.baseline}</h2>
+      <h2 className="login-subtitle">{messages.app.name}</h2>
       <div className="login-box">
         {
           loader.error
@@ -79,20 +77,6 @@ export default function Login() {
             </theme.actionButton>
           </theme.actionsContainer>
         </form>
-        <div className="forgotten-password">
-          <Link to={FORGOT_PASSWORD}>
-            {messages.login.actions.forgot}
-          </Link>
-        </div>
-        <theme.panelSeparator />
-        <theme.actionsContainer cssClasses="actions--column">
-          <theme.actionButton icon={googleLogo} cssClasses="login-action-button">
-            {messages.action.google.authenticate}
-          </theme.actionButton>
-          <theme.actionButton icon={appleLogo} cssClasses="login-action-button">
-            {messages.action.apple.authenticate}
-          </theme.actionButton>
-        </theme.actionsContainer>
       </div>
     </div>
   );

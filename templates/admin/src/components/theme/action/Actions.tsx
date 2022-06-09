@@ -8,20 +8,6 @@ import {
 } from '../../../lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 
-function imageOrIconNameToIcon(image?: string, iconName?: string): JSX.Element | HTMLImageElement | null {
-  if (!image && !iconName) {
-    return null;
-  }
-  if (iconName) {
-    return (
-      <Icon>{iconName}</Icon>
-    );
-  }
-  return (
-    <img src={image} className="button-icon" alt="icon" />
-  );
-}
-
 function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' | 'error' {
   if (!actionStyle) {
     return 'inherit';
@@ -68,7 +54,7 @@ export function ActionLink(
 
 export function ActionButton(
   {
-    style, icon, iconName, cssClasses, onClick, isLoading, children,
+    style, icon, cssClasses, onClick, isLoading, children,
   }: ActionButtonProps,
 ) {
   return (
@@ -83,7 +69,7 @@ export function ActionButton(
         variant="contained"
         disabled={isLoading}
         color={actionStyleToCssClass(style)}
-        startIcon={imageOrIconNameToIcon(icon, iconName)}
+        startIcon={icon && <Icon>{icon}</Icon>}
       >
         {children}
       </Button>

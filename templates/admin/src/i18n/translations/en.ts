@@ -3,7 +3,6 @@ import { Translations } from './Translations';
 const enMessages: Translations = {
   app: {
     name: 'Plume admin',
-    baseline: 'Administration application',
   },
   // actions
   action: {
@@ -17,12 +16,6 @@ const enMessages: Translations = {
     disconnect: 'Log out',
     keep_editing: 'Keep editing',
     close_without_saving: 'Close without saving',
-    google: {
-      authenticate: 'Log in with Google',
-    },
-    apple: {
-      authenticate: 'Log in with Apple',
-    }
   },
   // common labels
   label: {
@@ -48,9 +41,6 @@ const enMessages: Translations = {
   },
   login: {
     title: 'Please authenticate',
-    actions: {
-      forgot: 'I forget my password',
-    }
   },
   // users
   users: {
@@ -74,7 +64,7 @@ const enMessages: Translations = {
     field: {
       required: 'Field is required',
       email_wrong_format: 'The input email address is invalid',
-    }
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',
