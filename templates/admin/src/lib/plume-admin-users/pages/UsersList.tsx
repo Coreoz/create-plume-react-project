@@ -19,7 +19,7 @@ export default class UsersList {
       <this.theme.pageTitle>{this.messages.t('user.title_list')}</this.theme.pageTitle>
       <this.theme.actionsContainer>
         <this.theme.actionLink
-          iconName="add"
+          icon="add"
           linkTo={`${usersPath}/create`}
         >
           {this.messages.t('action.add')}

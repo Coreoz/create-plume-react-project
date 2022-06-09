@@ -9,10 +9,10 @@ import SessionService from '../services/session/SessionService';
 import Router from './layout/Router';
 import Header from './layout/Header';
 import Navigation from './navigation/Navigation';
-import Login from './pages/login/Login';
+import ConditionalRoute from './theme/routes/ConditionalRoute';
+import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import NotificationRenderer from './theme/NotificationRenderer';
-import ConditionalRoute from './theme/routes/ConditionalRoute';
 
 const logger = new Logger('App');
 
