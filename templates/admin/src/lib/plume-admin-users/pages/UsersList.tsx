@@ -74,7 +74,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
         <theme.pageBlocColumn column="50">
           <theme.actionsContainer>
             <theme.actionButton
-              iconName="add"
+              icon="add"
               style={ActionStyle.PRIMARY}
               onClick={() => {
                 history.push(`${usersPath}/create`);

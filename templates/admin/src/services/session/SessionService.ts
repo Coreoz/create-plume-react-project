@@ -1,11 +1,11 @@
 import { observable, WritableObservable } from 'micro-observables';
-import { Logger } from 'simple-logging-system';
 import { Job, Scheduler } from 'simple-job-scheduler';
+import { Logger } from 'simple-logging-system';
 import SessionApi, { SessionCredentials, SessionToken } from '../../api/session/SessionApi';
-import { User, UserWithExpiration } from './User';
 import IdlenessDetector from '../../lib/user-session/IdlenessDetector';
-import Permission from './Permission';
 import PageActivityManager, { PageActivity } from '../../lib/user-session/page-activity/PageActivityManager';
+import Permission from './Permission';
+import { User, UserWithExpiration } from './User';
 
 const THRESHOLD_IN_MILLIS_TO_DETECT_EXPIRED_SESSION = 60 * 1000; // 1 minutes
 const LOCAL_STORAGE_CURRENT_SESSION = 'user-session';
@@ -163,7 +163,7 @@ export default class SessionService {
 
   private onBrowserPageActivityChange(eventType: PageActivity) {
     if (eventType === PageActivity.ACTIVE
-    && !SessionService.isUserSessionValid(this.currentUserExpirationDateInSeconds)) {
+      && !SessionService.isUserSessionValid(this.currentUserExpirationDateInSeconds)) {
       logger.info('Expired session detected on browser page active, disconnecting...');
       this.discardSession();
     }

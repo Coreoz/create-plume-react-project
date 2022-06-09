@@ -1,4 +1,4 @@
-import { FocusEventHandler } from 'react';
+import { FocusEvent, ChangeEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
@@ -13,8 +13,8 @@ export type InputTextProps = {
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   control: Control<any>;
   // focus event
-  onBlur?: FocusEventHandler<any>;
-  onChange?: (value: { target: { value: string } }) => void;
+  onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   label?: string;
   placeholder?: string;
   shouldUnregister?: boolean;

@@ -28,6 +28,10 @@
 
       button {
         font-size: $font-size-medium;
+
+        .MuiIcon-root {
+          margin-right: $spacer-2;
+        }
       }
 
       &--circle {

@@ -8,8 +8,7 @@ export type ActionContainerProps = {
 
 export type ActionProps = {
   style?: ActionStyle,
-  icon?: string,
-  iconName?: IconType,
+  icon?: IconType,
   cssClasses?: string,
   children?: React.ReactNode,
 };

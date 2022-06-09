@@ -1,7 +1,11 @@
 import React from 'react';
-
 import {
-  Collapse, Icon, List, ListItem, ListItemIcon, ListItemText,
+  Collapse,
+  Icon,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
@@ -14,11 +18,11 @@ type NestedItemProps = {
   children?: React.ReactNode;
 };
 
-const NestedListItem = (
+function NestedListItem(
   {
     icon, label, opened, children, drawerOpen,
   }: NestedItemProps,
-) => {
+) {
   const [isItemOpened, toggleItemOpening] = useToggle(opened ?? true);
 
   return (
@@ -60,6 +64,6 @@ const NestedListItem = (
       </Collapse>
     </>
   );
-};
+}
 
 export default (NestedListItem);

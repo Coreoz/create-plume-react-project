@@ -6,13 +6,13 @@ import { Logger } from 'simple-logging-system';
 import LocaleService from '../i18n/locale/LocaleService';
 import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
 import SessionService from '../services/session/SessionService';
-import Header from './layout/Header';
-import Navigation from './layout/Navigation';
 import Router from './layout/Router';
-import Login from './pages/login/Login';
+import Header from './layout/Header';
+import Navigation from './navigation/Navigation';
+import ConditionalRoute from './theme/routes/ConditionalRoute';
+import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import NotificationRenderer from './theme/NotificationRenderer';
-import ConditionalRoute from './theme/routes/ConditionalRoute';
 
 const logger = new Logger('App');
 
