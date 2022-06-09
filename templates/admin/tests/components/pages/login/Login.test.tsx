@@ -5,7 +5,7 @@ import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { configureGlobalInjector } from 'plume-ts-di';
 import { createInjector } from '../../../TestUtils';
-import Login from '../../../../src/components/pages/login/Login';
+import Login from '../../../../src/components/features/login/Login';
 import installServicesModule from '../../../../src/services/services-module';
 import installComponentsModule from '../../../../src/components/components-module';
 import installApiModule from '../../../../src/api/api-module';
