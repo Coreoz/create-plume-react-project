@@ -1,10 +1,11 @@
-import {
-  Icon, ListItem, ListItemIcon, ListItemText
-} from '@mui/material';
 import React from 'react';
-
 import { Link, useRouteMatch } from 'react-router-dom';
-
+import {
+  Icon,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import { IconType } from '../theme/IconType';
 
 type LinkListItemProps = {
@@ -14,11 +15,11 @@ type LinkListItemProps = {
   drawerOpen: boolean,
 };
 
-const LinkListItem = (
+function LinkListItem(
   {
-    icon, route, label, drawerOpen
-  }: LinkListItemProps
-) => {
+    icon, route, label, drawerOpen,
+  }: LinkListItemProps,
+) {
   const routeMatch = useRouteMatch({ path: route, exact: false });
   return (
     <ListItem

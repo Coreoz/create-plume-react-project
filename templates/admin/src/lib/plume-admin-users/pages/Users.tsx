@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import UserApi from '../api/UserApi';
-import UsersList from './UsersList';
-import UsersEdit from './UsersEdit';
-import { AdminUsersDetails } from '../api/AdminUserTypes';
+import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
+import { AdminUsersDetails } from '../api/AdminUserTypes';
+import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import UsersEdit from './UsersEdit';
+import UsersList from './UsersList';
 
 export default class Users {
-  constructor(private readonly userApi: UserApi, private readonly usersEdit: UsersEdit,
+  constructor(
+    private readonly theme: PlumeAdminTheme,
+    private readonly userApi: UserApi,
+    private readonly usersEdit: UsersEdit,
     private readonly usersList: UsersList) {
   }
 
@@ -40,7 +44,7 @@ export default class Users {
     useOnComponentMounted(updateUsersAndRoles);
 
     return (
-      <div className="admin-page">
+      <this.theme.panel>
         <this.usersList.render usersPath={path} usersWithRoles={usersWithRoles} />
         <Switch>
           <Route path={`${path}/create`}>
@@ -58,7 +62,7 @@ export default class Users {
             />
           </Route>
         </Switch>
-      </div>
+      </this.theme.panel>
     );
   };
 }

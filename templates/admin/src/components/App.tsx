@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { ToastContainer } from 'react-toastify';
 import Router from './layout/Router';
-import Navigation from './layout/Navigation';
+import Navigation from './navigation/Navigation';
 import SessionService from '../services/session/SessionService';
 import Header from './layout/Header';
 import Login from './pages/login/Login';

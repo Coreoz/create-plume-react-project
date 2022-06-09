@@ -1,14 +1,13 @@
 @use 'variables' as *;
 
 @use 'layouts/index' as *;
-@use 'pages/index' as *;
+@use 'features/index' as *;
+@use 'forms/index' as *;
+@use 'components/index' as *;
 
 @use '@fontsource/roboto/latin-100.css' as *;
 @use '@fontsource/roboto/latin-400.css' as *;
 @use '@fontsource/roboto/latin-700.css' as *;
 @use 'root' as *;
-@use 'popin' as *;
-@use 'forms' as *;
-@use 'actions' as *;
 @use 'icons' as *;
 @use 'material-override' as *;
