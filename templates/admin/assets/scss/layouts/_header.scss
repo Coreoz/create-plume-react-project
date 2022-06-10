@@ -1,0 +1,65 @@
+@use "../variables" as *;
+
+#main-header {
+  display: flex;
+  align-items: center;
+  height: $height-header;
+  border-bottom: $separator;
+
+  h1 {
+    padding: $spacer-4 0;
+    text-transform: uppercase;
+    margin-left: $spacer-6;
+    font-size: $font-size-large;
+  }
+
+  .header_actions {
+    display: flex;
+    height: 100%;
+    margin-left: auto;
+
+    .header_action {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 $spacer-5;
+      border-left: $separator;
+      color: $secondary-color;
+
+      button {
+        font-size: $font-size-medium;
+
+        .MuiIcon-root {
+          margin-right: $spacer-2;
+        }
+      }
+
+      &--circle {
+        button {
+          min-width: unset;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          color: $secondary-color;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: $gray-lighter;
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+#user-name {
+  color: $gray-dark;
+  min-width: 75px;
+  text-align: center;
+  padding: 0 $spacer-4 $spacer-2 $spacer-4;
+  border-bottom: $separator;
+  margin-bottom: $spacer-3;
+}

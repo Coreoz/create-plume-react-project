@@ -1,5 +1,6 @@
+@use "assets/scss/variables" as *;
+
 .actions {
-  margin-top: $box-padding;
   display: flex;
   justify-content: flex-end;
 
@@ -23,7 +24,7 @@
       margin-top: -$button-height*0.5;
       margin-left: -$button-height*0.5;
 
-      >div {
+      > div {
         display: block;
       }
     }

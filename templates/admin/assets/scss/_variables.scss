@@ -1,12 +1,61 @@
+// fonts
 $base-font-family: 'Roboto', sans-serif;
 $base-font-size: 14px;
+$font-size-big: 18px;
 
-$background-color: #eeeeee;
-$separator-color: #dddddd;
+// colors
+$background-color: #EEE;
+$separator-color: #DDD;
 
 $primary-color: #1469b3;
-$secondary-color: #dd8100;
+$secondary-color: #df623b;
+$active-background-color: #e3ebf2;
 
-$box-padding: 16px;
+$navigation-width-open: 240px;
+$navigation-width-close: 100px;
+
+$gray-lighter: #F5F5F5;
+$gray-lighter-border: #E5E3E3;
+$gray-light: #CDCDCD;
+$gray: #BCBCBC;
+$gray-text: #ABABAB;
+$gray-dark: #444444;
+
+// font-size
+$font-size-mini: 0.4rem;
+$font-size-small: 0.6rem;
+$font-size-little: 0.9rem;
+$font-size-normal: 1rem;
+$font-size-medium: 1.2rem;
+$font-size-large: 1.5rem;
+$font-size-extra-large: 1.8rem;
+$font-size-huge: 2rem;
+
+// padding / margin
+$spacer-1: 0.25rem;
+$spacer-2: 0.5rem;
+$spacer-3: 0.75rem;
+$spacer-4: 1rem;
+$spacer-5: 1.5rem;
+$spacer-6: 2rem;
+$spacer-7: 3rem;
+$spacer-8: 4rem;
+$spacer-9: 6rem;
+$spacer-10: 10rem;
 
 $button-height: 24px;
+
+// variable components
+$height-header: 6rem;
+
+// variable animations
+$animation-timing: 0.25s;
+
+/// separators
+$separator: 1px solid $separator-color;
+
+// screen sizes
+$width-small-screen-px: 800;
+$width-medium-screen-px: 1150;
+
+$app-max-width: 1200px;

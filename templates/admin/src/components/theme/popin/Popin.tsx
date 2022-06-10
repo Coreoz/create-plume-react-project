@@ -27,20 +27,20 @@ export function PopinCloseWithoutSaving(
     ? (
       <Popin zIndex={101}>
         <Panel>
-          {messages['message.unsaved-data']}
+          {messages.message.unsaved_data}
         </Panel>
         <ActionsContainer>
           <ActionButton
             style={ActionStyle.DANGER}
             onClick={confirmCloseWithoutSaving.confirm(closeWithoutSavingAction)}
           >
-            {messages['action.close-without-saving']}
+            {messages.action.close_without_saving}
           </ActionButton>
           <ActionButton
             style={ActionStyle.SECONDARY}
             onClick={confirmCloseWithoutSaving.reset}
           >
-            {messages['action.keep-editing']}
+            {messages.action.keep_editing}
           </ActionButton>
         </ActionsContainer>
       </Popin>

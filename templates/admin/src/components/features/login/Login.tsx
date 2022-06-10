@@ -38,12 +38,12 @@ export default function Login() {
         {loader.error && (
           <Alert className="form-errors" severity="error">{messageService.httpError(loader.error)}</Alert>
         )}
-        <strong>{messages['login.title']}</strong>
+        <strong>{messages.login.title}</strong>
         <form onSubmit={handleSubmit(tryAuthenticate)}>
-          <FormField inputId="userName" label={messages['users.USERNAME']} error={errors.userName}>
+          <FormField inputId="userName" label={messages.users.userName} error={errors.userName}>
             <InputText control={control} type="text" name="userName" rules={{ required: true }} useNameAsId />
           </FormField>
-          <FormField inputId="password" label={messages['users.PASSWORD']} error={errors.password}>
+          <FormField inputId="password" label={messages.users.password} error={errors.password}>
             <InputText
               control={control}
               type="password"
@@ -55,7 +55,7 @@ export default function Login() {
           </FormField>
           <ActionsContainer>
             <ActionButton cssClasses="" isLoading={loader.isLoading}>
-              {messages['action.authenticate']}
+              {messages.action.authenticate}
             </ActionButton>
           </ActionsContainer>
         </form>

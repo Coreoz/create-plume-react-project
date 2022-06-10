@@ -10,12 +10,17 @@ type LocaleSelectorProps = {
 };
 
 export default function LocaleSelector(
-  { currentLocale, availableLocales, onLocaleSelected } : LocaleSelectorProps,
+  { currentLocale, availableLocales, onLocaleSelected }: LocaleSelectorProps,
 ) {
   const { subscribeOnClick, wrapOnClick } = useOnClickSubscriber();
 
   return (
-    <DropdownMenu label={currentLocale.name} id="lang-menu" subscribeOnClick={subscribeOnClick}>
+    <DropdownMenu
+      icon="language"
+      label={currentLocale.code.toUpperCase()}
+      id="lang-menu"
+      subscribeOnClick={subscribeOnClick}
+    >
       {
         availableLocales.map((availableLocale) => (
           <MenuItem
