@@ -52,3 +52,14 @@ body {
     background: $red;
   }
 }
+
+.app-icon {
+  position: absolute;
+  bottom: 0;
+  padding: $spacer-4;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 150px;
+  width: 100%;
+}

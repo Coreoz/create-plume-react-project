@@ -3,27 +3,24 @@ import React from 'react';
 import { useController } from 'react-hook-form';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
-export default function InputText(
-  {
-    type = 'text',
-    label,
-    name,
-    id,
-    useNameAsId,
-    control,
-    rules,
-    disabled,
-    defaultValue,
-    onChange,
-    onBlur,
-    autoComplete,
-    shouldUnregister,
-    multiline,
-    rows,
-  }: InputTextProps,
-) {
+export default function InputText({
+  type = 'text',
+  label,
+  name,
+  id,
+  useNameAsId,
+  control,
+  rules,
+  disabled,
+  defaultValue,
+  onChange,
+  onBlur,
+  autoComplete,
+  shouldUnregister,
+  multiline,
+  rows,
+}: InputTextProps) {
   const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-  const required = rules?.required || '';
 
   const { field } = useController({
     shouldUnregister,
@@ -49,7 +46,7 @@ export default function InputText(
 
   return (
     <TextField
-      className={required && 'field-required'}
+      className={rules?.required ? 'field-required' : ''}
       label={label}
       type={type}
       name={name}

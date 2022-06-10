@@ -5,12 +5,6 @@ The SCSS files in the project must be structured as follows :
 
 ```
 .
-+-- app.scss : the application SCSS entry point, it imports all the other files
-+-- _root.scss : contains html default overrides
-+-- _variables.scss : contains all the variables
-+-- _mixin.scss : with mobile/desktop breakpoint definition
-+-- _font.scss : contains the fonts declarations
-+-- _helpers.scss : contains the application very common css. This must be used with extreme precaution.
 +-- layouts : defines the global layout of the application without going into details
 |   +-- _index.scss : the index of the folder referencing all the scss files
 |   +-- _header.scss
@@ -37,6 +31,12 @@ The SCSS files in the project must be structured as follows :
 |   +-- _table.scss
 |   +-- _tabs
 |   +-- ...
++-- _font.scss : contains the fonts declarations
++-- _helpers.scss : contains the application very common css. This must be used with extreme precaution.
++-- _mixin.scss : with mobile/desktop breakpoint definition
++-- _root.scss : contains html default overrides
++-- _variables.scss : contains all the variables
++-- app.scss : the application SCSS entry point, it imports all the other files
 .
 ```
 
