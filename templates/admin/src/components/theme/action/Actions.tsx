@@ -8,7 +8,9 @@ import {
 } from '../../../lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 
-function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' | 'error' {
+function actionStyleToCssClass(
+  actionStyle?: ActionStyle,
+): 'inherit' | 'primary' | 'secondary' | 'error' {
   if (!actionStyle) {
     return 'inherit';
   }
@@ -18,7 +20,10 @@ function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary'
   return actionStyle;
 }
 
-export function ActionsContainer({ children, cssClasses }: ActionContainerProps) {
+export function ActionsContainer({
+  children,
+  cssClasses,
+}: ActionContainerProps) {
   return (
     <div className={`actions ${cssClasses ?? ''}`}>
       {children}
@@ -26,11 +31,9 @@ export function ActionsContainer({ children, cssClasses }: ActionContainerProps)
   );
 }
 
-export function ActionLink(
-  {
-    style, icon, linkTo, children,
-  }: ActionLinkProps,
-) {
+export function ActionLink({
+  style, icon, linkTo, children,
+}: ActionLinkProps) {
   return (
     <Button
       className={`action-container ${actionStyleToCssClass(style)}`}
@@ -45,11 +48,14 @@ export function ActionLink(
   );
 }
 
-export function ActionButton(
-  {
-    style, icon, cssClasses, onClick, isLoading, children,
-  }: ActionButtonProps,
-) {
+export function ActionButton({
+  style,
+  icon,
+  cssClasses,
+  onClick,
+  isLoading,
+  children,
+}: ActionButtonProps) {
   return (
     <div
       className={
