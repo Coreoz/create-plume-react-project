@@ -1,0 +1,14 @@
+@use "../variables" as *;
+
+form {
+  margin-top: $spacer-4;
+
+  .form-control {
+    width: 100%;
+    margin: 0 0 $spacer-4 0;
+  }
+}
+
+.form-errors {
+  margin-bottom: $spacer-4;
+}

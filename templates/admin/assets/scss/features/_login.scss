@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 #login-layout {
   height: 100%;
   overflow: auto;
@@ -7,7 +9,7 @@
 
     h1 {
       text-align: center;
-      margin-bottom: $box-padding;
+      margin-bottom: 0;
     }
 
     .login-box {
@@ -19,7 +21,7 @@
       border: 1px solid #dddddd;
 
       form {
-        margin: $box-padding 0 0 0;
+        margin: 0 0 0 0;
 
         .actions {
           padding: 0;

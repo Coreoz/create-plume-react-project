@@ -1,0 +1,157 @@
+@use "../variables" as *;
+
+.main-nav {
+  width: 220px;
+  height: 100%;
+  transition: width .3s ease-in;
+  overflow: visible;
+  border-right: $separator;
+  font-size: $font-size-normal;
+  position: relative;
+
+  .app-icon {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  button.toggle-nav {
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    // $height-header / 2 - button height / 2
+    top: calc((#{$height-header} / 2) - 15px);
+    right: 0;
+    transform: translateX(50%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid $gray-light;
+    background: $gray-lighter;
+    color: $secondary-color;
+  }
+
+  .app-info {
+    font-size: $font-size-large;
+    margin-top: $spacer-4;
+    text-align: center;
+    color: $secondary-color;
+    overflow: hidden;
+
+    .app-name {
+      width: 150px;
+      height: 75px;
+    }
+
+    img {
+      width: 50%;
+      object-fit: contain;
+      margin: 5% 25%;
+    }
+
+    div {
+      width: 75%;
+      margin: auto;
+    }
+  }
+
+  .navigation {
+    margin-top: $spacer-8;
+    padding: $spacer-2 0;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: $spacer-4;
+      color: $primary-color;
+
+      .MuiListItemIcon-root {
+        min-width: 30px;
+        position: relative;
+        transition: left .3s ease-in;
+        left: 0;
+
+        span {
+          font-size: $font-size-large;
+          color: $primary-color;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .MuiListItemText-root {
+        margin: 0;
+        opacity: 1;
+
+        span {
+          overflow: hidden;
+          word-break: keep-all;
+          white-space: pre;
+        }
+      }
+
+      .MuiListItemIcon-root, .MuiListItemText-root {
+        height: 24px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    a:hover, a.active, a.Mui-selected {
+      background: rgba($secondary-color, 10%);
+      position: relative;
+      color: $secondary-color;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: $secondary-color;
+      }
+
+      .MuiListItemIcon-root {
+        span {
+          color: $secondary-color;
+        }
+      }
+    }
+
+    .nested-items {
+      a {
+        padding-left: $spacer-7;
+      }
+    }
+  }
+}
+
+.nav--reduced {
+  width: 85px;
+  transition: width .3s ease-in;
+
+  .app-info {
+    span {
+      display: none;
+    }
+
+    div {
+      opacity: 0;
+    }
+  }
+
+  .navigation {
+    a {
+      div.MuiListItemIcon-root {
+        left: 10px;
+      }
+
+      div.MuiListItemText-root {
+        opacity: 0;
+      }
+    }
+  }
+}
