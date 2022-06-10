@@ -20,7 +20,7 @@ function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
   };
 
   return (
-    <div className="list-search-bar">
+    <div className="advanced-search-bar">
       <div className="search-bar-container" ref={anchorEl}>
         <Icon className="search-icon">search</Icon>
         <input

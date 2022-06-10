@@ -29,10 +29,10 @@ function SortMenu(
   };
 
   return (
-    <div className="list-sort-menu">
+    <div className="sort-menu">
       <Icon>sort</Icon>
       <Select
-        className="sort-menu"
+        className="sort-menu-select"
         defaultValue={defaultSortPossibility.sortKey}
         onChange={(event: SelectChangeEvent<string>) => handleSortingBar(event)}
         IconComponent={() => <Icon>expand_more</Icon>}

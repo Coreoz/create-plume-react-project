@@ -16,7 +16,7 @@
 
   button.toggle-nav {
     position: absolute;
-    border-radius: 50%;
+    border-radius: $border-radius-circle;
     width: 30px;
     height: 30px;
     // $height-header / 2 - button height / 2

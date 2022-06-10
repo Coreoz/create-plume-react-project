@@ -1,13 +1,14 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-.list-search-bar {
+$search-bar-height: 50px;
+
+.advanced-search-bar {
   position: relative;
 
   .search-bar-container {
     width: 530px;
     position: relative;
-    border-radius: 8px;
 
     .search-icon {
       color: $primary-color;
@@ -20,11 +21,11 @@
     .search-bar {
       width: 100%;
       height: 50px;
-      line-height: 50px;
+      line-height: $search-bar-height;
       padding: $spacer-2 $spacer-10 $spacer-2 $spacer-7;
       font-style: italic;
       color: $gray-text;
-      border-radius: 5px;
+      border-radius: $border-radius-5;
       border: 1px solid $gray;
       outline: none;
       font-size: $font-size-little;
@@ -72,12 +73,12 @@
 
     .more-options-container {
       position: absolute;
-      top: 50px; //size of the search bar
+      top: $search-bar-height;
       width: 530px;
       padding: $spacer-4 $spacer-6;
       @include box-shadow();
       background: white;
-      border-radius: 5px;
+      border-radius: $border-radius-5;
       z-index: 2;
     }
   }

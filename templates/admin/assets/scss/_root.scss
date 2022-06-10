@@ -25,6 +25,7 @@ button {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
+  // will not underline letters that overlaps on the link line (as p, g, j, ..)
   text-decoration-skip-ink: auto;
 }
 

@@ -13,7 +13,7 @@
   .user-initials {
     width: 35px;
     height: 35px;
-    border-radius: 50%;
+    border-radius: $border-radius-circle;
     color: $secondary-color;
     text-align: center;
     line-height: 35px;
@@ -50,7 +50,7 @@
         &--accent {
           font-size: $font-size-little;
           padding: .5rem;
-          border-radius: .5rem;
+          border-radius: $border-radius-5;
           text-transform: uppercase;
           border: 1px solid $orange;
           color: $orange;
