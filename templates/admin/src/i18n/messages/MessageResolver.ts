@@ -20,16 +20,16 @@ export default class MessageResolver implements PlumeMessageResolver {
    * Then splits it into a tab ['tree', 'node', 'message']
    * Then recursively going down the Translation tree until finding a word
    *
-   * Enables to find the message value in a object (e.g `{a: {b: {c: value}}}` with a string key (e.g `a.b.c`)
-   *
    * @param messageKey: the message key like 'tree.node.message_key'
    * @param messageArgs: the potentials arguments of the message
    */
   private messageResolver = (messageKey: string, ...messageArgs: string[]): string => {
     const translation = messageKey.split('.')
+      // Enables to find the message value in a object (e.g `{a: {b: {c: value}}}` with a string key (e.g `a.b.c`)
       .reduce(
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         (p, c) => (p as any)?.[c],
+        // returns all the translations
         this.messages.t(),
       );
     if (translation === undefined) {
