@@ -18,16 +18,9 @@ function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary'
   return actionStyle;
 }
 
-function classesToCssClass(cssClasses: string | undefined): string {
-  if (!cssClasses) {
-    return '';
-  }
-  return ` ${cssClasses}`;
-}
-
 export function ActionsContainer({ children, cssClasses }: ActionContainerProps) {
   return (
-    <div className={`actions${classesToCssClass(cssClasses)}`}>
+    <div className={`actions ${cssClasses ?? ''}`}>
       {children}
     </div>
   );
@@ -60,7 +53,7 @@ export function ActionButton(
   return (
     <div
       className={
-        `action-container loading-button${classesToCssClass(cssClasses)}${isLoading ? ' loading-button--loading' : ''}`
+        `action-container loading-button ${cssClasses ?? ''}${isLoading ? ' loading-button--loading' : ''}`
       }
     >
       <Button

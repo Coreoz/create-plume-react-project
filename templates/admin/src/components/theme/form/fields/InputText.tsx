@@ -23,7 +23,6 @@ export default function InputText(
   }: InputTextProps,
 ) {
   const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-  const required = rules?.required || '';
 
   const { field } = useController({
     shouldUnregister,
@@ -49,7 +48,7 @@ export default function InputText(
 
   return (
     <TextField
-      className={required && 'field-required'}
+      className={rules?.required ? 'field-required' : ''}
       label={label}
       type={type}
       name={name}
