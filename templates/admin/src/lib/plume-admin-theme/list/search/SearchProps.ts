@@ -1,5 +1,5 @@
 export type SearchBarProps = {
-  onSearch: (event: any) => void,
+  onSearch: React.ChangeEventHandler<HTMLInputElement>,
   placeHolder?: string,
   children?: React.ReactNode,
-}
+};

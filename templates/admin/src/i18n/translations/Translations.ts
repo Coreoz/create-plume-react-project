@@ -68,23 +68,25 @@ export type Translations = {
     },
   },
   // sorts wording
-  'sort': {
-    'user': {
-      'name_desc': string,
-      'name_asc': string,
+  sort: {
+    user: {
+      name_desc: string,
+      name_asc: string,
+      creation_date_asc: string,
+      creation_date_desc: string,
     },
   }
   // filters wording
-  'filter': {
-    'user': {
-      'title': string,
-      'name': string,
-      'role': string,
+  filter: {
+    user: {
+      title: string,
+      name: string,
+      role: string,
     }
   }
   // errors
   error: {
-    field : {
+    field: {
       required: string,
       email_wrong_format: string,
     },

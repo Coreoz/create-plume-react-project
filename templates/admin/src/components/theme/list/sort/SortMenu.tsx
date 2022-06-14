@@ -1,4 +1,9 @@
-import { Icon, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import {
+  Icon,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import MessageService from '../../../../i18n/messages/MessageService';
@@ -43,6 +48,7 @@ function SortMenu(
               key={sortElement.sortKey}
               value={sortElement.sortKey}
             >
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {(messages.sort as any)[sortedObjectKey][sortElement.sortKey.toLowerCase()]}
             </MenuItem>
           ))

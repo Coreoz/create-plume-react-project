@@ -4,5 +4,5 @@ import { StatusDotProps } from '../../../lib/plume-admin-theme/layout/LayoutProp
 export default function StatusDot({ status }: StatusDotProps): JSX.Element {
   return (
     <span className={`status status--${status}`} />
-  )
+  );
 }

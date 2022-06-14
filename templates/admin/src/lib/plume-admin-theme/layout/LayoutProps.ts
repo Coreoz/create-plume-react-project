@@ -1,6 +1,6 @@
+import { ColumnType } from '../../../components/theme/ColumnType';
 import { IconType } from '../../../components/theme/IconType';
 import Status from './Status';
-import { ColumnType } from '../../../components/theme/ColumnType';
 
 export type LayoutPageTitleProps = {
   icon?: IconType;
@@ -25,4 +25,4 @@ export type PanelProps = {
 
 export type StatusDotProps = {
   status: Status,
-}
+};

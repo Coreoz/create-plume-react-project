@@ -63,7 +63,7 @@ const frMessages: Translations = {
     add: 'Ajouter un utilisateur',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
     list: {
-      count: (count: number) => 'Nombre d\'utilisateurs : ' + count,
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
     },
   },
   // sorts wording
@@ -71,6 +71,8 @@ const frMessages: Translations = {
     user: {
       name_desc: 'Trier par ordre alphabétique descendant',
       name_asc: 'Trier par ordre alphabétique ascendant',
+      creation_date_asc: 'Trier du plus ancien au plus nouveau',
+      creation_date_desc: 'Trier du plus nouveau au plus ancien',
     },
   },
   // filters wording

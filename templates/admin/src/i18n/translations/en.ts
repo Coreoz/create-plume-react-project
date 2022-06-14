@@ -71,6 +71,8 @@ const enMessages: Translations = {
     user: {
       name_desc: 'Sort by descendant alphabetical order',
       name_asc: 'Sort by ascendant alphabetical order',
+      creation_date_asc: 'Sort oldest to newest',
+      creation_date_desc: 'Sort newest to oldest',
     },
   },
   // filters wording
