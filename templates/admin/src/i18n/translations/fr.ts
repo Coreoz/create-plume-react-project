@@ -12,8 +12,8 @@ const frMessages: Translations = {
     delete: 'Supprimer',
     search: 'Rechercher',
     add: 'Ajouter',
-    authenticate: 'Connexion',
-    disconnect: 'Déconnexion',
+    authenticate: 'Me connecter',
+    disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
     close_without_saving: 'Fermer sans sauvegarder',
   },
@@ -40,7 +40,7 @@ const frMessages: Translations = {
     title: 'Page d\'accueil',
   },
   login: {
-    title: 'Veuillez vous authentifier',
+    title: 'Se connecter',
   },
   // users
   users: {

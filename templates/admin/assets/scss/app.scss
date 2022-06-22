@@ -9,5 +9,6 @@
 @use '@fontsource/roboto/latin-400.css' as *;
 @use '@fontsource/roboto/latin-700.css' as *;
 @use 'root' as *;
+@use 'mixins' as *;
 @use 'icons' as *;
 @use 'material-override' as *;

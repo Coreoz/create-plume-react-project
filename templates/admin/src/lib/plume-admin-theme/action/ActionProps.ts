@@ -2,6 +2,7 @@ import ActionStyle from './ActionStyle';
 import { IconType } from '../../../components/theme/IconType';
 
 export type ActionContainerProps = {
+  cssClasses?: string;
   children?: React.ReactNode;
 };
 
@@ -13,10 +14,10 @@ export type ActionProps = {
 };
 
 export interface ActionLinkProps extends ActionProps {
-  linkTo: string,
+  linkTo: string;
 }
 
 export interface ActionButtonProps extends ActionProps {
-  onClick?: () => void,
-  isLoading?: boolean,
+  onClick?: () => void;
+  isLoading?: boolean;
 }
