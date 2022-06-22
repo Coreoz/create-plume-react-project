@@ -5,7 +5,7 @@ const enMessages: Translations = {
     name: 'Plume admin',
   },
   // actions
-  action :{
+  action: {
     back: 'Back',
     cancel: 'Cancel',
     save: 'Save',
@@ -40,7 +40,7 @@ const enMessages: Translations = {
     title: 'Home page',
   },
   login: {
-    title: 'Please authenticate'
+    title: 'Please authenticate',
   },
   // users
   users: {
@@ -64,7 +64,7 @@ const enMessages: Translations = {
     field: {
       required: 'Field is required',
       email_wrong_format: 'The input email address is invalid',
-    }
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',

@@ -1,8 +1,38 @@
 @use "variables" as *;
+@use "mixins" as *;
 
 .app {
 
-  .MuiButton-containedSecondary { /* stylelint-disable-line selector-class-pattern */
+  /* BUTTONS */
+  .MuiButton-root {
+    height: 45px;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: none;
+
+    &:hover, &:active, &:focus {
+      @include box-shadow-button();
+    }
+
+    .MuiButton-startIcon {
+      img {
+        width: $button-height*0.75;
+        height: 100%;
+      }
+    }
+  }
+
+  .MuiButton-containedSecondary {
+    background-color: white;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
+  .MuiButton-containedPrimary { /* stylelint-disable-line selector-class-pattern */
     background-color: $primary-color;
 
     &:hover {
@@ -10,15 +40,43 @@
     }
   }
 
-  .MuiButton-containedPrimary { /* stylelint-disable-line selector-class-pattern */
-    background-color: $secondary-color;
+  .MuiCircularProgress-colorPrimary { /* stylelint-disable-line selector-class-pattern */
+    color: $primary-color;
+  }
+
+  // TEXT INPUT
+  .MuiFilledInput-root {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    font-size: 14px;
 
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      background-color: rgba($gray-dark, 0.1);
+    }
+
+    &, &.Mui-focused {
+      background-color: rgba($gray-dark, 0.05);
+    }
+
+    &.Mui-disabled {
+      background-color: rgba($gray-dark, 0.15);
+    }
+
+    &::before, &::after {
+      content: none;
     }
   }
 
-  .MuiCircularProgress-colorPrimary { /* stylelint-disable-line selector-class-pattern */
-    color: $primary-color;
+  .MuiInputLabel-root.Mui-focused {
+    color: currentColor;
+  }
+
+  // FORM ERROR
+  .Mui-error {
+    margin-left: 0;
+  }
+
+  .main-nav span.MuiTouchRipple-root {
+    display: none;
   }
 }

@@ -1,22 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Button, CircularProgress, Icon } from '@mui/material';
 import React from 'react';
-import {
-  Button, CircularProgress, Icon,
-} from '@mui/material';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import { Link } from 'react-router-dom';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
 } from '../../../lib/plume-admin-theme/action/ActionProps';
+import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 
-function actionStyleToCssClass(actionStyle?: ActionStyle): 'inherit' | 'primary' | 'secondary' {
-  return actionStyle === 'primary' ? 'primary' : 'secondary';
+function actionStyleToCssClass(
+  actionStyle?: ActionStyle,
+): 'inherit' | 'primary' | 'secondary' | 'error' {
+  if (!actionStyle) {
+    return 'inherit';
+  }
+  if (actionStyle === ActionStyle.DANGER) {
+    return 'error';
+  }
+  return actionStyle;
 }
 
-export function ActionsContainer({ children }: ActionContainerProps) {
+export function ActionsContainer({
+  children,
+  cssClasses,
+}: ActionContainerProps) {
   return (
-    <div className="actions">
+    <div className={`actions ${cssClasses ?? ''}`}>
       {children}
     </div>
   );
@@ -40,10 +49,19 @@ export function ActionLink({
 }
 
 export function ActionButton({
-  style, icon, cssClasses, onClick, isLoading, children,
+  style,
+  icon,
+  cssClasses,
+  onClick,
+  isLoading,
+  children,
 }: ActionButtonProps) {
   return (
-    <div className={`action-container loading-button ${cssClasses}`}>
+    <div
+      className={
+        `action-container loading-button ${cssClasses ?? ''}${isLoading ? ' loading-button--loading' : ''}`
+      }
+    >
       <Button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
@@ -54,11 +72,14 @@ export function ActionButton({
       >
         {children}
       </Button>
-      {isLoading && (
-      <div className="loading-progress">
-        <CircularProgress size="auto" />
-      </div>
-      )}
+      {
+        isLoading
+        && (
+          <div className="loading-progress">
+            <CircularProgress size="100%" color="inherit" />
+          </div>
+        )
+      }
     </div>
   );
 }

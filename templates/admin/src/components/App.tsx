@@ -1,18 +1,18 @@
-import React from 'react';
 import { useObservable } from 'micro-observables';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Logger } from 'simple-logging-system';
 import { ToastContainer } from 'react-toastify';
-import Router from './layout/Router';
-import Navigation from './navigation/Navigation';
+import { Logger } from 'simple-logging-system';
+import LocaleService from '../i18n/locale/LocaleService';
+import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
 import SessionService from '../services/session/SessionService';
+import Router from './layout/Router';
 import Header from './layout/Header';
+import Navigation from './navigation/Navigation';
 import ConditionalRoute from './theme/routes/ConditionalRoute';
 import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import NotificationRenderer from './theme/NotificationRenderer';
-import LocaleService from '../i18n/locale/LocaleService';
-import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
 
 const logger = new Logger('App');
 
@@ -40,8 +40,7 @@ export default class App {
         <ToastContainer />
         <Switch>
           <Route exact path="/login">
-            <div id="login-layout">
-              <Header currentLocale={currentLocale} currentUser={currentUser} />
+            <div className="login-layout">
               <Login />
             </div>
           </Route>
