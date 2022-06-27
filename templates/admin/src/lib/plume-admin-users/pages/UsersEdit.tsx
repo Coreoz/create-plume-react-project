@@ -92,7 +92,7 @@ export default class UsersEdit {
           .save(userToSave)
           .then((createdUser) => {
             updateUsersAndRoles();
-            this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
+            this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
             if (createdUser) {
               history.push(`${usersPath}/${createdUser.id}`);
             }
@@ -113,7 +113,7 @@ export default class UsersEdit {
         .delete(idUser)
         .then(() => {
           updateUsersAndRoles();
-          this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
+          this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
           history.push(usersPath);
         })
         .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
@@ -152,7 +152,7 @@ export default class UsersEdit {
           </this.theme.actionsContainer>
         </this.theme.popin>
         )}
-        <h2>{isCreation ? this.messages.t('user.title_create') : this.messages.t('user.title-edit')}</h2>
+        <h2>{isCreation ? this.messages.t('user.title_create') : this.messages.t('user.title_edit')}</h2>
         <this.theme.actionsContainer>
           <this.theme.actionLink
             icon="keyboard_arrow_left"
