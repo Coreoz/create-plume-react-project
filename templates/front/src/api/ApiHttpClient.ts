@@ -1,6 +1,6 @@
 import { HttpMethod, HttpRequest } from 'simple-http-request-builder';
 import {
-  HttpPromise, unwrapHttpPromise, defaultJsonFetchClient, fetchClient,
+  createHttpFetchRequest, defaultJsonFetchClient, fetchClient, HttpPromise,
 } from 'simple-http-rest-client';
 
 const baseUrl = '/api';
