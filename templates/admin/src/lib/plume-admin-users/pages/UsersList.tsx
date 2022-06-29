@@ -64,14 +64,14 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
     <>
       <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="50">
+        <theme.pageBlocColumn columnWidth="50">
           <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
               setCurrentSearchBarFilter(event.target.value);
             }}
           />
         </theme.pageBlocColumn>
-        <theme.pageBlocColumn column="50">
+        <theme.pageBlocColumn columnWidth="50">
           <theme.actionsContainer>
             <theme.actionButton
               icon="add"
@@ -86,7 +86,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
         </theme.pageBlocColumn>
       </theme.pageBloc>
       <theme.pageBloc>
-        <theme.pageBlocColumn column="20">
+        <theme.pageBlocColumn columnWidth="20">
           <theme.multipleChoiceObjectFilterMenu
             filterMenuKey="user"
             filters={userFilters(usersWithRoles?.roles)}
@@ -99,7 +99,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
             rawList={usersWithRoles?.users || []}
           />
         </theme.pageBlocColumn>
-        <theme.pageBlocColumn column="80">
+        <theme.pageBlocColumn columnWidth="80">
           <UsersListResults
             userList={sortedAndFilteredList()}
             userRoles={usersWithRoles?.roles}

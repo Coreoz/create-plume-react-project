@@ -6,7 +6,7 @@
   padding: 0 $spacer-4;
   height: 38px;
   border-radius: $border-radius-5;
-  background: rgba(1, 136, 139, 0.05);
+  background-color: rgba($gray-dark, 0.05);
   margin-left: $spacer-5;
 
   .MuiSelect-select {

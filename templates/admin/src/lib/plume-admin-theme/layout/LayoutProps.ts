@@ -1,4 +1,4 @@
-import { ColumnType } from '../../../components/theme/ColumnType';
+import { ColumnWidth } from './ColumnWidth';
 import { IconType } from '../../../components/theme/IconType';
 import Status from './Status';
 
@@ -13,7 +13,7 @@ export type LayoutPageBlocProps = {
 };
 
 export type LayoutPageBlocColumnProps = {
-  column: ColumnType;
+  columnWidth: ColumnWidth;
   children: React.ReactNode;
   cssClasses?: React.ReactNode;
 };

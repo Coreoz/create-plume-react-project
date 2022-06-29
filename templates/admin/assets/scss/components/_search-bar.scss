@@ -1,9 +1,9 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-$search-bar-height: 50px;
 
 .advanced-search-bar {
+  $search-bar-height: 50px;
   position: relative;
 
   .search-bar-container {

@@ -9,7 +9,7 @@ import {
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
 
 /**
- * ListFilters is a generic component for filtering in a list
+ * Component to display vertical checkboxes filters on the side of search results
  * @param filterMenuKey the key in translation file to be used
  * @param filters The filters to be displayed.
  *                Each filter must contain possible values
