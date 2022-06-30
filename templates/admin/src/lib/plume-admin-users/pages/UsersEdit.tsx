@@ -164,62 +164,75 @@ export default class UsersEdit {
         <this.theme.panel>
           <form onSubmit={handleSubmit(trySaveUser)}>
             <input type="hidden" name="id" value={userToEdit?.id} />
-            <this.theme.formField inputId="userName" label={this.messages.t('users.userName')} error={errors.userName}>
-              <this.theme.inputText control={control} name="userName" rules={{ required: true }} useNameAsId />
+            <this.theme.formField
+              inputId="userName"
+              error={errors.userName}
+            >
+              <this.theme.inputText
+                control={control}
+                label={this.messages.t('users.userName')}
+                name="userName"
+                rules={{ required: true }}
+                useNameAsId
+              />
             </this.theme.formField>
             <this.theme.formField
               inputId="email"
-              label={this.messages.t('users.email')}
               error={errors.email}
               errorMessageMapping={makeErrorMessageMapping(this.messages.t('error.field.email_wrong_format'))}
             >
               <this.theme.inputText
                 name="email"
                 control={control}
+                label={this.messages.t('users.email')}
                 rules={{ required: true, validate: isEmail }}
                 useNameAsId
               />
             </this.theme.formField>
             <this.theme.formField
               inputId="firstName"
-              label={this.messages.t('users.firstName')}
               error={errors.firstName}
             >
-              <this.theme.inputText control={control} name="firstName" rules={{ required: true }} useNameAsId />
+              <this.theme.inputText
+                control={control}
+                name="firstName"
+                rules={{ required: true }}
+                label={this.messages.t('users.firstName')}
+                useNameAsId
+              />
             </this.theme.formField>
-            <this.theme.formField inputId="lastName" label={this.messages.t('users.lastName')} error={errors.lastName}>
-              <this.theme.inputText control={control} name="lastName" rules={{ required: true }} useNameAsId />
+            <this.theme.formField
+              inputId="lastName"
+              error={errors.lastName}
+            >
+              <this.theme.inputText
+                control={control}
+                name="lastName"
+                label={this.messages.t('users.lastName')}
+                rules={{ required: true }}
+                useNameAsId
+              />
             </this.theme.formField>
-            <this.theme.formField inputId="idRole" label={this.messages.t('users.role')} error={errors.idRole}>
+            <this.theme.formField
+              inputId="idRole"
+              error={errors.idRole}
+            >
               <this.theme.inputSelect
                 name="idRole"
                 useNameAsId
                 control={control}
+                label={this.messages.t('users.role')}
                 defaultValue={userToEdit?.idRole}
                 required
-              >
-                {
-                usersWithRoles
-                  ? Array
-                    .from(usersWithRoles?.roles)
-                    .map(
-                      ([roleId, roleName]) => (
-                        <option
-                          key={roleId}
-                          value={roleId}
-                        >
-                          {roleName}
-                        </option>
-                      ),
-                    )
-                  : undefined
-              }
-              </this.theme.inputSelect>
+                options={
+                  Array.from(usersWithRoles?.roles || []).map(
+                    ([roleId, roleName]) => ({ value: roleId, label: roleName }))
+                }
+              />
             </this.theme.formField>
             <this.theme.panelSeparator />
             <this.theme.formField
               inputId="password"
-              label={this.messages.t('users.password')}
               error={errors.password}
               errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error_passwords_different'))}
             >
@@ -227,6 +240,7 @@ export default class UsersEdit {
                 control={control}
                 type="password"
                 name="password"
+                label={this.messages.t('users.password')}
                 autoComplete="off"
                 onBlur={() => validatePasswordAndConfirmation()}
                 rules={{ required: isCreation }}
@@ -235,13 +249,13 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="passwordConfirmation"
-              label={this.messages.t('user.password_confirm')}
               error={errors.passwordConfirmation}
             >
               <this.theme.inputText
                 control={control}
                 type="password"
                 name="passwordConfirmation"
+                label={this.messages.t('users.password_confirm')}
                 autoComplete="off"
                 onBlur={() => validatePasswordAndConfirmation()}
                 rules={{ required: isCreation }}
@@ -252,9 +266,10 @@ export default class UsersEdit {
               && (
               <>
                 <this.theme.panelSeparator />
-                <this.theme.formField label={this.messages.t('label.creation_date')}>
+                <this.theme.formField>
                   <this.theme.inputText
                     control={control}
+                    label={this.messages.t('label.creation_date')}
                     disabled
                     defaultValue={dayjs(userToEdit.creationDate).format('L LT')}
                   />
