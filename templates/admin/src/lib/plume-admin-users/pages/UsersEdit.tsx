@@ -234,7 +234,7 @@ export default class UsersEdit {
             <this.theme.formField
               inputId="password"
               error={errors.password}
-              errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error-passwords-different'))}
+              errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error_passwords_different'))}
             >
               <this.theme.inputText
                 control={control}
