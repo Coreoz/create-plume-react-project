@@ -255,7 +255,7 @@ export default class UsersEdit {
                 control={control}
                 type="password"
                 name="passwordConfirmation"
-                label={this.messages.t('users.password_confirm')}
+                label={this.messages.t('user.password_confirm')}
                 autoComplete="off"
                 onBlur={() => validatePasswordAndConfirmation()}
                 rules={{ required: isCreation }}
