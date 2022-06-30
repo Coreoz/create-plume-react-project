@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 html {
   font-family: $base-font-family;
   font-size: $base-font-size;
