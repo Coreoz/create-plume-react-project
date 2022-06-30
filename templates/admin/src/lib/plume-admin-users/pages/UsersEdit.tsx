@@ -92,7 +92,7 @@ export default class UsersEdit {
           .save(userToSave)
           .then((createdUser) => {
             updateUsersAndRoles();
-            this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
+            this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
             if (createdUser) {
               history.push(`${usersPath}/${createdUser.id}`);
             }
@@ -113,7 +113,7 @@ export default class UsersEdit {
         .delete(idUser)
         .then(() => {
           updateUsersAndRoles();
-          this.notificationEngine.addSuccess(this.messages.t('message.changes-saved'));
+          this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
           history.push(usersPath);
         })
         .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
@@ -135,7 +135,7 @@ export default class UsersEdit {
         />
         {confirmDeleteUser.shouldAskConfirmation && (
         <this.theme.popin zIndex={101}>
-          {this.messages.t('message.confirm-delete')}
+          {this.messages.t('message.confirm_delete')}
           <this.theme.actionsContainer>
             <this.theme.actionButton
               style={ActionStyle.SECONDARY}
@@ -152,7 +152,7 @@ export default class UsersEdit {
           </this.theme.actionsContainer>
         </this.theme.popin>
         )}
-        <h2>{isCreation ? this.messages.t('user.title-create') : this.messages.t('user.title-edit')}</h2>
+        <h2>{isCreation ? this.messages.t('user.title_create') : this.messages.t('user.title_edit')}</h2>
         <this.theme.actionsContainer>
           <this.theme.actionLink
             icon="keyboard_arrow_left"
@@ -164,14 +164,14 @@ export default class UsersEdit {
         <this.theme.panel>
           <form onSubmit={handleSubmit(trySaveUser)}>
             <input type="hidden" name="id" value={userToEdit?.id} />
-            <this.theme.formField inputId="userName" label={this.messages.t('users.USERNAME')} error={errors.userName}>
+            <this.theme.formField inputId="userName" label={this.messages.t('users.userName')} error={errors.userName}>
               <this.theme.inputText control={control} name="userName" rules={{ required: true }} useNameAsId />
             </this.theme.formField>
             <this.theme.formField
               inputId="email"
-              label={this.messages.t('users.EMAIL')}
+              label={this.messages.t('users.email')}
               error={errors.email}
-              errorMessageMapping={makeErrorMessageMapping(this.messages.t('error.field.email-wrong-format'))}
+              errorMessageMapping={makeErrorMessageMapping(this.messages.t('error.field.email_wrong_format'))}
             >
               <this.theme.inputText
                 name="email"
@@ -182,15 +182,15 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="firstName"
-              label={this.messages.t('users.FIRSTNAME')}
+              label={this.messages.t('users.firstName')}
               error={errors.firstName}
             >
               <this.theme.inputText control={control} name="firstName" rules={{ required: true }} useNameAsId />
             </this.theme.formField>
-            <this.theme.formField inputId="lastName" label={this.messages.t('users.LASTNAME')} error={errors.lastName}>
+            <this.theme.formField inputId="lastName" label={this.messages.t('users.lastName')} error={errors.lastName}>
               <this.theme.inputText control={control} name="lastName" rules={{ required: true }} useNameAsId />
             </this.theme.formField>
-            <this.theme.formField inputId="idRole" label={this.messages.t('users.ROLE')} error={errors.idRole}>
+            <this.theme.formField inputId="idRole" label={this.messages.t('users.role')} error={errors.idRole}>
               <this.theme.inputSelect
                 name="idRole"
                 useNameAsId
@@ -219,9 +219,9 @@ export default class UsersEdit {
             <this.theme.panelSeparator />
             <this.theme.formField
               inputId="password"
-              label={this.messages.t('users.PASSWORD')}
+              label={this.messages.t('users.password')}
               error={errors.password}
-              errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error-passwords-different'))}
+              errorMessageMapping={makeErrorMessageMapping(this.messages.t('user.error_passwords_different'))}
             >
               <this.theme.inputText
                 control={control}
@@ -235,7 +235,7 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="passwordConfirmation"
-              label={this.messages.t('users.PASSWORD_CONFIRM')}
+              label={this.messages.t('user.password_confirm')}
               error={errors.passwordConfirmation}
             >
               <this.theme.inputText
@@ -252,7 +252,7 @@ export default class UsersEdit {
               && (
               <>
                 <this.theme.panelSeparator />
-                <this.theme.formField label={this.messages.t('label.creation-date')}>
+                <this.theme.formField label={this.messages.t('label.creation_date')}>
                   <this.theme.inputText
                     control={control}
                     disabled

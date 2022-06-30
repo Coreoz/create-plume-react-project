@@ -47,7 +47,6 @@ export type Translations = {
   users: {
     userName: string,
     password: string,
-    password_confirm: string,
     email: string,
     firstName: string,
     lastName: string,
@@ -58,6 +57,7 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    password_confirm: string,
     error_passwords_different: string,
   },
   // errors
