@@ -1,6 +1,6 @@
 import React from 'react';
 import { useObservable } from 'micro-observables';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import Header from './layout/Header';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
@@ -28,11 +28,9 @@ export default class App {
       <GlobalErrorBoundary>
         <Header currentLocale={currentLocale} />
         <div className="content-layout">
-          <Switch>
-            <Route>
-              <Home />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="*" element={<Home />} />
+          </Routes>
         </div>
       </GlobalErrorBoundary>
     );

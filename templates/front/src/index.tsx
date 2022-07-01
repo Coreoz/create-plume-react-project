@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import 'micro-observables/batchingForReactDom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
@@ -36,7 +36,6 @@ const reactApp = (
   </React.StrictMode>
 );
 const domElement = document.getElementById('root');
-
-ReactDOM.render(reactApp, domElement);
+createRoot(domElement!).render(reactApp);
 
 logger.info(`Application started in ${Date.now() - currentMillis}ms`);
