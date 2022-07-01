@@ -50,7 +50,6 @@ export type Translations = {
   users: {
     userName: string,
     password: string,
-    password_confirm: string,
     email: string,
     firstName: string,
     lastName: string,
@@ -62,6 +61,7 @@ export type Translations = {
     title_create: string,
     title_edit: string,
     add: string,
+    password_confirm: string,
     error_passwords_different: string,
     list: {
       count: (count: number) => string,

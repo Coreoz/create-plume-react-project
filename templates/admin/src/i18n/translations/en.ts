@@ -49,7 +49,6 @@ const enMessages: Translations = {
   users: {
     userName: 'User name',
     password: 'Password',
-    password_confirm: 'Password confirmation',
     email: 'Email',
     firstName: 'First name',
     lastName: 'Last name',
@@ -60,6 +59,7 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    password_confirm: 'Password confirmation',
     add: 'Add user',
     error_passwords_different: 'Password do not match its confirmation',
     list: {
