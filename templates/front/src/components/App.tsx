@@ -26,14 +26,14 @@ export default class App {
     logger.info('Render App');
     return (
       <GlobalErrorBoundary>
-        <Switch>
-          <Route>
-            <div id="home-layout">
-              <Header currentLocale={currentLocale} />
+        <Header currentLocale={currentLocale} />
+        <div className="content-layout">
+          <Switch>
+            <Route>
               <Home />
-            </div>
-          </Route>
-        </Switch>
+            </Route>
+          </Switch>
+        </div>
       </GlobalErrorBoundary>
     );
   };
