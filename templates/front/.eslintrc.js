@@ -6,6 +6,7 @@ module.exports = {
   root: true,
   extends: [
     'plugin:react/recommended',
+    'airbnb-base',
     'airbnb-typescript',
     'plugin:compat/recommended',
     // à décommenter pour voir l'usage des fonctions un peu exotiques
@@ -27,6 +28,9 @@ module.exports = {
     '@typescript-eslint',
   ],
   settings: {
+    react: {
+      version: "detect",
+    },
     polyfills: [
       'AbortController',
       'PromiseConstructor.allSettled',
