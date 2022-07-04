@@ -4,7 +4,9 @@ import installComponentsModule from '../src/components/components-module';
 import installApiModule from '../src/api/api-module';
 
 export const waitTimeout = (durationInMillis: number) => new Promise(
-  (resolve) => setTimeout(resolve, durationInMillis),
+  (resolve) => {
+    setTimeout(resolve, durationInMillis);
+  },
 );
 
 export function createInjector() : Injector {
