@@ -1,4 +1,4 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 import React from 'react';
 
 type Props = {
@@ -11,12 +11,12 @@ type Props = {
 export default function ConditionalRoute({
   shouldDisplayRoute, defaultRoute, path, children,
 }: Props) {
+  const navigate = useNavigate();
+  if (!shouldDisplayRoute) {
+    navigate({ pathname: defaultRoute });
+  }
+
   return (
-    <Route
-      path={path}
-      render={() => (shouldDisplayRoute
-        ? (children)
-        : (<Redirect to={{ pathname: defaultRoute }} />))}
-    />
+    <Route path={path}>{children}</Route>
   );
 }
