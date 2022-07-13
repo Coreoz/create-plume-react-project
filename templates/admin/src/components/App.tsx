@@ -1,6 +1,8 @@
 import { useObservable } from 'micro-observables';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter, Route, Routes,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Logger } from 'simple-logging-system';
 import LocaleService from '../i18n/locale/LocaleService';
@@ -15,6 +17,7 @@ import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import NotificationRenderer from './theme/NotificationRenderer';
 
 const logger = new Logger('App');
+const basePath = '/admin';
 
 export default class App {
   constructor(
@@ -26,6 +29,11 @@ export default class App {
     initializeLocalizedDate(localeService);
 
     notificationRenderer.initialize();
+
+    // react router redirection is not made anymore :(, see https://github.com/remix-run/react-router/issues/8427
+    if (window && !window.location.pathname.startsWith(basePath)) {
+      window.history.replaceState('', '', basePath + window.location.pathname);
+    }
   }
 
   render = () => {
@@ -38,22 +46,25 @@ export default class App {
     return (
       <GlobalErrorBoundary>
         <ToastContainer />
-        <Switch>
-          <Route exact path="/login">
-            <div className="login-layout">
-              <Login />
-            </div>
-          </Route>
-          <ConditionalRoute shouldDisplayRoute={this.sessionService.isAuthenticated()} defaultRoute="/login" path="/">
-            <div id="main-layout">
-              <Navigation />
-              <div id="content-layout">
-                <Header currentLocale={currentLocale} currentUser={currentUser} />
-                <Router />
-              </div>
-            </div>
-          </ConditionalRoute>
-        </Switch>
+        <BrowserRouter basename={basePath}>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/*"
+              element={(
+                <ConditionalRoute shouldDisplayRoute={this.sessionService.isAuthenticated()} defaultRoute="/login">
+                  <div id="main-layout">
+                    <Navigation />
+                    <div id="content-layout">
+                      <Header currentLocale={currentLocale} currentUser={currentUser} />
+                      <Router />
+                    </div>
+                  </div>
+                </ConditionalRoute>
+              )}
+            />
+          </Routes>
+        </BrowserRouter>
       </GlobalErrorBoundary>
     );
   };

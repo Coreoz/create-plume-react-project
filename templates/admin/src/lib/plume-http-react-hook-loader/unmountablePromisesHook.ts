@@ -58,7 +58,7 @@ export default function useUnmountablePromises(): StopPromisePropagationAfterUnm
 
   return <T, E>(promise: AnyPromise<T, E>, onUnmountedResolution?: OnUnmountedResolution<T, E>): AnyPromise<T, E> => (
     // the idea is to not resolve or reject the Promise in case the component is not Mounted anymore
-    new Promise<T>((resolve, reject) => (
+    new Promise<T>((resolve, reject) => {
       promise
         .then((result) => {
           if (isMountedRef.current) {
@@ -73,7 +73,7 @@ export default function useUnmountablePromises(): StopPromisePropagationAfterUnm
           } else {
             onUnmountedResolution?.(undefined, error);
           }
-        })
-    ))
+        });
+    })
   );
 }

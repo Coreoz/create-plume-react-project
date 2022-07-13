@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import isEmail from 'validator/lib/isEmail';
 import dayjs from 'dayjs';
@@ -25,7 +25,7 @@ type Props = {
   usersPath: string,
 };
 
-function findUser(userId: string, usersWithRoles?: AdminUsersWithIndexedRolesType): AdminUserDetails | undefined {
+function findUser(userId?: string, usersWithRoles?: AdminUsersWithIndexedRolesType): AdminUserDetails | undefined {
   return userId && usersWithRoles
     ? usersWithRoles.users.filter((user) => user.id === userId)?.[0]
     : undefined;
@@ -41,7 +41,7 @@ export default class UsersEdit {
   render = ({ usersWithRoles, updateUsersAndRoles, usersPath }: Props) => {
     const { userId } = useParams<UsersRouteParams>();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const isCreation = userId === undefined;
 
@@ -94,7 +94,7 @@ export default class UsersEdit {
             updateUsersAndRoles();
             this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
             if (createdUser) {
-              history.push(`${usersPath}/${createdUser.id}`);
+              navigate(createdUser.id);
             }
           })
           .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
@@ -114,14 +114,14 @@ export default class UsersEdit {
         .then(() => {
           updateUsersAndRoles();
           this.notificationEngine.addSuccess(this.messages.t('message.changes_saved'));
-          history.push(usersPath);
+          navigate(usersPath);
         })
         .catch((httpError) => this.notificationEngine.addDanger(this.messages.httpError(httpError))));
     };
 
     // cancel modification handling
 
-    const cancelEdit = () => history.push(usersPath);
+    const cancelEdit = () => navigate(usersPath);
 
     const { dirtyFields } = formState;
     // usage of dirtyFields instead of isDirty: https://github.com/react-hook-form/react-hook-form/issues/3562
@@ -143,12 +143,14 @@ export default class UsersEdit {
             >
               {this.messages.t('action.cancel')}
             </this.theme.actionButton>
+            {userId && (
             <this.theme.actionButton
               style={ActionStyle.DANGER}
               onClick={confirmDeleteUser.confirm(() => tryDeleteUser(userId))}
             >
               {this.messages.t('action.delete')}
             </this.theme.actionButton>
+            )}
           </this.theme.actionsContainer>
         </this.theme.popin>
         )}

@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CssBaseline } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import 'micro-observables/batchingForReactDom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import './polyfill-loader';
@@ -35,13 +34,10 @@ injector.getInstance(SessionService).tryInitializingSessionFromStorage();
 const app = injector.getInstance(App);
 const reactApp = (
   <React.StrictMode>
-    <Router basename="/admin">
-      <app.render />
-    </Router>
+    <app.render />
   </React.StrictMode>
 );
 const domElement = document.getElementById('root');
-
-ReactDOM.render(reactApp, domElement);
+createRoot(domElement!).render(reactApp);
 
 logger.info(`Application started in ${Date.now() - currentMillis}ms`);
