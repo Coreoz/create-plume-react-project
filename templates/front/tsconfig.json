@@ -7,6 +7,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "rootDirs": ["src", "scss-types"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

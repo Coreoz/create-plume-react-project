@@ -55,6 +55,7 @@
     "ts-node": "^10.8.1",
     "ts-transformer-classname": "^1.0.3",
     "ttypescript": "^1.5.13",
+    "typed-scss-modules": "^6.5.0",
     "typescript": "4.2.4",
     "vite": "^2.9.13"
   },
@@ -68,15 +69,16 @@
     "safari >= 12"
   ],
   "scripts": {
-    "start": "concurrently \"yarn run watch-ts\" \"yarn run watch-js\"",
+    "start": "concurrently \"yarn run watch-ts\" \"yarn run watch-scss-module\" \"yarn run watch-js\"",
     "watch-ts": "ttsc --project tsconfig.json -w",
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
-    "stylelint": "stylelint 'assets/scss/**/*.scss'",
+    "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx",
     "typescript": "tsc --project tsconfig.json --noEmit",
     "test": "jest --config jest.config.js",
-    "coverage": "jest --config jest.config.js --coverage --watchAll=false"
+    "coverage": "jest --config jest.config.js --coverage --watchAll=false",
+    "watch-scss-module": "typed-scss-modules 'src/**/*.scss' -w"
   },
   "packageManager": "yarn@3.1.1"
 }
