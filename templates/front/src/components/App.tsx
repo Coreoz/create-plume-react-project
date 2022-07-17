@@ -7,6 +7,7 @@ import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import LocaleService from '../i18n/locale/LocaleService';
 import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
 import Home from './pages/Home';
+import scss from './app.module.scss';
 
 const logger = new Logger('App');
 
@@ -27,7 +28,7 @@ export default class App {
     return (
       <GlobalErrorBoundary>
         <Header currentLocale={currentLocale} />
-        <div className="content-layout">
+        <div className={scss.contentLayout}>
           <Switch>
             <Route>
               <Home />

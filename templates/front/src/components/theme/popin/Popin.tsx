@@ -1,4 +1,5 @@
 import React from 'react';
+import scss from './popin.module.scss';
 
 export type PopinProps = {
   zIndex?: number,
@@ -11,8 +12,8 @@ export function Popin({
   children, zIndex, height, width,
 }: PopinProps) {
   return (
-    <div className="popin" style={{ zIndex: zIndex ?? 100 }}>
-      <div className="popin-container" style={{ height, width }}>
+    <div className={scss.popin} style={{ zIndex: zIndex ?? 100 }}>
+      <div className={scss.popinContainer} style={{ height, width }}>
         {children}
       </div>
     </div>

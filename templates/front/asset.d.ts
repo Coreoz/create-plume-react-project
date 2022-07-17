@@ -6,3 +6,8 @@
 declare module '*.png'
 declare module '*.jpg'
 declare module '*.gif'
+
+/**
+ * ajout des modules vite
+ */
+/// <reference types="vite/client" />
