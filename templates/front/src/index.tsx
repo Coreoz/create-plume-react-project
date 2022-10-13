@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import 'micro-observables/batchingForReactDom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import './polyfill-loader';
@@ -30,9 +29,7 @@ injector.getInstance(SessionService).tryInitializingSessionFromStorage();
 const app = injector.getInstance(App);
 const reactApp = (
   <React.StrictMode>
-    <Router>
-      <app.render />
-    </Router>
+    <app.render />
   </React.StrictMode>
 );
 const domElement = document.getElementById('root');

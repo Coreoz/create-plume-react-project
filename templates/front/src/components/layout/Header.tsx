@@ -1,15 +1,12 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { useObservable } from 'micro-observables';
 import LocaleSelector from '../theme/LocaleSelector';
 import LocaleService from '../../i18n/locale/LocaleService';
 
-type HeaderProps = {
-  currentLocale: Locale;
-};
-
-export default function Header({ currentLocale } : HeaderProps) {
+export default function Header() {
   const localeService = getGlobalInstance(LocaleService);
+  const currentLocale = useObservable(localeService.getCurrentLocale());
 
   return (
     <header id="main-header">

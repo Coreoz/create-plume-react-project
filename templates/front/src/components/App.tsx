@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useObservable } from 'micro-observables';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
-import Header from './layout/Header';
-import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import LocaleService from '../i18n/locale/LocaleService';
 import initializeLocalizedDate from '../i18n/messages/LocalizedDate';
 import Home from './pages/Home';
+import Layout from './layout/Layout';
+import ErrorPage from './pages/ErrorPage';
 
 const logger = new Logger('App');
 
@@ -23,16 +23,21 @@ export default class App {
     // to rerender the whole application if the current locale changes
     const currentLocale = useObservable(this.localeService.getCurrentLocale());
 
+    const router = useMemo(() => createBrowserRouter([
+      {
+        path: '/',
+        element: <Layout><Outlet /></Layout>,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+        ],
+      },
+    ]), [currentLocale]);
+
     logger.info('Render App');
-    return (
-      <GlobalErrorBoundary>
-        <Header currentLocale={currentLocale} />
-        <div className="content-layout">
-          <Routes>
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </div>
-      </GlobalErrorBoundary>
-    );
+    return <RouterProvider router={router} />;
   };
 }
