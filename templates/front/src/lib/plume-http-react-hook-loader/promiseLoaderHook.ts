@@ -65,13 +65,13 @@ export default function useLoader(): LoaderState {
   const [loadingState, setLoadingState] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
-  useOnComponentUnMounted(() => {
+  useOnComponentUnMounted(() => () => {
     isMountedRef.current = false;
   });
 
   return {
     isLoading: loadingState ?? false,
-    isLoaded: loadingState === false && loadingError === undefined,
+    isLoaded: !loadingState && loadingError === undefined,
     error: loadingError,
     monitor: (httpPromise) => {
       setLoadingState(true);

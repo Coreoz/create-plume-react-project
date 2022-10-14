@@ -13,17 +13,13 @@ import { HOME } from '../../Routes';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
 import InputText from '../../theme/form/fields/InputText';
 import FormField from '../../theme/form/FormField';
+import { useOnDependenciesChange } from '../../../lib/react-hooks-alias/ReactHooksAlias';
 
 export default function Login() {
   const sessionService = getGlobalInstance(SessionService);
   const messageService = getGlobalInstance(MessageService);
   const messages = messageService.t();
   const navigate = useNavigate();
-
-  if (sessionService.isAuthenticated()) {
-    navigate({ pathname: HOME });
-    return null;
-  }
 
   const {
     handleSubmit, control, formState: { errors },
@@ -34,6 +30,15 @@ export default function Login() {
   const tryAuthenticate = (credentials: SessionCredentials) => {
     loader.monitor(sessionService.authenticate(credentials));
   };
+
+  const isAuthenticated = sessionService.isAuthenticated();
+  useOnDependenciesChange(() => {
+    if (isAuthenticated) {
+      navigate({ pathname: HOME });
+    }
+  }, [isAuthenticated]);
+
+  console.log('loader', loader);
 
   return (
     <div className="login-layout">

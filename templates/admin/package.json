@@ -77,7 +77,7 @@
   ],
   "scripts": {
     "start": "concurrently \"yarn run watch-ts\" \"yarn run watch-js\"",
-    "watch-ts": "ttsc --project tsconfig.json -w",
+    "watch-ts": "ttsc --incremental --project tsconfig.json -w",
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint 'assets/scss/**/*.scss'",
