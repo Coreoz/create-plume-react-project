@@ -12,7 +12,6 @@ export default function FormField({
 
   return (
     <FormControl className="form-control" error={error !== undefined}>
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <InputLabel htmlFor={inputId}>{label}</InputLabel>
       {children}
       {error && (
