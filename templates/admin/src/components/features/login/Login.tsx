@@ -5,7 +5,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SessionCredentials } from '../../../api/session/SessionApi';
-import MessageService from '../../../i18n/messages/MessageService';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import SessionService from '../../../services/session/SessionService';
@@ -14,11 +13,11 @@ import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
 import InputText from '../../theme/form/fields/InputText';
 import FormField from '../../theme/form/FormField';
 import { useOnDependenciesChange } from '../../../lib/react-hooks-alias/ReactHooksAlias';
+import useMessages from '../../../i18n/hooks/messagesHook';
 
 export default function Login() {
   const sessionService = getGlobalInstance(SessionService);
-  const messageService = getGlobalInstance(MessageService);
-  const messages = messageService.t();
+  const { messages, httpError } = useMessages();
   const navigate = useNavigate();
 
   const {
@@ -38,8 +37,6 @@ export default function Login() {
     }
   }, [isAuthenticated]);
 
-  console.log('loader', loader);
-
   return (
     <div className="login-layout">
       <div className="login-page">
@@ -53,7 +50,7 @@ export default function Login() {
                 className="form-errors"
                 severity="error"
               >
-                {messageService.httpError(loader.error)}
+                {httpError(loader.error)}
               </Alert>
             )
           }

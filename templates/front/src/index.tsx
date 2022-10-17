@@ -10,6 +10,8 @@ import App from './components/App';
 import installApiModule from './api/api-module';
 import SessionService from './services/session/SessionService';
 import installI18nModule from './i18n/i18n-module';
+import initializeLocalizedDate from './i18n/messages/LocalizedDate';
+import LocaleService from './i18n/locale/LocaleService';
 
 const currentMillis = Date.now();
 const logger = new Logger('index');
@@ -24,12 +26,15 @@ injector.initializeSingletonInstances();
 
 configureGlobalInjector(injector);
 
+// to delete if not used
 injector.getInstance(SessionService).tryInitializingSessionFromStorage();
 
-const app = injector.getInstance(App);
+// dayjs
+initializeLocalizedDate(injector.getInstance(LocaleService));
+
 const reactApp = (
   <React.StrictMode>
-    <app.render />
+    <App />
   </React.StrictMode>
 );
 const domElement = document.getElementById('root');

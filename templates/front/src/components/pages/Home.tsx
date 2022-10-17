@@ -1,9 +1,8 @@
 import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
-import MessageService from '../../i18n/messages/MessageService';
+import useMessages from '../../i18n/hooks/messagesHook';
 
 export default function Home() {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   return <div id="home-layout"><h1>{messages['home.title']}</h1></div>;
 }

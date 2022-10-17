@@ -1,10 +1,9 @@
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../i18n/messages/MessageService';
 import { Panel } from '../theme/layout/Panel';
+import useMessages from '../../i18n/hooks/messagesHook';
 
 export default function Home() {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   return (
     <Panel>

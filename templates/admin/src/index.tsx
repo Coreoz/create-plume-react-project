@@ -14,6 +14,9 @@ import installApiModule from './api/api-module';
 import SessionService from './services/session/SessionService';
 import installI18nModule from './i18n/i18n-module';
 import installPlumeAdminUsersModule from './lib/plume-admin-users/plume-admin-users-module';
+import initializeLocalizedDate from './i18n/messages/LocalizedDate';
+import LocaleService from './i18n/locale/LocaleService';
+import NotificationRenderer from './components/theme/NotificationRenderer';
 
 const currentMillis = Date.now();
 const logger = new Logger('index');
@@ -31,10 +34,14 @@ configureGlobalInjector(injector);
 
 injector.getInstance(SessionService).tryInitializingSessionFromStorage();
 
-const app = injector.getInstance(App);
+// dayjs
+initializeLocalizedDate(injector.getInstance(LocaleService));
+// notifications display management
+injector.getInstance(NotificationRenderer).initialize();
+
 const reactApp = (
   <React.StrictMode>
-    <app.render />
+    <App />
   </React.StrictMode>
 );
 const domElement = document.getElementById('root');
