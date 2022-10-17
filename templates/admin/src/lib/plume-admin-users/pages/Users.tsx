@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import { AdminUsersDetails } from '../api/AdminUserTypes';
@@ -24,7 +24,8 @@ export default class Users {
   }
 
   render = () => {
-    const { path } = useRouteMatch();
+    // TODO how to get the current route where this component has been mounted??
+    const usersPath = '/users';
 
     const [usersWithRoles, setUsersWithRoles] = useState<AdminUsersWithIndexedRolesType>();
 
@@ -45,23 +46,29 @@ export default class Users {
 
     return (
       <this.theme.panel>
-        <this.usersList.render usersPath={path} usersWithRoles={usersWithRoles} />
-        <Switch>
-          <Route path={`${path}/create`}>
-            <this.usersEdit.render
-              usersPath={path}
-              usersWithRoles={usersWithRoles}
-              updateUsersAndRoles={updateUsersAndRoles}
-            />
-          </Route>
-          <Route path={`${path}/:userId`}>
-            <this.usersEdit.render
-              usersPath={path}
-              usersWithRoles={usersWithRoles}
-              updateUsersAndRoles={updateUsersAndRoles}
-            />
-          </Route>
-        </Switch>
+        <this.usersList.render usersPath={usersPath} usersWithRoles={usersWithRoles} />
+        <Routes>
+          <Route
+            path="/create"
+            element={(
+              <this.usersEdit.render
+                usersPath={usersPath}
+                usersWithRoles={usersWithRoles}
+                updateUsersAndRoles={updateUsersAndRoles}
+              />
+            )}
+          />
+          <Route
+            path="/:userId"
+            element={(
+              <this.usersEdit.render
+                usersPath={usersPath}
+                usersWithRoles={usersWithRoles}
+                updateUsersAndRoles={updateUsersAndRoles}
+              />
+            )}
+          />
+        </Routes>
       </this.theme.panel>
     );
   };

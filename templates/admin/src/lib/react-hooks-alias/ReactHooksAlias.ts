@@ -23,7 +23,7 @@ export function useOnBeforeComponentRendered(callback: () => void): void {
  * @param callback The function that will be called once after the component has been rendered
  */
 export function useOnComponentMounted(callback: () => void): void {
-  useEffect(callback, []);
+  useEffect(() => { callback(); }, []);
 }
 
 export function useOnComponentUnMounted(callback: () => void): void {

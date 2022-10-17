@@ -1,18 +1,19 @@
 import { Logger } from 'simple-logging-system';
 import { HttpError } from 'simple-http-rest-client';
-import MessageService from './MessageService';
-import PlumeMessageResolver from '../../lib/plume-messages/MessageResolver';
+import PlumeMessageResolver from '../../../lib/plume-messages/MessageResolver';
+import { Translations } from '../../translations/Translations';
+import MessageService from '../MessageService';
 
 type KeyFunction = (...messageArgs: string[]) => string;
 
 const logger = new Logger('MessageResolver');
 
 /**
- * {@link PlumeMessageResolver} implementaton
+ * {@link PlumeMessageResolver} implementation
  * It allows to expose the message handling API in the Plume administration theme components
  */
 export default class MessageResolver implements PlumeMessageResolver {
-  constructor(private readonly messages: MessageService) {
+  constructor(private readonly messages: Translations) {
   }
 
   /**
@@ -30,7 +31,7 @@ export default class MessageResolver implements PlumeMessageResolver {
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         (p, c) => (p as any)?.[c],
         // returns all the translations
-        this.messages.t(),
+        this.messages,
       );
     if (translation === undefined) {
       logger.info(`No translation for '${messageKey}'`);
@@ -44,7 +45,7 @@ export default class MessageResolver implements PlumeMessageResolver {
 
   // implementing PlumeMessageResolver
 
-  httpError = (error: HttpError) => this.messages.httpError(error);
+  httpError = (error: HttpError) => MessageService.httpError(this.messages, error);
 
   t = this.messageResolver;
 }

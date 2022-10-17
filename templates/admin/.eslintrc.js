@@ -6,8 +6,10 @@ module.exports = {
   root: true,
   extends: [
     'plugin:react/recommended',
+    'airbnb-base',
     'airbnb-typescript',
     'plugin:compat/recommended',
+    'plugin:jsx-a11y/recommended',
     // à décommenter pour voir l'usage des fonctions un peu exotiques
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
@@ -24,7 +26,7 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint',
+    '@typescript-eslint'
   ],
   settings: {
     polyfills: [
