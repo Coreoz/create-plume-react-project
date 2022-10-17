@@ -37,7 +37,10 @@ const reactApp = (
     <App />
   </React.StrictMode>
 );
-const domElement = document.getElementById('root');
-createRoot(domElement!).render(reactApp);
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Failed to find the root element');
+}
+createRoot(rootElement).render(reactApp);
 
 logger.info(`Application started in ${Date.now() - currentMillis}ms`);
