@@ -2,7 +2,6 @@ import appLogo from '/assets/icons/plume_logo.png';
 import { Alert } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
@@ -14,15 +13,12 @@ import InputText from '../../theme/form/fields/InputText';
 import FormField from '../../theme/form/FormField';
 import { useOnDependenciesChange } from '../../../lib/react-hooks-alias/ReactHooksAlias';
 import useMessages from '../../../i18n/hooks/messagesHook';
+import { FormContainer } from 'react-hook-form-mui';
 
 export default function Login() {
   const sessionService = getGlobalInstance(SessionService);
   const { messages, httpError } = useMessages();
   const navigate = useNavigate();
-
-  const {
-    handleSubmit, control, formState: { errors },
-  } = useForm<SessionCredentials>();
 
   const loader = useLoader();
 
@@ -55,21 +51,19 @@ export default function Login() {
             )
           }
           <div className="login-label">{messages.login.title}</div>
-          <form onSubmit={handleSubmit(tryAuthenticate)}>
-            <FormField inputId="userName" error={errors.userName}>
+          <FormContainer onSuccess={tryAuthenticate}>
+            <FormField inputId="userName">
               <InputText
                 label={messages.users.userName}
-                control={control}
                 type="text"
                 name="userName"
                 rules={{ required: true }}
                 useNameAsId
               />
             </FormField>
-            <FormField inputId="password" error={errors.password}>
+            <FormField inputId="password">
               <InputText
                 label={messages.users.password}
-                control={control}
                 type="password"
                 name="password"
                 autoComplete="off"
@@ -82,7 +76,7 @@ export default function Login() {
                 {messages.action.authenticate}
               </ActionButton>
             </ActionsContainer>
-          </form>
+          </FormContainer>
         </div>
       </div>
     </div>
