@@ -41,7 +41,7 @@ export default class SessionService {
   }
 
   isAuthenticated() {
-    return this.currentUser.get() !== undefined;
+    return this.currentUser.select((user) => user !== undefined);
   }
 
   hasPermission(permission: Permission) {
@@ -94,7 +94,6 @@ export default class SessionService {
   // internals
 
   private handleStorageChangeFromOtherTab = (event: StorageEvent) => {
-    logger.info('Storage event', event);
     if (event.key === LOCAL_STORAGE_CURRENT_SESSION || event.key === null) {
       if (!event.newValue) {
         // the session has been discarded!

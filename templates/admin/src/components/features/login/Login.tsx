@@ -4,6 +4,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useObservable } from 'micro-observables';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
@@ -30,7 +31,7 @@ export default function Login() {
     loader.monitor(sessionService.authenticate(credentials));
   };
 
-  const isAuthenticated = sessionService.isAuthenticated();
+  const isAuthenticated = useObservable(sessionService.isAuthenticated());
   useOnDependenciesChange(() => {
     if (isAuthenticated) {
       navigate({ pathname: HOME });
