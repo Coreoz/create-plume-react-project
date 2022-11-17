@@ -45,7 +45,7 @@ export default class SessionService {
   }
 
   hasPermission(permission: Permission) {
-    return this.currentUser.get()?.permissions.includes(permission) ?? false;
+    return this.currentUser.select((user) => user?.permissions.includes(permission) ?? false);
   }
 
   // actions

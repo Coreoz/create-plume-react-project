@@ -32,7 +32,7 @@ export default function App() {
             <Route
               path="/*"
               element={(
-                <ConditionalRoute shouldDisplayRoute={sessionService.isAuthenticated()} defaultRoute="/login">
+                <ConditionalRoute shouldDisplayRoute={sessionService.getCurrentUser()} defaultRoute="/login">
                   <div id="main-layout">
                     <Navigation />
                     <div id="content-layout">
