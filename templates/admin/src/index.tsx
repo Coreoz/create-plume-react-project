@@ -32,7 +32,9 @@ injector.initializeSingletonInstances();
 
 configureGlobalInjector(injector);
 
-injector.getInstance(SessionService).tryInitializingSessionFromStorage();
+const sessionService = injector.getInstance(SessionService);
+sessionService.tryInitializingSessionFromStorage();
+sessionService.synchronizeSessionFromOtherBrowserTags();
 
 // dayjs
 initializeLocalizedDate(injector.getInstance(LocaleService));

@@ -80,7 +80,39 @@ export default class SessionService {
     }
   }
 
+  /**
+   * Synchronize changes added to the localStorage from other tabs in order to:
+   * - Disconnect the user when the localStorage session is deleted from another tab
+   * - Update the session token when it is updated from another tab
+   * - Authenticate the user if he is connected from another tab
+   */
+  synchronizeSessionFromOtherBrowserTags() {
+    window.removeEventListener('storage', this.handleStorageChangeFromOtherTab, false);
+    window.addEventListener('storage', this.handleStorageChangeFromOtherTab, false);
+  }
+
   // internals
+
+  private handleStorageChangeFromOtherTab = (event: StorageEvent) => {
+    logger.info('Storage event', event);
+    if (event.key === LOCAL_STORAGE_CURRENT_SESSION || event.key === null) {
+      if (!event.newValue) {
+        // the session has been discarded!
+        logger.info('Discarding session since it has been discarded in another tab...');
+        this.discardSession();
+      } else if (event.oldValue) {
+        // the session has been updated.
+        logger.info('Updating session since it has been updated in another tab...');
+        const sessionToken: SessionToken = JSON.parse(event.newValue);
+        this.updateCurrentSession(sessionToken);
+      } else {
+        // the session has been created!
+        logger.info('Creating user session since it has been created in another tab...');
+        const sessionToken: SessionToken = JSON.parse(event.newValue);
+        this.registerNewSession(sessionToken);
+      }
+    }
+  };
 
   private discardSession() {
     localStorage.removeItem(LOCAL_STORAGE_CURRENT_SESSION);
@@ -105,6 +137,15 @@ export default class SessionService {
   }
 
   private storeNewSession(sessionToken: SessionToken): User | undefined {
+    const user = this.updateCurrentSession(sessionToken);
+    if (user) {
+      // If the session is ok, it can be stored
+      localStorage.setItem(LOCAL_STORAGE_CURRENT_SESSION, JSON.stringify(sessionToken));
+    }
+    return user;
+  }
+
+  private updateCurrentSession(sessionToken: SessionToken): User | undefined {
     const user = SessionService.parseJwtSession(sessionToken.webSessionToken);
     if (!SessionService.isUserSessionValid(user?.exp)) {
       logger.info(
@@ -115,7 +156,6 @@ export default class SessionService {
       return undefined;
     }
 
-    localStorage.setItem(LOCAL_STORAGE_CURRENT_SESSION, JSON.stringify(sessionToken));
     this.currentSession.set(sessionToken);
     this.currentUserExpirationDateInSeconds = user.exp;
     return user;
