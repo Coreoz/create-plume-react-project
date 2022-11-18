@@ -1,8 +1,0 @@
-enum Permission {
-  MANAGE_USERS = 'MANAGE_USERS',
-  MANAGE_ROLES = 'MANAGE_ROLES',
-  MANAGE_API_LOGS = 'MANAGE_API_LOGS',
-  MANAGE_SYSTEM = 'MANAGE_SYSTEM',
-}
-
-export default Permission;

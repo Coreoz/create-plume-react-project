@@ -1,8 +1,9 @@
 import { Navigate } from 'react-router-dom';
 import React from 'react';
+import { Observable, useObservable } from 'micro-observables';
 
 type Props = {
-  shouldDisplayRoute: boolean;
+  shouldDisplayRoute: Observable<unknown>;
   defaultRoute: string;
   children?: React.ReactNode;
 };
@@ -10,7 +11,8 @@ type Props = {
 export default function ConditionalRoute({
   shouldDisplayRoute, defaultRoute, children,
 }: Props) {
-  if (!shouldDisplayRoute) {
+  const shouldDisplayRouteValue = useObservable(shouldDisplayRoute);
+  if (!shouldDisplayRouteValue) {
     return <Navigate to={defaultRoute} replace />;
   }
 
