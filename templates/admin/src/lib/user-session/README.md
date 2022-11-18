@@ -9,8 +9,10 @@ Getting started
 3. Create the `User` type that matches the JWT and that will be used in the project. [See below for an example](#user-type-example).
 4. A variant of the User type with the field `exp` can be optionally created in order to use a simpler `User` object through the project. [See below for an example](#user-type-with-expiration-example).
 5. Create the `SessionService` that will be used by component that will interact with the user sessions. [See below for an example](#session-service-example).
+6. Bind the services in the dependency injection system in the `services-module.ts` file. [See below for an example](#services-binding-example).
+7. In `index.tsx` file, try to initialize the session at startup, and make sure local storage sessions are synchronized across different browser tabs [See below for an example](#project-startup-configuration-example).
 6. Create some protected routes that will require a current user session. [See below for an example](#protected-routes-example).
-7. Create a page that will authenticate users. [See below for an example](#).
+7. Create a page that will authenticate users. [See below for an example](#login-page-example).
 
 Session API example
 -------------------
@@ -128,6 +130,26 @@ export default class SessionService {
     this.jwtSessionManager.synchronizeSessionFromOtherBrowserTags();
   }
 }
+```
+
+Services binding example
+------------------------
+```typescript
+  // browser dependent services
+  injector.registerSingleton(BrowserPageActivityManager, PageActivityManager);
+  injector.registerSingleton(BrowserUserActivityListener, UserActivityListener);
+  // other services
+  injector.registerSingleton(IdlenessDetector);
+  injector.registerSingleton(SessionService);
+```
+
+Project startup configuration example
+-------------------------------------
+In `index.ts` file:
+```typescript
+const sessionService = injector.getInstance(SessionService);
+sessionService.tryInitializingSessionFromStorage();
+sessionService.synchronizeSessionFromOtherBrowserTags();
 ```
 
 Protected routes example
