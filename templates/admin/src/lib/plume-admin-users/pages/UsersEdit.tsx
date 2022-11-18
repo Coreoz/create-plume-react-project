@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import isEmail from 'validator/lib/isEmail';
 import dayjs from 'dayjs';
+import { FormContainer } from 'react-hook-form-mui';
 import UserApi from '../api/UserApi';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
@@ -51,11 +52,13 @@ export default class UsersEdit {
     // small optimization to avoid fetching the current user during each render cycle
     const userToEdit = useMemo(() => findUser(userId, usersWithRoles), [usersWithRoles]);
 
-    const {
-      handleSubmit, getValues, setError, reset, formState, control, formState: { errors },
-    } = useForm<AdminUserParameters>({
+    const formContext = useForm<AdminUserParameters>({
       defaultValues: userToEdit,
     });
+
+    const {
+      getValues, setError, reset, formState,
+    } = formContext;
 
     // when the users are loaded from the upper component, we need update the form with the new values
     useOnDependenciesChange(() => reset(userToEdit), [usersWithRoles]);
@@ -167,14 +170,12 @@ export default class UsersEdit {
           </this.theme.actionLink>
         </this.theme.actionsContainer>
         <this.theme.panel>
-          <form onSubmit={handleSubmit(trySaveUser)}>
+          <FormContainer formContext={formContext} onSuccess={trySaveUser}>
             <input type="hidden" name="id" value={userToEdit?.id} />
             <this.theme.formField
               inputId="userName"
-              error={errors.userName}
             >
               <this.theme.inputText
-                control={control}
                 label={messages.t('users.userName')}
                 name="userName"
                 rules={{ required: true }}
@@ -183,12 +184,10 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="email"
-              error={errors.email}
               errorMessageMapping={makeErrorMessageMapping(messages.t('error.field.email_wrong_format'))}
             >
               <this.theme.inputText
                 name="email"
-                control={control}
                 label={messages.t('users.email')}
                 rules={{ required: true, validate: isEmail }}
                 useNameAsId
@@ -196,10 +195,8 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="firstName"
-              error={errors.firstName}
             >
               <this.theme.inputText
-                control={control}
                 name="firstName"
                 rules={{ required: true }}
                 label={messages.t('users.firstName')}
@@ -208,10 +205,8 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="lastName"
-              error={errors.lastName}
             >
               <this.theme.inputText
-                control={control}
                 name="lastName"
                 label={messages.t('users.lastName')}
                 rules={{ required: true }}
@@ -220,12 +215,10 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="idRole"
-              error={errors.idRole}
             >
               <this.theme.inputSelect
                 name="idRole"
                 useNameAsId
-                control={control}
                 label={messages.t('users.role')}
                 defaultValue={userToEdit?.idRole}
                 required
@@ -238,11 +231,9 @@ export default class UsersEdit {
             <this.theme.panelSeparator />
             <this.theme.formField
               inputId="password"
-              error={errors.password}
               errorMessageMapping={makeErrorMessageMapping(messages.t('user.error_passwords_different'))}
             >
               <this.theme.inputText
-                control={control}
                 type="password"
                 name="password"
                 label={messages.t('users.password')}
@@ -254,10 +245,8 @@ export default class UsersEdit {
             </this.theme.formField>
             <this.theme.formField
               inputId="passwordConfirmation"
-              error={errors.passwordConfirmation}
             >
               <this.theme.inputText
-                control={control}
                 type="password"
                 name="passwordConfirmation"
                 label={messages.t('user.password_confirm')}
@@ -273,7 +262,6 @@ export default class UsersEdit {
                 <this.theme.panelSeparator />
                 <this.theme.formField>
                   <this.theme.inputText
-                    control={control}
                     label={messages.t('label.creation_date')}
                     disabled
                     defaultValue={dayjs(userToEdit.creationDate).format('L LT')}
@@ -305,7 +293,7 @@ export default class UsersEdit {
                 {messages.t('action.save')}
               </this.theme.actionButton>
             </this.theme.actionsContainer>
-          </form>
+          </FormContainer>
         </this.theme.panel>
       </this.theme.popin>
     );

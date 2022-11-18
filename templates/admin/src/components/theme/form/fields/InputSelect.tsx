@@ -1,9 +1,7 @@
-import { MenuItem, TextField } from '@mui/material';
 import React from 'react';
-import { useController } from 'react-hook-form';
+import { SelectElement } from 'react-hook-form-mui';
 import {
   InputSelectProps,
-  SelectOptionProps,
 } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 export default function InputSelect(
@@ -22,50 +20,24 @@ export default function InputSelect(
   }: InputSelectProps) {
   const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
-  const { field } = useController({
-    name: fieldId,
-    control,
-    rules: { required: required ?? false },
-    defaultValue: defaultValue || '',
-  });
-
-  const onBlurCombined = (value: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    field.onBlur();
-    if (onBlur) {
-      onBlur(value);
-    }
-  };
-
-  const onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
-    field.onChange(event);
-    if (onChange) {
-      onChange(event.target.value);
-    }
-  };
-
   return (
-    <TextField
+    <SelectElement
       className={required ? 'field-required' : ''}
-      select
+      control={control}
       label={label}
-      name={name}
+      name={fieldId}
       variant="filled"
-      id={useNameAsId ? name : id}
+      id={fieldId}
+      options={options}
+      valueKey="value"
+      labelKey="label"
+      defaultValue={defaultValue}
+      required={required}
       disabled={disabled ?? false}
-      value={field.value}
-      inputRef={field.ref}
-      onBlur={onBlurCombined}
-      onChange={onChangeField}
-    >
-      {
-        React.Children.toArray(
-          options?.map((option: SelectOptionProps) => (
-            <MenuItem key={`${option.label}-${option.value}`} value={option.value}>
-              {option.label}
-            </MenuItem>
-          )),
-        )
-      }
-    </TextField>
+      onBlur={onBlur}
+      onChange={onChange}
+      // disable FormHelper
+      parseError={() => ''}
+    />
   );
 }
