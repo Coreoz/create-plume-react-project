@@ -12,7 +12,10 @@ import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 import SessionService from '../services/session/SessionService';
 
 const logger = new Logger('App');
-const basePath = '/admin';
+// To make the application have a base path that starts with /admin:
+// - Replace the line bellow by: const basePath = '/admin';
+// - Add the base attribute in the vite.config.ts file
+const basePath = '/';
 
 // react router redirection is not made anymore :(, see https://github.com/remix-run/react-router/issues/8427
 if (window && !window.location.pathname.startsWith(basePath)) {
