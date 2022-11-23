@@ -203,7 +203,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
           logger.info('Session is expired, disconnecting...');
           this.discardSession();
         } else {
-          logger.error('Could not update session token', error);
+          logger.warn('Could not update session token', { error });
         }
       });
   }
