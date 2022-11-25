@@ -6,13 +6,14 @@ import { AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import UsersEdit from './UsersEdit';
-import UsersList from './UsersList';
 import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import UsersList from './UsersList';
 
 export default class Users {
   constructor(
     private readonly theme: PlumeAdminTheme,
     private readonly userApi: UserApi,
+    private readonly usersList: UsersList,
     private readonly usersEdit: UsersEdit) {
   }
 
@@ -49,7 +50,11 @@ export default class Users {
 
     return (
       <this.theme.panel>
-        <this.usersList.render usersPath={usersPath} usersWithRoles={usersWithRoles} />
+        <this.usersList.render
+            usersPath={usersPath}
+            usersWithRoles={usersWithRoles}
+            isUsersLoading={userLoader.isLoading}
+        />
         <Routes>
           <Route
             path="/create"

@@ -1,12 +1,11 @@
-import { Checkbox, FormControlLabel } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
+import {Checkbox, FormControlLabel} from '@mui/material';
 import React from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
 import {
-  MultipleChoiceObjectFilterMenuProps,
-  MultipleChoiceRawFilterMenuProps,
-  ObjectFilterProps,
+    MultipleChoiceObjectFilterMenuProps,
+    MultipleChoiceRawFilterMenuProps,
+    ObjectFilterProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 
 /**
  * Component to display vertical checkboxes filters on the side of search results
@@ -22,7 +21,7 @@ function MultipleChoiceFilterMenu(
     filterMenuKey, filters, onFilterValueClicked, selectedValues,
   }: MultipleChoiceRawFilterMenuProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
   const CHECK_BOX_SIZE = 'small';
 
   return (

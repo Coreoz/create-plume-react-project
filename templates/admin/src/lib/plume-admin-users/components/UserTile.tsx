@@ -3,8 +3,8 @@ import { getGlobalInstance } from 'plume-ts-di';
 import dayjs from 'dayjs';
 import Status from '../../plume-admin-theme/layout/Status';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import MessageService from '../../../i18n/messages/MessageService';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import useMessages from '../../../i18n/hooks/messagesHook';
 
 type Props = {
   user: AdminUserDetails,
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function UserTile({ user, roles, onClick }: Props) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);
 
   const statusDotFromUser = (isActive: boolean): Status => {

@@ -1,16 +1,7 @@
-import {
-  Icon,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
+import {Icon, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
 import React from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
-import {
-  SortElementProps,
-  SortMenuProps,
-} from '../../../../lib/plume-admin-theme/list/sort/SortProps';
+import {SortElementProps, SortMenuProps,} from '../../../../lib/plume-admin-theme/list/sort/SortProps';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 
 function SortMenu(
   {
@@ -20,7 +11,7 @@ function SortMenu(
     defaultSortPossibility,
   }: SortMenuProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
     const sortChoice = sortPossibilities.find(

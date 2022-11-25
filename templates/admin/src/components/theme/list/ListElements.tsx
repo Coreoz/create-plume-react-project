@@ -1,10 +1,6 @@
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
-import {
-  ListElementsProps,
-  ListSingleElementProps,
-} from '../../../lib/plume-admin-theme/list/ListProps';
+import useMessages from '../../../i18n/hooks/messagesHook';
+import {ListElementsProps, ListSingleElementProps,} from '../../../lib/plume-admin-theme/list/ListProps';
 
 type EmptyStateProps = {
   label: string;
@@ -23,7 +19,7 @@ export function ListElements(
     listLength, isLoading = false, children, label,
   }: ListElementsProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
   const defaultLabel = messages.label.empty;
   if (isLoading) {
     const loadingLabel = messages.label.loading;

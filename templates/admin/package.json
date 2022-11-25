@@ -11,6 +11,7 @@
     "@mui/styles": "^5.10.9",
     "@mui/system": "^5.10.9",
     "@mui/x-date-pickers": "^5.0.5",
+    "@tanstack/react-table": "^8.7.0",
     "dayjs": "^1.11.5",
     "micro-observables": "^1.7.2",
     "plume-ts-di": "^1.1.1",

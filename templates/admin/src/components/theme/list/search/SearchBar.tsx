@@ -1,12 +1,11 @@
 import { Icon } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React, { MouseEvent, useRef } from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
 import { SearchBarProps } from '../../../../lib/plume-admin-theme/list/search/SearchProps';
 import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 
 function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
   const anchorEl = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
