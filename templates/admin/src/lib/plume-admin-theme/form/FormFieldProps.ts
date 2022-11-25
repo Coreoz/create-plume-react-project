@@ -6,6 +6,14 @@ export type FormFieldProps = {
    */
   inputId?: string;
   /**
+   * The name of the input, used to retrieve the error if {@link useNameAsId} is true
+   */
+  name?: string;
+  /**
+   * Indicates wether the error should be retrieved using {@link name} or {@link inputId}
+   */
+  useNameAsId?: boolean;
+  /**
    * The optional label that will be display next to the form field
    */
   label?: string;

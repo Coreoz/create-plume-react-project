@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .actions {
   margin-top: $box-padding;
   display: flex;
@@ -20,10 +22,10 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -$button-height*0.5;
-      margin-left: -$button-height*0.5;
+      margin-top: -$button-height * 0.5;
+      margin-left: -$button-height * 0.5;
 
-      >div {
+      > div {
         display: block;
       }
     }

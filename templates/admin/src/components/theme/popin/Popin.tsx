@@ -1,10 +1,9 @@
 import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
 import { ActionButton, ActionsContainer } from '../action/Actions';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import { PopinCloseWithoutSavingProps, PopinProps } from '../../../lib/plume-admin-theme/popin/PopinProps';
 import { Panel } from '../layout/Panel';
-import MessageService from '../../../i18n/messages/MessageService';
+import useMessages from '../../../i18n/hooks/messagesHook';
 
 export function Popin({
   children, zIndex, height, width,
@@ -21,7 +20,7 @@ export function Popin({
 export function PopinCloseWithoutSaving(
   { confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   return confirmCloseWithoutSaving.shouldAskConfirmation
     ? (
