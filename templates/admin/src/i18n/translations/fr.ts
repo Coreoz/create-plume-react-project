@@ -83,6 +83,7 @@ const frMessages: Translations = {
       role: 'Rôle',
     },
   },
+  selected: (count: number) => (count === 1 ? 'Selectionné' : 'Selectionnés'),
   // errors
   error: {
     field: {

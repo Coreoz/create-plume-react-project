@@ -1,6 +1,6 @@
 import React from 'react';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import {ListElementsProps, ListSingleElementProps,} from '../../../lib/plume-admin-theme/list/ListProps';
+import { ListElementsProps, ListSingleElementProps } from '../../../lib/plume-admin-theme/list/ListProps';
 
 type EmptyStateProps = {
   label: string;

@@ -84,6 +84,7 @@ export type Translations = {
       role: string,
     }
   }
+  selected: (count: number) => string,
   // errors
   error: {
     field: {

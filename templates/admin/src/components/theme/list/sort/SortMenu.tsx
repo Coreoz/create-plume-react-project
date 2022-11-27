@@ -1,6 +1,8 @@
-import {Icon, MenuItem, Select, SelectChangeEvent,} from '@mui/material';
+import {
+  Icon, MenuItem, Select, SelectChangeEvent,
+} from '@mui/material';
 import React from 'react';
-import {SortElementProps, SortMenuProps,} from '../../../../lib/plume-admin-theme/list/sort/SortProps';
+import { SortElementProps, SortMenuProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
 import useMessages from '../../../../i18n/hooks/messagesHook';
 
 function SortMenu(

@@ -5,7 +5,6 @@ import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import UsersListResults from '../components/UsersListResults';
 import {
   applyFilters,
   checkValueForFilter,
@@ -18,7 +17,7 @@ import PlumeMessageResolverService from '../../plume-messages/MessageResolverSer
 import userFilters from './UserFilter';
 import userSortsList, { NAME_ASC } from './UserSort';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import UsersTableResults from "../components/UsersTableResults";
+import UsersTableResults from '../components/UsersTableResults';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -109,6 +108,7 @@ export default class UsersList {
                     <UsersTableResults
                         userList={sortedAndFilteredList()}
                         userRoles={usersWithRoles?.roles}
+                        usersPath={usersPath}
                         sortConfiguration={{
                           sortedObjectKey: 'user',
                           sortPossibilities: userSortsList(),

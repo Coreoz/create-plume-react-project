@@ -83,6 +83,7 @@ const enMessages: Translations = {
       role: 'Role',
     },
   },
+  selected: (count: number) => (count === 1 ? 'Selected' : 'Selected'),
   // errors
   error: {
     field: {

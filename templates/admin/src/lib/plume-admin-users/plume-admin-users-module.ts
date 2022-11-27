@@ -1,4 +1,4 @@
-import {Injector} from 'plume-ts-di';
+import { Injector } from 'plume-ts-di';
 import UserApi from './api/UserApi';
 import Users from './pages/Users';
 import UsersEdit from './pages/UsersEdit';
