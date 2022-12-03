@@ -8,7 +8,7 @@ import PageTitle from './layout/PageTitle';
 import { Panel, PanelSeparator } from './layout/Panel';
 import StatusDot from './layout/StatusDot';
 import { ListElements, ListSingleElement } from './list/ListElements';
-import MultipleChoiceFilterMenu, { MultipleChoiceObjectFilterMenu } from './list/filter/MultipleChoiceFilterMenu';
+import MultipleChoiceFilterMenu from './list/filter/MultipleChoiceFilterMenu';
 import ListHeader from './list/ListHeader';
 import SearchBar from './list/search/SearchBar';
 import SortMenu from './list/sort/SortMenu';
@@ -36,8 +36,6 @@ export default class AdminTheme implements PlumeAdminTheme {
   sortMenu = SortMenu;
 
   multipleChoiceFilterMenu = MultipleChoiceFilterMenu;
-
-  multipleChoiceObjectFilterMenu = MultipleChoiceObjectFilterMenu;
 
   listHeader = ListHeader;
 

@@ -16,14 +16,13 @@ type FilterMenuProps = {
 
 export interface MultipleChoiceFilterMenuProps extends FilterMenuProps {
   onFilterValueClicked: (filterKey: string, valueSelected: string, isChecked: boolean) => void,
-  selectedValues: Map<string, string[]>,
+  selectedValues: string[],
 }
 
 export interface MultipleChoiceRawFilterMenuProps extends MultipleChoiceFilterMenuProps {
-  filters: RawFilterProps[],
+  possibleValues: string[]
 }
 
 export interface MultipleChoiceObjectFilterMenuProps<T> extends MultipleChoiceFilterMenuProps {
-  filters: ObjectFilterProps<T>[],
   rawList: T[],
 }

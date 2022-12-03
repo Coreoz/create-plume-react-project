@@ -1,21 +1,25 @@
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Checkbox } from '@mui/material';
+import {
+  ColumnFiltersState,
+  createColumnHelper,
+  FilterFn,
+  getCoreRowModel,
+  getFacetedUniqueValues,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  Row,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import {
-  applyFilters,
-  checkValueForFilter,
-  createFiltersFromSelected,
-  createIncludesFilter,
-  rawIncludes,
-} from '../../../components/theme/utils/FilterUtils';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
-import userFilters from './UserFilter';
-import userSortsList, { NAME_ASC } from './UserSort';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import UsersTableResults from '../components/UsersTableResults';
 
@@ -29,41 +33,98 @@ export default class UsersList {
   constructor(private readonly theme: PlumeAdminTheme, private readonly messageService: PlumeMessageResolverService) {
   }
 
-  render = ({ usersWithRoles, usersPath, isUsersLoading }: Props) => {
+  render = ({ usersWithRoles, usersPath }: Props) => {
     const { messages } = useMessages();
     const theme = getGlobalInstance(PlumeAdminTheme);
     const navigate = useNavigate();
 
-    const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_ASC);
-    const [currentUserFilters, setCurrentUserFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
-    const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
+    const [globalFilter, setGlobalFilter] = useState<string>('');
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+    const [sorting, setSorting] = React.useState<SortingState>([]);
+    const [rowSelection, setRowSelection] = React.useState<{ [p: string]: boolean }>({});
 
-    const applySearchBarFilter = (user: AdminUserDetails) => {
-      if (!currentSearchBarFilter || currentSearchBarFilter === '') {
-        return true;
-      }
-      return rawIncludes(user.lastName, currentSearchBarFilter)
-              || rawIncludes(user.firstName, currentSearchBarFilter)
-              || rawIncludes(user.userName, currentSearchBarFilter)
-              || rawIncludes(user.email, currentSearchBarFilter);
+    const columnHelper = createColumnHelper<AdminUserDetails>();
+
+    const filtersInclude: FilterFn<any> = (
+      row,
+      columnId: string,
+      filterValue: unknown[],
+    ) => {
+      if (filterValue && filterValue.length) {
+        return filterValue?.includes(row.getValue<unknown[]>(columnId));
+      } return true;
     };
 
-    const sortedAndFilteredList = (): AdminUserDetails[] => {
-      if (!usersWithRoles) {
-        return [];
-      }
-      // creating a clone in order to leave the original order in the list wherever it is used
-      const userList = usersWithRoles.users;
-      const filtersToApply = createFiltersFromSelected(
-        currentUserFilters,
-        userFilters(usersWithRoles.roles),
-        createIncludesFilter,
-      );
-      return userList
-        .filter(applySearchBarFilter)
-        .filter(applyFilters<AdminUserDetails>(filtersToApply))
-        .sort(currentSorting.sortFunction);
-    };
+    const columns = useMemo(() => [
+      {
+        id: 'select',
+        header: ({ table }) => (
+                  <Checkbox
+                      {...{
+                        checked: table.getIsAllRowsSelected(),
+                        indeterminate: table.getIsSomeRowsSelected(),
+                        onClick: table.getToggleAllRowsSelectedHandler(),
+                      }}
+                  />
+        ),
+        cell: ({ row }) => (
+                  <Checkbox
+                      {...{
+                        checked: row.getIsSelected(),
+                        indeterminate: row.getIsSomeSelected(),
+                        onClick: row.getToggleSelectedHandler(),
+                      }}
+                  />
+        ),
+        enableSorting: false,
+      },
+      columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
+        id: 'fullName',
+        filterFn: filtersInclude,
+        cell: (info) => info.getValue(),
+      }),
+      columnHelper.accessor('userName', {
+        filterFn: filtersInclude,
+        cell: (info) => info.getValue(),
+      }),
+      columnHelper.accessor('email', {
+        filterFn: filtersInclude,
+        cell: (info) => info.renderValue(),
+      }),
+      columnHelper.accessor('idRole', {
+        filterFn: filtersInclude,
+        cell: (info) => usersWithRoles?.roles?.get(info.getValue()),
+      }),
+    ], [usersWithRoles?.roles]);
+
+    const table = useReactTable({
+      data: usersWithRoles?.users || [],
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      getRowId: (row) => row.id,
+      enableSorting: true,
+      enableSortingRemoval: true,
+      state: {
+        sorting,
+        rowSelection,
+        columnFilters,
+        globalFilter,
+      },
+      initialState: {
+        pagination: {
+          pageSize: 1,
+        },
+      },
+      getFacetedUniqueValues: getFacetedUniqueValues(),
+      onColumnFiltersChange: setColumnFilters,
+      onGlobalFilterChange: setGlobalFilter,
+      onRowSelectionChange: setRowSelection,
+      onSortingChange: setSorting,
+      debugTable: true,
+    });
 
     return (
         <>
@@ -72,7 +133,7 @@ export default class UsersList {
                 <theme.pageBlocColumn columnWidth="50">
                     <theme.searchBar
                         onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-                          setCurrentSearchBarFilter(event.target.value);
+                          setGlobalFilter(event.target.value);
                         }}
                     />
                 </theme.pageBlocColumn>
@@ -92,31 +153,31 @@ export default class UsersList {
             </theme.pageBloc>
             <theme.pageBloc>
                 <theme.pageBlocColumn columnWidth="20">
-                    <theme.multipleChoiceObjectFilterMenu
-                        filterMenuKey="user"
-                        filters={userFilters(usersWithRoles?.roles)}
-                        onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
-                          setCurrentUserFilters(
-                            checkValueForFilter(filterElementKey, valueSelected, isChecked, currentUserFilters),
-                          );
-                        }}
-                        selectedValues={currentUserFilters}
-                        rawList={usersWithRoles?.users || []}
-                    />
+                    {table.getHeaderGroups().map((headerGroup) => (
+                      headerGroup.headers.map((header) => (
+                        header.column.getCanFilter() ? (
+                                <theme.multipleChoiceFilterMenu
+                                    filterMenuKey={header.column.id}
+                                    onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
+                                      if (!isChecked) {
+                                        header.column.setFilterValue(((header.column.getFilterValue() as string []) || [])?.filter((value) => value !== valueSelected));
+                                      } else {
+                                        header.column.setFilterValue([...(header.column.getFilterValue() as string []) || [], valueSelected]);
+                                      }
+                                    }}
+                                    selectedValues={columnFilters.find(((columnFilters) => columnFilters.id === header.column.id))?.value as string[]}
+                                    possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
+                                />
+                        ) : <></>
+                      ))
+                    ))}
                 </theme.pageBlocColumn>
                 <theme.pageBlocColumn columnWidth="80">
                     <UsersTableResults
-                        userList={sortedAndFilteredList()}
-                        userRoles={usersWithRoles?.roles}
+                        rowSelection={rowSelection}
+                        table={table}
                         usersPath={usersPath}
-                        sortConfiguration={{
-                          sortedObjectKey: 'user',
-                          sortPossibilities: userSortsList(),
-                          defaultSortPossibility: NAME_ASC,
-                          onSort: (to: SortElementProps) => {
-                            setCurrentSorting(to);
-                          },
-                        }}
+
                     />
                 </theme.pageBlocColumn>
             </theme.pageBloc>

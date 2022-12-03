@@ -9,7 +9,6 @@ import {
   StatusDotProps,
 } from './layout/LayoutProps';
 import {
-  MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
 } from './list/filter/FilterProps';
 import {
@@ -38,8 +37,6 @@ export default abstract class PlumeAdminTheme {
   abstract sortMenu: (props: SortMenuProps) => JSX.Element;
 
   abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
-
-  abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
 
   abstract listHeader: (props: ListHeaderProps) => JSX.Element;
 

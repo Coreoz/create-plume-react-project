@@ -1,16 +1,11 @@
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
-  createColumnHelper,
   flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
+  Table as TableType,
 } from '@tanstack/react-table';
 import {
-  Checkbox, IconButton,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -31,94 +26,28 @@ import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
 
 type Props = {
-  userList: AdminUserDetails[],
-  userRoles: Map<string, string> | undefined,
-  sortConfiguration: SortMenuProps,
+  rowSelection: { [p: string]: boolean },
   usersPath: string
+  table: TableType<AdminUserDetails>
 };
 
 function UsersTableResults(
   {
-    userList, userRoles, sortConfiguration, usersPath,
+    rowSelection, usersPath, table,
   }: Props,
 ) {
   const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);
   const navigate = useNavigate();
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = React.useState({});
-
-  const columnHelper = createColumnHelper<AdminUserDetails>();
 
   const updateUser = () => {
     navigate({ pathname: `${usersPath}/${Object.keys(rowSelection)[0]}` });
   };
 
-  const columns = useMemo(() => [
-    {
-      id: 'select',
-      header: ({ table }) => (
-          <Checkbox
-              {...{
-                checked: table.getIsAllRowsSelected(),
-                indeterminate: table.getIsSomeRowsSelected(),
-                onClick: table.getToggleAllRowsSelectedHandler(),
-              }}
-          />
-      ),
-      cell: ({ row }) => (
-            <Checkbox
-                {...{
-                  checked: row.getIsSelected(),
-                  indeterminate: row.getIsSomeSelected(),
-                  onClick: row.getToggleSelectedHandler(),
-                }}
-            />
-      ),
-      enableSorting: false,
-    },
-    columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
-      id: 'fullName',
-      cell: (info) => info.getValue(),
-    }),
-    columnHelper.accessor('userName', {
-      cell: (info) => info.getValue(),
-    }),
-    columnHelper.accessor('email', {
-      cell: (info) => info.renderValue(),
-    }),
-    columnHelper.accessor('idRole', {
-      cell: (info) => userRoles?.get(info.getValue()),
-    }),
-  ], [userRoles]);
-
-  const table = useReactTable({
-    data: userList,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getRowId: (row) => row.id,
-    enableSorting: true,
-    enableSortingRemoval: true,
-    state: {
-      sorting,
-      rowSelection,
-    },
-    initialState: {
-      pagination: {
-        pageSize: 1,
-      },
-    },
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-  });
-
   return (
         <div className="table_root">
             <theme.listHeader
-                listTitle={messages.user.list.count(userList.length)}
-                sortConfiguration={sortConfiguration}
+                listTitle={messages.user.list.count(table.getTotalSize())}
             />
           {Object.values(rowSelection).length > 0
           && <Toolbar>
