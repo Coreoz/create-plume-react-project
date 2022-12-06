@@ -1,9 +1,6 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import {
-  flexRender,
-  Table as TableType,
-} from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import {
   IconButton,
   Table,
@@ -11,7 +8,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TableSortLabel, TextField,
+  TableSortLabel,
+  TextField,
   Toolbar,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -22,17 +20,12 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { ActionButton, ActionsContainer } from '../../../components/theme/action/Actions';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-
-type TableResultsProps<T> = {
-  rowSelection: { [p: string]: boolean },
-  usersPath: string
-  table: TableType<T>
-};
+import { TableProps } from '../../plume-admin-theme/list/TableProps';
 
 function TableResults<T>(
   {
     rowSelection, usersPath, table,
-  }: TableResultsProps<T>,
+  }: TableProps<T>,
 ) {
   const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);

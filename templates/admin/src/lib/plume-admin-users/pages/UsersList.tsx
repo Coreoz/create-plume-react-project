@@ -18,7 +18,6 @@ import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
-import UsersTableResults from '../components/TableResults';
 import filtersInclude from '../../../components/theme/utils/FilterUtils';
 import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 
@@ -177,11 +176,10 @@ export default class UsersList {
                     ))}
                 </theme.pageBlocColumn>
                 <theme.pageBlocColumn columnWidth="80">
-                    <UsersTableResults
+                    <theme.tableResults
                         rowSelection={rowSelection}
                         table={table}
                         usersPath={usersPath}
-
                     />
                 </theme.pageBlocColumn>
             </theme.pageBloc>
