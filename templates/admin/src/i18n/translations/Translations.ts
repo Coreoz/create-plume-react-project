@@ -70,10 +70,10 @@ export type Translations = {
   // sorts wording
   sort: {
     user: {
-      name_desc: string,
-      name_asc: string,
-      creation_date_asc: string,
-      creation_date_desc: string,
+      fullName_desc: string,
+      fullName_asc: string,
+      creationDate_asc: string,
+      creationDate_desc: string,
     },
   }
   // filters wording

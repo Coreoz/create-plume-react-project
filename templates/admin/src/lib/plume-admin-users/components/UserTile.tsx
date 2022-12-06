@@ -1,18 +1,26 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import dayjs from 'dayjs';
+import { Row } from '@tanstack/react-table';
 import Status from '../../plume-admin-theme/layout/Status';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import useMessages from '../../../i18n/hooks/messagesHook';
 
 type Props = {
-  user: AdminUserDetails,
-  roles: Map<string, string> | undefined,
+  userRow: Row<AdminUserDetails>,
   onClick: () => void,
 };
 
-export default function UserTile({ user, roles, onClick }: Props) {
+type AdminUserDetailsTile = {
+  firstName: string,
+  lastName: string
+  email: string
+  role: string
+  creationDate: string
+};
+
+export default function UserTile({ userRow, onClick }: Props) {
   const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);
 
@@ -22,11 +30,20 @@ export default function UserTile({ user, roles, onClick }: Props) {
     }
     return Status.WARN;
   };
+
+  const user: AdminUserDetailsTile = {
+    firstName: userRow.getValue('firstName') as string,
+    lastName: userRow.getValue('lastName') as string,
+    email: userRow.getValue('email') as string,
+    role: userRow.getValue('role') as string,
+    creationDate: dayjs(userRow.getValue('creationDate')).format('L LT'),
+  };
+
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <div className="user-data user-data--id">
         <div className="data">
-          <theme.statusDot status={statusDotFromUser(!!user)} />
+          <theme.statusDot status={statusDotFromUser(!!userRow)} />
         </div>
         <div className="data">
           <span className="user-initials">
@@ -41,14 +58,9 @@ export default function UserTile({ user, roles, onClick }: Props) {
         </div>
       </div>
       <div className="user-data">
-        {
-          roles
-          && (
             <div className="data">
-              <span className="value value--accent">{roles.get(user.idRole)}</span>
+              <span className="value value--accent">{user.role}</span>
             </div>
-          )
-        }
         <div className="data">
           <span className="value value--little">{dayjs(user.creationDate).format('L LT')}</span>
         </div>

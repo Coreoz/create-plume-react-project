@@ -12,6 +12,7 @@ export default function InputSelect(
     options,
     disabled,
     useNameAsId,
+    valueKey,
     defaultValue,
     control,
     required,
@@ -29,7 +30,7 @@ export default function InputSelect(
       variant="filled"
       id={fieldId}
       options={options}
-      valueKey="value"
+      valueKey={valueKey || 'value'}
       labelKey="label"
       defaultValue={defaultValue}
       required={required}

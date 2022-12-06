@@ -28,6 +28,7 @@ export type InputSelectProps = {
   label?: string;
   required?: boolean;
   useNameAsId?: boolean;
+  valueKey?: string;
   defaultValue?: string | number;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control?: Control<any>;

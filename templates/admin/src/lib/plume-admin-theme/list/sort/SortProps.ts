@@ -1,12 +1,7 @@
-export type SortElementProps = {
-  sortKey: string,
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  sortFunction: (a: any, b: any) => number
-};
+import { Table } from '@tanstack/react-table';
 
-export type SortMenuProps = {
+export type SortListProps<T> = {
   sortedObjectKey: string,
-  sortPossibilities: SortElementProps[],
-  defaultSortPossibility: SortElementProps,
-  onSort: (sortElement: SortElementProps) => void,
+  defaultSortKey: string
+  table: Table<T>
 };

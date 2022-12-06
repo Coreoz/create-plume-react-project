@@ -69,10 +69,10 @@ const frMessages: Translations = {
   // sorts wording
   sort: {
     user: {
-      name_desc: 'Trier par ordre alphabétique descendant',
-      name_asc: 'Trier par ordre alphabétique ascendant',
-      creation_date_asc: 'Trier du plus ancien au plus nouveau',
-      creation_date_desc: 'Trier du plus nouveau au plus ancien',
+      fullName_desc: 'Trier par ordre alphabétique descendant',
+      fullName_asc: 'Trier par ordre alphabétique ascendant',
+      creationDate_asc: 'Trier du plus ancien au plus nouveau',
+      creationDate_desc: 'Trier du plus nouveau au plus ancien',
     },
   },
   // filters wording

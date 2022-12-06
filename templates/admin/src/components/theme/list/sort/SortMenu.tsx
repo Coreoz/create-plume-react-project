@@ -1,48 +1,76 @@
 import {
   Icon, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
-import React from 'react';
-import { SortElementProps, SortMenuProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
-import useMessages from '../../../../i18n/hooks/messagesHook';
+import React, { useMemo } from 'react';
+import { getGlobalInstance } from 'plume-ts-di';
+import { SortListProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
+import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
+import PlumeMessageResolverService from '../../../../lib/plume-messages/MessageResolverService';
 
-function SortMenu(
+type SortPossibility = {
+  label: string,
+  value: {
+    id: string,
+    desc: boolean,
+    selectId: string,
+  }
+};
+
+function SortMenu<T>(
   {
     sortedObjectKey,
-    sortPossibilities,
-    onSort,
-    defaultSortPossibility,
-  }: SortMenuProps,
+    defaultSortKey,
+    table,
+  }: SortListProps<T>,
 ) {
-  const { messages } = useMessages();
+  const messages = useMessagesResolver(getGlobalInstance(PlumeMessageResolverService));
 
-  const handleSortingBar = (event: SelectChangeEvent<string>) => {
-    const sortChoice = sortPossibilities.find(
-      (element: SortElementProps) => element.sortKey.toLowerCase()
-        .localeCompare(event.target.value.toString().toLowerCase()) === 0,
-    );
-    if (!sortChoice) {
-      return;
+  const tableSortPossibilities: SortPossibility[] = useMemo(() => table.getAllColumns().flatMap((column) => {
+    if (column.getCanSort()) {
+      return [
+        {
+          label: messages.t(`sort.${sortedObjectKey}.${column.id}_asc`),
+          value: {
+            id: column.id,
+            desc: false,
+            selectId: `${column.id}_asc`,
+          },
+        },
+        {
+          label: messages.t(`sort.${sortedObjectKey}.${column.id}_desc`),
+          value: {
+            id: column.id,
+            desc: true,
+            selectId: `${column.id}_desc`,
+          },
+        },
+      ];
     }
-    onSort(sortChoice);
-  };
+    return [];
+  }), [table]);
 
   return (
     <div className="sort-menu">
       <Icon>sort</Icon>
       <Select
         className="sort-menu-select"
-        defaultValue={defaultSortPossibility.sortKey}
-        onChange={(event: SelectChangeEvent<string>) => handleSortingBar(event)}
+        defaultValue={defaultSortKey}
+        onChange={(event: SelectChangeEvent<string>) => {
+          const chosenPossibility = tableSortPossibilities.find(
+            (possibility) => possibility.value.selectId === event.target.value,
+          )?.value;
+          table.setSorting(chosenPossibility ? [chosenPossibility] : []);
+        }}
         IconComponent={() => <Icon>expand_more</Icon>}
       >
         {
-          sortPossibilities.map((sortElement) => (
+          tableSortPossibilities.map((sortElement) => (
             <MenuItem
-              key={sortElement.sortKey}
-              value={sortElement.sortKey}
+              key={sortElement.value.selectId}
+              value={sortElement.value.selectId}
             >
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {(messages.sort as any)[sortedObjectKey][sortElement.sortKey.toLowerCase()]}
+              {sortElement.label}
             </MenuItem>
           ))
         }

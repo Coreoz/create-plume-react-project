@@ -1,4 +1,4 @@
-import { SortMenuProps } from './sort/SortProps';
+import { Table } from '@tanstack/react-table';
 
 export type ListElementsProps = {
   children?: React.ReactNode,
@@ -14,7 +14,13 @@ export type ListSingleElementProps = {
   cssClasses?: string,
 };
 
-export type ListHeaderProps = {
+export type ListHeaderTableSorting<T> = {
+  sortedObjectKey: string,
+  defaultSortKey: string,
+  table: Table<T>
+};
+
+export type ListHeaderProps<T> = {
   listTitle?: string,
-  sortConfiguration?: SortMenuProps,
+  tableSorting?: ListHeaderTableSorting<T>
 };

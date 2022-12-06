@@ -21,20 +21,18 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { ActionButton, ActionsContainer } from '../../../components/theme/action/Actions';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import { AdminUserDetails } from '../api/AdminUserTypes';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
 
-type Props = {
+type TableResultsProps<T> = {
   rowSelection: { [p: string]: boolean },
   usersPath: string
-  table: TableType<AdminUserDetails>
+  table: TableType<T>
 };
 
-function UsersTableResults(
+function TableResults<T>(
   {
     rowSelection, usersPath, table,
-  }: Props,
+  }: TableResultsProps<T>,
 ) {
   const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);
@@ -48,6 +46,11 @@ function UsersTableResults(
         <div className="table_root">
             <theme.listHeader
                 listTitle={messages.user.list.count(table.getTotalSize())}
+                tableSorting={{
+                  sortedObjectKey: 'user',
+                  defaultSortKey: 'fullName_desc',
+                  table,
+                }}
             />
           {Object.values(rowSelection).length > 0
           && <Toolbar>
@@ -148,4 +151,4 @@ function UsersTableResults(
   );
 }
 
-export default (UsersTableResults);
+export default (TableResults);

@@ -3,7 +3,7 @@ import React from 'react';
 import { ListHeaderProps } from '../../../lib/plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 
-function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
+function ListHeader<T>({ listTitle, tableSorting }: ListHeaderProps<T>) {
   const theme = getGlobalInstance(PlumeAdminTheme);
   return (
     <div className="list-elements-heading">
@@ -14,13 +14,12 @@ function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
         )
       }
       {
-        sortConfiguration
+          tableSorting
         && (
           <theme.sortMenu
-            sortedObjectKey={sortConfiguration.sortedObjectKey}
-            defaultSortPossibility={sortConfiguration.defaultSortPossibility}
-            sortPossibilities={sortConfiguration.sortPossibilities}
-            onSort={sortConfiguration.onSort}
+            defaultSortKey={tableSorting.defaultSortKey}
+            sortedObjectKey={tableSorting.sortedObjectKey}
+            table={tableSorting.table}
           />
         )
       }

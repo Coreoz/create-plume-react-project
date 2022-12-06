@@ -1,49 +1,38 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
+import {
+  Table as TableType,
+} from '@tanstack/react-table';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
-import useMessages from '../../../i18n/hooks/messagesHook';
 
 type Props = {
-  userList: AdminUserDetails[],
-  userRoles: Map<string, string> | undefined,
-  sortConfiguration: SortMenuProps,
-  usersPath: string,
-  isLoading?: boolean,
+  usersPath: string
+  table: TableType<AdminUserDetails>
 };
 
 function UsersListResults(
   {
-    userList, userRoles, sortConfiguration, usersPath, isLoading,
+    table, usersPath,
   }: Props,
 ) {
-  const { messages } = useMessages();
   const theme = getGlobalInstance(PlumeAdminTheme);
   const navigate = useNavigate();
 
   return (
     <>
-      <theme.listHeader
-        listTitle={messages.user.list.count(userList.length)}
-        sortConfiguration={sortConfiguration}
-      />
-      <theme.listElements isLoading={isLoading} listLength={userList.length}>
-        {
-          React.Children.toArray(
-            userList.map((user: AdminUserDetails) => (
+      <theme.listElements listLength={table.getPageCount()}>
+          {React.Children.toArray(
+            table.getRowModel().rows.map((row) => (
               <UserTile
-                onClick={() => {
-                  navigate({ pathname: `${usersPath}/${user.id}` });
-                }}
-                user={user}
-                roles={userRoles}
+                  onClick={() => {
+                    navigate({ pathname: `${usersPath}/${row.id}` });
+                  }}
+                  userRow={row}
               />
-            )),
-          )
-        }
+            )))}
       </theme.listElements>
     </>
   );

@@ -1,27 +1,26 @@
-import { getGlobalInstance } from 'plume-ts-di';
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '@mui/material';
 import {
   ColumnFiltersState,
   createColumnHelper,
-  FilterFn,
   getCoreRowModel,
   getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
+import dayjs from 'dayjs';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
-import useMessages from '../../../i18n/hooks/messagesHook';
-import UsersTableResults from '../components/UsersTableResults';
+import UsersTableResults from '../components/TableResults';
+import filtersInclude from '../../../components/theme/utils/FilterUtils';
+import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -34,8 +33,8 @@ export default class UsersList {
   }
 
   render = ({ usersWithRoles, usersPath }: Props) => {
-    const { messages } = useMessages();
-    const theme = getGlobalInstance(PlumeAdminTheme);
+    const messages = useMessagesResolver(this.messageService);
+    const { theme } = this;
     const navigate = useNavigate();
 
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -44,16 +43,6 @@ export default class UsersList {
     const [rowSelection, setRowSelection] = React.useState<{ [p: string]: boolean }>({});
 
     const columnHelper = createColumnHelper<AdminUserDetails>();
-
-    const filtersInclude: FilterFn<any> = (
-      row,
-      columnId: string,
-      filterValue: unknown[],
-    ) => {
-      if (filterValue && filterValue.length) {
-        return filterValue?.includes(row.getValue<unknown[]>(columnId));
-      } return true;
-    };
 
     const columns = useMemo(() => [
       {
@@ -84,16 +73,23 @@ export default class UsersList {
         cell: (info) => info.getValue(),
       }),
       columnHelper.accessor('userName', {
+        enableSorting: false,
         filterFn: filtersInclude,
         cell: (info) => info.getValue(),
       }),
       columnHelper.accessor('email', {
+        enableSorting: false,
         filterFn: filtersInclude,
         cell: (info) => info.renderValue(),
       }),
       columnHelper.accessor('idRole', {
+        enableSorting: false,
         filterFn: filtersInclude,
         cell: (info) => usersWithRoles?.roles?.get(info.getValue()),
+      }),
+      columnHelper.accessor('creationDate', {
+        filterFn: filtersInclude,
+        cell: (info) => dayjs(info.getValue()).format('L LT'),
       }),
     ], [usersWithRoles?.roles]);
 
@@ -128,7 +124,7 @@ export default class UsersList {
 
     return (
         <>
-            <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
+            <theme.pageTitle>{messages.t('user.title_list')}</theme.pageTitle>
             <theme.pageBloc>
                 <theme.pageBlocColumn columnWidth="50">
                     <theme.searchBar
@@ -146,7 +142,7 @@ export default class UsersList {
                               navigate({ pathname: `${usersPath}/create` });
                             }}
                         >
-                            {messages.user.add}
+                            {messages.t('user.add')}
                         </theme.actionButton>
                     </theme.actionsContainer>
                 </theme.pageBlocColumn>
@@ -158,14 +154,22 @@ export default class UsersList {
                         header.column.getCanFilter() ? (
                                 <theme.multipleChoiceFilterMenu
                                     filterMenuKey={header.column.id}
-                                    onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
+                                    onFilterValueClicked={
+                                    (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
                                       if (!isChecked) {
-                                        header.column.setFilterValue(((header.column.getFilterValue() as string []) || [])?.filter((value) => value !== valueSelected));
+                                        header.column.setFilterValue(
+                                          ((header.column.getFilterValue() as string []) || []
+                                          )
+                                            ?.filter((value) => value !== valueSelected));
                                       } else {
-                                        header.column.setFilterValue([...(header.column.getFilterValue() as string []) || [], valueSelected]);
+                                        header.column.setFilterValue(
+                                          [...(header.column.getFilterValue() as string []) || [], valueSelected],
+                                        );
                                       }
                                     }}
-                                    selectedValues={columnFilters.find(((columnFilters) => columnFilters.id === header.column.id))?.value as string[]}
+                                    selectedValues={columnFilters.find(
+                                      ((columnFilter) => columnFilter.id === header.column.id),
+                                    )?.value as string[]}
                                     possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
                                 />
                         ) : <></>
