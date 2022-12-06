@@ -13,8 +13,7 @@ type Props = {
 };
 
 type AdminUserDetailsTile = {
-  firstName: string,
-  lastName: string
+  fullName: string,
   email: string
   role: string
   creationDate: string
@@ -32,8 +31,7 @@ export default function UserTile({ userRow, onClick }: Props) {
   };
 
   const user: AdminUserDetailsTile = {
-    firstName: userRow.getValue('firstName') as string,
-    lastName: userRow.getValue('lastName') as string,
+    fullName: userRow.getValue('fullName') as string,
     email: userRow.getValue('email') as string,
     role: userRow.getValue('role') as string,
     creationDate: dayjs(userRow.getValue('creationDate')).format('L LT'),
@@ -47,12 +45,15 @@ export default function UserTile({ userRow, onClick }: Props) {
         </div>
         <div className="data">
           <span className="user-initials">
-            {`${user.firstName.slice(0, 1).toUpperCase()}${user.lastName.slice(0, 1).toUpperCase()}`}
+            {`
+            ${user.fullName.split(' ')[0].slice(0, 1).toUpperCase()}
+            ${user.fullName.split(' ')[1].slice(0, 1).toUpperCase()}
+            `}
           </span>
         </div>
         <div className="data">
           <span className="label">
-            {`${user.firstName} ${user.lastName}`}
+            {user.fullName}
           </span>
           <span className="value">{user.email}</span>
         </div>

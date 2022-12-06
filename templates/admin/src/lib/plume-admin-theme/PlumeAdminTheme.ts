@@ -17,7 +17,7 @@ import {
 import { SearchBarProps } from './list/search/SearchProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { SortListProps } from './list/sort/SortProps';
-import { MultipleChoiceRawFilterMenuProps } from './list/filter/FilterProps';
+import { MultipleChoiceObjectFilterMenuProps, MultipleChoiceRawFilterMenuProps } from './list/filter/FilterProps';
 import { TableProps } from './list/TableProps';
 
 export default abstract class PlumeAdminTheme {
@@ -37,6 +37,8 @@ export default abstract class PlumeAdminTheme {
   abstract sortMenu: <T>(props: SortListProps<T>) => JSX.Element;
 
   abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
+
+  abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
 
   abstract tableResults: <T>(props: TableProps<T>) => JSX.Element;
 

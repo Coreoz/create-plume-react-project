@@ -20,6 +20,7 @@ import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
 import filtersInclude from '../../../components/theme/utils/FilterUtils';
 import useMessagesResolver from '../../plume-messages/messagesResolveHook';
+import UsersListResults from '../components/UsersListResults';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
@@ -69,22 +70,23 @@ export default class UsersList {
       columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
         id: 'fullName',
         filterFn: filtersInclude,
-        cell: (info) => info.getValue(),
+        cell: (info) => info.renderValue(),
       }),
       columnHelper.accessor('userName', {
         enableSorting: false,
         filterFn: filtersInclude,
-        cell: (info) => info.getValue(),
+        cell: (info) => info.renderValue(),
       }),
       columnHelper.accessor('email', {
         enableSorting: false,
         filterFn: filtersInclude,
         cell: (info) => info.renderValue(),
       }),
-      columnHelper.accessor('idRole', {
+      columnHelper.accessor((row) => usersWithRoles?.roles?.get(row.idRole), {
+        id: 'role',
         enableSorting: false,
         filterFn: filtersInclude,
-        cell: (info) => usersWithRoles?.roles?.get(info.getValue()),
+        cell: (info) => info.renderValue(),
       }),
       columnHelper.accessor('creationDate', {
         filterFn: filtersInclude,
@@ -110,7 +112,7 @@ export default class UsersList {
       },
       initialState: {
         pagination: {
-          pageSize: 1,
+          pageSize: 20,
         },
       },
       getFacetedUniqueValues: getFacetedUniqueValues(),
@@ -148,32 +150,11 @@ export default class UsersList {
             </theme.pageBloc>
             <theme.pageBloc>
                 <theme.pageBlocColumn columnWidth="20">
-                    {table.getHeaderGroups().map((headerGroup) => (
-                      headerGroup.headers.map((header) => (
-                        header.column.getCanFilter() ? (
-                                <theme.multipleChoiceFilterMenu
-                                    filterMenuKey={header.column.id}
-                                    onFilterValueClicked={
-                                    (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
-                                      if (!isChecked) {
-                                        header.column.setFilterValue(
-                                          ((header.column.getFilterValue() as string []) || []
-                                          )
-                                            ?.filter((value) => value !== valueSelected));
-                                      } else {
-                                        header.column.setFilterValue(
-                                          [...(header.column.getFilterValue() as string []) || [], valueSelected],
-                                        );
-                                      }
-                                    }}
-                                    selectedValues={columnFilters.find(
-                                      ((columnFilter) => columnFilter.id === header.column.id),
-                                    )?.value as string[]}
-                                    possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
-                                />
-                        ) : <></>
-                      ))
-                    ))}
+                    <theme.multipleChoiceObjectFilterMenu
+                        filterObjectKey="user"
+                        table={table}
+                        columnFilters={columnFilters}
+                    />
                 </theme.pageBlocColumn>
                 <theme.pageBlocColumn columnWidth="80">
                     <theme.tableResults

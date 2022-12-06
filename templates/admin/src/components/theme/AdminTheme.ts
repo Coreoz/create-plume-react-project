@@ -12,7 +12,7 @@ import ListHeader from './list/ListHeader';
 import SearchBar from './list/search/SearchBar';
 import SortMenu from './list/sort/SortMenu';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
-import MultipleChoiceFilterMenu from './list/filter/MultipleChoiceFilterMenu';
+import MultipleChoiceFilterMenu, { MultipleChoiceObjectFilterMenu } from './list/filter/MultipleChoiceFilterMenu';
 import TableResults from '../../lib/plume-admin-users/components/TableResults';
 
 export default class AdminTheme implements PlumeAdminTheme {
@@ -37,6 +37,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   sortMenu = SortMenu;
 
   multipleChoiceFilterMenu = MultipleChoiceFilterMenu;
+
+  multipleChoiceObjectFilterMenu = MultipleChoiceObjectFilterMenu;
 
   tableResults = TableResults;
 

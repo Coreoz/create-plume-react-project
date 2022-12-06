@@ -34,11 +34,10 @@ function TableResults<T>(
   const updateUser = () => {
     navigate({ pathname: `${usersPath}/${Object.keys(rowSelection)[0]}` });
   };
-
   return (
         <div className="table_root">
             <theme.listHeader
-                listTitle={messages.user.list.count(table.getTotalSize())}
+                listTitle={messages.user.list.count(table.getPrePaginationRowModel().rows.length)}
                 tableSorting={{
                   sortedObjectKey: 'user',
                   defaultSortKey: 'fullName_desc',

@@ -1,9 +1,12 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import React from 'react';
+import { getGlobalInstance } from 'plume-ts-di';
 import {
+  MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
-import useMessages from '../../../../i18n/hooks/messagesHook';
+import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
+import PlumeMessageResolverService from '../../../../lib/plume-messages/MessageResolverService';
 
 /**
  * Component to display vertical checkboxes filters on the side of search results
@@ -16,21 +19,16 @@ import useMessages from '../../../../i18n/hooks/messagesHook';
  */
 function MultipleChoiceFilterMenu(
   {
-    filterMenuKey, possibleValues, onFilterValueClicked, selectedValues,
+    filterMenuKey, filterObjectKey, possibleValues, onFilterValueClicked, selectedValues,
   }: MultipleChoiceRawFilterMenuProps,
 ) {
-  const { messages } = useMessages();
+  const messages = useMessagesResolver(getGlobalInstance(PlumeMessageResolverService));
   const CHECK_BOX_SIZE = 'small';
 
   return (
-    <div className="filter-menu-container">
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <h2>{(messages.filter as any)[filterMenuKey]?.title}</h2>
-      <div className="filters">
         <div key={filterMenuKey} className="filter">
               <span className="filter-title">
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {(messages.filter as any)[filterMenuKey]?.[filterMenuKey]}
+                {messages.t(`filter.${filterObjectKey}.${filterMenuKey}`)}
               </span>
               {
                   possibleValues
@@ -52,9 +50,64 @@ function MultipleChoiceFilterMenu(
                     ))
               }
             </div>
-      </div>
-    </div>
   );
 }
 
 export default (MultipleChoiceFilterMenu);
+
+/**
+ * MultipleChoiceObjectFilterMenu generates filters for a give object type
+ * @param filterMenuKey the key in translation file to be used
+ * @param onFilterValueClicked function executed when a checkbox is clicked
+ * @param filters The filters for the given type.
+ *                Each filter must contain a key extractor of the given object
+ *                Each filter must contain a key filter for identification
+ * @param rawList the whole given type list to be filtered
+ * @param selectedValues the map of the current selected values by key filter
+ */
+export function MultipleChoiceObjectFilterMenu<T>(
+  {
+    filterObjectKey,
+    table,
+    columnFilters,
+  }: MultipleChoiceObjectFilterMenuProps<T>,
+) {
+  const messages = useMessagesResolver(getGlobalInstance(PlumeMessageResolverService));
+
+  return (
+      <div className="filter-menu-container">
+          <h2>
+              {messages.t(`filter.${filterObjectKey}.title`)}
+          </h2>
+          <div className="filters">
+        {table.getHeaderGroups().map((headerGroup) => (
+          headerGroup.headers.map((header) => (
+            header.column.getCanFilter() ? (
+                        <MultipleChoiceFilterMenu
+                            filterMenuKey={header.column.id}
+                            filterObjectKey={'user'}
+                            onFilterValueClicked={
+                                (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
+                                  if (!isChecked) {
+                                    header.column.setFilterValue(
+                                      ((header.column.getFilterValue() as string []) || []
+                                      )
+                                        ?.filter((value) => value !== valueSelected));
+                                  } else {
+                                    header.column.setFilterValue(
+                                      [...(header.column.getFilterValue() as string []) || [], valueSelected],
+                                    );
+                                  }
+                                }}
+                            selectedValues={columnFilters.find(
+                              ((columnFilter) => columnFilter.id === header.column.id),
+                            )?.value as string[]}
+                            possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
+                        />
+            ) : <></>
+          ))
+        ))}
+        </div>
+      </div>
+  );
+}

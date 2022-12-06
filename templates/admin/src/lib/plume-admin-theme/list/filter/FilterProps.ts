@@ -1,16 +1,7 @@
-export type FilterProps = {
-  filterKey: string,
-};
-
-export interface ObjectFilterProps<T> extends FilterProps {
-  keyExtractor: (a: T) => string,
-}
-
-export interface RawFilterProps extends FilterProps {
-  possibleValues: string[],
-}
+import { ColumnFiltersState, Table } from '@tanstack/react-table';
 
 type FilterMenuProps = {
+  filterObjectKey: string,
   filterMenuKey: string,
 };
 
@@ -23,6 +14,8 @@ export interface MultipleChoiceRawFilterMenuProps extends MultipleChoiceFilterMe
   possibleValues: string[]
 }
 
-export interface MultipleChoiceObjectFilterMenuProps<T> extends MultipleChoiceFilterMenuProps {
-  rawList: T[],
+export interface MultipleChoiceObjectFilterMenuProps<T> {
+  table: Table<T>,
+  columnFilters: ColumnFiltersState,
+  filterObjectKey: string,
 }
