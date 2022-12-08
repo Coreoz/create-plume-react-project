@@ -7,14 +7,12 @@ function ListHeader<T>({ listTitle, tableSorting }: ListHeaderProps<T>) {
   const theme = getGlobalInstance(PlumeAdminTheme);
   return (
     <div className="list-elements-heading">
-      {
-        listTitle
+      {listTitle
         && (
           <h2>{listTitle}</h2>
         )
       }
-      {
-          tableSorting
+      {tableSorting
         && (
           <theme.sortMenu
             defaultSortKey={tableSorting.defaultSortKey}

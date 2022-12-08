@@ -10,8 +10,8 @@ import UserTile from './UserTile';
 import useMessages from '../../../i18n/hooks/messagesHook';
 
 type Props = {
-  usersPath: string
-  table: TableType<AdminUserDetails>
+  usersPath: string,
+  table: TableType<AdminUserDetails>,
 };
 
 function UsersListResults(

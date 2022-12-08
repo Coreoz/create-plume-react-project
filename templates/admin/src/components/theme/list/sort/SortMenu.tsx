@@ -13,7 +13,7 @@ type SortPossibility = {
     id: string,
     desc: boolean,
     selectId: string,
-  }
+  },
 };
 
 function SortMenu<T>(

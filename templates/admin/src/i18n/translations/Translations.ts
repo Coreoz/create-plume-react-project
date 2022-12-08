@@ -75,15 +75,15 @@ export type Translations = {
       creationDate_asc: string,
       creationDate_desc: string,
     },
-  }
+  },
   // filters wording
   filter: {
     user: {
       title: string,
       name: string,
       role: string,
-    }
-  }
+    },
+  },
   selected: (count: number) => string,
   // errors
   error: {

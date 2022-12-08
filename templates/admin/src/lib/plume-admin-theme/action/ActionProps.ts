@@ -8,7 +8,7 @@ export type ActionContainerProps = {
 
 export type ActionProps = {
   style?: ActionStyle;
-  variant?: 'contained' | 'outlined' | 'text'
+  variant?: 'contained' | 'outlined' | 'text';
   icon?: IconType;
   cssClasses?: string;
   children?: React.ReactNode;

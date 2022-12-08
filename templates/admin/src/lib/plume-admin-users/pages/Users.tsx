@@ -28,7 +28,7 @@ export default class Users {
     // TODO how to get the current route where this component has been mounted??
     const usersPath = '/users';
 
-    const userLoader = useLoader();
+    const { monitor, isLoading } = useLoader();
 
     const [usersWithRoles, setUsersWithRoles] = useState<AdminUsersWithIndexedRolesType>();
 
@@ -39,7 +39,7 @@ export default class Users {
     // TODO bien ici ça a un sens de récupérer les rôles car ils sont utilisés partout,
     //  la liste d'utilisateurs ne devrait être récupérée que sur la page liste
     //  et l'utilisateur en cours de modification ne devrait être récupéré que sur la page détail
-    const updateUsersAndRoles = () => userLoader.monitor(
+    const updateUsersAndRoles = () => monitor(
       this.userApi
         .fetchAll()
         .then(setUsersAndIndexRoles),
@@ -53,7 +53,7 @@ export default class Users {
         <this.usersList.render
             usersPath={usersPath}
             usersWithRoles={usersWithRoles}
-            isUsersLoading={userLoader.isLoading}
+            isUsersLoading={isLoading}
         />
         <Routes>
           <Route

@@ -11,7 +11,7 @@ export interface MultipleChoiceFilterMenuProps extends FilterMenuProps {
 }
 
 export interface MultipleChoiceRawFilterMenuProps extends MultipleChoiceFilterMenuProps {
-  possibleValues: string[]
+  possibleValues: string[],
 }
 
 export interface MultipleChoiceObjectFilterMenuProps<T> {

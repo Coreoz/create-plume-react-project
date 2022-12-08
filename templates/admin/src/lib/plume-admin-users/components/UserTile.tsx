@@ -14,9 +14,9 @@ type Props = {
 
 type AdminUserDetailsTile = {
   fullName: string,
-  email: string
-  role: string
-  creationDate: string
+  email: string,
+  role: string,
+  creationDate: string,
 };
 
 export default function UserTile({ userRow, onClick }: Props) {
@@ -37,6 +37,14 @@ export default function UserTile({ userRow, onClick }: Props) {
     creationDate: dayjs(userRow.getValue('creationDate')).format('L LT'),
   };
 
+  const getFirstLetterOfWordCapitalized = (
+      s: string, index: number
+  ) => user.fullName.split(' ')[index].slice(0, 1).toUpperCase();
+
+  const retrieveInitials = (
+    fullName: string,
+  ) => `${getFirstLetterOfWordCapitalized(fullName, 0)} ${getFirstLetterOfWordCapitalized(fullName, 1)}`;
+
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <div className="user-data user-data--id">
@@ -45,10 +53,7 @@ export default function UserTile({ userRow, onClick }: Props) {
         </div>
         <div className="data">
           <span className="user-initials">
-            {`
-            ${user.fullName.split(' ')[0].slice(0, 1).toUpperCase()}
-            ${user.fullName.split(' ')[1].slice(0, 1).toUpperCase()}
-            `}
+            {retrieveInitials(user.fullName)}
           </span>
         </div>
         <div className="data">

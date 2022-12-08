@@ -26,30 +26,29 @@ function MultipleChoiceFilterMenu(
   const CHECK_BOX_SIZE = 'small';
 
   return (
-        <div key={filterMenuKey} className="filter">
-              <span className="filter-title">
-                {messages.t(`filter.${filterObjectKey}.${filterMenuKey}`)}
-              </span>
-              {
-                  possibleValues
-                    .map((value: string) => (
-                    <FormControlLabel
-                      key={value}
-                      label={value}
-                      control={(
-                        <Checkbox
-                          value={value}
-                          size={CHECK_BOX_SIZE}
-                          checked={selectedValues?.includes(value) || false}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            onFilterValueClicked(filterMenuKey, value, e.target.checked);
-                          }}
-                        />
-                      )}
-                    />
-                    ))
-              }
-            </div>
+    <div key={filterMenuKey} className="filter">
+      <span className="filter-title">
+        {messages.t(`filter.${filterObjectKey}.${filterMenuKey}`)}
+      </span>
+      {possibleValues
+        .map((value: string) => (
+          <FormControlLabel
+            key={value}
+            label={value}
+            control={(
+              <Checkbox
+                value={value}
+                size={CHECK_BOX_SIZE}
+                checked={selectedValues?.includes(value) || false}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onFilterValueClicked(filterMenuKey, value, e.target.checked);
+                }}
+            />
+          )}
+          />
+        ))
+      }
+    </div>
   );
 }
 
@@ -75,39 +74,39 @@ export function MultipleChoiceObjectFilterMenu<T>(
   const messages = useMessagesResolver(getGlobalInstance(PlumeMessageResolverService));
 
   return (
-      <div className="filter-menu-container">
-          <h2>
+    <div className="filter-menu-container">
+      <h2>
               {messages.t(`filter.${filterObjectKey}.title`)}
-          </h2>
-          <div className="filters">
+      </h2>
+      <div className="filters">
         {table.getHeaderGroups().map((headerGroup) => (
           headerGroup.headers.map((header) => (
             header.column.getCanFilter() ? (
-                        <MultipleChoiceFilterMenu
-                            filterMenuKey={header.column.id}
-                            filterObjectKey={'user'}
-                            onFilterValueClicked={
-                                (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
-                                  if (!isChecked) {
-                                    header.column.setFilterValue(
-                                      ((header.column.getFilterValue() as string []) || []
-                                      )
-                                        ?.filter((value) => value !== valueSelected));
-                                  } else {
-                                    header.column.setFilterValue(
-                                      [...(header.column.getFilterValue() as string []) || [], valueSelected],
-                                    );
-                                  }
-                                }}
-                            selectedValues={columnFilters.find(
-                              ((columnFilter) => columnFilter.id === header.column.id),
-                            )?.value as string[]}
-                            possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
-                        />
+            <MultipleChoiceFilterMenu
+                filterMenuKey={header.column.id}
+                filterObjectKey={'user'}
+                onFilterValueClicked={
+                    (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
+                      if (!isChecked) {
+                        header.column.setFilterValue(
+                          ((header.column.getFilterValue() as string []) || []
+                          )
+                            ?.filter((value) => value !== valueSelected));
+                      } else {
+                        header.column.setFilterValue(
+                          [...(header.column.getFilterValue() as string []) || [], valueSelected],
+                        );
+                      }
+                    }}
+                selectedValues={columnFilters.find(
+                  ((columnFilter) => columnFilter.id === header.column.id),
+                )?.value as string[]}
+                possibleValues={Array.from(header.column.getFacetedUniqueValues().keys()).sort()}
+            />
             ) : <></>
           ))
         ))}
-        </div>
       </div>
+    </div>
   );
 }
