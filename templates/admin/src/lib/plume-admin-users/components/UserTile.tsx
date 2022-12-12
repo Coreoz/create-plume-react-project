@@ -38,7 +38,7 @@ export default function UserTile({ userRow, onClick }: Props) {
   };
 
   const getFirstLetterOfWordCapitalized = (
-      s: string, index: number
+    s: string, index: number,
   ) => user.fullName.split(' ')[index].slice(0, 1).toUpperCase();
 
   const retrieveInitials = (
