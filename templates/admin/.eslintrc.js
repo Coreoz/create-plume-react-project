@@ -29,6 +29,9 @@ module.exports = {
     '@typescript-eslint'
   ],
   settings: {
+    react: {
+      version: "detect",
+    },
     polyfills: [
       'AbortController',
       'PromiseConstructor.allSettled',
