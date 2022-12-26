@@ -71,5 +71,5 @@
     "prepare-release": "yarn clean && yarn lint && yarn build",
     "release": "release-it"
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.3.1"
 }
