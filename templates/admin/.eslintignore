@@ -1,7 +1,5 @@
 build/*
 public/*
-di-transformer-adapter.ts
 .eslintrc.js
 stylelint.config.js
-vite.config.ts
 jest.config.js

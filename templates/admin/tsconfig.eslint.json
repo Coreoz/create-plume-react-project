@@ -3,6 +3,8 @@
   "include": [
     "src",
     "asset.d.ts",
-    "tests"
+    "tests",
+    "vite.config.ts",
+    "di-transformer-adapter.ts"
   ]
 }
