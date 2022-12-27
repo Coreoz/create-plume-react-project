@@ -1,4 +1,4 @@
-import { di } from "@wessberg/di-compiler";
+import { di } from '@wessberg/di-compiler';
 import * as ts from 'typescript';
 
 /**
@@ -6,6 +6,6 @@ import * as ts from 'typescript';
  *
  * See package `plume-ts-di`.
  */
-export default function(program: ts.Program) {
+export default function (program: ts.Program) {
   return di({ program });
 }
