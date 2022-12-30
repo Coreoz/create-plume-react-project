@@ -62,7 +62,7 @@ export type LoaderState = {
  */
 export default function useLoader(): LoaderState {
   const isMountedRef = useRef<boolean>(true);
-  const [loadingState, setLoadingState] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
   useOnComponentUnMounted(() => () => {
@@ -70,24 +70,24 @@ export default function useLoader(): LoaderState {
   });
 
   return {
-    isLoading: loadingState ?? false,
-    isLoaded: !loadingState && loadingError === undefined,
+    isLoading: isLoading ?? false,
+    isLoaded: !isLoading && loadingError === undefined,
     error: loadingError,
     monitor: (httpPromise) => {
-      setLoadingState(true);
+      setIsLoading(true);
       setLoadingError(undefined);
       return httpPromise
         .then(() => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
-            setLoadingState(false);
+            setIsLoading(false);
           }
         })
         .catch((error) => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
             setLoadingError(sanitizePromiseError(error));
-            setLoadingState(false);
+            setIsLoading(false);
           }
         });
     },
