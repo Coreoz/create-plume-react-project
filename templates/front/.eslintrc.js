@@ -70,5 +70,8 @@ module.exports = {
     ],
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/no-use-before-define': ['error', {
+      'functions': false,
+    }],
   },
 };
