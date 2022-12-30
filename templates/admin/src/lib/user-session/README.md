@@ -1,6 +1,6 @@
 User session
 ============
-This module provides helpers to manage user session.
+This module provides helpers to manage frontend user session.
 
 Getting started
 ---------------

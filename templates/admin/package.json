@@ -79,13 +79,13 @@
     "safari >= 12"
   ],
   "scripts": {
-    "start": "concurrently \"yarn run watch-ts\" \"yarn run watch-js\"",
-    "watch-ts": "ttsc --incremental --project tsconfig.json -w",
+    "start": "concurrently \"yarn watch-ts\" \"yarn watch-js\"",
+    "watch-ts": "ttsc --incremental -w",
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint 'assets/scss/**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx",
-    "typescript": "tsc --project tsconfig.json --noEmit",
+    "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.js",
     "coverage": "jest --config jest.config.js --coverage --watchAll=false"
   },
