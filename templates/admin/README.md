@@ -6,7 +6,6 @@ Installation
 Make sure you have at least node 18 installed.
 
 Yarn is the preferred way to set up this project. To install it, follow the instructions detailed here: <https://yarnpkg.com/getting-started/install>.
-At least Yarn 1.22 must be installed, this can be checked using `yarn --version`. If you have trouble upgrading Yarn version, you can have a look at <https://stackoverflow.com/a/62512521>.
 
 Dependencies resolution can then be done with: `yarn install`.
 
