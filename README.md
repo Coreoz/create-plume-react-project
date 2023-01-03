@@ -7,7 +7,9 @@ with dependency injection and the observable pattern to manage the application g
 
 Usage
 -----
-Create a new project in the current folder with: `npx create-plume-react-project@latest --template admin --projectName admin-vel`
+Create a new project in the current folder with:
+- Yarn (more reliable): `yarn dlx create-plume-react-project --template admin --projectName admin-vel`
+- Or with NPX: `npx create-plume-react-project@latest --template admin --projectName admin-vel`
 
 Once project is created, it can be started with:
 1. `yarn` to resolve dependencies
@@ -18,12 +20,12 @@ Options
 Options are passed using this syntax: `npx create-plume-react-project@latest --[optionName] [value]`
 So the `template` option can be used like this: `npx create-plume-react-project@latest --template admin`
 
-| Name              | Default value                          | Available values        | Description                                                           |
-|-------------------|----------------------------------------|-------------------------|-----------------------------------------------------------------------|
-| template          | front                                  | front, admin            | The template to use                                                   |
-| projectName       | my-project                             | Any string value        | The project name is used for in `package.json` and `index.html` files |
-| verbose           | false                                  | true, false             | True to display extra debug information during processing             |
-| targetDirectory   | Current directory                      | Any valid absolute path | The path in which the project will be initialized with the template   |
+| Name              | Default value                                   | Available values        | Description                                                           |
+|-------------------|-------------------------------------------------|-------------------------|-----------------------------------------------------------------------|
+| template          | front                                           | front, admin            | The template to use                                                   |
+| projectName       | my-project                                      | Any string value        | The project name is used for in `package.json` and `index.html` files |
+| verbose           | false                                           | true, false             | True to display extra debug information during processing             |
+| targetDirectory   | Current directory                               | Any valid absolute path | The path in which the project will be initialized with the template   |
 | templateDirectory | The build/templates directory of the create cli | Any valid absolute path | The path in which templates will be used                              |
 
 Development
