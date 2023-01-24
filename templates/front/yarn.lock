@@ -2440,12 +2440,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wessberg/di@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "@wessberg/di@npm:2.0.3"
-  dependencies:
-    tslib: ^1.9.3
-  checksum: 6b3b178022044caaed1098271c30b980dcd04bbc7a6f9edf86dcb21f2610ac5608976ce21baec1715ac82cff5c765b3a95db64a82c213c68ad92c15a310b54d6
+"@wessberg/di@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@wessberg/di@npm:2.1.0"
+  checksum: 813d6a5508403b166ca88a38f7d358ee80d0cea24fae308a1bba93e2b3754836128aed306396152c7c9f2a8b1197aee1eb3eea11fa247d3d36f0e937226680d4
   languageName: node
   linkType: hard
 
@@ -7633,23 +7631,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plume-ts-di@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "plume-ts-di@npm:1.0.2"
+"plume-ts-di@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "plume-ts-di@npm:1.2.4"
   dependencies:
-    "@wessberg/di": ^2.0.3
+    "@wessberg/di": ^2.1.0
+  peerDependencies:
     simple-logging-system: ^1.0.7
-  checksum: 657408083fa50af55bf12e9471d104beac3d71eebd99a3ae1b6f77f29584b996bbc7e51e96ddb5139934413882d25ff9b20b079c29a4e3755a83bf610bc26a48
-  languageName: node
-  linkType: hard
-
-"plume-ts-di@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "plume-ts-di@npm:1.1.1"
-  dependencies:
-    "@wessberg/di": ^2.0.3
-    simple-logging-system: ^1.0.7
-  checksum: fcd469518c70bf98090525e9305666b70fdc84e89d3de87db7ca9412c7f1cd196c8042c190d830a70d6e4f5fe4e8a9108f7474a5226f60ef45acbd992538ebc6
+    typescript: ^4.0.2
+  checksum: 36b460fdb7607fe6fa7b889fa26ab7395c6a7baefd27e43376221a957541eff15c836e3e8628278f0a20788fe41866dcd05529a16bf67795b2288e7de0ae2f1c
   languageName: node
   linkType: hard
 
@@ -8482,13 +8472,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"simple-logging-system@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "simple-logging-system@npm:1.0.7"
-  checksum: 9f1a5abbe1debfb1549900c4ecfb75cd448150a374434b751f81e61a45ca951cafbf92b0c8eaf021d7b67b4c6ee5a1833991e7fbc515e49e1f842b88b65e2e9a
-  languageName: node
-  linkType: hard
-
 "simple-logging-system@npm:^1.1.0":
   version: 1.1.0
   resolution: "simple-logging-system@npm:1.1.0"
@@ -9222,7 +9205,6 @@ resolve@^2.0.0-next.3:
     "@typescript-eslint/eslint-plugin": ^5.47.0
     "@typescript-eslint/parser": ^5.47.0
     "@vitejs/plugin-react-refresh": ^1.3.6
-    "@wessberg/di-compiler": ^2.2.6
     "@wojtekmaj/enzyme-adapter-react-17": ^0.6.7
     concurrently: ^7.4.0
     dayjs: ^1.11.5
@@ -9244,7 +9226,7 @@ resolve@^2.0.0-next.3:
     jsdom: ^20.0.1
     micro-observables: ^1.7.2
     node-fetch: ^2.6.7
-    plume-ts-di: ^1.1.1
+    plume-ts-di: ^1.2.4
     postcss: ^8.4.18
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -9261,7 +9243,7 @@ resolve@^2.0.0-next.3:
     stylelint-scss: ^4.3.0
     ts-jest: ^28.0.8
     ts-node: ^10.9.1
-    ts-transformer-classname: ^1.0.3
+    ts-transformer-classname: ^2.0.0
     ttypescript: ^1.5.15
     typescript: ^4.9.4
     vite: ^4.0.3
@@ -9352,12 +9334,15 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-transformer-classname@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "ts-transformer-classname@npm:1.0.3"
+"ts-transformer-classname@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "ts-transformer-classname@npm:2.0.0"
   dependencies:
+    "@wessberg/di-compiler": ^2.2.6
+  peerDependencies:
     plume-ts-di: ^1.0.2
-  checksum: 4c510ddebe81b96e7fadfd94046ca71abbf9d6deaf4b3771279df83c81a2155dfb68705436281ce108569bc6ef2a7143dd81ff9629471ec248ad2dfc982e445a
+    typescript: ^4.1.3
+  checksum: 5ca4b17044faa514ea89cc8a3dab3800a3af0932bf832ed290b111dd0d26c2af411a9e0bbb62bcc2a36790bc5435a4b58c20834cce92809745bb230cfbcb6caf
   languageName: node
   linkType: hard
 
@@ -9373,7 +9358,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1, tslib@npm:^1.9.3":
+"tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
