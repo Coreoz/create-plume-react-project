@@ -25,7 +25,12 @@ export function useOnBeforeComponentRendered(callback: () => void, dependencies:
  * @param dependencies The optional dependencies
  */
 export function useOnComponentMounted(callback: () => void, dependencies: DependencyList = []): void {
-  useEffect(callback, dependencies);
+  useEffect(
+    // execute the callback manually to avoid returning a function... that will be executed when the component
+    // is unmounted. This would cause strange bugs difficult to debug
+    () => { callback(); },
+    dependencies,
+  );
 }
 
 export function useOnComponentUnMounted(callback: () => void): void {
