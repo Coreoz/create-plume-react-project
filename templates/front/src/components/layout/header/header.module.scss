@@ -1,4 +1,4 @@
-@use '@scssVariables' as *;
+@use './assets/scss/_variables.scss' as *;
 
 #main-header {
   padding: 0 $box-padding;

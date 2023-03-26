@@ -1,26 +1,20 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
-  resolve: {
-        alias: {
-            '@scssVariables' : path.resolve(__dirname,'./assets/scss/_variables.scss')
-        },
-    },
-    build: {
-        outDir: 'build',
+  plugins: [react()],
+  build: {
+    outDir: 'build',
   },
   server: {
     proxy: {
       '/api': 'http://localhost:8080',
     },
   },
-    css: {
-        modules: {
-            localsConvention: 'camelCase',
-        }
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
     },
+  },
 });

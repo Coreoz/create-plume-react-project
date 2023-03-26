@@ -1,17 +1,17 @@
-import * as ts from "typescript";
+import * as ts from 'typescript';
 
-import * as nodePath from "path";
+import * as nodePath from 'path';
 
 // Inspired by https://github.com/grrowl/ts-transformer-imports/blob/master/transformer.ts
 
 // Liste des extensions à traiter
-const PATH_EXTENSIONS_TO_VISIT = [".tsx"];
-const MODULE_PATTERNS = [".module.scss", ".scss", ".module.css", ".css"];
+const PATH_EXTENSIONS_TO_VISIT = ['.tsx'];
+const MODULE_PATTERNS = ['.module.scss', '.scss'];
 
 /**
- * Transformer permettant de modifier les imports des scss modules dans les fichier js issue de la compilation ts
- * seul les fichier .tsx sont impacté par ce transformer, grâce au PATH_EXTENSIONS_TO_VISIT.
- * Les path sont update pour référencer les module scss présent dans src.
+ * Transformer permettant de modifier les imports des scss modules dans les fichier js issue de la
+ * compilation ts seul les fichier .tsx sont impacté par ce transformer, grâce au
+ * PATH_EXTENSIONS_TO_VISIT. Les path sont update pour référencer les module scss présent dans src.
  * @param program
  */
 const transform = (program: ts.Program) => transformerFactory;
@@ -26,14 +26,14 @@ function visitSourceFile(
 ) {
   // On suppose que les module scss ne sont utilisé que dans les composant react
   // donc importé uniquement dans les fichiers .tsx
-  if(!PATH_EXTENSIONS_TO_VISIT.includes(nodePath.extname(sourceFile.fileName))) {
+  if (!PATH_EXTENSIONS_TO_VISIT.includes(nodePath.extname(sourceFile.fileName))) {
     return sourceFile;
   }
 
   return ts.visitEachChild(
     sourceFile,
     childNode => visitNode(childNode),
-    context
+    context,
   );
 
   function visitNode(node: ts.Node) {
@@ -64,26 +64,30 @@ function visitSourceFile(
     const splitedFilePath = specifier
       .getText()
       .split('/');
-    return splitedFilePath[splitedFilePath.length-1].replace("'", '');
+    return splitedFilePath[splitedFilePath.length - 1].replace('\'', '');
+  }
+
+  function isPathRelative(path: string) {
+    return path.startsWith('.');
   }
 
   function relativizeImportExportNode(
     node: ts.ImportDeclaration,
-    sourceFilePath: string
+    sourceFilePath: string,
   ) {
     if (!node.moduleSpecifier || !node.moduleSpecifier.getSourceFile()) {
       return node;
     }
-
+    const importPah = node.moduleSpecifier.getText().replace(/'/g, '');
     const replacePath = nodePath
       .relative(
         sourceFilePath.replace('src', 'ts-built'),
-        sourceFilePath+'/'+getFileName(node.moduleSpecifier)
-      ).replace(/\\/g, "/");
+        isPathRelative(importPah) ? sourceFilePath + '/' + importPah : importPah,
+      ).replace(/\\/g, '/');
 
     // replace the module specifier
     return ts.factory.updateImportDeclaration(node, node.decorators, node.modifiers, node.importClause,
-      ts.factory.createStringLiteral(`./${replacePath}`, true));
+      ts.factory.createStringLiteral(`./${replacePath}`, true), node.assertClause);
   }
 }
 
