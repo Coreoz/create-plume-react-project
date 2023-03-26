@@ -12,13 +12,12 @@ export type InputTextProps = {
   defaultValue?: string;
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  control: Control<any>;
+  control?: Control<any>;
   // focus event
   onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   label?: string;
   placeholder?: string;
-  shouldUnregister?: boolean;
   multiline?: boolean,
   rows?: number
 };
@@ -31,7 +30,7 @@ export type InputSelectProps = {
   useNameAsId?: boolean;
   defaultValue?: string | number;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  control: Control<any>;
+  control?: Control<any>;
   options: SelectOptionProps[];
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   onBlur?: (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;

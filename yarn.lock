@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 4
+  version: 6
   cacheKey: 8
 
 "@babel/code-frame@npm:7.12.11":
@@ -30,7 +30,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.15.8, @babel/core@npm:^7.1.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.15.8
   resolution: "@babel/core@npm:7.15.8"
   dependencies:
@@ -2164,7 +2164,7 @@ __metadata:
     ts-jest: ^27.0.5
     ts-node: ^10.2.1
     ts-transformer-classname: ^1.0.3
-    ttypescript: ^1.5.12
+    ttypescript: ^1.5.15
     typescript: 4.2.4
   bin:
     create-plume-react-project: build/cli.js
@@ -3120,15 +3120,16 @@ fsevents@^2.3.2:
   dependencies:
     node-gyp: latest
   checksum: 97ade64e75091afee5265e6956cb72ba34db7819b4c3e94c431d4be2b19b8bb7a2d4116da417950c3425f17c8fe693d25e20212cac583ac1521ad066b77ae31f
+  conditions: os=darwin
   languageName: node
   linkType: hard
 
 "fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=1cc4b2"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: latest
-  checksum: 78db9daf1f6526a49cefee3917cc988f62dc7f25b5dd80ad6de4ffc4af7f0cab7491ac737626ff53e482a111bc53aac9e411fe3602458eca36f6a003ecf69c16
+  conditions: os=darwin
   languageName: node
   linkType: hard
 
@@ -4354,7 +4355,7 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"jest-resolve@npm:27.2.4, jest-resolve@npm:^27.2.4":
+"jest-resolve@npm:^27.2.4":
   version: 27.2.4
   resolution: "jest-resolve@npm:27.2.4"
   dependencies:
@@ -6026,11 +6027,11 @@ fsevents@^2.3.2:
 
 "resolve@patch:resolve@>=1.9.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>":
   version: 1.20.0
-  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=00b1ff"
+  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=c3c19d"
   dependencies:
     is-core-module: ^2.2.0
     path-parse: ^1.0.6
-  checksum: bed00be983cd20a8af0e7840664f655c4b269786dbd9595c5f156cd9d8a0050e65cdbbbdafc30ee9b6245b230c78a2c8ab6447a52545b582f476c29adb188cc5
+  checksum: a0dd7d16a8e47af23afa9386df2dff10e3e0debb2c7299a42e581d9d9b04d7ad5d2c53f24f1e043f7b3c250cbdc71150063e53d0b6559683d37f790b7c8c3cd5
   languageName: node
   linkType: hard
 
@@ -6853,9 +6854,9 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"ttypescript@npm:^1.5.12":
-  version: 1.5.12
-  resolution: "ttypescript@npm:1.5.12"
+"ttypescript@npm:^1.5.15":
+  version: 1.5.15
+  resolution: "ttypescript@npm:1.5.15"
   dependencies:
     resolve: ">=1.9.0"
   peerDependencies:
@@ -6864,7 +6865,7 @@ fsevents@^2.3.2:
   bin:
     ttsc: bin/tsc
     ttsserver: bin/tsserver
-  checksum: 91b6d113d2ce4c7f93392b97a6df38ad6ce6ad4c80227e3d2e1d6948c53f8664018060a02020d8f28a3e461876232b78b4c38352c546a02f3b543a062147fafa
+  checksum: 0328578050f08f9d12e6732a9fe71e93cc693ed5e825aefb7f4ba142d4d3d6912caa59a723f775de89cd066c8e609665fd5a7ccfa3b69fb3456c7f24d695db90
   languageName: node
   linkType: hard
 
@@ -6935,11 +6936,11 @@ typescript@4.2.4:
 
 "typescript@patch:typescript@4.2.4#~builtin<compat/typescript>":
   version: 4.2.4
-  resolution: "typescript@patch:typescript@npm%3A4.2.4#~builtin<compat/typescript>::version=4.2.4&hash=32657b"
+  resolution: "typescript@patch:typescript@npm%3A4.2.4#~builtin<compat/typescript>::version=4.2.4&hash=334f98"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 91772e5fc70895a8f645837cb91d14af95a11b173043ed0dcf12c1069f9dcf5c3c82bc7212c217c9a2cb488900dd2cda3f40f543bed5d149428df13c90c10098
+  checksum: eb86e0e8022e5297f7a7b871b6edfbf33b57049416ada8bf97c358760125c7c79f074fbebd1b8e8230f858ae05eb22ad0e805e8f6acd5eae1fa886681624c15e
   languageName: node
   linkType: hard
 

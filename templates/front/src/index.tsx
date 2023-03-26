@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import 'micro-observables/batchingForReactDom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import './polyfill-loader';
@@ -9,8 +8,9 @@ import installServicesModule from './services/services-module';
 import installComponentsModule from './components/components-module';
 import App from './components/App';
 import installApiModule from './api/api-module';
-import SessionService from './services/session/SessionService';
 import installI18nModule from './i18n/i18n-module';
+import initializeLocalizedDate from './i18n/messages/LocalizedDate';
+import LocaleService from './i18n/locale/LocaleService';
 
 const currentMillis = Date.now();
 const logger = new Logger('index');
@@ -25,18 +25,18 @@ injector.initializeSingletonInstances();
 
 configureGlobalInjector(injector);
 
-injector.getInstance(SessionService).tryInitializingSessionFromStorage();
+// dayjs
+initializeLocalizedDate(injector.getInstance(LocaleService));
 
-const app = injector.getInstance(App);
 const reactApp = (
   <React.StrictMode>
-    <Router>
-      <app.render />
-    </Router>
+    <App />
   </React.StrictMode>
 );
-const domElement = document.getElementById('root');
-
-ReactDOM.render(reactApp, domElement);
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Failed to find the root element');
+}
+createRoot(rootElement).render(reactApp);
 
 logger.info(`Application started in ${Date.now() - currentMillis}ms`);

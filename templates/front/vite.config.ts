@@ -4,23 +4,23 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [reactRefresh()],
-    resolve: {
+  plugins: [reactRefresh()],
+  resolve: {
         alias: {
             '@scssVariables' : path.resolve(__dirname,'./assets/scss/_variables.scss')
         },
     },
     build: {
-        outDir: 'build'
+        outDir: 'build',
+  },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:8080',
     },
-    server: {
-        proxy: {
-            '/api': 'http://localhost:8080'
-        }
-    },
+  },
     css: {
         modules: {
             localsConvention: 'camelCase',
         }
     },
-})
+});

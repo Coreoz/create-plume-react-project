@@ -1,18 +1,12 @@
 import { MenuItem } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
+import { useObservable } from 'micro-observables';
 import LocaleService from '../../i18n/locale/LocaleService';
-import MessageService from '../../i18n/messages/MessageService';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 import SessionService from '../../services/session/SessionService';
-import { User } from '../../services/session/User';
 import DropdownMenu from '../theme/DropdownMenu';
 import LocaleSelector from '../theme/LocaleSelector';
-
-type HeaderProps = {
-  currentLocale: Locale;
-  currentUser?: User;
-};
+import useMessages from '../../i18n/hooks/messagesHook';
 
 function makeInitials(fullName?: string): string {
   if (!fullName) {
@@ -27,21 +21,28 @@ function makeInitials(fullName?: string): string {
   return initials;
 }
 
-export default function Header({ currentLocale, currentUser }: HeaderProps) {
+function LocaleSelectorContainer() {
   const localeService = getGlobalInstance(LocaleService);
+  const currentLocale = useObservable(localeService.getCurrentLocale());
+
+  return <LocaleSelector
+    currentLocale={currentLocale}
+    availableLocales={localeService.getAvailableLocales()}
+    onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
+  />;
+}
+
+export default function Header() {
   const sessionService = getGlobalInstance(SessionService);
-  const messages = getGlobalInstance(MessageService).t();
+  const currentUser = useObservable(sessionService.getCurrentUser());
+  const { messages } = useMessages();
 
   return (
     <header id="main-header">
       <h1 className="section_name">{messages.app.name}</h1>
       <div className="header_actions">
         <div className="header_action">
-          <LocaleSelector
-            currentLocale={currentLocale}
-            availableLocales={localeService.getAvailableLocales()}
-            onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
-          />
+          <LocaleSelectorContainer />
         </div>
         {
           currentUser

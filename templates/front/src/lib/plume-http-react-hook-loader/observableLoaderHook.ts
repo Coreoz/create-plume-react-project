@@ -1,5 +1,5 @@
 import { Observable, useObservable } from 'micro-observables';
-import { useRef, useState } from 'react';
+import { DependencyList, useRef, useState } from 'react';
 import { HttpError } from 'simple-http-rest-client';
 import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
@@ -160,10 +160,12 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
  * of the {@link Observable} data.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useObservableLoader<T extends ObservableDataHandler<any>[]>(...observableSources: T)
-  : DataLoader<unknown[]> {
+export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
+  observableSources: T,
+  dependencies?: DependencyList,
+) : DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
-    useOnComponentMountedHook: useOnComponentMountedWithSsrSupport,
+    useOnComponentMountedHook: (onMounted) => useOnComponentMountedWithSsrSupport(onMounted, dependencies),
   });
 }

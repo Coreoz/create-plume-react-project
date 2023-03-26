@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import {
   Icon,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
@@ -20,10 +20,9 @@ function LinkListItem(
     icon, route, label, drawerOpen,
   }: LinkListItemProps,
 ) {
-  const routeMatch = useRouteMatch({ path: route, exact: false });
+  const routeMatch = useMatch({ path: route });
   return (
-    <ListItem
-      button
+    <ListItemButton
       component={Link}
       to={route}
       className={routeMatch ? 'active list-item' : 'list-item'}
@@ -37,7 +36,7 @@ function LinkListItem(
           <ListItemText primary={label} />
         )
       }
-    </ListItem>
+    </ListItemButton>
   );
 }
 

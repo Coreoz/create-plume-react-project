@@ -1,8 +1,8 @@
 import { Injector } from 'plume-ts-di';
 import ApiHttpClient from './ApiHttpClient';
-import SessionApi from './session/SessionApi';
+import SampleApi from './session/SampleApi';
 
 export default function installApiModule(injector: Injector) {
   injector.registerSingleton(ApiHttpClient);
-  injector.registerSingleton(SessionApi);
+  injector.registerSingleton(SampleApi);
 }
