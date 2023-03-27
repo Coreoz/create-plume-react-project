@@ -1,11 +1,11 @@
 import {
   Icon, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
-import React, { useMemo } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
+import React, { useMemo } from 'react';
 import { SortListProps } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
-import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
 import PlumeMessageResolverService from '../../../../lib/plume-messages/MessageResolverService';
+import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
 
 type SortPossibility = {
   label: string,

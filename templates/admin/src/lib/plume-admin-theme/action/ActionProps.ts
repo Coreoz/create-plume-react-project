@@ -1,5 +1,5 @@
-import ActionStyle from './ActionStyle';
 import { IconType } from '../../../components/theme/IconType';
+import ActionStyle from './ActionStyle';
 
 export type ActionContainerProps = {
   cssClasses?: string;

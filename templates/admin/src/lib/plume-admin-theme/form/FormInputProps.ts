@@ -1,4 +1,4 @@
-import { FocusEvent, ChangeEvent } from 'react';
+import { ChangeEvent, FocusEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 

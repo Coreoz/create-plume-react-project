@@ -1,5 +1,5 @@
-import { ColumnWidth } from './ColumnWidth';
 import { IconType } from '../../../components/theme/IconType';
+import { ColumnWidth } from './ColumnWidth';
 import Status from './Status';
 
 export type LayoutPageTitleProps = {

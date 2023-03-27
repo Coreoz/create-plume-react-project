@@ -1,12 +1,7 @@
-import React from 'react';
 import {
-  Collapse,
-  Icon,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Collapse, Icon, List, ListItem, ListItemIcon, ListItemText,
 } from '@mui/material';
+import React from 'react';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
 

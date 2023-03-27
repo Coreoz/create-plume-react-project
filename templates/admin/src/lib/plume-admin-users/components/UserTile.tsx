@@ -1,11 +1,11 @@
-import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
-import dayjs from 'dayjs';
 import { Row } from '@tanstack/react-table';
-import Status from '../../plume-admin-theme/layout/Status';
-import { AdminUserDetails } from '../api/AdminUserTypes';
-import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import dayjs from 'dayjs';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import useMessages from '../../../i18n/hooks/messagesHook';
+import Status from '../../plume-admin-theme/layout/Status';
+import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { AdminUserDetails } from '../api/AdminUserTypes';
 
 type Props = {
   userRow: Row<AdminUserDetails>,

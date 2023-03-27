@@ -1,13 +1,11 @@
+import { Table as TableType } from '@tanstack/react-table';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Table as TableType,
-} from '@tanstack/react-table';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
-import useMessages from '../../../i18n/hooks/messagesHook';
 
 type Props = {
   usersPath: string,

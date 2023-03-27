@@ -1,7 +1,10 @@
 import { Observable, useObservable } from 'micro-observables';
 import { useRef, useState } from 'react';
 import { HttpError } from 'simple-http-rest-client';
-import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import {
+  useOnComponentMountedWithSsrSupport,
+  useOnComponentUnMounted,
+} from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Describe an {@link Observable} data and the function to trigger the loading of this data.

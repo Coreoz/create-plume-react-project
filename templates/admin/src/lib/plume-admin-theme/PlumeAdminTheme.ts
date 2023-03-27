@@ -8,17 +8,16 @@ import {
   PanelProps,
   StatusDotProps,
 } from './layout/LayoutProps';
-
 import {
-  ListElementsProps,
-  ListHeaderProps,
-  ListSingleElementProps,
-} from './list/ListProps';
+  MultipleChoiceObjectFilterMenuProps,
+  MultipleChoiceRawFilterMenuProps,
+} from './list/filter/FilterProps';
+
+import { ListElementsProps, ListHeaderProps, ListSingleElementProps } from './list/ListProps';
 import { SearchBarProps } from './list/search/SearchProps';
-import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { SortListProps } from './list/sort/SortProps';
-import { MultipleChoiceObjectFilterMenuProps, MultipleChoiceRawFilterMenuProps } from './list/filter/FilterProps';
 import { TableProps } from './list/TableProps';
+import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
   // layout

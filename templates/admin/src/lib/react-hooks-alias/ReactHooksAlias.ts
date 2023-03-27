@@ -1,6 +1,4 @@
-import {
-  DependencyList, useEffect, useMemo,
-} from 'react';
+import { DependencyList, useEffect, useMemo } from 'react';
 
 /**
  * Hook to run only once some code BEFORE the component has been first rendered.

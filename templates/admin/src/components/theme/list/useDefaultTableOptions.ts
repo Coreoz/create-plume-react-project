@@ -7,7 +7,7 @@ export type DefaultTableOptions = {
   onGlobalFilterChange: OnChangeFn<string>
   onRowSelectionChange: OnChangeFn<RowSelection>
   onSortingChange: OnChangeFn<SortingState>
-}
+};
 
 export type TableOptionsValue = {
   globalFilter: string,

@@ -1,10 +1,10 @@
 import { Scheduler } from 'simple-job-scheduler';
 import SessionApi, { SessionCredentials } from '../../api/session/SessionApi';
 import IdlenessDetector from '../../lib/user-session/IdlenessDetector';
+import JwtSessionManager from '../../lib/user-session/JwtSessionManager';
 import PageActivityManager from '../../lib/user-session/page-activity/PageActivityManager';
 import Permission from './Permission';
 import { UserWithExpiration } from './User';
-import JwtSessionManager from '../../lib/user-session/JwtSessionManager';
 
 const THRESHOLD_IN_MILLIS_TO_DETECT_EXPIRED_SESSION = 60 * 1000; // 1 minutes
 const LOCAL_STORAGE_CURRENT_SESSION = 'user-session';

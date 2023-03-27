@@ -1,4 +1,4 @@
-import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
+import { HttpMethod, HttpRequest } from 'simple-http-request-builder';
 import { HttpPromise } from 'simple-http-rest-client';
 
 /**

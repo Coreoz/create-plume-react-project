@@ -1,12 +1,12 @@
 import { MenuItem } from '@mui/material';
+import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { useObservable } from 'micro-observables';
+import useMessages from '../../i18n/hooks/messagesHook';
 import LocaleService from '../../i18n/locale/LocaleService';
 import SessionService from '../../services/session/SessionService';
 import DropdownMenu from '../theme/DropdownMenu';
 import LocaleSelector from '../theme/LocaleSelector';
-import useMessages from '../../i18n/hooks/messagesHook';
 
 function makeInitials(fullName?: string): string {
   if (!fullName) {

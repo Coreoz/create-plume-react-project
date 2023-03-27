@@ -1,12 +1,12 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
-import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
-import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
 import PlumeMessageResolverService from '../../../../lib/plume-messages/MessageResolverService';
+import useMessagesResolver from '../../../../lib/plume-messages/messagesResolveHook';
 
 /**
  * Component to display vertical checkboxes filters on the side of search results

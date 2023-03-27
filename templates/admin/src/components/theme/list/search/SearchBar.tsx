@@ -1,8 +1,8 @@
 import { Icon } from '@mui/material';
 import React, { MouseEvent, useRef } from 'react';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 import { SearchBarProps } from '../../../../lib/plume-admin-theme/list/search/SearchProps';
 import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
-import useMessages from '../../../../i18n/hooks/messagesHook';
 
 function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
   const { messages } = useMessages();

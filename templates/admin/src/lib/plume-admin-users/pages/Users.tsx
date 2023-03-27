@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import { AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import UsersEdit from './UsersEdit';
-import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
 import UsersList from './UsersList';
 
 export default class Users {

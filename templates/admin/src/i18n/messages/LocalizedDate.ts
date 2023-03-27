@@ -1,7 +1,7 @@
-import 'dayjs/locale/fr';
-import 'dayjs/locale/en';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import dayjs from 'dayjs';
+import 'dayjs/locale/en';
+import 'dayjs/locale/fr';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import LocaleService from '../locale/LocaleService';
 
 /**

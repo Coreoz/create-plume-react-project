@@ -1,8 +1,6 @@
 import React from 'react';
 import { SelectElement } from 'react-hook-form-mui';
-import {
-  InputSelectProps,
-} from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import { InputSelectProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 export default function InputSelect(
   {
