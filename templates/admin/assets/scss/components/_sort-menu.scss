@@ -3,8 +3,7 @@
 .sort-menu {
   display: flex;
   align-items: center;
-  padding: 0 $spacer-4;
-  height: 38px;
+  padding: $spacer-4;
   border-radius: $border-radius-5;
   background-color: rgba($gray-dark, 0.05);
   margin-left: $spacer-5;

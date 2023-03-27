@@ -53,7 +53,6 @@ export default class Users {
         <this.usersList.render
             usersPath={usersPath}
             usersWithRoles={usersWithRoles}
-            isUsersLoading={isLoading}
         />
         <Routes>
           <Route

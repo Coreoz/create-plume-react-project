@@ -1,6 +1,7 @@
-import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
-import { flexRender } from '@tanstack/react-table';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import {
   IconButton,
   Table,
@@ -12,48 +13,31 @@ import {
   TextField,
   Toolbar,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { flexRender } from '@tanstack/react-table';
+import React from 'react';
 import { ActionButton, ActionsContainer } from '../../../components/theme/action/Actions';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { TableProps } from '../../plume-admin-theme/list/TableProps';
 
 function TableResults<T>(
   {
-    rowSelection, usersPath, table,
+    rowSelection, updateItem, deleteItem, table,
   }: TableProps<T>,
 ) {
   const { messages } = useMessages();
-  const theme = getGlobalInstance(PlumeAdminTheme);
-  const navigate = useNavigate();
 
-  const updateUser = () => {
-    navigate({ pathname: `${usersPath}/${Object.keys(rowSelection)[0]}` });
-  };
   return (
         <div className="table_root">
-            <theme.listHeader
-                listTitle={messages.user.list.count(table.getPrePaginationRowModel().rows.length)}
-                tableSorting={{
-                  sortedObjectKey: 'user',
-                  defaultSortKey: 'fullName_desc',
-                  table,
-                }}
-            />
           {Object.values(rowSelection).length > 0
           && <Toolbar>
             <div>
               {`${Object.values(rowSelection).length} ${messages.selected(Object.values(rowSelection).length)}`}
             </div>
             <ActionsContainer>
-              {Object.values(rowSelection).length === 1 && <ActionButton variant="text" onClick={updateUser}>
+              {Object.values(rowSelection).length === 1 && <ActionButton variant="text" onClick={updateItem}>
                 {messages.action.update}
               </ActionButton>}
-              <ActionButton variant="text">
+              <ActionButton variant="text" onClick={deleteItem}>
                 {messages.action.delete}
               </ActionButton>
             </ActionsContainer>

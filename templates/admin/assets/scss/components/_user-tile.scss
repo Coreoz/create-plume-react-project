@@ -27,12 +27,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-size: $font-size-normal;
 
     .data {
       display: flex;
-      height: 40px;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;

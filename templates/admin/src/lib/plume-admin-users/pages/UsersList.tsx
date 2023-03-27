@@ -1,31 +1,28 @@
-import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Checkbox } from '@mui/material';
 import {
-  ColumnFiltersState,
   createColumnHelper,
   getCoreRowModel,
   getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 import dayjs from 'dayjs';
+import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useDefaultTableOptions from '../../../components/theme/list/useDefaultTableOptions';
+import filtersInclude from '../../../components/theme/utils/FilterUtils';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
+import rowSelectionColumn from '../../plume-admin-theme/list/TableUtils';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
+import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
-import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
-import filtersInclude from '../../../components/theme/utils/FilterUtils';
-import useMessagesResolver from '../../plume-messages/messagesResolveHook';
-import UsersListResults from '../components/UsersListResults';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType;
   usersPath: string,
-  isUsersLoading: boolean,
 };
 
 export default class UsersList {
@@ -37,60 +34,36 @@ export default class UsersList {
     const { theme } = this;
     const navigate = useNavigate();
 
-    const [globalFilter, setGlobalFilter] = useState<string>('');
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-    const [sorting, setSorting] = React.useState<SortingState>([]);
-    const [rowSelection, setRowSelection] = React.useState<{ [p: string]: boolean }>({});
+    const [tableOptionsValue, tableOptions] = useDefaultTableOptions();
 
     const columnHelper = createColumnHelper<AdminUserDetails>();
 
     const columns = useMemo(() => [
-      {
-        id: 'select',
-        header: ({ table }) => (
-                  <Checkbox
-                      {...{
-                        checked: table.getIsAllRowsSelected(),
-                        indeterminate: table.getIsSomeRowsSelected(),
-                        onClick: table.getToggleAllRowsSelectedHandler(),
-                      }}
-                  />
-        ),
-        cell: ({ row }) => (
-                  <Checkbox
-                      {...{
-                        checked: row.getIsSelected(),
-                        indeterminate: row.getIsSomeSelected(),
-                        onClick: row.getToggleSelectedHandler(),
-                      }}
-                  />
-        ),
-        enableSorting: false,
-      },
+      rowSelectionColumn,
       columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
         id: 'fullName',
         filterFn: filtersInclude,
-        cell: (info) => info.renderValue(),
+        cell: (cellData) => cellData.renderValue(),
       }),
       columnHelper.accessor('userName', {
         enableSorting: false,
         filterFn: filtersInclude,
-        cell: (info) => info.renderValue(),
+        cell: (cellData) => cellData.renderValue(),
       }),
       columnHelper.accessor('email', {
         enableSorting: false,
         filterFn: filtersInclude,
-        cell: (info) => info.renderValue(),
+        cell: (cellData) => cellData.renderValue(),
       }),
       columnHelper.accessor((row) => usersWithRoles?.roles?.get(row.idRole), {
         id: 'role',
         enableSorting: false,
         filterFn: filtersInclude,
-        cell: (info) => info.renderValue(),
+        cell: (cellData) => cellData.renderValue(),
       }),
       columnHelper.accessor('creationDate', {
         filterFn: filtersInclude,
-        cell: (info) => dayjs(info.getValue()).format('L LT'),
+        cell: (cellData) => dayjs(cellData.getValue()).format('L LT'),
       }),
     ], [usersWithRoles?.roles]);
 
@@ -105,10 +78,7 @@ export default class UsersList {
       enableSorting: true,
       enableSortingRemoval: true,
       state: {
-        sorting,
-        rowSelection,
-        columnFilters,
-        globalFilter,
+        ...tableOptionsValue,
       },
       initialState: {
         pagination: {
@@ -116,12 +86,12 @@ export default class UsersList {
         },
       },
       getFacetedUniqueValues: getFacetedUniqueValues(),
-      onColumnFiltersChange: setColumnFilters,
-      onGlobalFilterChange: setGlobalFilter,
-      onRowSelectionChange: setRowSelection,
-      onSortingChange: setSorting,
-      debugTable: true,
+      ...tableOptions,
     });
+
+    const showUpdateUserPopin = () => {
+      navigate({ pathname: `${usersPath}/${Object.keys(tableOptionsValue.rowSelection)[0]}` });
+    };
 
     return (
         <>
@@ -130,7 +100,7 @@ export default class UsersList {
                 <theme.pageBlocColumn columnWidth="50">
                     <theme.searchBar
                         onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-                          setGlobalFilter(event.target.value);
+                          tableOptions.onGlobalFilterChange(event.target.value);
                         }}
                     />
                 </theme.pageBlocColumn>
@@ -153,14 +123,16 @@ export default class UsersList {
                     <theme.multipleChoiceObjectFilterMenu
                         filterObjectKey="user"
                         table={table}
-                        columnFilters={columnFilters}
+                        columnFilters={tableOptionsValue.columnFilters}
                     />
                 </theme.pageBlocColumn>
                 <theme.pageBlocColumn columnWidth="80">
                     <theme.tableResults
-                        rowSelection={rowSelection}
+                        rowSelection={tableOptionsValue.rowSelection}
+                        updateItem={showUpdateUserPopin}
+                        // Todo
+                        deleteItem={() => {}}
                         table={table}
-                        usersPath={usersPath}
                     />
                 </theme.pageBlocColumn>
             </theme.pageBloc>

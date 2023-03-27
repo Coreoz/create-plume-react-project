@@ -84,7 +84,7 @@ export function MultipleChoiceObjectFilterMenu<T>(
             header.column.getCanFilter() ? (
             <MultipleChoiceFilterMenu
                 filterMenuKey={header.column.id}
-                filterObjectKey={'user'}
+                filterObjectKey={filterObjectKey}
                 onFilterValueClicked={
                     (filterElementKey: string, valueSelected: string, isChecked: boolean) => {
                       if (!isChecked) {
