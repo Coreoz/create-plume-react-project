@@ -12,6 +12,7 @@ type Props = {
   table: TableType<AdminUserDetails>,
 };
 
+// Todo implémenter liste de tuiles avec LogApi
 function UsersListResults(
   {
     table, usersPath,

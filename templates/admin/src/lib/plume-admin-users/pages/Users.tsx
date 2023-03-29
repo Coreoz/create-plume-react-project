@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import WithLoadingData from '../../../components/theme/layout/WithLoader';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
-import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
+import useDataLoader from '../../plume-http-react-hook-loader/dataLoaderHook';
 import { AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
@@ -28,8 +28,6 @@ export default class Users {
     // TODO how to get the current route where this component has been mounted??
     const usersPath = '/users';
 
-    const { monitor, isLoading } = useLoader();
-
     const [usersWithRoles, setUsersWithRoles] = useState<AdminUsersWithIndexedRolesType>();
 
     const setUsersAndIndexRoles = (newUsersWithRoles: AdminUsersDetails) => setUsersWithRoles(
@@ -39,21 +37,20 @@ export default class Users {
     // TODO bien ici ça a un sens de récupérer les rôles car ils sont utilisés partout,
     //  la liste d'utilisateurs ne devrait être récupérée que sur la page liste
     //  et l'utilisateur en cours de modification ne devrait être récupéré que sur la page détail
-    const updateUsersAndRoles = () => monitor(
-      this.userApi
-        .fetchAll()
-        .then(setUsersAndIndexRoles),
-    );
+    const updateUsersAndRoles = () => this.userApi
+      .fetchAll()
+      .then(setUsersAndIndexRoles);
 
-    // users are loaded from the main component, so it can be reused in the two sub component list & edit
-    useOnComponentMounted(updateUsersAndRoles);
+    const dataLoader = useDataLoader(() => updateUsersAndRoles());
 
     return (
       <this.theme.panel>
-        <this.usersList.render
-            usersPath={usersPath}
-            usersWithRoles={usersWithRoles}
-        />
+        <WithLoadingData dataLoader={dataLoader}>
+          <this.usersList.render
+              usersPath={usersPath}
+              usersWithRoles={usersWithRoles}
+          />
+        </WithLoadingData>
         <Routes>
           <Route
             path="/create"

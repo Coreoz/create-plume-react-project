@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import useDefaultTableOptions from '../../../components/theme/list/useDefaultTableOptions';
 import filtersInclude from '../../../components/theme/utils/FilterUtils';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import rowSelectionColumn from '../../plume-admin-theme/list/TableUtils';
+import RowSelectionColumn from '../../plume-admin-theme/list/TableSelectionCheckbox';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
 import useMessagesResolver from '../../plume-messages/messagesResolveHook';
@@ -25,6 +25,7 @@ type Props = {
   usersPath: string,
 };
 
+// Todo implémenter liste de tuiles avec LogApi
 export default class UsersList {
   constructor(private readonly theme: PlumeAdminTheme, private readonly messageService: PlumeMessageResolverService) {
   }
@@ -39,7 +40,7 @@ export default class UsersList {
     const columnHelper = createColumnHelper<AdminUserDetails>();
 
     const columns = useMemo(() => [
-      rowSelectionColumn,
+      RowSelectionColumn<AdminUserDetails>(),
       columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
         id: 'fullName',
         filterFn: filtersInclude,

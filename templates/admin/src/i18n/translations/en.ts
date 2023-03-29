@@ -17,6 +17,7 @@ const enMessages: Translations = {
     disconnect: 'Log out',
     keep_editing: 'Keep editing',
     close_without_saving: 'Close without saving',
+    retry: 'Retry',
   },
   // common labels
   label: {

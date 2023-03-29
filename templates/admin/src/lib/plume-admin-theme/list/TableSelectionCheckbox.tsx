@@ -1,10 +1,10 @@
 import { Checkbox } from '@mui/material';
-import { Row, Table } from '@tanstack/react-table';
+import { ColumnDef, Row, Table } from '@tanstack/react-table';
 import React from 'react';
 
-const rowSelectionColumn = {
+const rowSelectionColumnUntyped = {
   id: 'select',
-  header: ({ table }: { table: Table<any> }) => (
+  header: ({ table }: { table: Table<unknown> }) => (
     <Checkbox
       {...{
         checked: table.getIsAllRowsSelected(),
@@ -13,7 +13,7 @@ const rowSelectionColumn = {
       }}
     />
   ),
-  cell: ({ row }: { row: Row<any> }) => (
+  cell: ({ row }: { row: Row<unknown> }) => (
     <Checkbox
       {...{
         checked: row.getIsSelected(),
@@ -25,4 +25,8 @@ const rowSelectionColumn = {
   enableSorting: false,
 };
 
-export default rowSelectionColumn;
+function RowSelectionColumn<T>(): ColumnDef<T, unknown> {
+  return rowSelectionColumnUntyped as ColumnDef<T, unknown>;
+}
+
+export default RowSelectionColumn;

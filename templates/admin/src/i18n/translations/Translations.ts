@@ -19,6 +19,7 @@ export type Translations = {
     disconnect: string,
     keep_editing: string,
     close_without_saving: string,
+    retry: string,
   },
   // common labels
   label: {

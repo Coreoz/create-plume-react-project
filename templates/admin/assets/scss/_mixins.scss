@@ -8,6 +8,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0 2px 8px;
 }
 
+// Mixins to create a round dot of a fixed px size
 @mixin dot($size) {
   width: $size;
   height: $size;

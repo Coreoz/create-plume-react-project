@@ -17,6 +17,7 @@ const frMessages: Translations = {
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
     close_without_saving: 'Fermer sans sauvegarder',
+    retry: 'Réessayer',
   },
   // common labels
   label: {
