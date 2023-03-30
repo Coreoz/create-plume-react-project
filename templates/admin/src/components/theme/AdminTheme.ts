@@ -1,5 +1,6 @@
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import TableResults from '../../lib/plume-admin-users/components/TableResults';
+import TableFooter from './table/TableFooter';
+import TableResults from './table/TableResults';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
@@ -43,6 +44,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   multipleChoiceObjectFilterMenu = MultipleChoiceObjectFilterMenu;
 
   tableResults = TableResults;
+
+  tableFooter = TableFooter;
 
   listHeader = ListHeader;
 

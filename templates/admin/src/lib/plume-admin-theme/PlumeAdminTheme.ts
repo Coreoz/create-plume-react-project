@@ -41,6 +41,8 @@ export default abstract class PlumeAdminTheme {
 
   abstract tableResults: <T>(props: TableProps<T>) => JSX.Element;
 
+  abstract tableFooter: <T>(props: TableProps<T>) => JSX.Element;
+
   abstract listHeader: <T>(props: ListHeaderProps<T>) => JSX.Element;
 
   abstract listElements: (props: ListElementsProps) => JSX.Element;

@@ -5,8 +5,5 @@ export type RowSelection = {
 };
 
 export type TableProps<T> = {
-  rowSelection: RowSelection,
-  updateItem: () => void,
-  deleteItem: () => void
   table: Table<T>
 };
