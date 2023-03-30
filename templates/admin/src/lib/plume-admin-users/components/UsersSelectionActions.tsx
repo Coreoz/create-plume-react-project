@@ -1,9 +1,7 @@
 import { Toolbar } from '@mui/material';
 import React from 'react';
 import { ActionButton, ActionsContainer } from '../../../components/theme/action/Actions';
-import useMessages from '../../../i18n/hooks/messagesHook';
 import { RowSelection } from '../../plume-admin-theme/list/TableProps';
-import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
 import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 
