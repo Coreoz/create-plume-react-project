@@ -14,15 +14,19 @@ export type Translations = {
     delete: string,
     search: string,
     add: string,
+    update: string,
     authenticate: string,
     disconnect: string,
     keep_editing: string,
     close_without_saving: string,
+    retry: string,
   },
   // common labels
   label: {
     creation_date: string,
     loading: string,
+    empty: string,
+    more_options: string,
   },
   // common messages
   message: {
@@ -57,12 +61,38 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    add: string,
     password_confirm: string,
     error_passwords_different: string,
+    list: {
+      count: (count: number) => string,
+    },
   },
+  // sorts wording
+  sort: {
+    user: {
+      fullName_desc: string,
+      fullName_asc: string,
+      creationDate_asc: string,
+      creationDate_desc: string,
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: string,
+      name: string,
+      role: string,
+      fullName: string,
+      userName: string,
+      email: string,
+      creationDate: string,
+    },
+  },
+  selected: (count: number) => string,
   // errors
   error: {
-    field : {
+    field: {
       required: string,
       email_wrong_format: string,
     },

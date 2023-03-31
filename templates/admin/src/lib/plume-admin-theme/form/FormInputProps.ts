@@ -1,4 +1,4 @@
-import { FocusEvent, ChangeEvent } from 'react';
+import { ChangeEvent, FocusEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
@@ -28,6 +28,7 @@ export type InputSelectProps = {
   label?: string;
   required?: boolean;
   useNameAsId?: boolean;
+  valueKey?: string;
   defaultValue?: string | number;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   control?: Control<any>;

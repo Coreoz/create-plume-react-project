@@ -1,0 +1,50 @@
+import { Table as TableType } from '@tanstack/react-table';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import useMessages from '../../../i18n/hooks/messagesHook';
+import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { AdminUserDetails } from '../api/AdminUserTypes';
+import UserTile from './UserTile';
+
+type Props = {
+  usersPath: string,
+  table: TableType<AdminUserDetails>,
+};
+
+// Todo implémenter liste de tuiles avec LogApi
+function UsersListResults(
+  {
+    table, usersPath,
+  }: Props,
+) {
+  const theme = getGlobalInstance(PlumeAdminTheme);
+  const navigate = useNavigate();
+  const { messages } = useMessages();
+
+  return (
+    <>
+        <theme.listHeader
+            listTitle={messages.user.list.count(table.getTotalSize())}
+            tableSorting={{
+              sortedObjectKey: 'user',
+              defaultSortKey: 'fullName_desc',
+              table,
+            }}
+        />
+      <theme.listElements listLength={table.getPageCount()}>
+          {React.Children.toArray(
+            table.getRowModel().rows.map((row) => (
+              <UserTile
+                  onClick={() => {
+                    navigate({ pathname: `${usersPath}/${row.id}` });
+                  }}
+                  userRow={row}
+              />
+            )))}
+      </theme.listElements>
+    </>
+  );
+}
+
+export default (UsersListResults);

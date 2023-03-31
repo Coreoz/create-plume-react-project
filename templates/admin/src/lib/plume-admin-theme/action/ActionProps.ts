@@ -1,5 +1,5 @@
-import ActionStyle from './ActionStyle';
 import { IconType } from '../../../components/theme/IconType';
+import ActionStyle from './ActionStyle';
 
 export type ActionContainerProps = {
   cssClasses?: string;
@@ -8,6 +8,7 @@ export type ActionContainerProps = {
 
 export type ActionProps = {
   style?: ActionStyle;
+  variant?: 'contained' | 'outlined' | 'text';
   icon?: IconType;
   cssClasses?: string;
   children?: React.ReactNode;

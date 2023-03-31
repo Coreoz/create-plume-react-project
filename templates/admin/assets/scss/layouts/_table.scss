@@ -1,0 +1,31 @@
+@use '../variables' as *;
+
+.table_root {
+  .MuiToolbar-root {
+    background-color: $primary-color;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .table_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .MuiInputBase-root {
+      width: 25px;
+      height: 25px;
+
+      .MuiInputBase-input {
+        text-align: center;
+        padding: 0;
+      }
+    }
+  }
+}

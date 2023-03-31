@@ -55,6 +55,7 @@ export function ActionButton({
   onClick,
   isLoading,
   children,
+  variant = 'contained',
 }: ActionButtonProps) {
   return (
     <div
@@ -65,7 +66,7 @@ export function ActionButton({
       <Button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
-        variant="contained"
+        variant={variant}
         disabled={isLoading}
         color={actionStyleToCssClass(style)}
         startIcon={icon && <Icon>{icon}</Icon>}

@@ -1,6 +1,6 @@
 import { HttpMethod } from 'simple-http-request-builder';
-import ApiHttpClient from '../ApiHttpClient';
 import { RefreshableJwtToken, SessionRefresher } from '../../lib/user-session/JwtSessionManager';
+import ApiHttpClient from '../ApiHttpClient';
 
 export type SessionCredentials = {
   userName: string,

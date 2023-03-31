@@ -1,16 +1,55 @@
-import { LayoutPageTitleProps, PanelProps } from './layout/LayoutProps';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
-import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { FormFieldProps } from './form/FormFieldProps';
 import { InputSelectProps, InputTextProps } from './form/FormInputProps';
+import {
+  LayoutPageBlocColumnProps,
+  LayoutPageBlocProps,
+  LayoutPageTitleProps,
+  PanelProps,
+  StatusDotProps,
+} from './layout/LayoutProps';
+import {
+  MultipleChoiceObjectFilterMenuProps,
+  MultipleChoiceRawFilterMenuProps,
+} from './list/filter/FilterProps';
+
+import { ListElementsProps, ListHeaderProps, ListSingleElementProps } from './list/ListProps';
+import { SearchBarProps } from './list/search/SearchProps';
+import { SortListProps } from './list/sort/SortProps';
+import { TableProps } from './list/TableProps';
+import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
   abstract pageTitle: (props: LayoutPageTitleProps) => JSX.Element;
 
+  abstract pageBloc: (props: LayoutPageBlocProps) => JSX.Element;
+
+  abstract pageBlocColumn: (props: LayoutPageBlocColumnProps) => JSX.Element;
+
   abstract panel: (props: PanelProps) => JSX.Element;
 
   abstract panelSeparator: () => JSX.Element;
+
+  abstract searchBar: (props: SearchBarProps) => JSX.Element;
+
+  abstract sortMenu: <T>(props: SortListProps<T>) => JSX.Element;
+
+  abstract multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element;
+
+  abstract multipleChoiceObjectFilterMenu: <T>(props: MultipleChoiceObjectFilterMenuProps<T>) => JSX.Element;
+
+  abstract tableResults: <T>(props: TableProps<T>) => JSX.Element;
+
+  abstract tableFooter: <T>(props: TableProps<T>) => JSX.Element;
+
+  abstract listHeader: <T>(props: ListHeaderProps<T>) => JSX.Element;
+
+  abstract listElements: (props: ListElementsProps) => JSX.Element;
+
+  abstract listSingleElement: (props: ListSingleElementProps) => JSX.Element;
+
+  abstract statusDot: (props: StatusDotProps) => JSX.Element;
 
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;

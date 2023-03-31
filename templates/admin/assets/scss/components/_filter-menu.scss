@@ -1,0 +1,43 @@
+@use '../variables' as *;
+
+.filter-menu-container {
+  max-width: 220px; // avoid filter section being too large for larger screens
+
+  h2 {
+    font-size: $font-size-medium;
+    text-transform: uppercase;
+    color: $primary-color;
+  }
+
+  .filters {
+    margin-top: $spacer-4;
+    .filter {
+      display: flex;
+      flex-direction: column;
+
+      & + .filter {
+        margin-top: $spacer-6;
+      }
+
+      .filter-title {
+        font-weight: bold;
+        font-size: $font-size-normal;
+        margin-bottom: $spacer-2;
+      }
+
+      .MuiFormControlLabel-root {
+        height: $spacer-6;
+
+        .Mui-checked {
+          svg, .MuiTouchRipple-root {
+            color: $secondary-color;
+          }
+        }
+
+        .MuiTypography-root {
+          font-size: $font-size-normal;
+        }
+      }
+    }
+  }
+}

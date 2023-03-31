@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { AnyPromise } from './AnyPromise';
 
 /**
  * Function calls when the {@link Promise} resolution happens after the component has been unmounted.

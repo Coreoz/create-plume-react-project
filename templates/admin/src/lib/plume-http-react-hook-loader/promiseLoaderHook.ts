@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import { Logger } from 'simple-logging-system';
 import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
-import { AnyPromise } from './AnyPromise';
+import { Logger } from 'simple-logging-system';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { AnyPromise } from './AnyPromise';
 
 const logger = new Logger('promiseLoaderHook');
 

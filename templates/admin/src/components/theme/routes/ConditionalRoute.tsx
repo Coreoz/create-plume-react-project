@@ -1,6 +1,6 @@
-import { Navigate } from 'react-router-dom';
-import React from 'react';
 import { Observable, useObservable } from 'micro-observables';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 type Props = {
   shouldDisplayRoute: Observable<unknown>;

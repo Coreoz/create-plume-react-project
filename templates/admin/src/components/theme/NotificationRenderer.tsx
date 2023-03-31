@@ -1,7 +1,8 @@
 import React from 'react';
 import { Slide, toast, TypeOptions } from 'react-toastify';
-import ObservableNotificationEngine from '../../lib/plume-notification/ObservableNotificationEngine';
 import { NotificationOptions } from '../../lib/plume-notification/NotificationEngine';
+import ObservableNotificationEngine
+  from '../../lib/plume-notification/ObservableNotificationEngine';
 
 export default class NotificationRenderer {
   constructor(private readonly notificationEngine: ObservableNotificationEngine) {

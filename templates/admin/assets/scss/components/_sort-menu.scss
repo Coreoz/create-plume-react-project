@@ -1,0 +1,27 @@
+@use '../variables' as *;
+
+.sort-menu {
+  display: flex;
+  align-items: center;
+  padding: $spacer-4;
+  border-radius: $border-radius-5;
+  background-color: rgba($gray-dark, 0.05);
+  margin-left: $spacer-5;
+
+  .MuiSelect-select {
+    padding: 0 $spacer-2;
+  }
+
+  .sort-menu-select {
+    font-size: $font-size-little;
+
+    > div:first-child {
+      padding: 0 $spacer-2;
+      font-size: $font-size-little;
+    }
+
+    fieldset {
+      border: none;
+    }
+  }
+}

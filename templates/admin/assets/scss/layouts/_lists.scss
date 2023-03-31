@@ -1,0 +1,28 @@
+@use '../variables' as *;
+
+.list-elements {
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacer-4;
+
+  .list-single-element {
+    padding: $spacer-4 $spacer-5;
+    border: 1px solid $separator-color;
+    border-radius: $border-radius-5;
+    box-sizing: border-box;
+
+    & + .list-single-element {
+      margin-top: $spacer-2;
+    }
+  }
+}
+
+.list-elements-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: $font-size-medium;
+  }
+}

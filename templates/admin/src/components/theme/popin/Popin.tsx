@@ -1,9 +1,12 @@
 import React from 'react';
-import { ActionButton, ActionsContainer } from '../action/Actions';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import { PopinCloseWithoutSavingProps, PopinProps } from '../../../lib/plume-admin-theme/popin/PopinProps';
-import { Panel } from '../layout/Panel';
 import useMessages from '../../../i18n/hooks/messagesHook';
+import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import {
+  PopinCloseWithoutSavingProps,
+  PopinProps,
+} from '../../../lib/plume-admin-theme/popin/PopinProps';
+import { ActionButton, ActionsContainer } from '../action/Actions';
+import { Panel } from '../layout/Panel';
 
 export function Popin({
   children, zIndex, height, width,

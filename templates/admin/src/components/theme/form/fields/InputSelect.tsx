@@ -1,8 +1,6 @@
 import React from 'react';
 import { SelectElement } from 'react-hook-form-mui';
-import {
-  InputSelectProps,
-} from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import { InputSelectProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 export default function InputSelect(
   {
@@ -12,6 +10,7 @@ export default function InputSelect(
     options,
     disabled,
     useNameAsId,
+    valueKey,
     defaultValue,
     control,
     required,
@@ -29,7 +28,7 @@ export default function InputSelect(
       variant="filled"
       id={fieldId}
       options={options}
-      valueKey="value"
+      valueKey={valueKey || 'value'}
       labelKey="label"
       defaultValue={defaultValue}
       required={required}

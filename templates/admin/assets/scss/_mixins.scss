@@ -1,3 +1,32 @@
+@use 'variables' as *;
+
 @mixin box-shadow-button() {
   box-shadow: rgba(0, 0, 0, 0.24) 0 2px 3px;
+}
+
+@mixin box-shadow() {
+  box-shadow: rgba(0, 0, 0, 0.35) 0 2px 8px;
+}
+
+// Mixins to create a round dot of a fixed px size
+@mixin dot($size) {
+  width: $size;
+  height: $size;
+  border-radius: $border-radius-circle;
+  display: inline-block;
+  margin-right: $spacer-4;
+  flex-shrink: 0;
+}
+
+// Mixins for media query
+@mixin tablet {
+  @media screen and (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
 }

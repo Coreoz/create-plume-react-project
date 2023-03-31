@@ -21,6 +21,11 @@ $gray: #BCBCBC;
 $gray-text: #ABABAB;
 $gray-dark: #444444;
 
+$green: #72bb53;
+$blue: #0d60b4;
+$red: #da1d36;
+$orange: #F49866;
+
 // font-size
 $font-size-mini: 0.4rem;
 $font-size-small: 0.6rem;
@@ -43,13 +48,15 @@ $spacer-8: 4rem;
 $spacer-9: 6rem;
 $spacer-10: 10rem;
 
+// border radius
+$border-radius-3: 3px;
+$border-radius-5: 5px;
+$border-radius-circle: 50%;
+
 $button-height: 24px;
 
 // variable components
 $height-header: 6rem;
-
-// variable animations
-$animation-timing: 0.25s;
 
 /// separators
 $separator: 1px solid $separator-color;
@@ -59,3 +66,7 @@ $width-small-screen-px: 800;
 $width-medium-screen-px: 1150;
 
 $app-max-width: 1200px;
+
+// BREAKPOINTS
+$breakpoint-tablet: 1100px; // above it's a big laptop
+$breakpoint-mobile: 768px; // above it's a tablet, under we use mobile

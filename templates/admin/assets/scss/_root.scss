@@ -1,10 +1,15 @@
-@use "variables" as *;
+@use 'variables' as *;
 
 html {
   height: 100%;
   font-family: $base-font-family;
   font-size: $base-font-size;
   box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
 *,
@@ -16,6 +21,12 @@ html {
 a,
 button {
   cursor: pointer;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  // will not underline letters that overlaps on the link line (as p, g, j, ..)
+  text-decoration-skip-ink: auto;
 }
 
 hr {
@@ -32,4 +43,31 @@ h4,
 p {
   margin: 0;
   font-weight: normal;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }

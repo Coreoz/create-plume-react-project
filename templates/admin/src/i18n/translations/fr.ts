@@ -12,15 +12,19 @@ const frMessages: Translations = {
     delete: 'Supprimer',
     search: 'Rechercher',
     add: 'Ajouter',
+    update: 'Modifier',
     authenticate: 'Me connecter',
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
     close_without_saving: 'Fermer sans sauvegarder',
+    retry: 'Réessayer',
   },
   // common labels
   label: {
     creation_date: 'Date de création',
     loading: 'Chargement...',
+    empty: 'Aucun élément',
+    more_options: 'Plus d\'options',
   },
   // common messages
   message: {
@@ -56,9 +60,35 @@ const frMessages: Translations = {
     title_list: 'Liste des utilisateurs',
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
+    add: 'Ajouter un utilisateur',
     password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
+    list: {
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
+    },
   },
+  // sorts wording
+  sort: {
+    user: {
+      fullName_desc: 'Trier par ordre alphabétique descendant',
+      fullName_asc: 'Trier par ordre alphabétique ascendant',
+      creationDate_asc: 'Trier du plus ancien au plus nouveau',
+      creationDate_desc: 'Trier du plus nouveau au plus ancien',
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: 'Filtres',
+      name: 'Nom',
+      role: 'Rôle',
+      fullName: 'Nom complet',
+      userName: 'Nom d\'utilisateur',
+      email: 'E-mail',
+      creationDate: 'Date de création',
+    },
+  },
+  selected: (count: number) => (count === 1 ? 'Selectionné' : 'Selectionnés'),
   // errors
   error: {
     field: {
