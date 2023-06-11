@@ -73,21 +73,19 @@ Here is the proposed structure for Plume-TS projects:
 
 Technologies
 ------------
-Quelques points clés sur les technologies utilisées sur le projet :
-- L'outil de packaging est [Vite](https://vitejs.dev/config/) (plutôt que webpack et create-react-app).
-- Typescript et les règles de codage eslint d'airbnb sont utilisées (la configuration d'intellij est automatique pour typescript, par contre eslint doit être configuré manuellement)
-- L'injection de dépendance est faite avec [DI](https://github.com/wessberg/di)
-- La gestion de l'état global est faite dans les services via l'utilisation du pattern Observable et la librairie [Micro-observables](https://github.com/BeTomorrow/micro-observables) ; Redux n'est PAS utilisé
-- Les [hooks React](https://fr.reactjs.org/docs/hooks-intro.html) sont utilisés notamment pour accéder aux variables Observables
-- Les librairies externes importantes :
+Some key points about the technologies used in the project :
+- The packaging tool is [Vite](https://vitejs.dev/config/) (rather than webpack and create-react-app).
+- Typescript and Airbnb's eslint coding rules are used (Intellij configuration is automatic for typescript, but eslint must be configured manually in Intellij).
+- Dependency injection is performed with [DI](https://github.com/wessberg/di) and the [Plume TS DI](https://github.com/Coreoz/plume-ts-di) overlay.
+- Global state management is performed in services using the Observable pattern and the [Micro-observables](https://github.com/BeTomorrow/micro-observables) library.
+- Important external libraries included in this template:
+    - [react-router](https://reactrouter.com/)
+    - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
+    - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
+    - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
+    - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
+- External libraries that can be included if needed:
     - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
-    - [Material-UI v5](https://next.material-ui.com)
-    - [react-router](https://reactrouter.com/web/guides/quick-start)
-    - [dayjs](https://github.com/iamkun/dayjs) : l'alternative à Moment.js
-    - [validator.js](https://github.com/validatorjs/validator.js) : validation de chaine de caractères
-- Quelques librairies écrites dans le cadre du projet :
-    - Une gestion des requêtes HTTP (reprend en partie l'ancien code HTTP)
-    - Du code pour identifier et faciliter la mise à jour de la détection de la langue
-    - Un logger
-    - Un scheduler pour faciliter la gestion des `interval`
-    - Du code pour faciliter la mise en place d'un service de session
+    - [MUI](https://mui.com/)
+    - [validator.js](https://github.com/validatorjs/validator.js)
+    - [browser-user-session](https://github.com/Coreoz/browser-user-session)
