@@ -1,11 +1,13 @@
+import { Sample } from '@api/session/SampleApi';
+import SampleService from '@services/sample/SampleService';
 import React, { useState } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
+import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
+import useLoader from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+
+
 import useMessages from '../../i18n/hooks/messagesHook';
-import SampleService from '../../services/sample/SampleService';
-import { useOnComponentMounted } from '../../lib/react-hooks-alias/ReactHooksAlias';
-import useLoader from '../../lib/plume-http-react-hook-loader/promiseLoaderHook';
-import { Sample } from '../../api/session/SampleApi';
-import scss from './home.module.scss'
+import scss from './home.module.scss';
 
 export default function Home() {
   const { messages, httpError } = useMessages();
@@ -20,13 +22,15 @@ export default function Home() {
     );
   });
 
-  return <div id={scss.homeLayout}>
-    <h1>{messages['home.title']}</h1>
-    <div>
-      <h2>API call test</h2>
-      {loader.isLoading && <div>Loading...</div>}
-      {loader.error && <div>Could not call API: {httpError(loader.error)}</div>}
-      {sample && <div>API call success! Result: {sample.name}</div>}
+  return (
+    <div id={scss.homeLayout}>
+      <h1>{messages['home.title']}</h1>
+      <div>
+        <h2>API call test</h2>
+        {loader.isLoading && <div>Loading...</div>}
+        {loader.error && <div>Could not call API: {httpError(loader.error)}</div>}
+        {sample && <div>API call success! Result: {sample.name}</div>}
+      </div>
     </div>
-  </div>;
+  );
 }

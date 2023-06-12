@@ -28,3 +28,9 @@ h2,
 h3 {
   margin: $box-padding 0 0 0;
 }
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;;
+}
