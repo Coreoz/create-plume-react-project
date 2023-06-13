@@ -5,6 +5,7 @@
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
     "dayjs": "^1.11.5",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "micro-observables": "^1.7.2",
     "plume-ts-di": "^1.2.4",
     "react": "^18.2.0",

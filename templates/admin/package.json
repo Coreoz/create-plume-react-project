@@ -12,6 +12,7 @@
     "@mui/system": "^5.10.9",
     "@mui/x-date-pickers": "^5.0.5",
     "dayjs": "^1.11.5",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "micro-observables": "^1.7.2",
     "plume-ts-di": "^1.2.4",
     "react": "^18.2.0",

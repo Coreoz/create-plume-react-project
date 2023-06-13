@@ -26,7 +26,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'unused-imports',
   ],
   settings: {
     react: {
@@ -73,5 +74,6 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error', {
       'functions': false,
     }],
+    'unused-imports/no-unused-imports': 'error',
   },
 };
