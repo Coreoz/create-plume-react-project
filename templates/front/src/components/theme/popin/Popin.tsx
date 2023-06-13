@@ -2,9 +2,9 @@ import React from 'react';
 
 export type PopinProps = {
   zIndex?: number,
-  height?: string;
-  width?: string;
-  children?: React.ReactNode;
+  height?: string,
+  width?: string,
+  children?: React.ReactNode,
 };
 
 export function Popin({

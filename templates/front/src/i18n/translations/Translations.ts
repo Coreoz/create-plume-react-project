@@ -1,5 +1,5 @@
 export interface ErrorFunction {
-  (...args: string[]): string;
+  (...args: string[]): string,
 }
 
 export type Translations = {

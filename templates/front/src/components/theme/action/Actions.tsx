@@ -1,10 +1,10 @@
 import React from 'react';
 
 export type ActionButtonProps = {
-  onClick?: () => void;
-  isLoading?: boolean;
-  cssClasses?: string;
-  children?: React.ReactNode;
+  onClick?: () => void,
+  isLoading?: boolean,
+  cssClasses?: string,
+  children?: React.ReactNode,
 };
 
 export function ActionButton({

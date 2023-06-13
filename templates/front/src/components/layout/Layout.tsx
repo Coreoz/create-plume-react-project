@@ -4,7 +4,7 @@ import Header from './Header';
 import GlobalErrorBoundary from '../theme/GlobalErrorBoundary';
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode,
 };
 
 export default function Layout({ children }: Props) {
