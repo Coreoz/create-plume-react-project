@@ -1,7 +1,7 @@
 import { HttpError } from 'simple-http-rest-client';
 
 export interface MessageResolver {
-  (messageKey: string, ...messageArgs: string[]): string;
+  (messageKey: string, ...messageArgs: string[]): string,
 }
 
 /**

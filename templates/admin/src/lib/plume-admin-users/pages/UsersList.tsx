@@ -7,7 +7,7 @@ import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
 
 type Props = {
-  usersWithRoles?: AdminUsersWithIndexedRolesType;
+  usersWithRoles?: AdminUsersWithIndexedRolesType,
   usersPath: string,
 };
 

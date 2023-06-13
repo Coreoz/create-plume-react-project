@@ -52,7 +52,7 @@ export type LoaderState = {
    * The main function provided by the hook {@link useLoader} to monitor the loading of a {@link LoadingPromise}.
    * @param httpPromise The `Promise` that needs to be monitored: is it loading? Has it raised any error?
    */
-  monitor: (httpPromise: LoadingPromise<unknown>) => void;
+  monitor: (httpPromise: LoadingPromise<unknown>) => void,
 };
 
 /**
