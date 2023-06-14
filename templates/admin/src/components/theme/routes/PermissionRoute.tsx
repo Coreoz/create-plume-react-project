@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function PermissionRoute({ permission, children }: Props) {
-  const sessionService = getGlobalInstance(SessionService);
+  const sessionService: SessionService = getGlobalInstance(SessionService);
 
   return (
     <ConditionalRoute

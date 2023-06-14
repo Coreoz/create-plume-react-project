@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
-import { AdminUsersDetails } from '../api/AdminUserTypes';
+import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import UsersEdit from './UsersEdit';
@@ -19,13 +19,13 @@ export default class Users {
   private static setUsersAndIndexRoles(usersWithRoles: AdminUsersDetails) {
     return {
       users: usersWithRoles.users,
-      roles: new Map<string, string>(usersWithRoles.roles.map((role) => [role.id, role.label])),
+      roles: new Map<string, string>(usersWithRoles.roles.map((role: AdminRole) => [role.id, role.label])),
     };
   }
 
   render = () => {
     // TODO how to get the current route where this component has been mounted??
-    const usersPath = '/users';
+    const usersPath: string = '/users';
 
     const [usersWithRoles, setUsersWithRoles] = useState<AdminUsersWithIndexedRolesType>();
 

@@ -4,11 +4,11 @@ import IdlenessDetector from '../../lib/user-session/IdlenessDetector';
 import PageActivityManager from '../../lib/user-session/page-activity/PageActivityManager';
 import Permission from './Permission';
 import { UserWithExpiration } from './User';
-import JwtSessionManager from '../../lib/user-session/JwtSessionManager';
+import JwtSessionManager, { RefreshableJwtToken } from '../../lib/user-session/JwtSessionManager';
 
-const THRESHOLD_IN_MILLIS_TO_DETECT_EXPIRED_SESSION = 60 * 1000; // 1 minutes
-const LOCAL_STORAGE_CURRENT_SESSION = 'user-session';
-const HTTP_ERROR_ALREADY_EXPIRED_SESSION_TOKEN = 'ALREADY_EXPIRED_SESSION_TOKEN';
+const THRESHOLD_IN_MILLIS_TO_DETECT_EXPIRED_SESSION: number = 60 * 1000; // 1 minutes
+const LOCAL_STORAGE_CURRENT_SESSION: string = 'user-session';
+const HTTP_ERROR_ALREADY_EXPIRED_SESSION_TOKEN: string = 'ALREADY_EXPIRED_SESSION_TOKEN';
 
 export default class SessionService {
   private jwtSessionManager: JwtSessionManager<UserWithExpiration>;
@@ -45,7 +45,9 @@ export default class SessionService {
   }
 
   hasPermission(permission: Permission) {
-    return this.jwtSessionManager.getCurrentUser().select((user) => user?.permissions.includes(permission) ?? false);
+    return this.jwtSessionManager.getCurrentUser().select((user?: UserWithExpiration) => (
+      user?.permissions.includes(permission) ?? false),
+    );
   }
 
   // actions
@@ -54,7 +56,7 @@ export default class SessionService {
     return this
       .sessionApi
       .authenticate(credentials)
-      .then((sessionToken) => this.jwtSessionManager.registerNewSession(sessionToken));
+      .then((sessionToken: RefreshableJwtToken) => this.jwtSessionManager.registerNewSession(sessionToken));
   }
 
   disconnect() {

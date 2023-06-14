@@ -1,32 +1,41 @@
+import {
+  ActionButtonProps,
+  ActionContainerProps,
+  ActionLinkProps,
+} from '../../lib/plume-admin-theme/action/ActionProps';
+import { FormFieldProps } from '../../lib/plume-admin-theme/form/FormFieldProps';
+import { InputSelectProps, InputTextProps } from '../../lib/plume-admin-theme/form/FormInputProps';
+import { LayoutPageTitleProps, PanelProps } from '../../lib/plume-admin-theme/layout/LayoutProps';
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import PageTitle from './layout/PageTitle';
+import { PopinCloseWithoutSavingProps, PopinProps } from '../../lib/plume-admin-theme/popin/PopinProps';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
-import { Panel, PanelSeparator } from './layout/Panel';
-import FormField from './form/FormField';
-import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
-import InputText from './form/fields/InputText';
 import InputSelect from './form/fields/InputSelect';
+import InputText from './form/fields/InputText';
+import FormField from './form/FormField';
+import PageTitle from './layout/PageTitle';
+import { Panel, PanelSeparator } from './layout/Panel';
+import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
-  pageTitle = PageTitle;
+  pageTitle: (props: LayoutPageTitleProps) => JSX.Element = PageTitle;
 
-  actionsContainer = ActionsContainer;
+  actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
 
-  actionButton = ActionButton;
+  actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
 
-  actionLink = ActionLink;
+  actionLink: (props: ActionLinkProps) => JSX.Element = ActionLink;
 
-  panel = Panel;
+  panel: (props: PanelProps) => JSX.Element = Panel;
 
-  panelSeparator = PanelSeparator;
+  panelSeparator: () => JSX.Element = PanelSeparator;
 
-  popin = Popin;
+  popin: (props: PopinProps) => JSX.Element = Popin;
 
-  popinCloseWithoutSaving = PopinCloseWithoutSaving;
+  popinCloseWithoutSaving: (props: PopinCloseWithoutSavingProps) => JSX.Element | null = PopinCloseWithoutSaving;
 
-  formField = FormField;
+  formField: (props: FormFieldProps) => JSX.Element = FormField;
 
-  inputText = InputText;
+  inputText: (props: InputTextProps) => JSX.Element = InputText;
 
-  inputSelect = InputSelect;
+  inputSelect: (props: InputSelectProps) => JSX.Element = InputSelect;
 }

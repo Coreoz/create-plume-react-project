@@ -6,7 +6,7 @@ import MessageService from '../MessageService';
 
 type KeyFunction = (...messageArgs: string[]) => string;
 
-const logger = new Logger('MessageResolver');
+const logger: Logger = new Logger('MessageResolver');
 
 /**
  * {@link PlumeMessageResolver} implementation
@@ -25,11 +25,11 @@ export default class MessageResolver implements PlumeMessageResolver {
    * @param messageArgs: the potentials arguments of the message
    */
   private messageResolver = (messageKey: string, ...messageArgs: string[]): string => {
-    const translation = messageKey.split('.')
+    const translation: Translations = messageKey.split('.')
       // Enables to find the message value in a object (e.g `{a: {b: {c: value}}}` with a string key (e.g `a.b.c`)
       .reduce(
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-        (p, c) => (p as any)?.[c],
+        (p: Translations, c: string) => (p as any)?.[c],
         // returns all the translations
         this.messages,
       );
@@ -47,5 +47,5 @@ export default class MessageResolver implements PlumeMessageResolver {
 
   httpError = (error: HttpError) => MessageService.httpError(this.messages, error);
 
-  t = this.messageResolver;
+  t: (messageKey: string, ...messageArgs: string[]) => string = this.messageResolver;
 }

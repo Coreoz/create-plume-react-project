@@ -20,7 +20,7 @@ export type ReactHookConfirm = {
   shouldAskConfirmation: boolean,
 };
 
-const logger = new Logger('ReactHookConfirm');
+const logger: Logger = new Logger('ReactHookConfirm');
 
 /**
  * Hook used to help build action confirmation popin mechanism.

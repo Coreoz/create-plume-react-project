@@ -18,10 +18,10 @@ import initializeLocalizedDate from './i18n/messages/LocalizedDate';
 import LocaleService from './i18n/locale/LocaleService';
 import NotificationRenderer from './components/theme/NotificationRenderer';
 
-const currentMillis = Date.now();
-const logger = new Logger('index');
+const currentMillis: number = Date.now();
+const logger: Logger = new Logger('index');
 
-const injector = new Injector();
+const injector: Injector = new Injector();
 installServicesModule(injector);
 installComponentsModule(injector);
 installApiModule(injector);
@@ -32,7 +32,7 @@ injector.initializeSingletonInstances();
 
 configureGlobalInjector(injector);
 
-const sessionService = injector.getInstance(SessionService);
+const sessionService: SessionService = injector.getInstance(SessionService);
 sessionService.tryInitializingSessionFromStorage();
 sessionService.synchronizeSessionFromOtherBrowserTags();
 
@@ -41,12 +41,12 @@ initializeLocalizedDate(injector.getInstance(LocaleService));
 // notifications display management
 injector.getInstance(NotificationRenderer).initialize();
 
-const reactApp = (
+const reactApp: JSX.Element = (
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-const rootElement = document.getElementById('root');
+const rootElement: HTMLElement | null = document.getElementById('root');
 if (!rootElement) {
   throw new Error('Failed to find the root element');
 }

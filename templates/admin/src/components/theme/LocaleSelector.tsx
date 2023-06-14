@@ -22,7 +22,7 @@ export default function LocaleSelector(
       subscribeOnClick={subscribeOnClick}
     >
       {
-        availableLocales.map((availableLocale) => (
+        availableLocales.map((availableLocale: Locale) => (
           <MenuItem
             key={availableLocale.code}
             onClick={wrapOnClick(() => onLocaleSelected(availableLocale))}

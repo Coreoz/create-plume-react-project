@@ -2,11 +2,11 @@ import appLogo from '/assets/icons/plume_logo.png';
 import { Alert } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useObservable } from 'micro-observables';
 import { SessionCredentials } from '../../../api/session/SessionApi';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import useLoader from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, { LoaderState } from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import SessionService from '../../../services/session/SessionService';
 import { HOME } from '../../Routes';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
@@ -17,17 +17,17 @@ import useMessages from '../../../i18n/hooks/messagesHook';
 import { FormContainer } from 'react-hook-form-mui';
 
 export default function Login() {
-  const sessionService = getGlobalInstance(SessionService);
+  const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages, httpError } = useMessages();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-  const loader = useLoader();
+  const loader: LoaderState = useLoader();
 
   const tryAuthenticate = (credentials: SessionCredentials) => {
     loader.monitor(sessionService.authenticate(credentials));
   };
 
-  const isAuthenticated = useObservable(sessionService.isAuthenticated());
+  const isAuthenticated: boolean = useObservable(sessionService.isAuthenticated());
   useOnDependenciesChange(() => {
     if (isAuthenticated) {
       navigate({ pathname: HOME });

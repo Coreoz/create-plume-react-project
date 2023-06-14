@@ -5,7 +5,7 @@ export function formErrorToMessage(
   messageResolver: MessageResolver, error: FieldError, errorMapping?: (error: FieldError) => string | undefined,
 ): string {
   if (errorMapping) {
-    const errorMappingMessage = errorMapping(error);
+    const errorMappingMessage: string | undefined = errorMapping(error);
     if (errorMappingMessage) {
       return errorMappingMessage;
     }

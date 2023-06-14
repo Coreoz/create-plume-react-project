@@ -18,7 +18,7 @@ export default function InputText({
   multiline,
   rows,
 }: InputTextProps) {
-  const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
+  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
   return (
     <TextFieldElement
