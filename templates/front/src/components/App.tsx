@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
-import Home from './pages/Home';
 import Layout from './layout/Layout';
 import ErrorPage from './pages/ErrorPage';
+import Home from './pages/Home';
 
-const logger = new Logger('App');
+const logger: Logger = new Logger('App');
 
 export default function App() {
-  const router = useMemo(() => createBrowserRouter([
+  const router: ReturnType<typeof createBrowserRouter> = useMemo(() => createBrowserRouter([
     {
       path: '/',
       element: <Layout><Outlet /></Layout>,

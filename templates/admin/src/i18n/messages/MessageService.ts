@@ -36,14 +36,14 @@ export default class MessageService {
   static httpError(messages: Translations, error: HttpError): string {
     const translatedArguments: string[] = (error.statusArguments ?? []).map((argument: string) => {
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-      const translation: any = (messages as any)[argument];
+      const translation: string | Function = (messages as any)[argument];
       if (translation && typeof translation === 'string') {
         return translation;
       }
       return argument;
     });
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const translatedMessage: any = (messages['http-errors'] as any)[error.errorCode];
+    const translatedMessage: string | Function = (messages['http-errors'] as any)[error.errorCode];
     if (translatedMessage) {
       if (typeof translatedMessage === 'function') {
         return translatedMessage(...translatedArguments);

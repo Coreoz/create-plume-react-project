@@ -3,13 +3,13 @@ import { getGlobalInstance } from 'plume-ts-di';
 import useMessages from '../../i18n/hooks/messagesHook';
 import SampleService from '../../services/sample/SampleService';
 import { useOnComponentMounted } from '../../lib/react-hooks-alias/ReactHooksAlias';
-import useLoader from '../../lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, { LoaderState } from '../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import { Sample } from '../../api/session/SampleApi';
 
 export default function Home() {
   const { messages, httpError } = useMessages();
-  const sampleService = getGlobalInstance(SampleService);
-  const loader = useLoader();
+  const sampleService: SampleService = getGlobalInstance(SampleService);
+  const loader: LoaderState = useLoader();
   const [sample, setSample] = useState<Sample>();
 
   useOnComponentMounted(() => {
