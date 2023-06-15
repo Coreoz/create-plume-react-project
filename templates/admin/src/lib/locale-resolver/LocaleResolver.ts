@@ -1,10 +1,10 @@
 export type Locale = {
-  code: string;
-  name: string;
+  code: string,
+  name: string,
 };
 
 export interface LocaleResolverFunction {
-  (localeResolver: LocaleResolver): Locale | undefined;
+  (localeResolver: LocaleResolver): Locale | undefined,
 }
 
 export type LocaleResolverParameters = {

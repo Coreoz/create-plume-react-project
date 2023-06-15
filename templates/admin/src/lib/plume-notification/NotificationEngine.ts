@@ -1,5 +1,5 @@
 export type NotificationOptions = {
-  style?: 'danger' | 'warning' | 'info' | 'success';
+  style?: 'danger' | 'warning' | 'info' | 'success',
 };
 
 export default abstract class NotificationEngine {

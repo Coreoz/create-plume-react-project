@@ -74,7 +74,7 @@ export type DataLoader<T> = {
  * Errors must be of type {@link HttpError}
  */
 export type CatchablePromise = {
-  catch: (consumer: (error: HttpError) => void) => unknown;
+  catch: (consumer: (error: HttpError) => void) => unknown,
 };
 
 /**
