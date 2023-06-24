@@ -27,17 +27,22 @@ export default defineConfig({
   },
   css: {
     modules: {
-      localsConvention: 'camelCase',
+      localsConvention: 'dashes',
     },
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use '@scssVariables' as *;`
+      },
+    }
   },
   resolve: {
     alias: {
       '@scssVariables': require('path').resolve(__dirname, 'assets/scss/variables.scss'),
-      '@api': require('path').resolve(__dirname, 'src/api'),
-      '@components': require('path').resolve(__dirname, 'src/components'),
-      '@i18n': require('path').resolve(__dirname, 'src/i18n'),
-      '@lib': require('path').resolve(__dirname, 'src/lib'),
-      '@services': require('path').resolve(__dirname, 'src/services'),
+      '@api': require('path').resolve(__dirname, 'ts-built/api'),
+      '@components': require('path').resolve(__dirname, 'ts-built/components'),
+      '@i18n': require('path').resolve(__dirname, 'ts-built/i18n'),
+      '@lib': require('path').resolve(__dirname, 'ts-built/lib'),
+      '@services': require('path').resolve(__dirname, 'ts-built/services'),
     }
   },
 });
