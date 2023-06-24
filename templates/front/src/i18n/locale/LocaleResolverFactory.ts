@@ -1,5 +1,5 @@
 import { Provider } from 'plume-ts-di';
-import { LocaleResolver } from '../../lib/locale-resolver/LocaleResolver';
+import { LocaleResolver } from '@lib/locale-resolver/LocaleResolver';
 import LocaleService from './LocaleService';
 
 /**

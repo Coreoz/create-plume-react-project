@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
-import Home from './pages/Home';
-import Layout from './layout/Layout';
-import ErrorPage from './pages/ErrorPage';
+import Layout from '@components/layout/Layout';
+import ErrorPage from '@components/pages/ErrorPage';
+import Home from '@components/pages/Home';
 
 const logger = new Logger('App');
 

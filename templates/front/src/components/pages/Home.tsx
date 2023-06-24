@@ -1,12 +1,11 @@
-import { Sample } from '@api/session/SampleApi';
-import SampleService from '@services/sample/SampleService';
 import React, { useState } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
+import { Sample } from '@api/session/SampleApi';
+import SampleService from '@services/sample/SampleService';
 import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
 import useLoader from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useMessages from '@i18n/hooks/messagesHook';
 
-
-import useMessages from '../../i18n/hooks/messagesHook';
 import scss from './home.module.scss';
 
 export default function Home() {

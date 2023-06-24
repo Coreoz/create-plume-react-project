@@ -1,8 +1,8 @@
+import LocaleSelector from '@components/theme/LocaleSelector';
+import LocaleService from '@i18n/locale/LocaleService';
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useObservable } from 'micro-observables';
-import LocaleSelector from '../../theme/LocaleSelector';
-import LocaleService from '../../../i18n/locale/LocaleService';
 import scss from './header.module.scss';
 
 function LocaleSelectorContainer() {

@@ -1,10 +1,10 @@
 import { observable, WritableObservable } from 'micro-observables';
 import { HttpError } from 'simple-http-rest-client';
-import frMessages from '../translations/fr';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
-import { Translations } from '../translations/Translations';
-import LocaleService from '../locale/LocaleService';
-import enMessages from '../translations/en';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
+import { Translations } from '@i18n/translations/Translations';
+import LocaleService from '@i18n/locale/LocaleService';
+import frMessages from '@i18n/translations/fr';
+import enMessages from '@i18n/translations/en';
 
 export default class MessageService {
   private messages: WritableObservable<Translations>;
