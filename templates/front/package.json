@@ -74,10 +74,10 @@
     "safari >= 12"
   ],
   "scripts": {
-    "start": "concurrently  \"yarn watch-ts\" \"yarn run watch-scss-module\" \"yarn watch-js\"",
+    "start": "concurrently  \"yarn watch-ts\" \"yarn copy-css\" \"yarn watch-scss-module\" \"yarn watch-js\"",
     "watch-ts": "ttsc --incremental -w",
     "watch-js": "vite",
-    "watch-scss-module": "concurrently \"typed-scss-modules 'src/**/*.scss' -w -u\" \"yarn copy-css\"",
+    "watch-scss-module": "typed-scss-modules 'src/**/*.scss' -w -u",
     "copy-css": "copyfiles -u 1 ./src/**/*.scss ts-built",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint '**/*.scss'",
