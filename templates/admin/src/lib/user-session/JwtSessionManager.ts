@@ -8,7 +8,7 @@ import PageActivityManager, { PageActivity } from './page-activity/PageActivityM
 const logger: Logger = new Logger('JwtSessionManager');
 
 export type ExpirableJwtValue = {
-  exp: number;
+  exp: number,
 };
 
 export type RefreshableJwtToken = {
@@ -18,7 +18,7 @@ export type RefreshableJwtToken = {
 };
 
 export interface SessionRefresher {
-  refresh(webSessionToken: string): HttpPromise<RefreshableJwtToken>;
+  refresh(webSessionToken: string): HttpPromise<RefreshableJwtToken>,
 }
 
 export type JwtSessionManagerConfig = {

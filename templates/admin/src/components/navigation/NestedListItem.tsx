@@ -11,11 +11,11 @@ import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
 
 type NestedItemProps = {
-  icon?: IconType;
-  opened?: boolean;
-  label: string;
-  drawerOpen: boolean;
-  children?: React.ReactNode;
+  icon?: IconType,
+  opened?: boolean,
+  label: string,
+  drawerOpen: boolean,
+  children?: React.ReactNode,
 };
 
 function NestedListItem(

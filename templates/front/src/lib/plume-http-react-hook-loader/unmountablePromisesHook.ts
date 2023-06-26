@@ -11,7 +11,7 @@ export interface OnUnmountedResolution<T, E> {
    * @param thenResult Contains the result if the {@link Promise} has succeeded
    * @param catchResult Contains the error if the {@link Promise} has failed
    */
-  (thenResult?: T, catchResult?: E): void;
+  (thenResult?: T, catchResult?: E): void,
 }
 
 /**
@@ -24,7 +24,7 @@ export interface StopPromisePropagationAfterUnmount {
   <T, E>(
     promise: AnyPromise<T, E>,
     onUnmountedResolution?: OnUnmountedResolution<T, E>,
-  ): AnyPromise<T, E>;
+  ): AnyPromise<T, E>,
 }
 
 /**

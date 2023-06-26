@@ -3,9 +3,9 @@ import React from 'react';
 import { Observable, useObservable } from 'micro-observables';
 
 type Props = {
-  shouldDisplayRoute: Observable<unknown>;
-  defaultRoute: string;
-  children?: React.ReactNode;
+  shouldDisplayRoute: Observable<unknown>,
+  defaultRoute: string,
+  children?: React.ReactNode,
 };
 
 export default function ConditionalRoute({

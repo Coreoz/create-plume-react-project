@@ -9,7 +9,7 @@ import { AdminUserDetails } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
-  usersWithRoles?: AdminUsersWithIndexedRolesType;
+  usersWithRoles?: AdminUsersWithIndexedRolesType,
   usersPath: string,
 };
 
