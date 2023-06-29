@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useMatch } from 'react-router-dom';
+import { Link, PathMatch, useMatch } from 'react-router-dom';
 import {
   Icon,
   ListItemButton,
@@ -20,7 +20,7 @@ function LinkListItem(
     icon, route, label, drawerOpen,
   }: LinkListItemProps,
 ) {
-  const routeMatch = useMatch({ path: route });
+  const routeMatch: PathMatch<string> | null = useMatch({ path: route });
   return (
     <ListItemButton
       component={Link}

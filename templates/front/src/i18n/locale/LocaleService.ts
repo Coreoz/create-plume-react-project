@@ -6,9 +6,9 @@ import { Locale, LocaleResolver } from '../../lib/locale-resolver/LocaleResolver
  * en enregistrant le choix dans le locale storage
  */
 export default class LocaleService {
-  static readonly LOCALE_FR = { code: 'fr', name: 'Français' } as const;
+  static readonly LOCALE_FR: Locale = { code: 'fr', name: 'Français' } as const;
 
-  static readonly LOCALE_EN = { code: 'en', name: 'English' } as const;
+  static readonly LOCALE_EN: Locale = { code: 'en', name: 'English' } as const;
 
   private readonly currentLocale: WritableObservable<Locale>;
 

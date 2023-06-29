@@ -4,10 +4,10 @@ import { Logger } from 'simple-logging-system';
 import { HOME } from '../Routes';
 import Layout from '../layout/Layout';
 
-const logger = new Logger('ErrorPage');
+const logger: Logger = new Logger('ErrorPage');
 
 export default function ErrorPage() {
-  const error = useRouteError();
+  const error: unknown = useRouteError();
 
   logger.warn('Error page displayed', { error });
 

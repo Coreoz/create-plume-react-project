@@ -12,7 +12,7 @@ import Permission from '../../services/session/Permission';
 import { HOME, USERS } from '../Routes';
 
 export default function Router() {
-  const users = getGlobalInstance(Users);
+  const users: Users = getGlobalInstance(Users);
 
   return (
     <Routes>

@@ -9,7 +9,7 @@ import enMessages from '../translations/en';
 export default class MessageService {
   private messages: WritableObservable<Translations>;
 
-  private static translations = new Map<Locale, Translations>([
+  private static translations: Map<Locale, Translations> = new Map<Locale, Translations>([
     [LocaleService.LOCALE_FR, frMessages],
     [LocaleService.LOCALE_EN, enMessages],
   ]);
@@ -18,7 +18,7 @@ export default class MessageService {
     this.messages = observable(MessageService.fetchMessages(localeService.getCurrentLocale().get()));
     localeService
       .getCurrentLocale()
-      .subscribe((locale) => this.updateMessagesWithLocale(locale));
+      .subscribe((locale: Locale) => this.updateMessagesWithLocale(locale));
   }
 
   private updateMessagesWithLocale(locale: Locale) {
@@ -34,16 +34,16 @@ export default class MessageService {
    * If no message could be found, the error code is returned
    */
   static httpError(messages: Translations, error: HttpError): string {
-    const translatedArguments = (error.statusArguments ?? []).map((argument) => {
+    const translatedArguments: string[] = (error.statusArguments ?? []).map((argument: string) => {
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-      const translation = (messages as any)[argument];
+      const translation: string | Function = (messages as any)[argument];
       if (translation && typeof translation === 'string') {
         return translation;
       }
       return argument;
     });
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const translatedMessage = (messages['http-errors'] as any)[error.errorCode];
+    const translatedMessage: string | Function = (messages['http-errors'] as any)[error.errorCode];
     if (translatedMessage) {
       if (typeof translatedMessage === 'function') {
         return translatedMessage(...translatedArguments);

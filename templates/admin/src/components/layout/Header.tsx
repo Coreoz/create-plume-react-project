@@ -7,13 +7,15 @@ import SessionService from '../../services/session/SessionService';
 import DropdownMenu from '../theme/DropdownMenu';
 import LocaleSelector from '../theme/LocaleSelector';
 import useMessages from '../../i18n/hooks/messagesHook';
+import { UserWithExpiration } from '../../services/session/User';
+import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 
 function makeInitials(fullName?: string): string {
   if (!fullName) {
     return '';
   }
-  const names = fullName.split(' ');
-  let initials = names[0].substring(0, 1).toUpperCase();
+  const names: string[] = fullName.split(' ');
+  let initials: string = names[0].substring(0, 1).toUpperCase();
 
   if (names.length > 1) {
     initials += names[names.length - 1].substring(0, 1).toUpperCase();
@@ -22,19 +24,19 @@ function makeInitials(fullName?: string): string {
 }
 
 function LocaleSelectorContainer() {
-  const localeService = getGlobalInstance(LocaleService);
-  const currentLocale = useObservable(localeService.getCurrentLocale());
+  const localeService: LocaleService = getGlobalInstance(LocaleService);
+  const currentLocale: Locale | undefined = useObservable(localeService.getCurrentLocale());
 
   return <LocaleSelector
     currentLocale={currentLocale}
     availableLocales={localeService.getAvailableLocales()}
-    onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
+    onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
   />;
 }
 
 export default function Header() {
-  const sessionService = getGlobalInstance(SessionService);
-  const currentUser = useObservable(sessionService.getCurrentUser());
+  const sessionService: SessionService = getGlobalInstance(SessionService);
+  const currentUser: UserWithExpiration | undefined = useObservable(sessionService.getCurrentUser());
   const { messages } = useMessages();
 
   return (

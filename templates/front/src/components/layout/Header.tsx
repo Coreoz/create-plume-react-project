@@ -3,15 +3,16 @@ import { getGlobalInstance } from 'plume-ts-di';
 import { useObservable } from 'micro-observables';
 import LocaleSelector from '../theme/LocaleSelector';
 import LocaleService from '../../i18n/locale/LocaleService';
+import { Locale } from '../../lib/locale-resolver/LocaleResolver';
 
 function LocaleSelectorContainer() {
-  const localeService = getGlobalInstance(LocaleService);
-  const currentLocale = useObservable(localeService.getCurrentLocale());
+  const localeService: LocaleService = getGlobalInstance(LocaleService);
+  const currentLocale: Locale = useObservable(localeService.getCurrentLocale());
 
   return <LocaleSelector
     currentLocale={currentLocale}
     availableLocales={localeService.getAvailableLocales()}
-    onLocaleSelected={(newLocale) => localeService.setCurrentLocale(newLocale)}
+    onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
   />;
 }
 

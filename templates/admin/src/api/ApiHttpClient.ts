@@ -3,7 +3,7 @@ import {
   createHttpFetchRequest, defaultJsonFetchClient, fetchClient, HttpPromise,
 } from 'simple-http-rest-client';
 
-const baseUrl = `${window.location.protocol}//${window.location.host}/api`;
+const baseUrl: string = `${window.location.protocol}//${window.location.host}/api`;
 
 export default class ApiHttpClient {
   // eslint-disable-next-line class-methods-use-this

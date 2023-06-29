@@ -11,7 +11,7 @@ type Props = {
 export default function ConditionalRoute({
   shouldDisplayRoute, defaultRoute, children,
 }: Props) {
-  const shouldDisplayRouteValue = useObservable(shouldDisplayRoute);
+  const shouldDisplayRouteValue: unknown = useObservable(shouldDisplayRoute);
   if (!shouldDisplayRouteValue) {
     return <Navigate to={defaultRoute} replace />;
   }
