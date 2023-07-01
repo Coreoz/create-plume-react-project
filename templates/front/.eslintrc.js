@@ -10,7 +10,6 @@ module.exports = {
     'airbnb-typescript',
     'plugin:compat/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:jsx-a11y/recommended',
     'plugin:css-modules/recommended',
     // à décommenter pour voir l'usage des fonctions un peu exotiques
     // => par contre on ne peut pas laisser ce plugin tout le temps
