@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
@@ -11,7 +11,7 @@ export interface OnUnmountedResolution<T, E> {
    * @param thenResult Contains the result if the {@link Promise} has succeeded
    * @param catchResult Contains the error if the {@link Promise} has failed
    */
-  (thenResult?: T, catchResult?: E): void;
+  (thenResult?: T, catchResult?: E): void,
 }
 
 /**
@@ -24,7 +24,7 @@ export interface StopPromisePropagationAfterUnmount {
   <T, E>(
     promise: AnyPromise<T, E>,
     onUnmountedResolution?: OnUnmountedResolution<T, E>,
-  ): AnyPromise<T, E>;
+  ): AnyPromise<T, E>,
 }
 
 /**
@@ -50,7 +50,7 @@ export interface StopPromisePropagationAfterUnmount {
  * ```
  */
 export default function useUnmountablePromises(): StopPromisePropagationAfterUnmount {
-  const isMountedRef = useRef<boolean>(true);
+  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
 
   useOnComponentUnMounted(() => {
     isMountedRef.current = false;
@@ -58,16 +58,16 @@ export default function useUnmountablePromises(): StopPromisePropagationAfterUnm
 
   return <T, E>(promise: AnyPromise<T, E>, onUnmountedResolution?: OnUnmountedResolution<T, E>): AnyPromise<T, E> => (
     // the idea is to not resolve or reject the Promise in case the component is not Mounted anymore
-    new Promise<T>((resolve, reject) => {
+    new Promise<T>((resolve: (result: T) => void, reject: (error: E) => void) => {
       promise
-        .then((result) => {
+        .then((result: T) => {
           if (isMountedRef.current) {
             resolve(result);
           } else {
             onUnmountedResolution?.(result, undefined);
           }
         })
-        .catch((error) => {
+        .catch((error: E) => {
           if (isMountedRef.current) {
             reject(error);
           } else {

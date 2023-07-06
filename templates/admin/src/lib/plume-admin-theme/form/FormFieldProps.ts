@@ -4,19 +4,19 @@ export type FormFieldProps = {
   /**
    * The identifier of the input, so the label and the error fields are correctly refering the input
    */
-  inputId?: string;
+  inputId?: string,
   /**
    * The name of the input, used to retrieve the error if {@link useNameAsId} is true
    */
-  name?: string;
+  name?: string,
   /**
    * Indicates wether the error should be retrieved using {@link name} or {@link inputId}
    */
-  useNameAsId?: boolean;
+  useNameAsId?: boolean,
   /**
    * The optional label that will be display next to the form field
    */
-  label?: string;
+  label?: string,
   /**
    * The field optional error object returned by the `useForm` hook.
    * For example:
@@ -28,7 +28,7 @@ export type FormFieldProps = {
    * </FormField>
    * ```
    */
-  error?: FieldError;
+  error?: FieldError,
   /**
    * The mapping function that will be called if {@link error} is set
    * to try to resolve the corresponding message depending on the error type.
@@ -52,9 +52,9 @@ export type FormFieldProps = {
    *
    * The usage of `errorMessageMapping` requires the FormField error field to be set in order to be executed
    */
-  errorMessageMapping?: (error: FieldError) => string | undefined;
+  errorMessageMapping?: (error: FieldError) => string | undefined,
   /**
    * The field content children nodes
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode,
 };

@@ -18,7 +18,7 @@ export default function InputSelect(
     onBlur,
     onChange,
   }: InputSelectProps) {
-  const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
+  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
   return (
     <SelectElement

@@ -6,5 +6,5 @@ export type User = {
 };
 
 export interface UserWithExpiration extends User {
-  exp: number;
+  exp: number,
 }

@@ -11,7 +11,7 @@ import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages from '../../i18n/hooks/messagesHook';
 
 export default function Navigation() {
-  const sessionService = getGlobalInstance(SessionService);
+  const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages } = useMessages();
 
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);

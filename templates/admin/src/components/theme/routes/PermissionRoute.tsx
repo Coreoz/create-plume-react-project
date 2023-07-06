@@ -5,12 +5,12 @@ import SessionService from '../../../services/session/SessionService';
 import ConditionalRoute from './ConditionalRoute';
 
 type Props = {
-  permission: Permission;
-  children?: React.ReactNode;
+  permission: Permission,
+  children?: React.ReactNode,
 };
 
 export default function PermissionRoute({ permission, children }: Props) {
-  const sessionService = getGlobalInstance(SessionService);
+  const sessionService: SessionService = getGlobalInstance(SessionService);
 
   return (
     <ConditionalRoute

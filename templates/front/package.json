@@ -27,7 +27,7 @@
     "@types/validator": "^13.7.7",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "concurrently": "^7.4.0",
     "copyfiles": "^2.4.1",

@@ -6,7 +6,7 @@ import scss from './layout.module.scss';
 
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode,
 };
 
 export default function Layout({ children }: Props) {

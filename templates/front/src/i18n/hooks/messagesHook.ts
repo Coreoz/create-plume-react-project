@@ -10,7 +10,7 @@ export type Messages = {
 };
 
 export default function useMessages(): Messages {
-  const messages = useObservable(getGlobalInstance(MessageService).getMessages());
+  const messages: Translations = useObservable(getGlobalInstance(MessageService).getMessages());
 
   return {
     messages,

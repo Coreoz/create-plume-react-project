@@ -1,4 +1,4 @@
-export const HOME = '/home';
-export const USERS = '/users';
+export const HOME: string = '/home';
+export const USERS: string = '/users';
 
-export const LOGIN = '/login';
+export const LOGIN: string = '/login';

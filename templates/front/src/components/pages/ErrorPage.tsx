@@ -4,10 +4,10 @@ import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { HOME } from '../Routes';
 
-const logger = new Logger('ErrorPage');
+const logger: Logger = new Logger('ErrorPage');
 
 export default function ErrorPage() {
-  const error = useRouteError();
+  const error: unknown = useRouteError();
 
   logger.warn('Error page displayed', { error });
 

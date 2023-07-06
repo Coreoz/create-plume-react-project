@@ -3,6 +3,7 @@ import PlumeMessageResolver from '../../../lib/plume-messages/MessageResolver';
 import MessageService from '../MessageService';
 import MessageResolver from './MessageResolver';
 import PlumeMessageResolverService from '../../../lib/plume-messages/MessageResolverService';
+import { Translations } from '../../translations/Translations';
 
 /**
  * {@link PlumeMessageResolver} implementation
@@ -15,7 +16,7 @@ export default class MessageResolverService implements PlumeMessageResolverServi
     this.messageResolver = this
       .messageService
       .getMessages()
-      .select((messages) => new MessageResolver(messages));
+      .select((messages: Translations) => new MessageResolver(messages));
   }
 
   getMessages(): Observable<PlumeMessageResolver> {

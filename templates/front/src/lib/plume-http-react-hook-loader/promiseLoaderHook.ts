@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import { Logger } from 'simple-logging-system';
 import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
 import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
-const logger = new Logger('promiseLoaderHook');
+const logger: Logger = new Logger('promiseLoaderHook');
 
 /**
  * Any Promise-like that provides then and catch method for errors.
@@ -52,7 +52,7 @@ export type LoaderState = {
    * The main function provided by the hook {@link useLoader} to monitor the loading of a {@link LoadingPromise}.
    * @param httpPromise The `Promise` that needs to be monitored: is it loading? Has it raised any error?
    */
-  monitor: (httpPromise: LoadingPromise<unknown>) => void;
+  monitor: (httpPromise: LoadingPromise<unknown>) => void,
 };
 
 /**
@@ -61,7 +61,7 @@ export type LoaderState = {
  * This hooks does not take any parameter, the `Promise` using the returned method {@link LoaderState.monitor}
  */
 export default function useLoader(): LoaderState {
-  const isMountedRef = useRef<boolean>(true);
+  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
@@ -73,7 +73,7 @@ export default function useLoader(): LoaderState {
     isLoading: isLoading ?? false,
     isLoaded: !isLoading && loadingError === undefined,
     error: loadingError,
-    monitor: (httpPromise) => {
+    monitor: (httpPromise: LoadingPromise<unknown>) => {
       setIsLoading(true);
       setLoadingError(undefined);
       return httpPromise
@@ -83,7 +83,7 @@ export default function useLoader(): LoaderState {
             setIsLoading(false);
           }
         })
-        .catch((error) => {
+        .catch((error: HttpError) => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
             setLoadingError(sanitizePromiseError(error));

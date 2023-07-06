@@ -5,10 +5,10 @@ import Layout from '@components/layout/Layout';
 import ErrorPage from '@components/pages/ErrorPage';
 import Home from '@components/pages/Home';
 
-const logger = new Logger('App');
+const logger: Logger = new Logger('App');
 
 export default function App() {
-  const router = useMemo(() => createBrowserRouter([
+  const router: ReturnType<typeof createBrowserRouter> = useMemo(() => createBrowserRouter([
     {
       path: '/',
       element: <Layout><Outlet /></Layout>,

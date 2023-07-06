@@ -1,14 +1,14 @@
 import { Observable, observable, WritableObservable } from 'micro-observables';
-import { HttpPromise } from 'simple-http-rest-client';
+import { HttpError, HttpPromise } from 'simple-http-rest-client';
 import { Job, Scheduler } from 'simple-job-scheduler';
 import { Logger } from 'simple-logging-system';
 import IdlenessDetector from './IdlenessDetector';
 import PageActivityManager, { PageActivity } from './page-activity/PageActivityManager';
 
-const logger = new Logger('JwtSessionManager');
+const logger: Logger = new Logger('JwtSessionManager');
 
 export type ExpirableJwtValue = {
-  exp: number;
+  exp: number,
 };
 
 export type RefreshableJwtToken = {
@@ -18,7 +18,7 @@ export type RefreshableJwtToken = {
 };
 
 export interface SessionRefresher {
-  refresh(webSessionToken: string): HttpPromise<RefreshableJwtToken>;
+  refresh(webSessionToken: string): HttpPromise<RefreshableJwtToken>,
 }
 
 export type JwtSessionManagerConfig = {
@@ -54,7 +54,9 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
    * Get the JWT session, generally to make API calls
    */
   getSessionToken(): Observable<string | undefined> {
-    return this.currentSession.readOnly().select((session) => session?.webSessionToken);
+    return this.currentSession.readOnly().select((session: RefreshableJwtToken | undefined) => (
+      session?.webSessionToken),
+    );
   }
 
   /**
@@ -68,7 +70,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
    * Verify if there is a current user present
    */
   isAuthenticated() {
-    return this.currentUser.select((user) => user !== undefined);
+    return this.currentUser.select((user: U | undefined) => user !== undefined);
   }
 
   // actions
@@ -79,7 +81,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
    * @returns the current User if the session is still valid, or else `undefined`
    */
   registerNewSession(sessionToken: RefreshableJwtToken): U | undefined {
-    const user = this.storeNewSession(sessionToken);
+    const user: U | undefined = this.storeNewSession(sessionToken);
     if (user !== undefined) {
       this.currentUser.set(user);
       this.startSessionRefreshAndIdleDetection(
@@ -102,11 +104,11 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
    * Try restauring the user session from the browser local storage
    */
   tryInitializingSessionFromStorage() {
-    const webSessionString = localStorage.getItem(this.config.localStorageCurrentSession);
+    const webSessionString: string | null = localStorage.getItem(this.config.localStorageCurrentSession);
     if (webSessionString) {
       const sessionToken: RefreshableJwtToken = JSON.parse(webSessionString);
       logger.info('Found existing session in local storage, will try to use it', sessionToken.webSessionToken);
-      const currentUser = this.registerNewSession(sessionToken);
+      const currentUser: U | undefined = this.registerNewSession(sessionToken);
       if (currentUser === undefined) {
         logger.info('The local storage session was expired, trashing it...');
         this.discardSession();
@@ -163,7 +165,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
   }
 
   private storeNewSession(sessionToken: RefreshableJwtToken): U | undefined {
-    const user = this.updateCurrentSession(sessionToken);
+    const user: U | undefined = this.updateCurrentSession(sessionToken);
     if (user) {
       // If the session is ok, it can be stored
       localStorage.setItem(this.config.localStorageCurrentSession, JSON.stringify(sessionToken));
@@ -172,7 +174,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
   }
 
   private updateCurrentSession(sessionToken: RefreshableJwtToken): U | undefined {
-    const user = this.parseJwtSession(sessionToken.webSessionToken);
+    const user: U = this.parseJwtSession(sessionToken.webSessionToken);
     if (!this.isUserSessionValid(user?.exp)) {
       logger.info(
         'Tried to store an expired session, '
@@ -188,7 +190,7 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
   }
 
   private refreshSession() {
-    const currentSession = this.currentSession.get();
+    const currentSession: RefreshableJwtToken | undefined = this.currentSession.get();
     if (currentSession === undefined) {
       logger.error('Trying to refresh session whereas the current session is empty');
       return;
@@ -197,8 +199,8 @@ export default class JwtSessionManager<U extends ExpirableJwtValue> {
     this
       .sessionRefresher
       .refresh(currentSession.webSessionToken)
-      .then((updatedSessionToken) => this.storeNewSession(updatedSessionToken))
-      .catch((error) => {
+      .then((updatedSessionToken: RefreshableJwtToken) => this.storeNewSession(updatedSessionToken))
+      .catch((error: HttpError) => {
         if (error.errorCode === this.config.httpErrorAlreadyExpiredSessionToken) {
           logger.info('Session is expired, disconnecting...');
           this.discardSession();

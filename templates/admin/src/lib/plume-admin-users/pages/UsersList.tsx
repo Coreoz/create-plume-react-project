@@ -2,12 +2,14 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
-import useMessagesResolver from '../../plume-messages/messagesResolveHook';
+import PlumeMessageResolver from '../../plume-messages/MessageResolver';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
+import useMessagesResolver from '../../plume-messages/messagesResolveHook';
+import { AdminUserDetails } from '../api/AdminUserTypes';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
-  usersWithRoles?: AdminUsersWithIndexedRolesType;
+  usersWithRoles?: AdminUsersWithIndexedRolesType,
   usersPath: string,
 };
 
@@ -16,7 +18,7 @@ export default class UsersList {
   }
 
   render = ({ usersWithRoles, usersPath }: Props) => {
-    const messages = useMessagesResolver(this.messageService);
+    const messages: PlumeMessageResolver = useMessagesResolver(this.messageService);
 
     return (
       <>
@@ -43,7 +45,7 @@ export default class UsersList {
               </tr>
               </thead>
               <tbody>
-              {usersWithRoles.users.map((user) => (
+              {usersWithRoles.users.map((user: AdminUserDetails) => (
                 <tr key={user.id}>
                   <td><Link to={`${usersPath}/${user.id}`}>{user.userName}</Link></td>
                   <td><Link to={`${usersPath}/${user.id}`}>{user.email}</Link></td>

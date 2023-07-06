@@ -4,7 +4,7 @@ import NotificationEngine, {
   NotificationOptions,
 } from './NotificationEngine';
 
-const logger = new Logger('ObservableNotificationEngine');
+const logger: Logger = new Logger('ObservableNotificationEngine');
 
 export type Notification = {
   message: string,

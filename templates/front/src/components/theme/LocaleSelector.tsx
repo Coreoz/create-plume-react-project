@@ -13,7 +13,7 @@ export default function LocaleSelector(
   return (
     <div id="lang-menu">
       {
-        availableLocales.map((availableLocale) => (
+        availableLocales.map((availableLocale: Locale) => (
           currentLocale === availableLocale
             ? (<span key={availableLocale.code}>{availableLocale.name}</span>)
             : (

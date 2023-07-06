@@ -1,21 +1,23 @@
-import React, { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import isEmail from 'validator/lib/isEmail';
 import dayjs from 'dayjs';
+import React, { useMemo } from 'react';
+import { useForm, UseFormReturn } from 'react-hook-form';
 import { FormContainer } from 'react-hook-form-mui';
-import UserApi from '../api/UserApi';
-import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
+import { HttpError } from 'simple-http-rest-client';
+import isEmail from 'validator/lib/isEmail';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
-import useConfirmation from '../../react-hook-confirm/ReactHookConfirm';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import NotificationEngine from '../../plume-notification/NotificationEngine';
 import { makeErrorMessageMapping } from '../../plume-form-error-messages/FormErrorMessages';
-import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, { LoaderState } from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import PlumeMessageResolver from '../../plume-messages/MessageResolver';
 import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
 import useMessagesResolver from '../../plume-messages/messagesResolveHook';
+import NotificationEngine from '../../plume-notification/NotificationEngine';
+import useConfirmation, { ReactHookConfirm } from '../../react-hook-confirm/ReactHookConfirm';
+import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
+import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
+import UserApi from '../api/UserApi';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type UsersRouteParams = {
   userId: string,
@@ -29,7 +31,7 @@ type Props = {
 
 function findUser(userId?: string, usersWithRoles?: AdminUsersWithIndexedRolesType): AdminUserDetails | undefined {
   return userId && usersWithRoles
-    ? usersWithRoles.users.filter((user) => user.id === userId)?.[0]
+    ? usersWithRoles.users.filter((user: AdminUserDetails) => user.id === userId)?.[0]
     : undefined;
 }
 
@@ -43,16 +45,16 @@ export default class UsersEdit {
   render = ({ usersWithRoles, updateUsersAndRoles, usersPath }: Props) => {
     const { userId } = useParams<UsersRouteParams>();
 
-    const messages = useMessagesResolver(this.messageService);
+    const messages: PlumeMessageResolver = useMessagesResolver(this.messageService);
 
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
-    const isCreation = userId === undefined;
+    const isCreation: boolean = userId === undefined;
 
     // small optimization to avoid fetching the current user during each render cycle
-    const userToEdit = useMemo(() => findUser(userId, usersWithRoles), [usersWithRoles]);
+    const userToEdit: AdminUserDetails | undefined = useMemo(() => findUser(userId, usersWithRoles), [usersWithRoles]);
 
-    const formContext = useForm<AdminUserParameters>({
+    const formContext: UseFormReturn<AdminUserParameters> = useForm<AdminUserParameters>({
       defaultValues: userToEdit,
     });
 
@@ -79,7 +81,7 @@ export default class UsersEdit {
     };
 
     const validatePasswordAndConfirmation = (optionalValues?: AdminUserParameters) => {
-      const values = optionalValues ?? getValues();
+      const values: AdminUserParameters = optionalValues ?? getValues();
       if (values.password && values.passwordConfirmation && values.password !== values.passwordConfirmation) {
         setError('password', { type: 'validate' });
         return false;
@@ -88,30 +90,29 @@ export default class UsersEdit {
     };
 
     // save user handling
-
-    const savingLoader = useLoader();
+    const savingLoader: LoaderState = useLoader();
 
     const trySaveUser = (userToSave: AdminUserParameters) => {
       if (validatePasswordAndConfirmationEmptiness(userToSave) && validatePasswordAndConfirmation(userToSave)) {
         savingLoader.monitor(this
           .userApi
           .save(userToSave)
-          .then((createdUser) => {
+          .then((createdUser: AdminUserDetails | undefined) => {
             updateUsersAndRoles();
             this.notificationEngine.addSuccess(messages.t('message.changes_saved'));
             if (createdUser) {
               navigate(createdUser.id);
             }
           })
-          .catch((httpError) => this.notificationEngine.addDanger(messages.httpError(httpError))));
+          .catch((httpError: HttpError) => this.notificationEngine.addDanger(messages.httpError(httpError))));
       }
     };
 
     // delete user handling
 
-    const deletingLoader = useLoader();
+    const deletingLoader: LoaderState = useLoader();
 
-    const confirmDeleteUser = useConfirmation();
+    const confirmDeleteUser: ReactHookConfirm = useConfirmation();
 
     const tryDeleteUser = (idUser: string) => {
       deletingLoader.monitor(this
@@ -122,7 +123,7 @@ export default class UsersEdit {
           this.notificationEngine.addSuccess(messages.t('message.changes_saved'));
           navigate(usersPath);
         })
-        .catch((httpError) => this.notificationEngine.addDanger(messages.httpError(httpError))));
+        .catch((httpError: HttpError) => this.notificationEngine.addDanger(messages.httpError(httpError))));
     };
 
     // cancel modification handling
@@ -131,7 +132,9 @@ export default class UsersEdit {
 
     const { dirtyFields } = formState;
     // usage of dirtyFields instead of isDirty: https://github.com/react-hook-form/react-hook-form/issues/3562
-    const confirmCloseWithoutSaving = useConfirmation({ onlyIf: Object.keys(dirtyFields).length !== 0 });
+    const confirmCloseWithoutSaving: ReactHookConfirm = useConfirmation({
+      onlyIf: Object.keys(dirtyFields).length !== 0,
+    });
 
     return (
       <this.theme.popin>
@@ -224,7 +227,7 @@ export default class UsersEdit {
                 required
                 options={
                   Array.from(usersWithRoles?.roles || []).map(
-                    ([roleId, roleName]) => ({ value: roleId, label: roleName }))
+                    ([roleId, roleName]: [string, string]) => ({ value: roleId, label: roleName }))
                 }
               />
             </this.theme.formField>

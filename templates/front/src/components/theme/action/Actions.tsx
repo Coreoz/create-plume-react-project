@@ -2,10 +2,10 @@ import React from 'react';
 import scss from './actions.module.scss';
 
 export type ActionButtonProps = {
-  onClick?: () => void;
-  isLoading?: boolean;
-  cssClasses?: string;
-  children?: React.ReactNode;
+  onClick?: () => void,
+  isLoading?: boolean,
+  cssClasses?: string,
+  children?: React.ReactNode,
 };
 
 export function ActionButton({

@@ -12,10 +12,10 @@ import installI18nModule from './i18n/i18n-module';
 import initializeLocalizedDate from './i18n/messages/LocalizedDate';
 import LocaleService from './i18n/locale/LocaleService';
 
-const currentMillis = Date.now();
-const logger = new Logger('index');
+const currentMillis: number = Date.now();
+const logger: Logger = new Logger('index');
 
-const injector = new Injector();
+const injector: Injector = new Injector();
 installServicesModule(injector);
 installComponentsModule(injector);
 installApiModule(injector);
@@ -28,12 +28,12 @@ configureGlobalInjector(injector);
 // dayjs
 initializeLocalizedDate(injector.getInstance(LocaleService));
 
-const reactApp = (
+const reactApp: JSX.Element = (
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-const rootElement = document.getElementById('root');
+const rootElement: HTMLElement | null = document.getElementById('root');
 if (!rootElement) {
   throw new Error('Failed to find the root element');
 }
