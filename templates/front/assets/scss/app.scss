@@ -1,6 +1,5 @@
-@use 'variables' as *;
+@use 'variables/variables' as *;
 
-@use 'layouts/index' as *;
 @use 'forms/index' as *;
 
 @use '@fontsource/roboto/latin-100.css' as *;
