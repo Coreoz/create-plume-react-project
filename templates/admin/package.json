@@ -88,5 +88,8 @@
     "test": "jest --config jest.config.js",
     "coverage": "jest --config jest.config.js --coverage --watchAll=false"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.3.1",
+  "engines": {
+    "node": "~18"
+  }
 }

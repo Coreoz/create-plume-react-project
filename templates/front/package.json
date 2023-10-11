@@ -88,5 +88,8 @@
     "coverage": "jest --config jest.config.js --coverage --watchAll=false",
     "check-scss-types": "typed-scss-modules 'src/**/*.scss' -l"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.3.1",
+  "engines": {
+    "node": "~18"
+  }
 }
