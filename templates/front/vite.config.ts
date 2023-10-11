@@ -13,9 +13,9 @@ export default defineConfig({
         watchKind: ['add', 'change', 'unlink'],
         watch: path.resolve('src/**/*.scss'),
         run: 'yarn copy-css',
-        delay: 300
-      }
-    ])
+        delay: 300,
+      },
+    ]),
   ],
   build: {
     outDir: 'build',
@@ -31,9 +31,9 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        additionalData: `@use '@scssVariables' as *;`
+        additionalData: '@use \'@scssVariables\' as *;',
       },
-    }
+    },
   },
   resolve: {
     alias: {
@@ -43,6 +43,6 @@ export default defineConfig({
       '@i18n': require('path').resolve(__dirname, 'ts-built/i18n'),
       '@lib': require('path').resolve(__dirname, 'ts-built/lib'),
       '@services': require('path').resolve(__dirname, 'ts-built/services'),
-    }
+    },
   },
 });
