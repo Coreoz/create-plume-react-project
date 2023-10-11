@@ -70,11 +70,15 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
+    // Forbid @ts-ignore statements
     '@typescript-eslint/ban-ts-comment': 'error',
+    // Forbid any usage
     '@typescript-eslint/no-explicit-any': 2,
+    // Allow defining using functions before their declaration
     '@typescript-eslint/no-use-before-define': ['error', {
       'functions': false,
     }],
+    // Uniformize TS type members delimiter (comma instead of semicolon)
     "@typescript-eslint/member-delimiter-style": ["error", {
       "multiline": {
         "delimiter": "comma",
@@ -85,6 +89,7 @@ module.exports = {
         "requireLast": false
       }
     }],
+    // Force explicit type definition
     '@typescript-eslint/typedef': [
       'error',
       {
