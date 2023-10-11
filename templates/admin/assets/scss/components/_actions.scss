@@ -3,6 +3,7 @@
 .actions {
   display: flex;
   justify-content: flex-end;
+  padding: 0 $box-padding;
 
   .action-container {
     margin-left: 10px;

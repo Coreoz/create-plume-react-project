@@ -1,9 +1,11 @@
 import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useObservable } from 'micro-observables';
-import LocaleSelector from '../theme/LocaleSelector';
-import LocaleService from '../../i18n/locale/LocaleService';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
+import LocaleSelector from '@components/theme/LocaleSelector';
+import LocaleService from '@i18n/locale/LocaleService';
+
+import scss from './header.module.scss';
 
 function LocaleSelectorContainer() {
   const localeService: LocaleService = getGlobalInstance(LocaleService);
@@ -18,7 +20,7 @@ function LocaleSelectorContainer() {
 
 export default function Header() {
   return (
-    <header id="main-header">
+    <header id={scss.mainHeader}>
       <LocaleSelectorContainer />
     </header>
   );

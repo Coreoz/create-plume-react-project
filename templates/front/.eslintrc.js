@@ -10,6 +10,7 @@ module.exports = {
     'airbnb-typescript',
     'plugin:compat/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:css-modules/recommended',
     // à décommenter pour voir l'usage des fonctions un peu exotiques
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
@@ -22,15 +23,16 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
-    project: './tsconfig.eslint.json'
+    project: './tsconfig.eslint.json',
   },
   plugins: [
     'react',
     '@typescript-eslint',
+    'css-modules',
   ],
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
     polyfills: [
       'AbortController',
@@ -46,10 +48,10 @@ module.exports = {
       'ObjectConstructor.values',
       'Map.values',
       'Map.keys',
-    ]
+    ],
   },
   rules: {
-    'max-len': ["error", { "code": 120 }],
+    'max-len': ['error', { 'code': 120 }],
     'react/require-default-props': 0,
     'import/no-absolute-path': 'off',
     'function-paren-newline': 'off',
@@ -98,5 +100,7 @@ module.exports = {
         'variableDeclarationIgnoreFunction': true
       }
     ],
+    'css-modules/no-unused-class': [2, { camelCase: 'dashes' }],
+    'css-modules/no-undef-class': [2, { camelCase: 'dashes' }],
   },
 };
