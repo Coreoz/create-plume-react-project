@@ -71,8 +71,5 @@
     "prepare-release": "yarn clean && yarn lint && yarn build",
     "release": "release-it"
   },
-  "packageManager": "yarn@3.3.1",
-  "engines": {
-    "node": "~18"
-  }
+  "packageManager": "yarn@3.3.1"
 }
