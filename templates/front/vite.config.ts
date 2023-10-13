@@ -1,20 +1,31 @@
-import * as path from 'path';
-import { defineConfig } from 'vite';
+import path from 'path';
+import { defineConfig, ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react';
-import watchAndRun from 'vite-plugin-watch-and-run';
+import fs from 'fs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    watchAndRun([
-      {
-        name: 'gen',
-        watchKind: ['add', 'change', 'unlink'],
-        watch: path.resolve('src/**/*.scss'),
-        run: 'yarn copy-css',
+    {
+      name: 'copy-scss-files-in-dev',
+      configureServer: (server: ViteDevServer) => {
+        const sourceFolder: string = path.resolve('src');
+        const tsBuiltFolder: string = path.resolve('ts-built');
+        server.watcher.on('change', (absolutePath: string) => {
+          if (absolutePath.endsWith('.scss') && absolutePath.startsWith(sourceFolder)) {
+            fs.copyFile(
+              absolutePath,
+              tsBuiltFolder + absolutePath.substring(sourceFolder.length),
+              (error: NodeJS.ErrnoException | null) => {
+                // eslint-disable-next-line no-console
+                console.log('Could not copy SCSS file', error);
+              },
+            );
+          }
+        });
       },
-    ]),
+    },
   ],
   build: {
     outDir: 'build',
@@ -36,12 +47,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@scssVariables': require('path').resolve(__dirname, 'assets/scss/variables'),
-      '@api': require('path').resolve(__dirname, 'ts-built/api'),
-      '@components': require('path').resolve(__dirname, 'ts-built/components'),
-      '@i18n': require('path').resolve(__dirname, 'ts-built/i18n'),
-      '@lib': require('path').resolve(__dirname, 'ts-built/lib'),
-      '@services': require('path').resolve(__dirname, 'ts-built/services'),
+      '@scssVariables': path.resolve(__dirname, 'assets/scss/variables'),
+      '@api': path.resolve(__dirname, 'ts-built/api'),
+      '@components': path.resolve(__dirname, 'ts-built/components'),
+      '@i18n': path.resolve(__dirname, 'ts-built/i18n'),
+      '@lib': path.resolve(__dirname, 'ts-built/lib'),
+      '@services': path.resolve(__dirname, 'ts-built/services'),
     },
   },
 });

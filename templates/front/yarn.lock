@@ -1921,12 +1921,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kitql/helper@npm:0.6.1":
-  version: 0.6.1
-  resolution: "@kitql/helper@npm:0.6.1"
+"@kitql/helper@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@kitql/helper@npm:0.7.1"
   dependencies:
-    safe-stable-stringify: ^2.4.2
-  checksum: 7748d0dc937a47a0d4a2dc4c1c4b07c0465ae73e543ba5bb59b446ff40a21e4809a498fe7cca7f0a3f4f86021733c0dc08714cef89800f94e2a89cd2aa9c4410
+    safe-stable-stringify: ^2.4.3
+  checksum: 8c0b2202f70d7da6a4350b7498f353c147cd7e304e223a9a7eb553110c6db63dd0d03c39672fa44fe47f7e78e4078c2028c55df6cda2dd43118384c3b2d11026
   languageName: node
   linkType: hard
 
@@ -9095,7 +9095,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"safe-stable-stringify@npm:^2.4.2":
+"safe-stable-stringify@npm:^2.4.3":
   version: 2.4.3
   resolution: "safe-stable-stringify@npm:2.4.3"
   checksum: 3aeb64449706ee1f5ad2459fc99648b131d48e7a1fbb608d7c628020177512dc9d94108a5cb61bbc953985d313d0afea6566d243237743e02870490afef04b43
@@ -10141,7 +10141,7 @@ resolve@^2.0.0-next.3:
     typed-scss-modules: ^7.1.1
     typescript: 4.9.4
     vite: ^4.4.11
-    vite-plugin-watch-and-run: ^1.1.3
+    vite-plugin-watch-and-run: ^1.2.1
   languageName: unknown
   linkType: soft
 
@@ -10579,13 +10579,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"vite-plugin-watch-and-run@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "vite-plugin-watch-and-run@npm:1.1.3"
+"vite-plugin-watch-and-run@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "vite-plugin-watch-and-run@npm:1.2.1"
   dependencies:
-    "@kitql/helper": 0.6.1
+    "@kitql/helper": 0.7.1
     micromatch: 4.0.5
-  checksum: 6a2cc8950ee9cbfda99ca3ab2f1d1064ff2a08390cc2333c4b51f0e278ba331e6275793f35d17ce46236a928e70dd3d19def5774b5aefdb18a48df8467a60ecc
+  checksum: b7fe05fe2bbe364a9c15c78965114cc13ffb6ff71589846e08491d6c194fb715453ea6fd39afd4a314b33bf5b0b3f9b8834ff105203cc32f5dfa6ff32be388aa
   languageName: node
   linkType: hard
 

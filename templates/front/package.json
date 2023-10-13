@@ -62,8 +62,7 @@
     "ttypescript": "^1.5.15",
     "typed-scss-modules": "^7.1.1",
     "typescript": "4.9.4",
-    "vite": "^4.4.11",
-    "vite-plugin-watch-and-run": "^1.1.3"
+    "vite": "^4.4.11"
   },
   "browserslist": [
     "defaults",
@@ -75,11 +74,11 @@
     "safari >= 12"
   ],
   "scripts": {
-    "start": "concurrently  \"yarn watch-ts\" \"yarn copy-css\" \"yarn watch-scss-module\" \"yarn watch-js\"",
+    "start": "concurrently  \"yarn watch-ts\" \"yarn copy-scss\" \"yarn watch-scss-module\" \"yarn watch-js\"",
     "watch-ts": "ttsc --incremental -w",
     "watch-js": "vite",
     "watch-scss-module": "typed-scss-modules 'src/**/*.scss' -w -u",
-    "copy-css": "copyfiles -u 1 ./src/**/*.scss ts-built",
+    "copy-scss": "copyfiles -u 1 ./src/**/*.scss ts-built",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx",
