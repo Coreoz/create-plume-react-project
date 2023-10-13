@@ -14,6 +14,7 @@ module.exports = {
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
     // 'plugin:typescript-compat/recommended',
+    'plugin:@sayari/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
