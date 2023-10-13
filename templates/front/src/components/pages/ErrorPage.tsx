@@ -16,7 +16,7 @@ export default function ErrorPage() {
       <Layout>
         <div>
           <h2>Page not found</h2>
-          <div>Sorry, we didn&apos;t find this page. <Link to={HOME}>Go to the home page</Link></div>
+          <div><span>Sorry, we didn&apos;t find this page.&nbsp;</span><Link to={HOME}>Go to the home page</Link></div>
         </div>
       </Layout>
     );
