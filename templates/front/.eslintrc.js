@@ -29,6 +29,7 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'css-modules',
+    'react-hooks'
   ],
   settings: {
     react: {
@@ -107,5 +108,9 @@ module.exports = {
     ],
     'css-modules/no-unused-class': [2, { camelCase: 'dashes' }],
     'css-modules/no-undef-class': [2, { camelCase: 'dashes' }],
+    'react-hooks/rules-of-hooks': 'error',
+    // Add all your custom hooks which have dependencies in the additional hooks
+    // If you have several hooks, here is the syntax 'additionalHooks': '(hook1|hook2)'
+    'react-hooks/exhaustive-deps': ['warn', { 'additionalHooks': 'useOnDependenciesChange' }],
   },
 };

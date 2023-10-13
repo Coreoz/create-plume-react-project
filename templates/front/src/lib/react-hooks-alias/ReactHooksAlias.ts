@@ -13,6 +13,7 @@ import {
  * @param dependencies The optional dependencies
  */
 export function useOnBeforeComponentRendered(callback: () => void, dependencies: DependencyList = []): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(callback, dependencies);
 }
 
@@ -29,15 +30,18 @@ export function useOnComponentMounted(callback: () => void, dependencies: Depend
     // execute the callback manually to avoid returning a function... that will be executed when the component
     // is unmounted. This would cause strange bugs difficult to debug
     () => { callback(); },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     dependencies,
   );
 }
 
 export function useOnComponentUnMounted(callback: () => void): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => callback, []);
 }
 
 export function useOnDependenciesChange(callback: () => void, dependencies: DependencyList): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(callback, dependencies);
 }
 
@@ -55,9 +59,11 @@ export function useOnDependenciesChange(callback: () => void, dependencies: Depe
 export function useOnComponentMountedWithSsrSupport(callback: () => void, dependencies?: DependencyList): void {
   if (typeof process !== 'undefined') {
     // server context
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useOnBeforeComponentRendered(callback, dependencies);
   } else {
     // browser context
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useOnComponentMounted(callback, dependencies);
   }
 }

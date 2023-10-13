@@ -107,6 +107,9 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
     .observableSources
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .map((dataObservable: ObservableDataHandler<any>) => {
+      // the number of observable sources must be fixed and cannot change,
+      // so the number of time useObservable is called will be stable
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any,react-hooks/rules-of-hooks
       const data: T = useObservable(dataObservable.dataObservable);
 
       return {

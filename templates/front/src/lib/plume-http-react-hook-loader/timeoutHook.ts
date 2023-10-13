@@ -1,4 +1,6 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import {
+  MutableRefObject, useCallback, useEffect, useRef,
+} from 'react';
 
 /**
  * Enable to control the timeout in the component where it is used.
@@ -38,15 +40,15 @@ export default function useTimeout(callback: () => void, delayInMillis: number) 
     callbackRef.current = callback;
   }, [callback]);
 
-  const startTimeout = () => {
+  const startTimeout: () => void = useCallback(() => {
     timeoutIdRef.current = setTimeout(() => callbackRef.current(), delayInMillis);
-  };
+  }, [delayInMillis]);
 
-  const stopTimeout = () => {
+  const stopTimeout: () => void = useCallback(() => {
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
     }
-  };
+  }, []);
 
   useEffect(() => {
     startTimeout();
