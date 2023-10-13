@@ -13,7 +13,6 @@ export default defineConfig({
         watchKind: ['add', 'change', 'unlink'],
         watch: path.resolve('src/**/*.scss'),
         run: 'yarn copy-css',
-        delay: 300,
       },
     ]),
   ],
@@ -37,7 +36,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@scssVariables': require('path').resolve(__dirname, 'assets/scss/variables/_index.scss'),
+      '@scssVariables': require('path').resolve(__dirname, 'assets/scss/variables'),
       '@api': require('path').resolve(__dirname, 'ts-built/api'),
       '@components': require('path').resolve(__dirname, 'ts-built/components'),
       '@i18n': require('path').resolve(__dirname, 'ts-built/i18n'),
