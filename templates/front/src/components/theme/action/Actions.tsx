@@ -1,4 +1,5 @@
 import React from 'react';
+import scss from './actions.module.scss';
 
 export type ActionButtonProps = {
   onClick?: () => void,
@@ -11,7 +12,7 @@ export function ActionButton({
   cssClasses, onClick, isLoading, children,
 }: ActionButtonProps) {
   return (
-    <div className={`action-container loading-button ${cssClasses}`}>
+    <div className={`${scss.actionContainer} ${scss.loadingButton} ${cssClasses}`}>
       <button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
@@ -20,7 +21,7 @@ export function ActionButton({
         {children}
       </button>
       {isLoading && (
-        <div className="loading-progress">
+        <div className={scss.loadingProgress}>
           Loading...
         </div>
       )}

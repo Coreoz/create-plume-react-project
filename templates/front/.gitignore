@@ -48,3 +48,5 @@ yarn-error.log*
 !.yarn/versions
 .pnp.*
 
+# scss types are not used in the build (JS); they are only used to check types during development.
+/scss-types
