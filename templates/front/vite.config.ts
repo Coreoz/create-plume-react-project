@@ -18,8 +18,13 @@ export default defineConfig({
               absolutePath,
               tsBuiltFolder + absolutePath.substring(sourceFolder.length),
               (error: NodeJS.ErrnoException | null) => {
-                // eslint-disable-next-line no-console
-                console.log('Could not copy SCSS file', error);
+                if (error) {
+                  // eslint-disable-next-line no-console
+                  console.log(`Could not copy SCSS file ${absolutePath}`, error);
+                } else {
+                  // eslint-disable-next-line no-console
+                  console.log(`SCSS file updated ${absolutePath}`);
+                }
               },
             );
           }
