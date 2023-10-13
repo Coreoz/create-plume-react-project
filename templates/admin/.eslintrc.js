@@ -26,7 +26,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'react-hooks'
   ],
   settings: {
     react: {
@@ -103,5 +104,9 @@ module.exports = {
         'variableDeclarationIgnoreFunction': true
       }
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    // Add all your custom hooks which have dependencies in the additional hooks
+    // If you have several hooks, here is the syntax 'additionalHooks': '(hook1|hook2)'
+    'react-hooks/exhaustive-deps': ['warn', { 'additionalHooks': 'useOnDependenciesChange' }],
   },
 };
