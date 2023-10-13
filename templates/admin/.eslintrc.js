@@ -4,17 +4,7 @@ module.exports = {
     es2021: true,
   },
   root: true,
-  extends: [
-    'plugin:react/recommended',
-    'airbnb-base',
-    'airbnb-typescript',
-    'plugin:compat/recommended',
-    'plugin:jsx-a11y/recommended',
-    // à décommenter pour voir l'usage des fonctions un peu exotiques
-    // => par contre on ne peut pas laisser ce plugin tout le temps
-    // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
-    // 'plugin:typescript-compat/recommended',
-  ],
+  extends: ['plugin:react/recommended', 'airbnb-base', 'airbnb-typescript', 'plugin:compat/recommended', 'plugin:jsx-a11y/recommended', 'plugin:storybook/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
