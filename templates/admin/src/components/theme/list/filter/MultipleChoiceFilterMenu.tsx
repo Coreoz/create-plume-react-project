@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import React from 'react';
 import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
@@ -31,7 +31,7 @@ function MultipleChoiceFilterMenu(
       <div className="filters">
         {
           filters.map((filterPossibility: RawFilterProps) => (
-            <div key={filterPossibility.filterKey} className="filter">
+            <FormGroup key={filterPossibility.filterKey} className="filter">
               <span className="filter-title">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {(messages.filter as any)[filterMenuKey][filterPossibility.filterKey]}
@@ -55,7 +55,7 @@ function MultipleChoiceFilterMenu(
                     />
                   ))
               }
-            </div>
+            </FormGroup>
           ))
         }
       </div>
