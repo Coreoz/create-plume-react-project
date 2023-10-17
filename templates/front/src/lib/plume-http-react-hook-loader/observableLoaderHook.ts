@@ -3,7 +3,7 @@ import {
   DependencyList, MutableRefObject, useRef, useState,
 } from 'react';
 import { HttpError } from 'simple-http-rest-client';
-import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Describe an {@link Observable} data and the function to trigger the loading of this data.
@@ -180,6 +180,6 @@ export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
 ) : DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
-    useOnComponentMountedHook: (onMounted: () => void) => useOnComponentMountedWithSsrSupport(onMounted, dependencies),
+    useOnComponentMountedHook: (onMounted: () => void) => useEffectWithSsrSupport(onMounted, dependencies),
   });
 }

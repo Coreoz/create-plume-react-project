@@ -3,7 +3,7 @@ import {
   DependencyList, MutableRefObject, useRef, useState,
 } from 'react';
 import { HttpError } from 'simple-http-rest-client';
-import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Describe an {@link Observable} data and the function to trigger the loading of this data.
@@ -110,7 +110,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
       // the number of observable sources must be fixed and cannot change,
       // so the number of time useObservable is called will be stable
       // eslint-disable-next-line @typescript-eslint/no-explicit-any,react-hooks/rules-of-hooks
-      const data: any = useObservable(dataObservable.dataObservable);
+      const data: T = useObservable(dataObservable.dataObservable);
 
       return {
         loader: dataObservable.loader,
@@ -165,6 +165,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
       : undefined,
   };
 }
+
 /**
  * Hook that handles {@link Observable} data loading. It takes {@link ObservableDataHandler} parameters
  * for all {@link Observable} data that will need to be loading and monitored.
@@ -179,6 +180,6 @@ export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
 ) : DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
-    useOnComponentMountedHook: (onMounted: () => void) => useOnComponentMountedWithSsrSupport(onMounted, dependencies),
+    useOnComponentMountedHook: (onMounted: () => void) => useEffectWithSsrSupport(onMounted, dependencies),
   });
 }
