@@ -7,7 +7,7 @@ import {
   createFiltersFromSelected,
   createIncludesFilter,
   rawIncludes,
-} from '../../../components/theme/utils/FilterUtils';
+} from '../../../components/theme/list/filter/SearchFilters';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';

@@ -6,6 +6,12 @@ import {
 } from '../../../../lib/plume-admin-theme/list/search/SearchProps';
 import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
 
+/**
+ * Creates a text input in which you can add a contextual menu for more filters
+ * @param onSearch callback when a search is triggered
+ * @param placeHolder
+ * @param children an optional contextual menu
+ */
 function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
   const { messages } = useMessages();
   const anchorEl: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement | null>(null);

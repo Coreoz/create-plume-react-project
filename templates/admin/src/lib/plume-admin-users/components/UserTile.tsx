@@ -16,17 +16,18 @@ export default function UserTile({ user, roles, onClick }: Props) {
   const { messages } = useMessages();
   const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
 
-  const statusDotFromUser = (isActive: boolean): Status => {
+  const statusCircle = (isActive: boolean): Status => {
     if (isActive) {
       return Status.OK;
     }
     return Status.WARN;
   };
+
   return (
     <theme.listSingleElement cssClasses="user-tile">
       <div className="user-data user-data--id">
         <div className="data">
-          <theme.statusDot status={statusDotFromUser(!!user)} />
+          <theme.statusDot status={statusCircle(Boolean(user))} />
         </div>
         <div className="data">
           <span className="user-initials">

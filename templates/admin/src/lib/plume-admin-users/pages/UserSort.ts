@@ -4,7 +4,7 @@ import { AdminUserDetails } from '../api/AdminUserTypes';
 import {
   createCustomCompareSorting,
   createLocaleCompareSorting,
-} from '../../../components/theme/utils/SortUtils';
+} from '../../../components/theme/list/sort/SearchSorts';
 
 export const NAME_DESC: SortElementProps = {
   sortKey: 'NAME_DESC',

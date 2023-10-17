@@ -8,6 +8,13 @@ import {
   SortMenuProps,
 } from '../../../../lib/plume-admin-theme/list/sort/SortProps';
 
+/**
+ * Creates a Select input that displays all the sort possibilities available
+ * @param sortedObjectKey message key of the menu
+ * @param sortPossibilities the sort possibilities {@link SortElementProps}
+ * @param onSort callback when selecting a sort
+ * @param defaultSortPossibility
+ */
 function SortMenu(
   {
     sortedObjectKey,
