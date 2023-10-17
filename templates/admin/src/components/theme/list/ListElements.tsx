@@ -1,13 +1,12 @@
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../i18n/messages/MessageService';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import {
   ListElementsProps,
   ListSingleElementProps,
 } from '../../../lib/plume-admin-theme/list/ListProps';
 
 type EmptyStateProps = {
-  label: string;
+  label: string,
 };
 
 function EmptyState({ label }: EmptyStateProps) {
@@ -23,10 +22,10 @@ export function ListElements(
     listLength, isLoading = false, children, label,
   }: ListElementsProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
-  const defaultLabel = messages.label.empty;
+  const { messages } = useMessages();
+  const defaultLabel: string = messages.label.empty;
   if (isLoading) {
-    const loadingLabel = messages.label.loading;
+    const loadingLabel: string = messages.label.loading;
     return (
       <EmptyState label={loadingLabel} />
     );

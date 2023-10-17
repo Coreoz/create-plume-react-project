@@ -1,12 +1,8 @@
 import {
-  Icon,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
+  Icon, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
   SortElementProps,
   SortMenuProps,
@@ -20,10 +16,10 @@ function SortMenu(
     defaultSortPossibility,
   }: SortMenuProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
+  const { messages } = useMessages();
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
-    const sortChoice = sortPossibilities.find(
+    const sortChoice: SortElementProps | undefined = sortPossibilities.find(
       (element: SortElementProps) => element.sortKey.toLowerCase()
         .localeCompare(event.target.value.toString().toLowerCase()) === 0,
     );
@@ -43,7 +39,7 @@ function SortMenu(
         IconComponent={() => <Icon>expand_more</Icon>}
       >
         {
-          sortPossibilities.map((sortElement) => (
+          sortPossibilities.map((sortElement: SortElementProps) => (
             <MenuItem
               key={sortElement.sortKey}
               value={sortElement.sortKey}

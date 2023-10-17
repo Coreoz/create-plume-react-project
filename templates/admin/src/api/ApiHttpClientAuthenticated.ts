@@ -9,17 +9,24 @@ export default class ApiHttpClientAuthenticated implements PlumeAdminHttpClient 
     private readonly sessionService: SessionService) {
   }
 
+  /**
+   * Add configuration for requests made with this client.
+   *
+   * Here the authorization token is added to each "authenticated request".
+   */
+  private configureRequest<T>(httpRequest: HttpRequest<T>) {
+    return httpRequest.headers({ Authorization: `Bearer ${this.sessionService.getSessionToken().get()}` });
+  }
+
   rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
-    return this
-      .httpClient
-      .rawRequest(method, path)
-      .headers({ Authorization: `Bearer ${this.sessionService.getSessionToken().get()}` });
+    return this.configureRequest(
+      this.httpClient.rawRequest(method, path),
+    );
   }
 
   restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
-    return this
-      .httpClient
-      .restRequest<T>(method, path)
-      .headers({ Authorization: `Bearer ${this.sessionService.getSessionToken().get()}` });
+    return this.configureRequest(
+      this.httpClient.restRequest<T>(method, path),
+    );
   }
 }

@@ -4,7 +4,7 @@ import { ListHeaderProps } from '../../../lib/plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 
 function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
-  const theme = getGlobalInstance(PlumeAdminTheme);
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
   return (
     <div className="list-elements-heading">
       {

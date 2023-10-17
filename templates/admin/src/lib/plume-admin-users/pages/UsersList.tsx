@@ -1,12 +1,6 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import MessageService from '../../../i18n/messages/MessageService';
-import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
-import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import { AdminUserDetails } from '../api/AdminUserTypes';
-import UsersListResults from '../components/UsersListResults';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {
   applyFilters,
   checkValueForFilter,
@@ -14,20 +8,28 @@ import {
   createIncludesFilter,
   rawIncludes,
 } from '../../../components/theme/utils/FilterUtils';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import useMessages from '../../../i18n/hooks/messagesHook';
+import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
+import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
+import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { AdminUserDetails } from '../api/AdminUserTypes';
+import UsersListResults from '../components/UsersListResults';
+import {
+  AdminUsersWithIndexedRolesType,
+} from './AdminUsersWithIndexedRolesType';
 import userFilters from './UserFilter';
 import userSortsList, { NAME_ASC } from './UserSort';
 
 type Props = {
-  usersWithRoles?: AdminUsersWithIndexedRolesType;
+  usersWithRoles?: AdminUsersWithIndexedRolesType,
   usersPath: string,
   isUsersLoading: boolean,
 };
 
 export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }: Props) {
-  const messages = getGlobalInstance(MessageService).t();
-  const theme = getGlobalInstance(PlumeAdminTheme);
-  const history = useHistory();
+  const { messages } = useMessages();
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const navigate: NavigateFunction = useNavigate();
 
   const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_ASC);
   const [currentUserFilters, setCurrentUserFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
@@ -48,8 +50,8 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       return [];
     }
     // creating a clone in order to leave the original order in the list wherever it is used
-    const userList = usersWithRoles.users;
-    const filtersToApply = createFiltersFromSelected(
+    const userList: AdminUserDetails[] = usersWithRoles.users;
+    const filtersToApply: ((value: AdminUserDetails) => boolean)[] = createFiltersFromSelected(
       currentUserFilters,
       userFilters(usersWithRoles.roles),
       createIncludesFilter,
@@ -77,7 +79,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
               icon="add"
               style={ActionStyle.PRIMARY}
               onClick={() => {
-                history.push(`${usersPath}/create`);
+                navigate(`${usersPath}/create`);
               }}
             >
               {messages.user.add}

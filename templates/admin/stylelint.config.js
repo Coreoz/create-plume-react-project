@@ -60,7 +60,7 @@ module.exports = {
         'at-rule-empty-line-before': [
             'always', {
                 // Allow mixins to have an empty line before
-                ignoreAtRules: ['import', 'first-nested'],
+                ignoreAtRules: ['import', 'use', 'forward', 'first-nested'],
             }],
         // More styling rules for more consistency
         'at-rule-name-case': 'lower',

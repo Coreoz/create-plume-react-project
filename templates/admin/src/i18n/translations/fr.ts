@@ -49,7 +49,6 @@ const frMessages: Translations = {
   users: {
     userName: 'Nom d\'utilisateur',
     password: 'Mot de passe',
-    password_confirm: 'Confirmation du mot de passe',
     email: 'E-mail',
     firstName: 'Prénom',
     lastName: 'Nom',
@@ -61,6 +60,7 @@ const frMessages: Translations = {
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
     add: 'Ajouter un utilisateur',
+    password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
     list: {
       count: (count: number) => `Nombre d'utilisateurs : ${count}`,

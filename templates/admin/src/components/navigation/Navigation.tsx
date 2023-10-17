@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import MessageService from '../../i18n/messages/MessageService';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
@@ -10,10 +8,11 @@ import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
+import useMessages from '../../i18n/hooks/messagesHook';
 
 export default function Navigation() {
-  const sessionService = getGlobalInstance(SessionService);
-  const messages = getGlobalInstance(MessageService).t();
+  const sessionService: SessionService = getGlobalInstance(SessionService);
+  const { messages } = useMessages();
 
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 

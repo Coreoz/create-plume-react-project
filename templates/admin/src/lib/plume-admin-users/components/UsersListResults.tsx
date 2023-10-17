@@ -1,7 +1,7 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import MessageService from '../../../i18n/messages/MessageService';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import useMessages from '../../../i18n/hooks/messagesHook';
 import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
@@ -20,9 +20,9 @@ function UsersListResults(
     userList, userRoles, sortConfiguration, usersPath, isLoading,
   }: Props,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
-  const theme = getGlobalInstance(PlumeAdminTheme);
-  const history = useHistory();
+  const { messages } = useMessages();
+  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const navigate: NavigateFunction = useNavigate();
 
   return (
     <>
@@ -36,7 +36,7 @@ function UsersListResults(
             userList.map((user: AdminUserDetails) => (
               <UserTile
                 onClick={() => {
-                  history.push(`${usersPath}/${user.id}`);
+                  navigate(`${usersPath}/${user.id}`);
                 }}
                 user={user}
                 roles={userRoles}

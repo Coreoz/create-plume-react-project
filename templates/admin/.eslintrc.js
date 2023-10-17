@@ -6,8 +6,10 @@ module.exports = {
   root: true,
   extends: [
     'plugin:react/recommended',
+    'airbnb-base',
     'airbnb-typescript',
     'plugin:compat/recommended',
+    'plugin:jsx-a11y/recommended',
     // à décommenter pour voir l'usage des fonctions un peu exotiques
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
@@ -24,9 +26,12 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint',
+    '@typescript-eslint'
   ],
   settings: {
+    react: {
+      version: "detect",
+    },
     polyfills: [
       'AbortController',
       'PromiseConstructor.allSettled',
@@ -63,7 +68,40 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
+    // Forbid @ts-ignore statements
     '@typescript-eslint/ban-ts-comment': 'error',
+    // Forbid any usage
     '@typescript-eslint/no-explicit-any': 2,
+    // Allow defining using functions before their declaration
+    '@typescript-eslint/no-use-before-define': ['error', {
+      'functions': false,
+    }],
+    // Uniformize TS type members delimiter (comma instead of semicolon)
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "comma",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "comma",
+        "requireLast": false
+      }
+    }],
+    // Force explicit type definition
+    '@typescript-eslint/typedef': [
+      'error',
+      {
+        'arrayDestructuring': false,
+        'arrowCallSignature': true,
+        'arrowParameter': true,
+        'callSignature': true,
+        'memberVariableDeclaration': true,
+        'parameter': true,
+        'propertyDeclaration': true,
+        'objectDestructuring': false,
+        'variableDeclaration': true,
+        'variableDeclarationIgnoreFunction': true
+      }
+    ],
   },
 };

@@ -1,8 +1,9 @@
-import 'dayjs/locale/fr';
-import 'dayjs/locale/en';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import dayjs from 'dayjs';
-import LocaleService from '../locale/LocaleService';
+import 'dayjs/locale/en';
+import 'dayjs/locale/fr';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
+import LocaleService from '@i18n/locale/LocaleService';
 
 /**
  * Gère le chargement des traductions pour dayjs
@@ -12,5 +13,5 @@ export default function initializeLocalizedDate(localeService: LocaleService) {
   dayjs.locale(localeService.getCurrentLocale().get().code);
   localeService
     .getCurrentLocale()
-    .subscribe((locale) => dayjs.locale(locale.code));
+    .subscribe((locale: Locale) => dayjs.locale(locale.code));
 }

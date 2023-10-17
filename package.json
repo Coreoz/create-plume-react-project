@@ -1,6 +1,6 @@
 {
   "name": "create-plume-react-project",
-  "version": "1.2.0",
+  "version": "2.4.0",
   "description": "CLI to create Plume React Project",
   "author": "Aurélien Manteaux <amanteaux@coreoz.com> (https://coreoz.com)",
   "repository": "https://github.com/coreoz/create-plume-react-project",
@@ -57,7 +57,7 @@
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "ts-transformer-classname": "^1.0.3",
-    "ttypescript": "^1.5.12",
+    "ttypescript": "^1.5.15",
     "typescript": "4.2.4"
   },
   "scripts": {
@@ -71,5 +71,5 @@
     "prepare-release": "yarn clean && yarn lint && yarn build",
     "release": "release-it"
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.3.1"
 }

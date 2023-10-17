@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import { Logger } from 'simple-logging-system';
 import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
 import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
-const logger = new Logger('promiseLoaderHook');
+const logger: Logger = new Logger('promiseLoaderHook');
 
 /**
  * Any Promise-like that provides then and catch method for errors.
@@ -52,7 +52,7 @@ export type LoaderState = {
    * The main function provided by the hook {@link useLoader} to monitor the loading of a {@link LoadingPromise}.
    * @param httpPromise The `Promise` that needs to be monitored: is it loading? Has it raised any error?
    */
-  monitor: (httpPromise: LoadingPromise<unknown>) => void;
+  monitor: (httpPromise: LoadingPromise<unknown>) => void,
 };
 
 /**
@@ -61,33 +61,33 @@ export type LoaderState = {
  * This hooks does not take any parameter, the `Promise` using the returned method {@link LoaderState.monitor}
  */
 export default function useLoader(): LoaderState {
-  const isMountedRef = useRef<boolean>(true);
-  const [loadingState, setLoadingState] = useState<boolean>();
+  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
-  useOnComponentUnMounted(() => {
+  useOnComponentUnMounted(() => () => {
     isMountedRef.current = false;
   });
 
   return {
-    isLoading: loadingState ?? false,
-    isLoaded: loadingState === false && loadingError === undefined,
+    isLoading: isLoading ?? false,
+    isLoaded: !isLoading && loadingError === undefined,
     error: loadingError,
-    monitor: (httpPromise) => {
-      setLoadingState(true);
+    monitor: (httpPromise: LoadingPromise<unknown>) => {
+      setIsLoading(true);
       setLoadingError(undefined);
       return httpPromise
         .then(() => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
-            setLoadingState(false);
+            setIsLoading(false);
           }
         })
-        .catch((error) => {
+        .catch((error: HttpError) => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
             setLoadingError(sanitizePromiseError(error));
-            setLoadingState(false);
+            setIsLoading(false);
           }
         });
     },

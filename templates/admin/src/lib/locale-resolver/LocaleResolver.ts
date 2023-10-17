@@ -1,10 +1,10 @@
 export type Locale = {
-  code: string;
-  name: string;
+  code: string,
+  name: string,
 };
 
 export interface LocaleResolverFunction {
-  (localeResolver: LocaleResolver): Locale | undefined;
+  (localeResolver: LocaleResolver): Locale | undefined,
 }
 
 export type LocaleResolverParameters = {
@@ -29,7 +29,7 @@ export class LocaleResolver {
   constructor(parameters: LocaleResolverParameters) {
     this.fallbackLocale = parameters.fallbackLocale;
     this.indexedLocales = new Map(
-      parameters.availableLocales.map((locale) => [locale.code, locale]),
+      parameters.availableLocales.map((locale: Locale) => [locale.code, locale]),
     );
     this.localeStorage = parameters.localeStorage;
     this.resolvers = parameters.resolvers ?? [];
@@ -39,7 +39,7 @@ export class LocaleResolver {
   resolve(): Locale {
     // eslint-disable-next-line no-restricted-syntax
     for (const resolver of this.resolvers) {
-      const resolvedLocale = resolver(this);
+      const resolvedLocale: Locale | undefined = resolver(this);
       if (resolvedLocale !== undefined) {
         return resolvedLocale;
       }
@@ -53,7 +53,7 @@ export class LocaleResolver {
     }
     // eslint-disable-next-line no-restricted-syntax
     for (const language of navigator.languages) {
-      const matchingLocale = localeResolver.tryFindMatchingLocale(language.substring(0, 2));
+      const matchingLocale: Locale | undefined = localeResolver.tryFindMatchingLocale(language.substring(0, 2));
       if (matchingLocale) {
         return matchingLocale;
       }
@@ -65,7 +65,7 @@ export class LocaleResolver {
     if (localeResolver.localeStorage === undefined) {
       throw new Error('Trying to resolve locale from storage whereas the \'localeStorage\' parameter is undefined');
     }
-    const storageLocaleCode = localeResolver.localeStorage.getItem(localeResolver.localeStorageKey);
+    const storageLocaleCode: string | null = localeResolver.localeStorage.getItem(localeResolver.localeStorageKey);
     return storageLocaleCode ? localeResolver.tryFindMatchingLocale(storageLocaleCode) : undefined;
   }
 

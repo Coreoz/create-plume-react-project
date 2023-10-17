@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 
 /**
  * Enable to control the timeout in the component where it is used.
@@ -15,6 +15,7 @@ export type TimeoutController = {
   stopTimeout: () => void,
 };
 
+type TimeoutType = ReturnType<typeof setTimeout>;
 /**
  * This hook enables to use safely {@link setTimeout} in a component.
  * The issue using raw {@link setTimeout} is that it can resolve after the component has been unmounted...
@@ -29,8 +30,8 @@ export type TimeoutController = {
  */
 export default function useTimeout(callback: () => void, delayInMillis: number) {
   // it's important to have a React ref here: it enables to keep a reference to the last version of the callback
-  const callbackRef = useRef(callback);
-  const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>();
+  const callbackRef: MutableRefObject<() => void> = useRef(callback);
+  const timeoutIdRef: MutableRefObject<TimeoutType | undefined> = useRef<TimeoutType>();
 
   useEffect(() => {
     callbackRef.current = callback;

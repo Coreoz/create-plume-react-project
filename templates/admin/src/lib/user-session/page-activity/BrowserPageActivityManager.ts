@@ -1,7 +1,7 @@
 import { Logger } from 'simple-logging-system';
 import PageActivityManager, { PageActivity } from './PageActivityManager';
 
-const logger = new Logger('BrowserPageActivityManager');
+const logger: Logger = new Logger('BrowserPageActivityManager');
 
 /**
  * Provide a way to be notified if the tab containing the JS app is in the foreground or not.

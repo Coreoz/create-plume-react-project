@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  Switch,
+  Routes,
   Route,
-  Redirect,
+  Navigate,
 } from 'react-router-dom';
 import { getGlobalInstance } from 'plume-ts-di';
 import Home from '../features/Home';
@@ -12,19 +12,18 @@ import Permission from '../../services/session/Permission';
 import { HOME, USERS } from '../Routes';
 
 export default function Router() {
-  const users = getGlobalInstance(Users);
+  const users: Users = getGlobalInstance(Users);
 
   return (
-    <Switch>
-      <PermissionRoute permission={Permission.MANAGE_USERS} path={USERS}>
-        <users.render />
-      </PermissionRoute>
-      <Route path={HOME}>
-        <Home />
-      </Route>
-      <Route path="*">
-        <Redirect to={{ pathname: HOME }} />
-      </Route>
-    </Switch>
+    <Routes>
+      <Route
+        path={`${USERS}/*`}
+        element={
+          <PermissionRoute permission={Permission.MANAGE_USERS}><users.render /></PermissionRoute>
+      }
+      />
+      <Route path={HOME} element={<Home />} />
+      <Route path="*" element={<Navigate to={{ pathname: HOME }} />} />
+    </Routes>
   );
 }

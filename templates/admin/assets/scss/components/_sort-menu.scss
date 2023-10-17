@@ -1,10 +1,11 @@
 @use '../variables' as *;
 
 .sort-menu {
+  $sort-menu-font-size: $font-size-little;
   display: flex;
   align-items: center;
   padding: 0 $spacer-4;
-  height: 38px;
+  height: calc(3 * $sort-menu-font-size);
   border-radius: $border-radius-5;
   background-color: rgba($gray-dark, 0.05);
   margin-left: $spacer-5;
@@ -14,11 +15,11 @@
   }
 
   .sort-menu-select {
-    font-size: $font-size-little;
+    font-size: $sort-menu-font-size;
 
     > div:first-child {
       padding: 0 $spacer-2;
-      font-size: $font-size-little;
+      font-size: $sort-menu-font-size;
     }
 
     fieldset {

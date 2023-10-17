@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
-import { AdminUsersDetails } from '../api/AdminUserTypes';
+import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import UsersEdit from './UsersEdit';
 import UsersList from './UsersList';
-import useLoader from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, {
+  LoaderState,
+} from '../../plume-http-react-hook-loader/promiseLoaderHook';
 
 export default class Users {
   constructor(
@@ -19,14 +21,15 @@ export default class Users {
   private static setUsersAndIndexRoles(usersWithRoles: AdminUsersDetails) {
     return {
       users: usersWithRoles.users,
-      roles: new Map<string, string>(usersWithRoles.roles.map((role) => [role.id, role.label])),
+      roles: new Map<string, string>(usersWithRoles.roles.map((role: AdminRole) => [role.id, role.label])),
     };
   }
 
   render = () => {
-    const { path } = useRouteMatch();
+    // TODO how to get the current route where this component has been mounted??
+    const usersPath: string = '/users';
 
-    const userLoader = useLoader();
+    const userLoader: LoaderState = useLoader();
 
     const [usersWithRoles, setUsersWithRoles] = useState<AdminUsersWithIndexedRolesType>();
 
@@ -49,26 +52,32 @@ export default class Users {
     return (
       <this.theme.panel>
         <UsersList
-          usersPath={path}
+          usersPath={usersPath}
           usersWithRoles={usersWithRoles}
           isUsersLoading={userLoader.isLoading}
         />
-        <Switch>
-          <Route path={`${path}/create`}>
-            <this.usersEdit.render
-              usersPath={path}
-              usersWithRoles={usersWithRoles}
-              updateUsersAndRoles={updateUsersAndRoles}
-            />
-          </Route>
-          <Route path={`${path}/:userId`}>
-            <this.usersEdit.render
-              usersPath={path}
-              usersWithRoles={usersWithRoles}
-              updateUsersAndRoles={updateUsersAndRoles}
-            />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/create"
+            element={(
+              <this.usersEdit.render
+                usersPath={usersPath}
+                usersWithRoles={usersWithRoles}
+                updateUsersAndRoles={updateUsersAndRoles}
+              />
+            )}
+          />
+          <Route
+            path="/:userId"
+            element={(
+              <this.usersEdit.render
+                usersPath={usersPath}
+                usersWithRoles={usersWithRoles}
+                updateUsersAndRoles={updateUsersAndRoles}
+              />
+            )}
+          />
+        </Routes>
       </this.theme.panel>
     );
   };

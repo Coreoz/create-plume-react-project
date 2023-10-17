@@ -1,22 +1,20 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import React from 'react';
+import { Observable, useObservable } from 'micro-observables';
 
 type Props = {
-  shouldDisplayRoute: boolean;
-  defaultRoute: string;
-  path: string;
-  children?: React.ReactNode;
+  shouldDisplayRoute: Observable<unknown>,
+  defaultRoute: string,
+  children?: React.ReactNode,
 };
 
 export default function ConditionalRoute({
-  shouldDisplayRoute, defaultRoute, path, children,
+  shouldDisplayRoute, defaultRoute, children,
 }: Props) {
-  return (
-    <Route
-      path={path}
-      render={() => (shouldDisplayRoute
-        ? (children)
-        : (<Redirect to={{ pathname: defaultRoute }} />))}
-    />
-  );
+  const shouldDisplayRouteValue: unknown = useObservable(shouldDisplayRoute);
+  if (!shouldDisplayRouteValue) {
+    return <Navigate to={defaultRoute} replace />;
+  }
+
+  return <>{children}</>;
 }

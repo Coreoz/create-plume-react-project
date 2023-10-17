@@ -27,7 +27,7 @@ export const CREATION_DATE_ASC: SortElementProps = {
   sortFunction: createCustomCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.creationDate,
     true,
-    (dateA, dateB) => dayjs(dateA).diff(dateB),
+    (dateA: string, dateB: string) => dayjs(dateA).diff(dateB),
   ),
 };
 
@@ -36,7 +36,7 @@ export const CREATION_DATE_DESC: SortElementProps = {
   sortFunction: createCustomCompareSorting<AdminUserDetails>(
     (o: AdminUserDetails) => o.creationDate,
     false,
-    (dateA, dateB) => dayjs(dateA).diff(dateB),
+    (dateA: string, dateB: string) => dayjs(dateA).diff(dateB),
   ),
 };
 

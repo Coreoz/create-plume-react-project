@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CssBaseline } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import 'micro-observables/batchingForReactDom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import './polyfill-loader';
@@ -15,11 +14,14 @@ import installApiModule from './api/api-module';
 import SessionService from './services/session/SessionService';
 import installI18nModule from './i18n/i18n-module';
 import installPlumeAdminUsersModule from './lib/plume-admin-users/plume-admin-users-module';
+import initializeLocalizedDate from './i18n/messages/LocalizedDate';
+import LocaleService from './i18n/locale/LocaleService';
+import NotificationRenderer from './components/theme/NotificationRenderer';
 
-const currentMillis = Date.now();
-const logger = new Logger('index');
+const currentMillis: number = Date.now();
+const logger: Logger = new Logger('index');
 
-const injector = new Injector();
+const injector: Injector = new Injector();
 installServicesModule(injector);
 installComponentsModule(injector);
 installApiModule(injector);
@@ -30,18 +32,24 @@ injector.initializeSingletonInstances();
 
 configureGlobalInjector(injector);
 
-injector.getInstance(SessionService).tryInitializingSessionFromStorage();
+const sessionService: SessionService = injector.getInstance(SessionService);
+sessionService.tryInitializingSessionFromStorage();
+sessionService.synchronizeSessionFromOtherBrowserTags();
 
-const app = injector.getInstance(App);
-const reactApp = (
+// dayjs
+initializeLocalizedDate(injector.getInstance(LocaleService));
+// notifications display management
+injector.getInstance(NotificationRenderer).initialize();
+
+const reactApp: JSX.Element = (
   <React.StrictMode>
-    <Router basename="/admin">
-      <app.render />
-    </Router>
+    <App />
   </React.StrictMode>
 );
-const domElement = document.getElementById('root');
-
-ReactDOM.render(reactApp, domElement);
+const rootElement: HTMLElement | null = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Failed to find the root element');
+}
+createRoot(rootElement).render(reactApp);
 
 logger.info(`Application started in ${Date.now() - currentMillis}ms`);

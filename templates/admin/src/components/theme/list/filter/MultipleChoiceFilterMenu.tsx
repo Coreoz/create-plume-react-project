@@ -1,11 +1,10 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import MessageService from '../../../../i18n/messages/MessageService';
+import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
   MultipleChoiceObjectFilterMenuProps,
   MultipleChoiceRawFilterMenuProps,
-  ObjectFilterProps,
+  ObjectFilterProps, RawFilterProps,
 } from '../../../../lib/plume-admin-theme/list/filter/FilterProps';
 
 /**
@@ -22,8 +21,8 @@ function MultipleChoiceFilterMenu(
     filterMenuKey, filters, onFilterValueClicked, selectedValues,
   }: MultipleChoiceRawFilterMenuProps,
 ) {
-  const messages = getGlobalInstance(MessageService).t();
-  const CHECK_BOX_SIZE = 'small';
+  const { messages } = useMessages();
+  const CHECK_BOX_SIZE: 'small' = 'small';
 
   return (
     <div className="filter-menu-container">
@@ -31,7 +30,7 @@ function MultipleChoiceFilterMenu(
       <h2>{(messages.filter as any)[filterMenuKey].title}</h2>
       <div className="filters">
         {
-          filters.map((filterPossibility) => (
+          filters.map((filterPossibility: RawFilterProps) => (
             <div key={filterPossibility.filterKey} className="filter">
               <span className="filter-title">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

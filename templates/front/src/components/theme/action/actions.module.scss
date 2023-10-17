@@ -1,0 +1,31 @@
+.actions {
+  margin-top: $box-padding;
+  display: flex;
+  justify-content: flex-end;
+
+  .action-container {
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .loading-button {
+    position: relative;
+
+    .loading-progress {
+      height: $button-height;
+      width: $button-height;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -$button-height * 0.5;
+      margin-left: -$button-height * 0.5;
+
+      > div {
+        display: block;
+      }
+    }
+  }
+}

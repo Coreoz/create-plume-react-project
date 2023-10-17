@@ -15,11 +15,11 @@ export function checkValueForFilter(
   allValues: Map<string, string[]>,
 ): Map<string, string[]> {
   const currentFiltersClone: Map<string, string[]> = new Map<string, string[]>(allValues);
-  let currentFiltersForKey = currentFiltersClone.get(filterElementKey);
+  let currentFiltersForKey: string[] | undefined = currentFiltersClone.get(filterElementKey);
   if (!currentFiltersForKey) {
     currentFiltersForKey = [];
   }
-  const index = currentFiltersForKey.indexOf(newValue);
+  const index: number = currentFiltersForKey.indexOf(newValue);
   if (index >= 0 && !isChecked) {
     currentFiltersForKey.splice(index, 1);
   } else if (isChecked) {
@@ -31,14 +31,14 @@ export function checkValueForFilter(
 }
 
 /**
- * This methods checks if a filter has selected values to filter
+ * Checks if a filter has selected values to filter
  * @param currentFilters: the filters state
  */
 function hasSelectedValues(currentFilters: Map<string, string[]>): boolean {
   if (currentFilters.size < 1) {
     return false;
   }
-  let hasValues = false;
+  let hasValues: boolean = false;
   currentFilters.forEach((value: string[]) => {
     hasValues = hasValues || value.length > 0;
   });

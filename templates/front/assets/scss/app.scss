@@ -1,12 +1,9 @@
-@import 'variables';
-@import '@fontsource/roboto/latin-100.css';
-@import '@fontsource/roboto/latin-400.css';
-@import '@fontsource/roboto/latin-700.css';
-@import 'root';
-@import 'popin';
-@import 'forms';
-@import 'actions';
-@import 'layout';
-@import 'header';
-@import 'icons';
-@import 'pages/login';
+@use 'variables/index' as *;
+
+@use 'forms/index' as *;
+
+@use '@fontsource/roboto/latin-100.css' as *;
+@use '@fontsource/roboto/latin-400.css' as *;
+@use '@fontsource/roboto/latin-700.css' as *;
+@use 'root' as *;
+@use 'icons' as *;

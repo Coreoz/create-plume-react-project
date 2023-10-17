@@ -25,8 +25,8 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "plugins": [
-      {"transform": "./di-transformer-adapter.ts" },
-      {"transform": "ts-transformer-classname" }
+      { "transform": "ts-transformer-classname", "import": "diTransformerAdapter" },
+      { "transform": "ts-transformer-classname", "import": "classNameTransformer" }
     ]
   },
   "include": [

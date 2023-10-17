@@ -37,7 +37,7 @@ body {
 }
 
 .status {
-  @include dot(15px);
+  @include drawFilledCircle(15px);
   margin-right: 0;
 
   &--ok {

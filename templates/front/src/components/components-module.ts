@@ -1,6 +1,6 @@
 import { Injector } from 'plume-ts-di';
-import App from './App';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function installComponentsModule(injector: Injector) {
-  injector.registerSingleton(App);
+  // add class component if needed
 }

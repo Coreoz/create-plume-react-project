@@ -1,6 +1,5 @@
-import { TextField } from '@mui/material';
 import React from 'react';
-import { useController } from 'react-hook-form';
+import { TextFieldElement } from 'react-hook-form-mui';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
 export default function InputText({
@@ -16,48 +15,26 @@ export default function InputText({
   onChange,
   onBlur,
   autoComplete,
-  shouldUnregister,
   multiline,
   rows,
 }: InputTextProps) {
-  const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-
-  const { field } = useController({
-    shouldUnregister,
-    name: fieldId,
-    control,
-    rules,
-    defaultValue: defaultValue || '',
-  });
-
-  const onBlurCombined = (value: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    field.onBlur();
-    if (onBlur) {
-      onBlur(value);
-    }
-  };
-
-  const onChangeCombined = (value: React.ChangeEvent<HTMLTextAreaElement>) => {
-    field.onChange(value);
-    if (onChange) {
-      onChange(value);
-    }
-  };
+  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
   return (
-    <TextField
+    <TextFieldElement
       className={rules?.required ? 'field-required' : ''}
+      control={control}
       label={label}
       type={type}
-      name={name}
+      name={fieldId}
       variant="filled"
-      id={useNameAsId ? name : id}
+      id={fieldId}
+      defaultValue={defaultValue}
       autoComplete={autoComplete}
+      validation={rules}
       disabled={disabled ?? false}
-      value={field.value}
-      inputRef={field.ref}
-      onChange={onChangeCombined}
-      onBlur={onBlurCombined}
+      onChange={onChange}
+      onBlur={onBlur}
       multiline={multiline}
       rows={rows}
     />

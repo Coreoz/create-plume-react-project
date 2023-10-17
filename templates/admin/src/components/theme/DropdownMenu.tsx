@@ -3,11 +3,11 @@ import { Button, Icon, Menu } from '@mui/material';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {
-  icon?: IconType;
-  label: string;
-  id: string;
-  subscribeOnClick?: (onClick: () => void) => void;
-  children?: React.ReactNode;
+  icon?: IconType,
+  label: string,
+  id: string,
+  subscribeOnClick?: (onClick: () => void) => void,
+  children?: React.ReactNode,
 };
 
 /**

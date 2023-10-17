@@ -1,32 +1,43 @@
-import { NativeSelect } from '@mui/material';
 import React from 'react';
-import { useController } from 'react-hook-form';
-import { InputSelectProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import { SelectElement } from 'react-hook-form-mui';
+import {
+  InputSelectProps,
+} from '../../../../lib/plume-admin-theme/form/FormInputProps';
 
-export default function InputSelect({
-  name, id, useNameAsId, defaultValue, control, required, children,
-}: InputSelectProps) {
-  const fieldId = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-
-  const { field } = useController({
-    name: fieldId,
+export default function InputSelect(
+  {
+    name,
+    id,
+    label,
+    options,
+    disabled,
+    useNameAsId,
+    defaultValue,
     control,
-    rules: { required: required ?? false },
-    defaultValue: defaultValue || '',
-  });
+    required,
+    onBlur,
+    onChange,
+  }: InputSelectProps) {
+  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
 
   return (
-    <NativeSelect
-      value={field.value}
-      inputRef={field.ref}
-      onBlur={field.onBlur}
-      onChange={field.onChange}
-      inputProps={{
-        name: useNameAsId ? name : id,
-        id: useNameAsId ? name : id,
-      }}
-    >
-      {children}
-    </NativeSelect>
+    <SelectElement
+      className={required ? 'field-required' : ''}
+      control={control}
+      label={label}
+      name={fieldId}
+      variant="filled"
+      id={fieldId}
+      options={options}
+      valueKey="value"
+      labelKey="label"
+      defaultValue={defaultValue}
+      required={required}
+      disabled={disabled ?? false}
+      onBlur={onBlur}
+      onChange={onChange}
+      // disable FormHelper
+      parseError={() => ''}
+    />
   );
 }
