@@ -3,3 +3,4 @@ public/*
 .eslintrc.js
 stylelint.config.js
 jest.config.js
+!.storybook
