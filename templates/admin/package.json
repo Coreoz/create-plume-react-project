@@ -27,6 +27,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@sayari/eslint-plugin": "^0.0.1-rc.4",
     "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.1.2",
     "@types/react": "^18.0.21",

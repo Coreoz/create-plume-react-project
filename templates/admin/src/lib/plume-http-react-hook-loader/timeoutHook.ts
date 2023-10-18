@@ -1,4 +1,6 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import {
+  MutableRefObject, useEffect, useRef,
+} from 'react';
 
 /**
  * Enable to control the timeout in the component where it is used.
@@ -50,7 +52,10 @@ export default function useTimeout(callback: () => void, delayInMillis: number) 
   useEffect(() => {
     startTimeout();
     return stopTimeout;
-  }, [delayInMillis, startTimeout, stopTimeout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // delayInMillis is not in the dependencies. If it changes at runtime, we do not want to reset the hook.
+  // If delay can change at runtime, this hook is not the best solution to use.
 
   const restartTimeout = () => {
     stopTimeout();
