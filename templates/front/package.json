@@ -17,6 +17,7 @@
     "simple-logging-system": "^1.1.0"
   },
   "devDependencies": {
+    "@sayari/eslint-plugin": "^0.0.1-rc.4",
     "@storybook/addon-docs": "^7.4.6",
     "@storybook/addon-essentials": "7.4.6",
     "@storybook/addon-interactions": "7.4.6",

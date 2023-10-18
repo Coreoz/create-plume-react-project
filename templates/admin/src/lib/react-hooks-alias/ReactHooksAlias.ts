@@ -12,6 +12,7 @@ import {
  * @param callback The function that will be called once before the component has not yet been rendered
  */
 export function useOnBeforeComponentRendered(callback: () => void): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(callback, []);
 }
 
@@ -25,17 +26,17 @@ export function useOnBeforeComponentRendered(callback: () => void): void {
  * else this function will be called during unmounting. If this behavior is needed, `useEffect` should be used instead.
  */
 export function useOnComponentMounted(callback: () => void): void {
-  useEffect(
-    callback,
-    [],
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(callback, []);
 }
 
 export function useOnComponentUnMounted(callback: () => void): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => callback, []);
 }
 
 export function useOnDependenciesChange(callback: () => void, dependencies: DependencyList): void {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(callback, dependencies);
 }
 
@@ -53,9 +54,11 @@ export function useOnDependenciesChange(callback: () => void, dependencies: Depe
 export function useEffectWithSsrSupport(callback: () => void, dependencies: DependencyList = []): void {
   if (typeof process !== 'undefined') {
     // server context
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useMemo(callback, dependencies);
   } else {
     // browser context
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(callback, dependencies);
   }
 }

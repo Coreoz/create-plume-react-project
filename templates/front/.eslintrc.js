@@ -15,6 +15,7 @@ module.exports = {
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
     // 'plugin:typescript-compat/recommended',
+    'plugin:@sayari/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -28,6 +29,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'react-hooks'
   ],
   settings: {
     react: {
@@ -104,5 +106,9 @@ module.exports = {
         'variableDeclarationIgnoreFunction': true
       }
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    // Add all your custom hooks which have dependencies in the additional hooks
+    // If you have several hooks, here is the syntax 'additionalHooks': '(hook1|hook2)'
+    'react-hooks/exhaustive-deps': ['warn', { 'additionalHooks': 'useOnDependenciesChange|useEffectWithSsrSupport|useObservableLoader' }],
   },
 };
