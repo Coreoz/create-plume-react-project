@@ -27,6 +27,7 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
+// We disable eslint error on export because it's a sample component
 // eslint-disable-next-line import/prefer-default-export
 export const Button = (
   {
