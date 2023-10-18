@@ -1,11 +1,11 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from '@storybook/react';
 
 // Import du CSS de l'application
 import '../assets/scss/app.scss';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
