@@ -1,5 +1,5 @@
 import {
-  MutableRefObject, useCallback, useEffect, useRef,
+  MutableRefObject, useEffect, useRef,
 } from 'react';
 
 /**
@@ -39,20 +39,23 @@ export default function useTimeout(callback: () => void, delayInMillis: number) 
     callbackRef.current = callback;
   }, [callback]);
 
-  const startTimeout: () => void = useCallback(() => {
+  const startTimeout = () => {
     timeoutIdRef.current = setTimeout(() => callbackRef.current(), delayInMillis);
-  }, [delayInMillis]);
+  };
 
-  const stopTimeout: () => void = useCallback(() => {
+  const stopTimeout = () => {
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
     }
-  }, []);
+  };
 
   useEffect(() => {
     startTimeout();
     return stopTimeout;
-  }, [delayInMillis, startTimeout, stopTimeout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // delayInMillis is not in the dependencies. If it changes at runtime, we do not want to reset the hook.
+  // If delay can change at runtime, this hook is not the best solution to use.
 
   const restartTimeout = () => {
     stopTimeout();
