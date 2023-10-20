@@ -6,6 +6,7 @@
     "tests",
     "vite.config.ts",
     "di-transformer-adapter.ts",
-    "typed-scss-modules.config.ts"
+    "typed-scss-modules.config.ts",
+    ".storybook/*.ts"
   ]
 }

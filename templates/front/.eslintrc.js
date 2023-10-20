@@ -10,6 +10,7 @@ module.exports = {
     'airbnb-typescript',
     'plugin:compat/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:storybook/recommended'
     // à décommenter pour voir l'usage des fonctions un peu exotiques
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
@@ -79,14 +80,14 @@ module.exports = {
       'functions': false,
     }],
     // Uniformize TS type members delimiter (comma instead of semicolon)
-    "@typescript-eslint/member-delimiter-style": ["error", {
-      "multiline": {
-        "delimiter": "comma",
-        "requireLast": true
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      'multiline': {
+        'delimiter': 'comma',
+        'requireLast': true
       },
-      "singleline": {
-        "delimiter": "comma",
-        "requireLast": false
+      'singleline': {
+        'delimiter': 'comma',
+        'requireLast': false
       }
     }],
     // Force explicit type definition
