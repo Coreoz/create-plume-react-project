@@ -1,4 +1,4 @@
-Plume admin React TS
+Plume React TS
 ====================
 
 Installation
@@ -89,3 +89,4 @@ Some key points about the technologies used in the project :
     - [MUI](https://mui.com/)
     - [validator.js](https://github.com/validatorjs/validator.js)
     - [browser-user-session](https://github.com/Coreoz/browser-user-session)
+- Frontend workshop for UI components and pages in isolation is perform with [Storybook](https://storybook.js.org/docs/react/get-started/install/)
