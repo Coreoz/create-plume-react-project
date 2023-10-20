@@ -94,6 +94,13 @@ export type ObservableLoaderConfig<T extends ObservableDataHandler<any>[]> = {
   observableSources: T,
 };
 
+type LoadableData = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any,
+  isLoaded: boolean,
+  loader: () => CatchablePromise,
+};
+
 /**
  * A configurable version of {@link useObservableLoader} that enables to
  * specify the hook used to execute the {@link Observable} data load, see {@link DataLoader.loader}.
@@ -102,8 +109,7 @@ export type ObservableLoaderConfig<T extends ObservableDataHandler<any>[]> = {
 export function useObservableLoaderConfigurable<T extends ObservableDataHandler<any>[]>(
   config: ObservableLoaderConfig<T>): DataLoader<unknown[]> {
   // first check the data loaded status
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const allDataLoadable: { data: any, isLoaded: boolean, loader: () => CatchablePromise }[] = config
+  const allDataLoadable: LoadableData[] = config
     .observableSources
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .map((dataObservable: ObservableDataHandler<any>) => {
@@ -121,8 +127,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
       };
     });
   const isAllDataLoaded: boolean = allDataLoadable
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .every((dataLoadable: { data: any, isLoaded: boolean, loader: () => CatchablePromise }) => dataLoadable.isLoaded);
+    .every((dataLoadable: LoadableData) => dataLoadable.isLoaded);
 
   const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
   const [loadingError, setLoadingError] = useState<HttpError>();
@@ -158,8 +163,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
     isLoaded: isAllDataLoaded,
     loader: loaderWithErrorHandling,
     data: isAllDataLoaded
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ? allDataLoadable.map((loadedData: { data: any, isLoaded: boolean, loader: () => CatchablePromise }) => (
+      ? allDataLoadable.map((loadedData: LoadableData) => (
         loadedData.data
       ))
       : undefined,
