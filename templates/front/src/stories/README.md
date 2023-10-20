@@ -1,10 +1,7 @@
 Storybook
 ====================
 
-Official Documentation
-----------------------
-[Documentation](https://storybook.js.org/docs/react/writing-stories/introduction)
-
+[Offical documentation](https://storybook.js.org/docs/react/writing-stories/introduction)
 
 To launch Storybook, use the following command: `yarn storybook`
 

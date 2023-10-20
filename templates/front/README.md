@@ -33,6 +33,10 @@ If that's the case:
 - If the application can be accessed in the browser at <http://localhost:3000>, it is possible to just reload the webpage: press `ctrl+r` keys
 - Else, you can force the first Typescript compilation with: `yarn build`
 
+Launching Storybook
+-------------------
+To start [Storybook](https://storybook.js.org/docs/react/writing-stories/introduction), run: `yarn storybook`
+
 Handling old browsers
 ---------------------
 This project is supported only relatively new browsers.
