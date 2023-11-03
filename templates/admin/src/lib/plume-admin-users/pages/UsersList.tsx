@@ -57,6 +57,7 @@ export default function UsersList({
           {
             id: 'initials',
             enableColumnFilter: false,
+            enableSorting: false,
           },
         ),
         columnHelper.accessor(

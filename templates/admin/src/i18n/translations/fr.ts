@@ -69,12 +69,16 @@ const frMessages: Translations = {
   // sorts wording
   sort: {
     user: {
+      role_desc: 'Trier le rôle par ordre alphabétique descendant',
+      role_asc: 'Trier le rôle par ordre alphabétique ascendant',
       firstName_desc: 'Trier le prénom par ordre alphabétique descendant',
       firstName_asc: 'Trier le prénom par ordre alphabétique ascendant',
       lastName_desc: 'Trier le nom par ordre alphabétique descendant',
       lastName_asc: 'Trier le nom par ordre alphabétique ascendant',
-      creation_date_asc: 'Trier du plus ancien au plus nouveau',
-      creation_date_desc: 'Trier du plus nouveau au plus ancien',
+      email_desc: 'Trier le mail par ordre alphabétique descendant',
+      email_asc: 'Trier le mail par ordre alphabétique ascendant',
+      creationDate_asc: 'Trier du plus ancien au plus nouveau',
+      creationDate_desc: 'Trier du plus nouveau au plus ancien',
     },
   },
   // filters wording

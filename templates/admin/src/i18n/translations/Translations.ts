@@ -70,12 +70,16 @@ export type Translations = {
   // sorts wording
   sort: {
     user: {
+      role_desc: string,
+      role_asc: string,
       firstName_desc: string,
       firstName_asc: string,
       lastName_desc: string,
       lastName_asc: string,
-      creation_date_asc: string,
-      creation_date_desc: string,
+      email_desc: string,
+      email_asc: string,
+      creationDate_asc: string,
+      creationDate_desc: string,
     },
   },
   // filters wording
