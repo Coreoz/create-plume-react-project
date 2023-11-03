@@ -1,24 +1,34 @@
+import {
+  ColumnHelper,
+  createColumnHelper,
+  getCoreRowModel,
+  getFacetedUniqueValues,
+  getFilteredRowModel,
+  getSortedRowModel,
+  Table,
+  useReactTable,
+} from '@tanstack/react-table';
+import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {
-  applyFilters,
-  checkValueForFilter,
-  createFiltersFromSelected,
-  createIncludesFilter,
-  rawIncludes,
-} from '../../../components/theme/list/filter/SearchFilters';
+  filterListContains,
+  filterRawContains,
+} from '../../../components/theme/table/filter/SearchFilters';
+import useTableFilter
+  from '../../../components/theme/table/filter/TableFilterHook';
+import useTableSorting
+  from '../../../components/theme/table/sort/TableSortHook';
+import useTableOptions from '../../../components/theme/table/TableOptionsHook';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
-import { SortElementProps } from '../../plume-admin-theme/list/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UsersListResults from '../components/UsersListResults';
 import {
   AdminUsersWithIndexedRolesType,
 } from './AdminUsersWithIndexedRolesType';
-import userFilters from './UserFilter';
-import userSortsList, { NAME_ASC } from './UserSort';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
@@ -26,41 +36,95 @@ type Props = {
   isUsersLoading: boolean,
 };
 
-export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }: Props) {
+export default function UsersList({
+  usersWithRoles,
+  usersPath,
+  isUsersLoading,
+}: Props) {
   const { messages } = useMessages();
   const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
   const navigate: NavigateFunction = useNavigate();
 
-  const [currentSorting, setCurrentSorting] = useState<SortElementProps>(NAME_ASC);
-  const [currentUserFilters, setCurrentUserFilters] = useState<Map<string, string[]>>(new Map<string, string[]>());
-  const [currentSearchBarFilter, setCurrentSearchBarFilter] = useState<string>();
+  const [tableOptionsState, tableOptions] = useTableOptions(
+    [{ id: 'firstName', desc: false }],
+  );
+  const columnHelper: ColumnHelper<AdminUserDetails> = createColumnHelper<AdminUserDetails>();
+  const table: Table<AdminUserDetails> = useReactTable<AdminUserDetails>(
+    {
+      columns: [
+        columnHelper.accessor(
+          (row: AdminUserDetails) => `${row.firstName.slice(0, 1).toUpperCase()}${row.lastName.slice(0, 1).toUpperCase()}`,
+          {
+            id: 'initials',
+            enableColumnFilter: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => usersWithRoles?.roles.get(row.idRole),
+          {
+            id: 'role',
+            filterFn: filterListContains,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.firstName,
+          {
+            id: 'firstName',
+            sortingFn: 'textCaseSensitive',
+            enableColumnFilter: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.lastName,
+          {
+            id: 'lastName',
+            sortingFn: 'textCaseSensitive',
+            filterFn: filterListContains,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.email,
+          {
+            id: 'email',
+            enableColumnFilter: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => dayjs(row.creationDate).format('L LT'),
+          {
+            id: 'creationDate',
+            sortingFn: 'datetime',
+            enableColumnFilter: false,
+          },
+        ),
+      ],
+      data: usersWithRoles?.users ?? [],
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getFacetedUniqueValues: getFacetedUniqueValues(),
+      getFilteredRowModel: getFilteredRowModel(),
+      getRowId: (row: AdminUserDetails) => row.id,
+      globalFilterFn: filterRawContains,
+      state: {
+        ...tableOptionsState,
+      },
+      ...tableOptions,
+    },
+  );
 
-  const applySearchBarFilter = (user: AdminUserDetails) => {
-    if (!currentSearchBarFilter || currentSearchBarFilter === '') {
-      return true;
-    }
-    return rawIncludes(user.lastName, currentSearchBarFilter)
-      || rawIncludes(user.firstName, currentSearchBarFilter)
-      || rawIncludes(user.userName, currentSearchBarFilter)
-      || rawIncludes(user.email, currentSearchBarFilter);
-  };
+  const sortConfiguration = useTableSorting<AdminUserDetails>(
+    'user',
+    table.getHeaderGroups(),
+    tableOptionsState.sorting[0],
+    tableOptions.onSortingChange,
+  );
 
-  const sortedAndFilteredList = (): AdminUserDetails[] => {
-    if (!usersWithRoles) {
-      return [];
-    }
-    // creating a clone in order to leave the original order in the list wherever it is used
-    const userList: AdminUserDetails[] = usersWithRoles.users;
-    const filtersToApply: ((value: AdminUserDetails) => boolean)[] = createFiltersFromSelected(
-      currentUserFilters,
-      userFilters(usersWithRoles.roles),
-      createIncludesFilter,
-    );
-    return userList
-      .filter(applySearchBarFilter)
-      .filter(applyFilters<AdminUserDetails>(filtersToApply))
-      .sort(currentSorting.sortFunction);
-  };
+  const filterConfiguration = useTableFilter<AdminUserDetails>(
+    'user',
+    table.getHeaderGroups(),
+    tableOptionsState.columnFilters,
+    tableOptions.onColumnFiltersChange,
+  );
 
   return (
     <>
@@ -69,7 +133,7 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
         <theme.pageBlocColumn columnWidth="50">
           <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setCurrentSearchBarFilter(event.target.value);
+              tableOptions.onGlobalFilterChange(event.target.value);
             }}
           />
         </theme.pageBlocColumn>
@@ -89,31 +153,18 @@ export default function UsersList({ usersWithRoles, usersPath, isUsersLoading }:
       </theme.pageBloc>
       <theme.pageBloc>
         <theme.pageBlocColumn columnWidth="20">
-          <theme.multipleChoiceObjectFilterMenu
-            filterMenuKey="user"
-            filters={userFilters(usersWithRoles?.roles)}
-            onFilterValueClicked={(filterElementKey: string, valueSelected: string, isChecked: boolean) => {
-              setCurrentUserFilters(
-                checkValueForFilter(filterElementKey, valueSelected, isChecked, currentUserFilters),
-              );
-            }}
-            selectedValues={currentUserFilters}
-            rawList={usersWithRoles?.users || []}
+          <theme.multipleChoiceFilterMenu
+            filterMenuKey={filterConfiguration.filterMenuKey}
+            filters={filterConfiguration.filters}
+            onFilterValueClicked={filterConfiguration.onFilterValueClicked}
+            selectedValues={filterConfiguration.selectedValues}
           />
         </theme.pageBlocColumn>
         <theme.pageBlocColumn columnWidth="80">
           <UsersListResults
-            userList={sortedAndFilteredList()}
-            userRoles={usersWithRoles?.roles}
+            userList={table.getRowModel().rows}
             usersPath={usersPath}
-            sortConfiguration={{
-              sortedObjectKey: 'user',
-              sortPossibilities: userSortsList(),
-              defaultSortPossibility: NAME_ASC,
-              onSort: (to: SortElementProps) => {
-                setCurrentSorting(to);
-              },
-            }}
+            sortConfiguration={sortConfiguration}
             isLoading={isUsersLoading}
           />
         </theme.pageBlocColumn>

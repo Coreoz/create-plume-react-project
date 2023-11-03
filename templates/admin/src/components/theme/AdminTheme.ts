@@ -14,20 +14,21 @@ import {
   LayoutPageBlocColumnProps,
   LayoutPageBlocProps,
   LayoutPageTitleProps,
-  PanelProps, StatusDotProps,
+  PanelProps,
+  StatusDotProps,
 } from '../../lib/plume-admin-theme/layout/LayoutProps';
 import {
-  MultipleChoiceObjectFilterMenuProps,
-  MultipleChoiceRawFilterMenuProps,
-} from '../../lib/plume-admin-theme/list/filter/FilterProps';
+  FilterMenuProps,
+} from '../../lib/plume-admin-theme/table/filter/FilterProps';
 import {
   ListElementsProps,
-  ListHeaderProps, ListSingleElementProps,
-} from '../../lib/plume-admin-theme/list/ListProps';
+  ListHeaderProps,
+  ListSingleElementProps,
+} from '../../lib/plume-admin-theme/table/ListProps';
 import {
   SearchBarProps,
-} from '../../lib/plume-admin-theme/list/search/SearchProps';
-import { SortMenuProps } from '../../lib/plume-admin-theme/list/sort/SortProps';
+} from '../../lib/plume-admin-theme/table/search/SearchProps';
+import { SortMenuProps } from '../../lib/plume-admin-theme/table/sort/SortProps';
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
 import {
   PopinCloseWithoutSavingProps,
@@ -41,13 +42,11 @@ import { PageBloc, PageBlocColumn } from './layout/PageBloc';
 import PageTitle from './layout/PageTitle';
 import { Panel, PanelSeparator } from './layout/Panel';
 import StatusDot from './layout/StatusDot';
-import MultipleChoiceFilterMenu, {
-  MultipleChoiceObjectFilterMenu,
-} from './list/filter/MultipleChoiceFilterMenu';
-import { ListElements, ListSingleElement } from './list/ListElements';
-import ListHeader from './list/ListHeader';
-import SearchBar from './list/search/SearchBar';
-import SortMenu from './list/sort/SortMenu';
+import MultipleChoiceFilterMenu from './table/filter/MultipleChoiceFilterMenu';
+import { ListElements, ListSingleElement } from './table/ListElements';
+import ListHeader from './table/ListHeader';
+import SearchBar from './table/search/SearchBar';
+import SortMenu from './table/sort/SortMenu';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
@@ -71,11 +70,7 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   sortMenu: (props: SortMenuProps) => JSX.Element = SortMenu;
 
-  multipleChoiceFilterMenu: (props: MultipleChoiceRawFilterMenuProps) => JSX.Element = MultipleChoiceFilterMenu;
-
-  multipleChoiceObjectFilterMenu: <T>(
-    props: MultipleChoiceObjectFilterMenuProps<T>,
-  ) => JSX.Element = MultipleChoiceObjectFilterMenu;
+  multipleChoiceFilterMenu: (props: FilterMenuProps) => JSX.Element = MultipleChoiceFilterMenu;
 
   listHeader: (props: ListHeaderProps) => JSX.Element = ListHeader;
 

@@ -69,8 +69,10 @@ const frMessages: Translations = {
   // sorts wording
   sort: {
     user: {
-      name_desc: 'Trier par ordre alphabétique descendant',
-      name_asc: 'Trier par ordre alphabétique ascendant',
+      firstName_desc: 'Trier le prénom par ordre alphabétique descendant',
+      firstName_asc: 'Trier le prénom par ordre alphabétique ascendant',
+      lastName_desc: 'Trier le nom par ordre alphabétique descendant',
+      lastName_asc: 'Trier le nom par ordre alphabétique ascendant',
       creation_date_asc: 'Trier du plus ancien au plus nouveau',
       creation_date_desc: 'Trier du plus nouveau au plus ancien',
     },
@@ -79,7 +81,7 @@ const frMessages: Translations = {
   filter: {
     user: {
       title: 'Filtres',
-      name: 'Nom',
+      lastName: 'Nom',
       role: 'Rôle',
     },
   },

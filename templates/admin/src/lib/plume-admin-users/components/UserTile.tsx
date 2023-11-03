@@ -1,18 +1,18 @@
-import React from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
+import { Row } from '@tanstack/react-table';
 import dayjs from 'dayjs';
+import { getGlobalInstance } from 'plume-ts-di';
+import React from 'react';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import Status from '../../plume-admin-theme/layout/Status';
-import { AdminUserDetails } from '../api/AdminUserTypes';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { AdminUserDetails } from '../api/AdminUserTypes';
 
 type Props = {
-  user: AdminUserDetails,
-  roles: Map<string, string> | undefined,
+  user: Row<AdminUserDetails>,
   onClick: () => void,
 };
 
-export default function UserTile({ user, roles, onClick }: Props) {
+export default function UserTile({ user, onClick }: Props) {
   const { messages } = useMessages();
   const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
 
@@ -31,27 +31,26 @@ export default function UserTile({ user, roles, onClick }: Props) {
         </div>
         <div className="data">
           <span className="user-initials">
-            {`${user.firstName.slice(0, 1).toUpperCase()}${user.lastName.slice(0, 1).toUpperCase()}`}
+            {user.getValue<string>('initials')}
           </span>
         </div>
         <div className="data">
           <span className="label">
-            {`${user.firstName} ${user.lastName}`}
+            {`${user.getValue('firstName')} ${user.getValue('lastName')}`}
           </span>
-          <span className="value">{user.email}</span>
+          <span className="value">{user.getValue<string>('email')}</span>
         </div>
       </div>
       <div className="user-data">
-        {
-          roles
-          && (
-            <div className="data">
-              <span className="value value--accent">{roles.get(user.idRole)}</span>
-            </div>
-          )
-        }
         <div className="data">
-          <span className="value value--little">{dayjs(user.creationDate).format('L LT')}</span>
+          <span className="value value--accent">{user.getValue<string>('role')}</span>
+        </div>
+        <div className="data">
+          <span
+            className="value value--little"
+          >
+            {user.getValue<string>('creationDate')}
+          </span>
         </div>
       </div>
       <theme.actionButton cssClasses="action-button" onClick={() => onClick()}>

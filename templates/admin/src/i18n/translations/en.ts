@@ -69,8 +69,10 @@ const enMessages: Translations = {
   // sorts wording
   sort: {
     user: {
-      name_desc: 'Sort by descendant alphabetical order',
-      name_asc: 'Sort by ascendant alphabetical order',
+      firstName_desc: 'Sort first name by descendant alphabetical order',
+      firstName_asc: 'Sort first name by ascendant alphabetical order',
+      lastName_desc: 'Sort last name by descendant alphabetical order',
+      lastName_asc: 'Sort last name by ascendant alphabetical order',
       creation_date_asc: 'Sort oldest to newest',
       creation_date_desc: 'Sort newest to oldest',
     },
@@ -79,7 +81,7 @@ const enMessages: Translations = {
   filter: {
     user: {
       title: 'Filters',
-      name: 'Name',
+      lastName: 'Name',
       role: 'Role',
     },
   },

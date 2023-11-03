@@ -1,15 +1,15 @@
+import { Row } from '@tanstack/react-table';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import { SortMenuProps } from '../../plume-admin-theme/list/sort/SortProps';
+import { SortMenuProps } from '../../plume-admin-theme/table/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
 
 type Props = {
-  userList: AdminUserDetails[],
-  userRoles: Map<string, string> | undefined,
+  userList: Row<AdminUserDetails>[],
   sortConfiguration: SortMenuProps,
   usersPath: string,
   isLoading?: boolean,
@@ -17,7 +17,7 @@ type Props = {
 
 function UsersListResults(
   {
-    userList, userRoles, sortConfiguration, usersPath, isLoading,
+    userList, sortConfiguration, usersPath, isLoading,
   }: Props,
 ) {
   const { messages } = useMessages();
@@ -33,13 +33,12 @@ function UsersListResults(
       <theme.listElements isLoading={isLoading} listLength={userList.length}>
         {
           React.Children.toArray(
-            userList.map((user: AdminUserDetails) => (
+            userList.map((user: Row<AdminUserDetails>) => (
               <UserTile
                 onClick={() => {
                   navigate(`${usersPath}/${user.id}`);
                 }}
                 user={user}
-                roles={userRoles}
               />
             )),
           )

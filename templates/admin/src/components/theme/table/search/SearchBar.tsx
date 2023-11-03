@@ -3,7 +3,7 @@ import React, { MouseEvent, useRef } from 'react';
 import useMessages from '../../../../i18n/hooks/messagesHook';
 import {
   SearchBarProps,
-} from '../../../../lib/plume-admin-theme/list/search/SearchProps';
+} from '../../../../lib/plume-admin-theme/table/search/SearchProps';
 import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
 
 /**

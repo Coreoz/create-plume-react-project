@@ -3,7 +3,7 @@ import useMessages from '../../../i18n/hooks/messagesHook';
 import {
   ListElementsProps,
   ListSingleElementProps,
-} from '../../../lib/plume-admin-theme/list/ListProps';
+} from '../../../lib/plume-admin-theme/table/ListProps';
 
 type EmptyStateProps = {
   label: string,

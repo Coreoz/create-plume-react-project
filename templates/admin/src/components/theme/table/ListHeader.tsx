@@ -1,6 +1,6 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { ListHeaderProps } from '../../../lib/plume-admin-theme/list/ListProps';
+import { ListHeaderProps } from '../../../lib/plume-admin-theme/table/ListProps';
 import PlumeAdminTheme from '../../../lib/plume-admin-theme/PlumeAdminTheme';
 
 function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
@@ -18,7 +18,7 @@ function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
         && (
           <theme.sortMenu
             sortedObjectKey={sortConfiguration.sortedObjectKey}
-            defaultSortPossibility={sortConfiguration.defaultSortPossibility}
+            currentSort={sortConfiguration.currentSort}
             sortPossibilities={sortConfiguration.sortPossibilities}
             onSort={sortConfiguration.onSort}
           />
