@@ -1,4 +1,39 @@
-import { Row } from '@tanstack/react-table';
+import { ColumnFilter, Row } from '@tanstack/react-table';
+
+export function computeFilterValue(
+  value: string,
+  filterKey: string,
+  check: boolean,
+  currentFilterValue: string[],
+  selectedValues: ColumnFilter[],
+) {
+  const valuesWithoutCurrent: string[] = currentFilterValue.filter((filterValue: string) => filterValue !== value);
+  if (!check && valuesWithoutCurrent.length === 0) {
+    // if not checked and no values remaining for the column, then we remove it
+    return selectedValues.filter((sv: ColumnFilter) => sv.id !== filterKey);
+  }
+  if (!check) {
+    // if not checked and values remaining for the column, then we just remove the value
+    return [
+      ...selectedValues.filter((sv: ColumnFilter) => sv.id !== filterKey),
+      {
+        id: filterKey,
+        value: valuesWithoutCurrent,
+      },
+    ]
+  }
+  // otherwise, adding value to the current column filter
+  return [
+    ...selectedValues.filter((sv: ColumnFilter) => sv.id !== filterKey),
+    {
+      id: filterKey,
+      value: [
+        ...valuesWithoutCurrent,
+        value
+      ],
+    },
+  ]
+}
 
 export function filterListContains<T>(row: Row<T>, columnId: string, filterValue: string[]) {
   return (

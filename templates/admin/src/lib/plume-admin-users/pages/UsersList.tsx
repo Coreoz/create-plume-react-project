@@ -1,26 +1,14 @@
-import {
-  ColumnHelper,
-  createColumnHelper,
-  getCoreRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getSortedRowModel,
-  Table,
-  useReactTable,
-} from '@tanstack/react-table';
+import { ColumnHelper, createColumnHelper } from '@tanstack/react-table';
 import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {
   filterListContains,
-  filterRawContains,
 } from '../../../components/theme/table/filter/SearchFilters';
-import useTableFilter
-  from '../../../components/theme/table/filter/TableFilterHook';
-import useTableSorting
-  from '../../../components/theme/table/sort/TableSortHook';
-import useTableOptions from '../../../components/theme/table/TableOptionsHook';
+import usePlumeTable, {
+  PlumeTable,
+} from '../../../components/theme/table/PlumeTableHook';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
@@ -46,12 +34,10 @@ export default function UsersList({
   const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
   const navigate: NavigateFunction = useNavigate();
 
-  const [tableOptionsState, tableOptions] = useTableOptions(
-    [{ id: 'firstName', desc: false }],
-  );
   const columnHelper: ColumnHelper<AdminUserDetails> = createColumnHelper<AdminUserDetails>();
-  const table: Table<AdminUserDetails> = useReactTable<AdminUserDetails>(
+  const { table, tableActions }: PlumeTable<AdminUserDetails> = usePlumeTable<AdminUserDetails>(
     {
+      messageKey: 'user',
       columns: [
         columnHelper.accessor(
           (row: AdminUserDetails) => UserService.userTrigram(row.firstName, row.lastName),
@@ -101,31 +87,10 @@ export default function UsersList({
         ),
       ],
       data: usersWithRoles?.users ?? [],
-      getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
-      getFacetedUniqueValues: getFacetedUniqueValues(),
-      getFilteredRowModel: getFilteredRowModel(),
-      getRowId: (row: AdminUserDetails) => row.id,
-      globalFilterFn: filterRawContains,
-      state: {
-        ...tableOptionsState,
-      },
-      ...tableOptions,
+      options: {
+        defaultSort: { id: 'firstName', desc: false }
+      }
     },
-  );
-
-  const sortConfiguration = useTableSorting<AdminUserDetails>(
-    'user',
-    table.getHeaderGroups(),
-    tableOptionsState.sorting[0],
-    tableOptions.onSortingChange,
-  );
-
-  const filterConfiguration = useTableFilter<AdminUserDetails>(
-    'user',
-    table.getHeaderGroups(),
-    tableOptionsState.columnFilters,
-    tableOptions.onColumnFiltersChange,
   );
 
   return (
@@ -135,7 +100,7 @@ export default function UsersList({
         <theme.pageBlocColumn columnWidth="50">
           <theme.searchBar
             onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-              tableOptions.onGlobalFilterChange(event.target.value);
+              tableActions.onGlobalFilterChange(event.target.value);
             }}
           />
         </theme.pageBlocColumn>
@@ -156,17 +121,17 @@ export default function UsersList({
       <theme.pageBloc>
         <theme.pageBlocColumn columnWidth="20">
           <theme.multipleChoiceFilterMenu
-            filterMenuKey={filterConfiguration.filterMenuKey}
-            filters={filterConfiguration.filters}
-            onFilterValueClicked={filterConfiguration.onFilterValueClicked}
-            selectedValues={filterConfiguration.selectedValues}
+            messageKey={tableActions.filterConfiguration.messageKey}
+            filters={tableActions.filterConfiguration.filters}
+            onFilterValueClicked={tableActions.filterConfiguration.onFilterValueClicked}
+            selectedValues={tableActions.filterConfiguration.selectedValues}
           />
         </theme.pageBlocColumn>
         <theme.pageBlocColumn columnWidth="80">
           <UsersListResults
             userList={table.getRowModel().rows}
             usersPath={usersPath}
-            sortConfiguration={sortConfiguration}
+            sortConfiguration={tableActions.sortConfiguration}
             isLoading={isUsersLoading}
           />
         </theme.pageBlocColumn>

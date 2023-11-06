@@ -7,13 +7,13 @@ import {
 
 /**
  * Hook to handle react-table filtering easily
- * @param filterGroupName the unique filter group name
+ * @param messageKey the unique filter group name
  * @param tableHeaderGroups the HeaderGroup object given by the react-table library
  * @param selectedValues the current selected values
  * @param onFilterValueClicked callback executed when clicking on a checkbox
  */
 export default function useTableFilter<T>(
-  filterGroupName: string,
+  messageKey: string,
   tableHeaderGroups: HeaderGroup<T>[],
   selectedValues: ColumnFilter[],
   onFilterValueClicked: (to: ColumnFilter[]) => void,
@@ -32,7 +32,7 @@ export default function useTableFilter<T>(
   );
 
   return {
-    filterMenuKey: filterGroupName,
+    messageKey,
     filters,
     selectedValues,
     onFilterValueClicked,

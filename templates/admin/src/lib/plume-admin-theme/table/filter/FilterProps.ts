@@ -6,7 +6,7 @@ export type FilterProps = {
 };
 
 export type FilterMenuProps = {
-  filterMenuKey: string,
+  messageKey: string,
   onFilterValueClicked: (filters: ColumnFilter[]) => void,
   selectedValues: ColumnFilter[],
   filters: FilterProps[],

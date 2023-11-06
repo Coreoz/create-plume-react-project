@@ -8,14 +8,14 @@ import {
 
 /**
  * Creates a Select input that displays all the sort possibilities available
- * @param sortedObjectKey message key of the menu
+ * @param messageKey message key of the menu
  * @param sortPossibilities the sort possibilities {@link ColumnSort}
  * @param onSort callback when selecting a sort
  * @param currentSort the current sort selected
  */
 function SortMenu(
   {
-    sortedObjectKey,
+    messageKey,
     sortPossibilities,
     onSort,
     currentSort,
@@ -41,7 +41,7 @@ function SortMenu(
     // if desc was already selected for the current filter, then asc choice is displayed
     const showAsc = currentFilterIsUsed(sortElement) && currentSort.desc;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (messages.sort as any)[sortedObjectKey][`${sortElement}_${showAsc? 'asc' : 'desc'}`]
+    return (messages.sort as any)[messageKey][`${sortElement}_${showAsc? 'asc' : 'desc'}`]
   }
 
   return (

@@ -16,12 +16,10 @@ export type TableOptionsValue = {
   rowSelection: RowSelection
 };
 
-export default function useTableOptions(
-  defaultSorting: SortingState,
-) : [TableOptionsValue, DefaultTableOptions] {
+export default function useTableOptions() : [TableOptionsValue, DefaultTableOptions] {
   const [globalFilter, setGlobalFilter] = useState<string>('');
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = React.useState<SortingState>(defaultSorting ?? []);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowSelection, setRowSelection] = React.useState<RowSelection>({});
 
   const tableOptions = {
