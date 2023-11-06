@@ -11,7 +11,7 @@ import {
  * @param sortedObjectKey message key of the menu
  * @param sortPossibilities the sort possibilities {@link ColumnSort}
  * @param onSort callback when selecting a sort
- * @param currentSort
+ * @param currentSort the current sort selected
  */
 function SortMenu(
   {
@@ -37,6 +37,13 @@ function SortMenu(
     onSort({ id: sortChoice, desc: currentFilterIsUsed(sortChoice) ? !currentSort.desc : true });
   };
 
+  const selectLabel = (sortElement: string) => {
+    // if desc was already selected for the current filter, then asc choice is displayed
+    const showAsc = currentFilterIsUsed(sortElement) && currentSort.desc;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (messages.sort as any)[sortedObjectKey][`${sortElement}_${showAsc? 'asc' : 'desc'}`]
+  }
+
   return (
     <div className="sort-menu">
       <Icon>sort</Icon>
@@ -53,8 +60,7 @@ function SortMenu(
                 key={sortElement}
                 value={sortElement}
               >
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {(messages.sort as any)[sortedObjectKey][`${sortElement}_${(currentFilterIsUsed(sortElement) && currentSort.desc) ? 'asc' : 'desc'}`]}
+                {selectLabel(sortElement)}
               </MenuItem>
             ))
         }
