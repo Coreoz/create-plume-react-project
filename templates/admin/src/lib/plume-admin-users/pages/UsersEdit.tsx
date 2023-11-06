@@ -17,6 +17,7 @@ import useConfirmation, { ReactHookConfirm } from '../../react-hook-confirm/Reac
 import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
+import UserService from '../service/UserService';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type UsersRouteParams = {
@@ -36,7 +37,7 @@ function findUser(userId?: string, usersWithRoles?: AdminUsersWithIndexedRolesTy
 }
 
 export default class UsersEdit {
-  constructor(private readonly userApi: UserApi,
+  constructor(private readonly userService: UserService,
     private readonly notificationEngine: NotificationEngine,
     private readonly theme: PlumeAdminTheme,
     private readonly messageService: PlumeMessageResolverService) {
@@ -95,7 +96,7 @@ export default class UsersEdit {
     const trySaveUser = (userToSave: AdminUserParameters) => {
       if (validatePasswordAndConfirmationEmptiness(userToSave) && validatePasswordAndConfirmation(userToSave)) {
         savingLoader.monitor(this
-          .userApi
+          .userService
           .save(userToSave)
           .then((createdUser: AdminUserDetails | undefined) => {
             updateUsersAndRoles();
@@ -116,7 +117,7 @@ export default class UsersEdit {
 
     const tryDeleteUser = (idUser: string) => {
       deletingLoader.monitor(this
-        .userApi
+        .userService
         .delete(idUser)
         .then(() => {
           updateUsersAndRoles();

@@ -3,25 +3,13 @@ import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { useObservable } from 'micro-observables';
 import LocaleService from '../../i18n/locale/LocaleService';
+import UserService from '../../lib/plume-admin-users/service/UserService';
 import SessionService from '../../services/session/SessionService';
 import DropdownMenu from '../theme/DropdownMenu';
 import LocaleSelector from '../theme/LocaleSelector';
 import useMessages from '../../i18n/hooks/messagesHook';
 import { UserWithExpiration } from '../../services/session/User';
 import { Locale } from '../../lib/locale-resolver/LocaleResolver';
-
-function makeInitials(fullName?: string): string {
-  if (!fullName) {
-    return '';
-  }
-  const names: string[] = fullName.split(' ');
-  let initials: string = names[0].substring(0, 1).toUpperCase();
-
-  if (names.length > 1) {
-    initials += names[names.length - 1].substring(0, 1).toUpperCase();
-  }
-  return initials;
-}
 
 function LocaleSelectorContainer() {
   const localeService: LocaleService = getGlobalInstance(LocaleService);
@@ -50,7 +38,7 @@ export default function Header() {
           currentUser
           && (
             <div className="header_action header_action--circle">
-              <DropdownMenu label={makeInitials(currentUser.fullName)} id="user-menu">
+              <DropdownMenu label={UserService.userTrigramFromFullName(currentUser.fullName)} id="user-menu">
                 <div id="user-name">{currentUser.fullName}</div>
                 <MenuItem
                   onClick={() => sessionService.disconnect()}

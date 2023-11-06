@@ -3,18 +3,18 @@ import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
 import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
-import UserApi from '../api/UserApi';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 import UsersEdit from './UsersEdit';
 import UsersList from './UsersList';
 import useLoader, {
   LoaderState,
 } from '../../plume-http-react-hook-loader/promiseLoaderHook';
+import UserService from '../service/UserService';
 
 export default class Users {
   constructor(
     private readonly theme: PlumeAdminTheme,
-    private readonly userApi: UserApi,
+    private readonly userService: UserService,
     private readonly usersEdit: UsersEdit) {
   }
 
@@ -41,7 +41,7 @@ export default class Users {
     //  la liste d'utilisateurs ne devrait être récupérée que sur la page liste
     //  et l'utilisateur en cours de modification ne devrait être récupéré que sur la page détail
     const updateUsersAndRoles = () => userLoader.monitor(
-      this.userApi
+      this.userService
         .fetchAll()
         .then(setUsersAndIndexRoles),
     );

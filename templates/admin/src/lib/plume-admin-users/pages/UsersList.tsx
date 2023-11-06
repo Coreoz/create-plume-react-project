@@ -26,6 +26,7 @@ import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UsersListResults from '../components/UsersListResults';
+import UserService from '../service/UserService';
 import {
   AdminUsersWithIndexedRolesType,
 } from './AdminUsersWithIndexedRolesType';
@@ -53,7 +54,7 @@ export default function UsersList({
     {
       columns: [
         columnHelper.accessor(
-          (row: AdminUserDetails) => `${row.firstName.slice(0, 1).toUpperCase()}${row.lastName.slice(0, 1).toUpperCase()}`,
+          (row: AdminUserDetails) => UserService.userTrigram(row.firstName, row.lastName),
           {
             id: 'initials',
             enableColumnFilter: false,
@@ -71,7 +72,7 @@ export default function UsersList({
           (row: AdminUserDetails) => row.firstName,
           {
             id: 'firstName',
-            sortingFn: 'textCaseSensitive',
+            sortingFn: 'text',
             enableColumnFilter: false,
           },
         ),
@@ -79,7 +80,7 @@ export default function UsersList({
           (row: AdminUserDetails) => row.lastName,
           {
             id: 'lastName',
-            sortingFn: 'textCaseSensitive',
+            sortingFn: 'text',
             filterFn: filterListContains,
           },
         ),
