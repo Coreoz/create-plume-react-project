@@ -88,8 +88,8 @@ export default function UsersList({
       ],
       data: usersWithRoles?.users ?? [],
       options: {
-        defaultSort: { id: 'firstName', desc: false }
-      }
+        defaultSort: { id: 'creationDate', desc: true },
+      },
     },
   );
 

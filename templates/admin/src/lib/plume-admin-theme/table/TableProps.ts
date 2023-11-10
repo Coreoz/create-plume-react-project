@@ -5,5 +5,5 @@ export type RowSelection = {
 };
 
 export type TableProps<T> = {
-  table: Table<T>
+  table: Table<T>,
 };

@@ -28,16 +28,15 @@ export default class UserService {
   }
 
   public static userTrigram(firstName: string, lastName: string): string {
-    const firstNameParts = firstName.split('-');
-    const firstNameAbbreviation = firstNameParts.map((part: string) => part.charAt(0)).join('');
+    const firstNameParts: string[] = firstName.split('-');
+    const firstNameAbbreviation: string = firstNameParts.map((part: string) => part.charAt(0)).join('');
 
-    const lastNameParts = lastName.split(/\s+|'/);
-    const lastNameAbbreviation = lastNameParts.map((part: string) => part).join('');
+    const lastNameParts: string[] = lastName.split(/\s+|'/);
+    const lastNameAbbreviation: string = lastNameParts.map((part: string) => part).join('');
 
     return firstNameAbbreviation
       .concat(lastNameAbbreviation)
       .substring(0, 3)
       .toUpperCase();
   }
-
 }

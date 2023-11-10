@@ -15,18 +15,19 @@ import useTableOptions from './TableOptionsHook';
 
 type TableConfiguration<T> = {
   messageKey: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: ColumnDef<T, any>[],
   data: T[],
   options?: {
     globalFilterFn?: FilterFnOption<T>,
     defaultSort?: ColumnSort,
-  }
-}
+  },
+};
 
 export type PlumeTable<T> = {
   table: Table<T>,
   tableActions: TableActionsHook,
-}
+};
 
 function usePlumeTable<T extends { id: string }>(
   tableConfiguration: TableConfiguration<T>,
@@ -58,12 +59,12 @@ function usePlumeTable<T extends { id: string }>(
     options: {
       defaultSort: tableConfiguration.options?.defaultSort,
     },
-  })
+  });
 
   return {
     table,
     tableActions,
-  }
+  };
 }
 
 export default usePlumeTable;

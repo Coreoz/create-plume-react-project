@@ -4,16 +4,16 @@ import { RowSelection } from '../../../lib/plume-admin-theme/table/TableProps';
 
 export type DefaultTableOptions = {
   onColumnFiltersChange: OnChangeFn<ColumnFiltersState>,
-  onGlobalFilterChange: OnChangeFn<string>
-  onRowSelectionChange: OnChangeFn<RowSelection>
-  onSortingChange: OnChangeFn<SortingState>
+  onGlobalFilterChange: OnChangeFn<string>,
+  onRowSelectionChange: OnChangeFn<RowSelection>,
+  onSortingChange: OnChangeFn<SortingState>,
 };
 
 export type TableOptionsValue = {
   globalFilter: string,
   columnFilters: ColumnFiltersState,
   sorting: SortingState,
-  rowSelection: RowSelection
+  rowSelection: RowSelection,
 };
 
 export default function useTableOptions() : [TableOptionsValue, DefaultTableOptions] {
@@ -22,14 +22,14 @@ export default function useTableOptions() : [TableOptionsValue, DefaultTableOpti
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowSelection, setRowSelection] = React.useState<RowSelection>({});
 
-  const tableOptions = {
+  const tableOptions: DefaultTableOptions = {
     onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
   };
 
-  const tableOptionsCurrentValue = {
+  const tableOptionsCurrentValue: TableOptionsValue = {
     globalFilter,
     columnFilters,
     sorting,

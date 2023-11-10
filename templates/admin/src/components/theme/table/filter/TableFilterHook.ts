@@ -18,16 +18,14 @@ export default function useTableFilter<T>(
   selectedValues: ColumnFilter[],
   onFilterValueClicked: (to: ColumnFilter[]) => void,
 ): FilterMenuProps {
-
   const filters: FilterProps[] = useMemo(
     () => tableHeaderGroups
       .flatMap((headerGroup: HeaderGroup<T>) => headerGroup.headers
         .filter((header: Header<T, unknown>) => header.column.getCanFilter())
         .map((header: Header<T, unknown>) => ({
-            filterKey: header.column.id,
-            possibleValues: Array.from(header.column.getFacetedUniqueValues().keys()).sort(),
-          }),
-        )),
+          filterKey: header.column.id,
+          possibleValues: Array.from(header.column.getFacetedUniqueValues().keys()).sort(),
+        }))),
     [tableHeaderGroups],
   );
 

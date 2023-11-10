@@ -16,7 +16,6 @@ import NotificationEngine from '../../plume-notification/NotificationEngine';
 import useConfirmation, { ReactHookConfirm } from '../../react-hook-confirm/ReactHookConfirm';
 import { useOnDependenciesChange } from '../../react-hooks-alias/ReactHooksAlias';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
-import UserApi from '../api/UserApi';
 import UserService from '../service/UserService';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 

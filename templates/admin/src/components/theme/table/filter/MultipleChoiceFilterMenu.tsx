@@ -25,7 +25,8 @@ function MultipleChoiceFilterMenu(
   const { messages } = useMessages();
   const CHECK_BOX_SIZE: 'small' = 'small';
 
-  const currentSelectedValue = (key: string): ColumnFilter | undefined => selectedValues.find((col: ColumnFilter) => col.id === key);
+  const currentSelectedValue = (key: string): ColumnFilter | undefined => selectedValues
+    .find((col: ColumnFilter) => col.id === key);
 
   return (
     <div className="filter-menu-container">
@@ -42,7 +43,9 @@ function MultipleChoiceFilterMenu(
               {
                 Array.from(new Set<string>([...filterPossibility.possibleValues]))
                   .map((value: string) => {
-                    const currentFilterValue = ((currentSelectedValue(filterPossibility.filterKey)?.value ?? []) as string[])
+                    const currentFilterValue: string[] = (
+                      (currentSelectedValue(filterPossibility.filterKey)?.value ?? []) as string[]
+                    )
                       .flatMap((filtered: string) => filtered);
                     return (
                       <FormControlLabel
@@ -54,7 +57,13 @@ function MultipleChoiceFilterMenu(
                             size={CHECK_BOX_SIZE}
                             checked={currentFilterValue.includes(value)}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              onFilterValueClicked(computeFilterValue(value, filterPossibility.filterKey, e.target.checked, currentFilterValue, selectedValues));
+                              onFilterValueClicked(computeFilterValue(
+                                value,
+                                filterPossibility.filterKey,
+                                e.target.checked,
+                                currentFilterValue,
+                                selectedValues,
+                              ));
                             }}
                           />
                         )}

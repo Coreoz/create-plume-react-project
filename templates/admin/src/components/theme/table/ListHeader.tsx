@@ -18,7 +18,7 @@ function ListHeader({ listTitle, sortConfiguration }: ListHeaderProps) {
         && (
           <theme.sortMenu
             messageKey={sortConfiguration.messageKey}
-            currentSort={sortConfiguration.currentSort}
+            defaultSort={sortConfiguration.defaultSort}
             sortPossibilities={sortConfiguration.sortPossibilities}
             onSort={sortConfiguration.onSort}
           />

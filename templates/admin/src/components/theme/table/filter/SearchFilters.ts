@@ -20,7 +20,7 @@ export function computeFilterValue(
         id: filterKey,
         value: valuesWithoutCurrent,
       },
-    ]
+    ];
   }
   // otherwise, adding value to the current column filter
   return [
@@ -29,22 +29,22 @@ export function computeFilterValue(
       id: filterKey,
       value: [
         ...valuesWithoutCurrent,
-        value
+        value,
       ],
     },
-  ]
+  ];
 }
 
 export function filterListContains<T>(row: Row<T>, columnId: string, filterValue: string[]) {
   return (
     filterValue?.includes(row.getValue<string>(columnId))
-  )
+  );
 }
 
 export function filterRawContains<T>(row: Row<T>, columnId: string, filterValue: string) {
   return (
     rawIncludes(row.getValue<string>(columnId), filterValue)
-  )
+  );
 }
 
 function normalize(str: string): string {

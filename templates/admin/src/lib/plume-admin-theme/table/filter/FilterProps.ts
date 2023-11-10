@@ -1,4 +1,4 @@
-import { ColumnFilter } from "@tanstack/react-table";
+import { ColumnFilter } from '@tanstack/react-table';
 
 export type FilterProps = {
   filterKey: string,
@@ -11,4 +11,3 @@ export type FilterMenuProps = {
   selectedValues: ColumnFilter[],
   filters: FilterProps[],
 };
-

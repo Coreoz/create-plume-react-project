@@ -13,13 +13,13 @@ import { DefaultTableOptions, TableOptionsValue } from './TableOptionsHook';
 export type TableActionsHook = {
   onGlobalFilterChange: OnChangeFn<string>,
   onRowSelectionChange: OnChangeFn<RowSelection>,
-  sortConfiguration: SortMenuProps
+  sortConfiguration: SortMenuProps,
   filterConfiguration: FilterMenuProps,
 };
 
 type ActionOptions = {
   defaultSort?: ColumnSort,
-}
+};
 
 type ActionConfiguration<T> = {
   messageKey: string,
@@ -27,20 +27,19 @@ type ActionConfiguration<T> = {
   tableOptionsState: TableOptionsValue,
   tableOptions: DefaultTableOptions,
   options?: ActionOptions,
-}
+};
 
 export default function useTableActions<T>(
-  configuration: ActionConfiguration<T>
+  configuration: ActionConfiguration<T>,
 ) : TableActionsHook {
-
-  const sortConfiguration = useTableSorting<T>(
+  const sortConfiguration: SortMenuProps = useTableSorting<T>(
     configuration.messageKey,
     configuration.tableHeaderGroups,
     configuration.options?.defaultSort ?? configuration.tableOptionsState.sorting[0],
     configuration.tableOptions.onSortingChange,
   );
 
-  const filterConfiguration = useTableFilter<T>(
+  const filterConfiguration: FilterMenuProps = useTableFilter<T>(
     configuration.messageKey,
     configuration.tableHeaderGroups,
     configuration.tableOptionsState.columnFilters,

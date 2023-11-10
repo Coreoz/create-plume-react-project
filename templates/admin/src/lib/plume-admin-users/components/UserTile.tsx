@@ -1,5 +1,4 @@
 import { Row } from '@tanstack/react-table';
-import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import useMessages from '../../../i18n/hooks/messagesHook';
