@@ -42,7 +42,7 @@ export default defineConfig({
   },
   css: {
     modules: {
-      localsConvention: 'dashes',
+      localsConvention: 'camelCase',
     },
     preprocessorOptions: {
       scss: {
