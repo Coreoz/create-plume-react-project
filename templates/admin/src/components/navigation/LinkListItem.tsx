@@ -6,6 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import classNameBuilder from '../../utils/StyleUtils';
 import { IconType } from '../theme/IconType';
 
 type LinkListItemProps = {
@@ -25,7 +26,7 @@ function LinkListItem(
     <ListItemButton
       component={Link}
       to={route}
-      className={routeMatch ? 'active list-item' : 'list-item'}
+      className={classNameBuilder([[routeMatch, 'active list-item', 'list-item']])}
     >
       <ListItemIcon>
         <Icon fontSize="large">{icon}</Icon>

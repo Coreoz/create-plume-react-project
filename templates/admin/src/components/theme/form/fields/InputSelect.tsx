@@ -3,6 +3,7 @@ import { SelectElement } from 'react-hook-form-mui';
 import {
   InputSelectProps,
 } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import classNameBuilder from '../../../../utils/StyleUtils';
 
 export default function InputSelect(
   {
@@ -22,7 +23,7 @@ export default function InputSelect(
 
   return (
     <SelectElement
-      className={required ? 'field-required' : ''}
+      className={classNameBuilder([[required, 'field-required']])}
       control={control}
       label={label}
       name={fieldId}

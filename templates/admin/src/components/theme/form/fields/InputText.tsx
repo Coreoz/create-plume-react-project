@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextFieldElement } from 'react-hook-form-mui';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+import classNameBuilder from '../../../../utils/StyleUtils';
 
 export default function InputText({
   type = 'text',
@@ -22,7 +23,7 @@ export default function InputText({
 
   return (
     <TextFieldElement
-      className={rules?.required ? 'field-required' : ''}
+      className={classNameBuilder([[rules?.required, 'field-required']])}
       control={control}
       label={label}
       type={type}

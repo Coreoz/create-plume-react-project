@@ -7,6 +7,7 @@ import {
   ActionLinkProps,
 } from '../../../lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import classNameBuilder from '../../../utils/StyleUtils';
 
 function actionStyleToCssClass(
   actionStyle?: ActionStyle,
@@ -25,7 +26,7 @@ export function ActionsContainer({
   cssClasses,
 }: ActionContainerProps) {
   return (
-    <div className={`actions ${cssClasses ?? ''}`}>
+    <div className={classNameBuilder([[cssClasses]], 'actions')}>
       {children}
     </div>
   );

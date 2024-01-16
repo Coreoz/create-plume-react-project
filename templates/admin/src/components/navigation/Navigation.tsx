@@ -4,6 +4,7 @@ import { getGlobalInstance } from 'plume-ts-di';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
+import classNameBuilder from '../../utils/StyleUtils';
 import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
@@ -17,7 +18,7 @@ export default function Navigation() {
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 
   return (
-    <nav className={`main-nav ${isDrawerOpened ? 'nav' : 'nav nav--reduced'}`}>
+    <nav className={classNameBuilder([[!isDrawerOpened, 'nav--reduced']], 'main-nav nav')}>
       <button type="button" className="toggle-nav">
         <Icon
           onClick={toggleDrawerOpening}
