@@ -31,14 +31,14 @@ function MultipleChoiceFilterMenu(
   return (
     <div className="filter-menu-container">
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <h2>{(messages.filter as any)[messageKey].title}</h2>
+      <h2>{(messages.filter as any)[messageKey]?.title ?? messages.label.empty}</h2>
       <div className="filters">
         {
           filters.map((filterPossibility: FilterProps) => (
             <FormGroup key={filterPossibility.filterKey} className="filter">
               <span className="filter-title">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {(messages.filter as any)[messageKey][filterPossibility.filterKey]}
+                {(messages.filter as any)[messageKey]?.[filterPossibility.filterKey] ?? messages.label.empty}
               </span>
               {
                 Array.from(new Set<string>([...filterPossibility.possibleValues]))

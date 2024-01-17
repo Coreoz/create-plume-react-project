@@ -33,13 +33,13 @@ function SortMenu(
   const { messages } = useMessages();
   // keeping the history of what was selected
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
-    [defaultSort.id]: defaultSort.desc,
+    [defaultSort!.id]: defaultSort!.desc,
   });
   // keeping the current sort as the component is uncontrolled
-  const [currentSort, setCurrentSort] = useState<ColumnSort>(defaultSort);
+  const [currentSort, setCurrentSort] = useState<ColumnSort>(defaultSort!);
 
   const defaultSortPossibility: string = useMemo(
-    () => `${defaultSort.id}_${defaultSort.desc ? 'desc' : 'asc'}`,
+    () => `${defaultSort!.id}_${defaultSort!.desc ? 'desc' : 'asc'}`,
     [],
   );
 
@@ -52,14 +52,14 @@ function SortMenu(
         uniqueKey: `${sortElement}_asc`,
         key: sortElement,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        label: (messages.sort as any)[messageKey][`${sortElement}_asc`],
+        label: (messages.sort as any)[messageKey]?.[`${sortElement}_asc`] ?? messages.label.empty,
         isDesc: false,
       },
       {
         uniqueKey: `${sortElement}_desc`,
         key: sortElement,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        label: (messages.sort as any)[messageKey][`${sortElement}_desc`],
+        label: (messages.sort as any)[messageKey]?.[`${sortElement}_desc`] ?? messages.label.empty,
         isDesc: true,
       },
     ])
