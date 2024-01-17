@@ -47,7 +47,9 @@ export default class Users {
     );
 
     // users are loaded from the main component, so it can be reused in the two sub component list & edit
-    useOnComponentMounted(updateUsersAndRoles);
+    useOnComponentMounted(() => {
+      updateUsersAndRoles();
+    });
 
     return (
       <this.theme.panel>

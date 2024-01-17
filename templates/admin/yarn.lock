@@ -2461,6 +2461,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sayari/eslint-plugin@npm:^0.0.1-rc.4":
+  version: 0.0.1-rc.4
+  resolution: "@sayari/eslint-plugin@npm:0.0.1-rc.4"
+  peerDependencies:
+    eslint: ^8.5.0
+  checksum: c191a91806cf9e9f43a909b838d7274a6dfe6eedb183bd42d8820cf78bf77fe6264a422d81d51dbf28a3ccc38c4c2a9eedde3a12d9dfcf5157b9d16a6689962c
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.24.1":
   version: 0.24.46
   resolution: "@sinclair/typebox@npm:0.24.46"
@@ -3673,6 +3682,21 @@ __metadata:
   version: 1.0.0
   resolution: "browser-process-hrtime@npm:1.0.0"
   checksum: e30f868cdb770b1201afb714ad1575dd86366b6e861900884665fb627109b3cc757c40067d3bfee1ff2a29c835257ea30725a8018a9afd02ac1c24b408b1e45f
+  languageName: node
+  linkType: hard
+
+"browser-user-session@npm:1.0.2":
+  version: 1.0.2
+  resolution: "browser-user-session@npm:1.0.2"
+  dependencies:
+    js-base64: ^3.7.5
+  peerDependencies:
+    micro-observables: ^1.7.2
+    plume-ts-di: 1.2.4
+    simple-http-rest-client: ^2.0.2
+    simple-job-scheduler: ^1.1.2
+    simple-logging-system: ^1.1.0
+  checksum: fed66c1a4d7b7e4d852b066848c13e58d18b7760b866229d7e2b4980e7d8900b474fb3f9658610c01e0f496ce62096487fa3e12d3e1d9ba6d25cdd2619dbd144
   languageName: node
   linkType: hard
 
@@ -6997,6 +7021,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-base64@npm:^3.7.5":
+  version: 3.7.5
+  resolution: "js-base64@npm:3.7.5"
+  checksum: 67a78c8b1c47b73f1c6fba1957e9fe6fd9dc78ac93ac46cc2e43472dcb9cf150d126fb0e593192e88e0497354fa634d17d255add7cc6ee3c7b4d29870faa8e18
+  languageName: node
+  linkType: hard
+
 "js-sdsl@npm:^4.1.4":
   version: 4.1.5
   resolution: "js-sdsl@npm:4.1.5"
@@ -10052,6 +10083,7 @@ resolve@^2.0.0-next.3:
     "@mui/styles": ^5.10.9
     "@mui/system": ^5.10.9
     "@mui/x-date-pickers": ^5.0.5
+    "@sayari/eslint-plugin": ^0.0.1-rc.4
     "@tanstack/react-table": ^8.10.7
     "@types/enzyme": ^3.10.12
     "@types/jest": ^29.1.2
@@ -10064,6 +10096,7 @@ resolve@^2.0.0-next.3:
     "@typescript-eslint/parser": ^5.47.0
     "@vitejs/plugin-react": 4.0.0
     "@wojtekmaj/enzyme-adapter-react-17": ^0.6.7
+    browser-user-session: 1.0.2
     concurrently: ^7.4.0
     dayjs: ^1.11.5
     enzyme: ^3.11.0

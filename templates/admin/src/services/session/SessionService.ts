@@ -1,10 +1,8 @@
+import { IdlenessDetector, JwtSessionManager, RefreshableJwtToken } from 'browser-user-session';
 import { Scheduler } from 'simple-job-scheduler';
 import SessionApi, { SessionCredentials } from '../../api/session/SessionApi';
-import IdlenessDetector from '../../lib/user-session/IdlenessDetector';
-import PageActivityManager from '../../lib/user-session/page-activity/PageActivityManager';
 import Permission from './Permission';
 import { UserWithExpiration } from './User';
-import JwtSessionManager, { RefreshableJwtToken } from '../../lib/user-session/JwtSessionManager';
 
 const THRESHOLD_IN_MILLIS_TO_DETECT_EXPIRED_SESSION: number = 60 * 1000; // 1 minutes
 const LOCAL_STORAGE_CURRENT_SESSION: string = 'user-session';
@@ -15,12 +13,10 @@ export default class SessionService {
 
   constructor(private readonly sessionApi: SessionApi,
     private readonly scheduler: Scheduler,
-    private readonly pageActivityManager: PageActivityManager,
     private readonly idlenessDetector: IdlenessDetector) {
     this.jwtSessionManager = new JwtSessionManager<UserWithExpiration>(
       sessionApi,
       scheduler,
-      pageActivityManager,
       idlenessDetector,
       {
         localStorageCurrentSession: LOCAL_STORAGE_CURRENT_SESSION,
@@ -68,6 +64,6 @@ export default class SessionService {
   }
 
   synchronizeSessionFromOtherBrowserTags() {
-    this.jwtSessionManager.synchronizeSessionFromOtherBrowserTags();
+    this.jwtSessionManager.synchronizeSessionFromOtherBrowserTabs();
   }
 }

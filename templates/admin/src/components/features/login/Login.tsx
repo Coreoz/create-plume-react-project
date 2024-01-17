@@ -32,7 +32,7 @@ export default function Login() {
     if (isAuthenticated) {
       navigate({ pathname: HOME });
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="login-layout">

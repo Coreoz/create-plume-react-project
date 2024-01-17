@@ -52,7 +52,10 @@ export default class UsersEdit {
     const isCreation: boolean = userId === undefined;
 
     // small optimization to avoid fetching the current user during each render cycle
-    const userToEdit: AdminUserDetails | undefined = useMemo(() => findUser(userId, usersWithRoles), [usersWithRoles]);
+    const userToEdit: AdminUserDetails | undefined = useMemo(
+      () => findUser(userId, usersWithRoles),
+      [userId, usersWithRoles],
+    );
 
     const formContext: UseFormReturn<AdminUserParameters> = useForm<AdminUserParameters>({
       defaultValues: userToEdit,
@@ -63,7 +66,7 @@ export default class UsersEdit {
     } = formContext;
 
     // when the users are loaded from the upper component, we need update the form with the new values
-    useOnDependenciesChange(() => reset(userToEdit), [usersWithRoles]);
+    useOnDependenciesChange(() => reset(userToEdit), [userToEdit, reset]);
 
     // data validation
 
