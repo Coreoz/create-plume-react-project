@@ -3,7 +3,7 @@ import {
   DependencyList, MutableRefObject, useRef, useState,
 } from 'react';
 import { HttpError } from 'simple-http-rest-client';
-import { useOnComponentMountedWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
+import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Describe an {@link Observable} data and the function to trigger the loading of this data.
@@ -94,6 +94,13 @@ export type ObservableLoaderConfig<T extends ObservableDataHandler<any>[]> = {
   observableSources: T,
 };
 
+type LoadableData = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any,
+  isLoaded: boolean,
+  loader: () => CatchablePromise,
+};
+
 /**
  * A configurable version of {@link useObservableLoader} that enables to
  * specify the hook used to execute the {@link Observable} data load, see {@link DataLoader.loader}.
@@ -102,11 +109,13 @@ export type ObservableLoaderConfig<T extends ObservableDataHandler<any>[]> = {
 export function useObservableLoaderConfigurable<T extends ObservableDataHandler<any>[]>(
   config: ObservableLoaderConfig<T>): DataLoader<unknown[]> {
   // first check the data loaded status
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const allDataLoadable: { data: any, isLoaded: boolean, loader: () => CatchablePromise }[] = config
+  const allDataLoadable: LoadableData[] = config
     .observableSources
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .map((dataObservable: ObservableDataHandler<any>) => {
+      // the number of observable sources is fixed and cannot change,
+      // so the number of time useObservable is called will be stable
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const data: T = useObservable(dataObservable.dataObservable);
 
       return {
@@ -118,8 +127,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
       };
     });
   const isAllDataLoaded: boolean = allDataLoadable
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .every((dataLoadable: { data: any, isLoaded: boolean, loader: () => CatchablePromise }) => dataLoadable.isLoaded);
+    .every((dataLoadable: LoadableData) => dataLoadable.isLoaded);
 
   const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
   const [loadingError, setLoadingError] = useState<HttpError>();
@@ -155,8 +163,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
     isLoaded: isAllDataLoaded,
     loader: loaderWithErrorHandling,
     data: isAllDataLoaded
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ? allDataLoadable.map((loadedData: { data: any, isLoaded: boolean, loader: () => CatchablePromise }) => (
+      ? allDataLoadable.map((loadedData: LoadableData) => (
         loadedData.data
       ))
       : undefined,
@@ -177,6 +184,7 @@ export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
 ) : DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
-    useOnComponentMountedHook: (onMounted: () => void) => useOnComponentMountedWithSsrSupport(onMounted, dependencies),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useOnComponentMountedHook: (onMounted: () => void) => useEffectWithSsrSupport(onMounted, dependencies),
   });
 }

@@ -1,6 +1,7 @@
 import { HttpMethod } from 'simple-http-request-builder';
+import { RefreshableJwtToken } from 'browser-user-session';
+import type { SessionRefresher } from 'browser-user-session';
 import ApiHttpClient from '../ApiHttpClient';
-import { RefreshableJwtToken, SessionRefresher } from '../../lib/user-session/JwtSessionManager';
 
 export type SessionCredentials = {
   userName: string,

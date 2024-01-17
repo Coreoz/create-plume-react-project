@@ -1,4 +1,4 @@
-Plume admin React TS
+Plume React TS
 ====================
 
 Installation
@@ -32,6 +32,10 @@ Sometimes the first compilation fails.
 If that's the case:
 - If the application can be accessed in the browser at <http://localhost:3000>, it is possible to just reload the webpage: press `ctrl+r` keys
 - Else, you can force the first Typescript compilation with: `yarn build`
+
+Launching Storybook
+-------------------
+To start [Storybook](https://storybook.js.org/docs/react/writing-stories/introduction), run: `yarn storybook`
 
 Handling old browsers
 ---------------------
@@ -89,3 +93,4 @@ Some key points about the technologies used in the project :
     - [MUI](https://mui.com/)
     - [validator.js](https://github.com/validatorjs/validator.js)
     - [browser-user-session](https://github.com/Coreoz/browser-user-session)
+- Frontend workshop for UI components and pages in isolation is perform with [Storybook](https://storybook.js.org/docs/react/get-started/install/)

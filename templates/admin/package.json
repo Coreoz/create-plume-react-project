@@ -11,6 +11,7 @@
     "@mui/styles": "^5.10.9",
     "@mui/system": "^5.10.9",
     "@mui/x-date-pickers": "^5.0.5",
+    "browser-user-session": "1.0.2",
     "dayjs": "^1.11.5",
     "micro-observables": "^1.7.2",
     "plume-ts-di": "^1.2.4",
@@ -27,6 +28,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@sayari/eslint-plugin": "^0.0.1-rc.4",
     "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.1.2",
     "@types/react": "^18.0.21",
