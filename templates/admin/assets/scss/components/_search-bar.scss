@@ -3,18 +3,19 @@
 
 
 .advanced-search-bar {
+  $search-bar-width: 530px;
   $search-bar-height: 50px;
   position: relative;
 
   .search-bar-container {
-    width: 530px;
+    width: $search-bar-width;
     position: relative;
 
     .search-icon {
       color: $primary-color;
       position: absolute;
       top: 50%;
-      left: 2rem;
+      left: $spacer-6;
       transform: translate(-1rem, -50%);
     }
 
@@ -43,14 +44,14 @@
       stroke: $primary-color;
       position: absolute;
       top: 50%;
-      left: 2rem;
+      left: $spacer-6;
       transform: translate(-1rem, -50%);
     }
 
     button {
       position: absolute;
       top: 50%;
-      right: 1rem;
+      right: $spacer-4;
       border: none;
       background: transparent;
       transform: translateY(-50%);
@@ -74,7 +75,7 @@
     .more-options-container {
       position: absolute;
       top: $search-bar-height;
-      width: 530px;
+      width: $search-bar-width;
       padding: $spacer-4 $spacer-6;
       @include box-shadow();
       background: white;

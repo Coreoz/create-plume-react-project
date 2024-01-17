@@ -6,13 +6,13 @@ import {
 } from '../../../lib/plume-admin-theme/table/ListProps';
 
 type EmptyStateProps = {
-  label: string,
+  emptyTableLabel: string,
 };
 
-function EmptyState({ label }: EmptyStateProps) {
+function EmptyState({ emptyTableLabel }: EmptyStateProps) {
   return (
     <div className="list-elements list-elements--empty">
-      <span>{label}</span>
+      <span>{emptyTableLabel}</span>
     </div>
   );
 }
@@ -27,12 +27,12 @@ export function ListElements(
   if (isLoading) {
     const loadingLabel: string = messages.label.loading;
     return (
-      <EmptyState label={loadingLabel} />
+      <EmptyState emptyTableLabel={loadingLabel} />
     );
   }
   if (!listLength) {
     return (
-      <EmptyState label={label || defaultLabel} />
+      <EmptyState emptyTableLabel={label || defaultLabel} />
     );
   }
   return (

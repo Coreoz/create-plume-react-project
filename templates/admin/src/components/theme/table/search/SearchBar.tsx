@@ -10,7 +10,7 @@ import useToggle from '../../../../lib/react-hook-toggle/ReactHookToggle';
  * Creates a text input in which you can add a contextual menu for more filters
  * @param onSearch callback when a search is triggered
  * @param placeHolder
- * @param children an optional contextual menu
+ * @param children to display more options. If available, a "More options" button will be displayed to show this contextual menu
  */
 function SearchBar({ onSearch, placeHolder, children }: SearchBarProps) {
   const { messages } = useMessages();
