@@ -94,3 +94,41 @@ Some key points about the technologies used in the project :
     - [validator.js](https://github.com/validatorjs/validator.js)
     - [browser-user-session](https://github.com/Coreoz/browser-user-session)
 - Frontend workshop for UI components and pages in isolation is perform with [Storybook](https://storybook.js.org/docs/react/get-started/install/)
+
+Add a mixin import to all SCSS modules
+--------------------------------------
+
+`assets/scss/variables` are imported in all SCSS modules by default.  
+If you want to do the same for mixins :  
+1) Create a mixin folder `assets/scss/mixins`, add as many mixin files as you want in it
+2) Add an `_index.scss` file in the folder, and reference the created mixin files
+3) Reference the created index file in `assets/scss/app.scss`
+4) In vite.config.ts, add the following code : 
+```typescript
+export default defineConfig({
+    ...,
+    css: {
+        ...,
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+            },
+        },
+    },
+    resolve: {
+        alias: {
+            ...,
+            '@scssMixins': path.resolve(__dirname, 'assets/scss/mixins'),
+        },
+    },
+});
+```
+5) In typed-scss-modules.config.ts, add the following code : 
+```typescript
+// This is configuration for the `typed-scss-modules` package to enable SCSS modules
+export default {
+    ...,
+    aliases: { '@scssVariables': 'assets/scss/variables/', '@scssMixins': 'assets/scss/mixins/' },
+    additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+};
+```
