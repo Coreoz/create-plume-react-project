@@ -12,6 +12,7 @@ const frMessages: Translations = {
     delete: 'Supprimer',
     search: 'Rechercher',
     add: 'Ajouter',
+    update: 'Modifier',
     authenticate: 'Me connecter',
     disconnect: 'Me déconnecter',
     keep_editing: 'Rester sur la page',
@@ -21,6 +22,8 @@ const frMessages: Translations = {
   label: {
     creation_date: 'Date de création',
     loading: 'Chargement...',
+    empty: 'Aucun élément',
+    more_options: 'Plus d\'options',
   },
   // common messages
   message: {
@@ -56,8 +59,35 @@ const frMessages: Translations = {
     title_list: 'Liste des utilisateurs',
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
+    add: 'Ajouter un utilisateur',
     password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
+    list: {
+      count: (count: number) => `Nombre d'utilisateurs : ${count}`,
+    },
+  },
+  // sorts wording
+  sort: {
+    user: {
+      role_desc: 'Trier le rôle par ordre alphabétique descendant',
+      role_asc: 'Trier le rôle par ordre alphabétique ascendant',
+      firstName_desc: 'Trier le prénom par ordre alphabétique descendant',
+      firstName_asc: 'Trier le prénom par ordre alphabétique ascendant',
+      lastName_desc: 'Trier le nom par ordre alphabétique descendant',
+      lastName_asc: 'Trier le nom par ordre alphabétique ascendant',
+      email_desc: 'Trier le mail par ordre alphabétique descendant',
+      email_asc: 'Trier le mail par ordre alphabétique ascendant',
+      creationDate_asc: 'Trier du plus ancien au plus nouveau',
+      creationDate_desc: 'Trier du plus nouveau au plus ancien',
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: 'Filtres',
+      lastName: 'Nom',
+      role: 'Rôle',
+    },
   },
   // errors
   error: {

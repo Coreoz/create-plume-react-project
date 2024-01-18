@@ -28,3 +28,13 @@ export type AdminUserParameters = {
   password?: string,
   passwordConfirmation?: string,
 };
+
+export type AdminUserDetailsTableType = {
+  initials: string,
+  role: string,
+  creationDate: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  userName: string,
+};

@@ -12,6 +12,7 @@ const enMessages: Translations = {
     delete: 'Delete',
     search: 'Search',
     add: 'Add',
+    update: 'Update',
     authenticate: 'Log in',
     disconnect: 'Log out',
     keep_editing: 'Keep editing',
@@ -21,6 +22,8 @@ const enMessages: Translations = {
   label: {
     creation_date: 'Creation date',
     loading: 'Loading...',
+    empty: 'No element',
+    more_options: 'More options',
   },
   // common messages
   message: {
@@ -56,8 +59,35 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    add: 'Add user',
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
+    list: {
+      count: (count: number) => `User count : ${count}`,
+    },
+  },
+  // sorts wording
+  sort: {
+    user: {
+      role_desc: 'Sort role by descendant alphabetical order',
+      role_asc: 'Sort role by ascendant alphabetical order',
+      firstName_desc: 'Sort first name by descendant alphabetical order',
+      firstName_asc: 'Sort first name by ascendant alphabetical order',
+      lastName_desc: 'Sort last name by descendant alphabetical order',
+      lastName_asc: 'Sort last name by ascendant alphabetical order',
+      email_desc: 'Sort email by descendant alphabetical order',
+      email_asc: 'Sort email by ascendant alphabetical order',
+      creationDate_asc: 'Sort oldest to newest',
+      creationDate_desc: 'Sort newest to oldest',
+    },
+  },
+  // filters wording
+  filter: {
+    user: {
+      title: 'Filters',
+      lastName: 'Name',
+      role: 'Role',
+    },
   },
   // errors
   error: {

@@ -1,0 +1,19 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.status {
+  @include drawFilledCircle(15px);
+  margin-right: 0;
+
+  &--ok {
+    background: $green;
+  }
+
+  &--warn {
+    background: $orange;
+  }
+
+  &--danger {
+    background: $red;
+  }
+}

@@ -1,66 +1,143 @@
+import { ColumnHelper, createColumnHelper } from '@tanstack/react-table';
 import dayjs from 'dayjs';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import usePlumeTheme from '../../../components/theme/hooks/themeHook';
+import {
+  filterListContains,
+} from '../../../components/theme/table/filter/SearchFilters';
+import usePlumeTable, {
+  PlumeTable,
+} from '../../../components/theme/table/PlumeTableHook';
+import useMessages from '../../../i18n/hooks/messagesHook';
+import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
-import PlumeMessageResolver from '../../plume-messages/MessageResolver';
-import PlumeMessageResolverService from '../../plume-messages/MessageResolverService';
-import useMessagesResolver from '../../plume-messages/messagesResolveHook';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
+import UsersListResults from '../components/UsersListResults';
+import UserService from '../service/UserService';
+import {
+  AdminUsersWithIndexedRolesType,
+} from './AdminUsersWithIndexedRolesType';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
   usersPath: string,
+  isUsersLoading: boolean,
 };
 
-export default class UsersList {
-  constructor(private readonly theme: PlumeAdminTheme, private readonly messageService: PlumeMessageResolverService) {
-  }
+export default function UsersList({
+  usersWithRoles,
+  usersPath,
+  isUsersLoading,
+}: Props) {
+  const { messages } = useMessages();
+  const theme: PlumeAdminTheme = usePlumeTheme();
+  const navigate: NavigateFunction = useNavigate();
 
-  render = ({ usersWithRoles, usersPath }: Props) => {
-    const messages: PlumeMessageResolver = useMessagesResolver(this.messageService);
+  const columnHelper: ColumnHelper<AdminUserDetails> = createColumnHelper<AdminUserDetails>();
+  const { table, tableActions }: PlumeTable<AdminUserDetails> = usePlumeTable<AdminUserDetails>(
+    {
+      messageKey: 'user',
+      columns: [
+        columnHelper.accessor(
+          (row: AdminUserDetails) => UserService.userTrigram(row.firstName, row.lastName),
+          {
+            id: 'initials',
+            enableColumnFilter: false,
+            enableSorting: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => usersWithRoles?.roles.get(row.idRole),
+          {
+            id: 'role',
+            filterFn: filterListContains,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.firstName,
+          {
+            id: 'firstName',
+            sortingFn: 'text',
+            enableColumnFilter: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.lastName,
+          {
+            id: 'lastName',
+            sortingFn: 'text',
+            filterFn: filterListContains,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => row.email,
+          {
+            id: 'email',
+            enableColumnFilter: false,
+          },
+        ),
+        columnHelper.accessor(
+          (row: AdminUserDetails) => dayjs(row.creationDate).format('L LT'),
+          {
+            id: 'creationDate',
+            sortingFn: 'datetime',
+            enableColumnFilter: false,
+          },
+        ),
+      ],
+      data: usersWithRoles?.users ?? [],
+      options: {
+        defaultSort: { id: 'creationDate', desc: true },
+      },
+    },
+  );
 
-    return (
-      <>
-        <this.theme.pageTitle>{messages.t('user.title_list')}</this.theme.pageTitle>
-        <this.theme.actionsContainer>
-          <this.theme.actionLink
-            icon="add"
-            linkTo={`${usersPath}/create`}
-          >
-            {messages.t('action.add')}
-          </this.theme.actionLink>
-        </this.theme.actionsContainer>
-        <this.theme.panel>
-          {usersWithRoles && (
-            <table>
-              <thead>
-              <tr>
-                <th>{messages.t('users.userName')}</th>
-                <th>{messages.t('users.email')}</th>
-                <th>{messages.t('users.firstName')}</th>
-                <th>{messages.t('users.lastName')}</th>
-                <th>{messages.t('users.role')}</th>
-                <th>{messages.t('label.creation_date')}</th>
-              </tr>
-              </thead>
-              <tbody>
-              {usersWithRoles.users.map((user: AdminUserDetails) => (
-                <tr key={user.id}>
-                  <td><Link to={`${usersPath}/${user.id}`}>{user.userName}</Link></td>
-                  <td><Link to={`${usersPath}/${user.id}`}>{user.email}</Link></td>
-                  <td><Link to={`${usersPath}/${user.id}`}>{user.firstName}</Link></td>
-                  <td><Link to={`${usersPath}/${user.id}`}>{user.lastName}</Link></td>
-                  <td><Link to={`${usersPath}/${user.id}`}>{usersWithRoles.roles.get(user.idRole)}</Link></td>
-                  <td><Link to={`${usersPath}/${user.id}`}>{dayjs(user.creationDate).format('L LT')}</Link></td>
-                </tr>
-              ))}
-              </tbody>
-            </table>
-          )}
-          {!usersWithRoles && <span>{messages.t('label.loading')}</span>}
-        </this.theme.panel>
-      </>
-    );
-  };
+  return (
+    <>
+      <theme.panelTitle level="h2">{messages.user.title_list}</theme.panelTitle>
+      <theme.panelContent>
+        <theme.panelContentElement>
+          <theme.panelContentElementColumn widthPercentage="50">
+            <theme.searchBar
+              onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
+                tableActions.onGlobalFilterChange(event.target.value);
+              }}
+            />
+          </theme.panelContentElementColumn>
+          <theme.panelContentElementColumn widthPercentage="50">
+            <theme.actionsContainer>
+              <theme.actionButton
+                icon="add"
+                style={ActionStyle.PRIMARY}
+                onClick={() => {
+                  navigate(`${usersPath}/create`);
+                }}
+              >
+                {messages.user.add}
+              </theme.actionButton>
+            </theme.actionsContainer>
+          </theme.panelContentElementColumn>
+        </theme.panelContentElement>
+        <theme.panelContentElement>
+          <theme.panelContentElementColumn widthPercentage="20">
+            <theme.multipleChoiceFilterMenu
+              messageKey={tableActions.filterConfiguration.messageKey}
+              filters={tableActions.filterConfiguration.filters}
+              onFilterValueClicked={tableActions.filterConfiguration.onFilterValueClicked}
+              selectedValues={tableActions.filterConfiguration.selectedValues}
+            />
+          </theme.panelContentElementColumn>
+          <theme.panelContentElementColumn widthPercentage="80">
+            <UsersListResults
+              userList={table.getRowModel().rows}
+              usersPath={usersPath}
+              sortConfiguration={tableActions.sortConfiguration}
+              isLoading={isUsersLoading}
+            />
+          </theme.panelContentElementColumn>
+        </theme.panelContentElement>
+      </theme.panelContent>
+    </>
+  );
 }

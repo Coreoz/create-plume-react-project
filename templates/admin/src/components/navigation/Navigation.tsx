@@ -17,7 +17,7 @@ export default function Navigation() {
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 
   return (
-    <nav className={`main-nav ${isDrawerOpened ? 'nav' : 'nav nav--reduced'}`}>
+    <nav className={`main-nav${isDrawerOpened ? '' : ' main-nav--reduced'}`}>
       <button type="button" className="toggle-nav">
         <Icon
           onClick={toggleDrawerOpening}

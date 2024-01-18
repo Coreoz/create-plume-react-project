@@ -1,0 +1,92 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.advanced-search-bar {
+  $search-bar-width: 530px;
+  $search-bar-height: 50px;
+  position: relative;
+
+  .search-bar-container {
+    width: $search-bar-width;
+    position: relative;
+
+    .search-icon {
+      color: $primary-color;
+      position: absolute;
+      top: 50%;
+      left: $spacer-6;
+      transform: translate(-1rem, -50%);
+    }
+
+    .search-bar {
+      width: 100%;
+      height: 50px;
+      line-height: $search-bar-height;
+      padding: $spacer-2 $spacer-10 $spacer-2 $spacer-7;
+      font-style: italic;
+      color: $gray-text;
+      border-radius: $border-radius-5;
+      border: 1px solid $gray;
+      outline: none;
+      font-size: $font-size-little;
+
+      &:focus {
+        background: rgba($gray-light, 0.1);
+      }
+
+      &::placeholder {
+        color: $gray-light;
+      }
+    }
+
+    svg {
+      stroke: $primary-color;
+      position: absolute;
+      top: 50%;
+      left: $spacer-6;
+      transform: translate(-1rem, -50%);
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      right: $spacer-4;
+      border: none;
+      background: transparent;
+      transform: translateY(-50%);
+      color: $secondary-color;
+    }
+
+    .more-options-container {
+      .radio-buttons-container {
+        display: flex;
+      }
+    }
+  }
+
+  .more-options-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    .more-options-container {
+      position: absolute;
+      top: $search-bar-height;
+      width: $search-bar-width;
+      padding: $spacer-4 $spacer-6;
+      @include box-shadow();
+      background: white;
+      border-radius: $border-radius-5;
+      z-index: 2;
+    }
+  }
+
+  @include tablet() {
+    .search-bar-container {
+      width: 100%;
+    }
+  }
+}

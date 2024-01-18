@@ -12,7 +12,7 @@
   .popin-container {
     background-color: #ffffff;
     box-shadow: 0 3px 5px 1px rgba(#000000, .25);
-    border-radius: 3px;
+    border-radius: $border-radius-3;
     padding: $box-padding 0;
     max-height: 100%;
     overflow: auto;

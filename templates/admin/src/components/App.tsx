@@ -27,15 +27,18 @@ export default function App() {
 
   logger.info('Render App');
   return (
-      <GlobalErrorBoundary>
-        <ToastContainer />
-        <BrowserRouter basename={basePath}>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/*"
-              element={(
-                <ConditionalRoute shouldDisplayRoute={sessionService.isAuthenticated()} defaultRoute="/login">
+    <GlobalErrorBoundary>
+      <ToastContainer />
+      <BrowserRouter basename={basePath}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/*"
+            element={(
+              <ConditionalRoute
+                shouldDisplayRoute={sessionService.isAuthenticated()}
+                defaultRoute="/login">
+                <div id="main">
                   <div id="main-layout">
                     <Navigation />
                     <div id="content-layout">
@@ -43,11 +46,12 @@ export default function App() {
                       <Router />
                     </div>
                   </div>
-                </ConditionalRoute>
-              )}
-            />
-          </Routes>
-        </BrowserRouter>
-      </GlobalErrorBoundary>
+                </div>
+              </ConditionalRoute>
+            )}
+          />
+        </Routes>
+      </BrowserRouter>
+    </GlobalErrorBoundary>
   );
 }
