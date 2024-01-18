@@ -72,7 +72,6 @@ Here is the proposed structure for Plume-TS projects:
 - `src/i18n`: Contains the messages entry point and the translations for each language
 - `src/lib`: Contains the code that is clearly identified to be non-specific to the project and that will be externalized to separate TS dependencies
 - `src/services`: Contains the business code (not technical) that handles logic and data that exists application wide: sessions, locale, notification, configuration, etc.
-- `src/utils`: Container utility functions
 - `tests`: The sources tests
 - files outside `src` and `tests`: File that are used to compile the project, typescript and eslint preferences
 
