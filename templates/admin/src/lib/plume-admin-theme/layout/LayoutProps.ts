@@ -1,27 +1,27 @@
 import React from 'react';
 import { ColumnWidth } from './ColumnWidth';
-import { IconType } from '../../../components/theme/IconType';
 import Status from './Status';
 
-export type LayoutPageTitleProps = {
-  icon?: IconType,
-  children?: React.ReactNode,
-};
+export type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-export type LayoutPageBlocProps = {
+export type PanelContentElementProps = {
   children: React.ReactNode,
   cssClasses?: string,
 };
 
-export type LayoutPageBlocColumnProps = {
-  columnWidth: ColumnWidth,
+export type PanelContentElementColumnProps = {
+  widthPercentage: ColumnWidth,
   children: React.ReactNode,
   cssClasses?: string,
 };
 
 export type PanelProps = {
-  icon?: IconType,
-  children?: React.ReactNode,
+  children: React.ReactNode,
+};
+
+export type PanelTitleProps = {
+  children: React.ReactNode,
+  level?: HeadingLevel,
 };
 
 export type StatusDotProps = {

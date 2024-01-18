@@ -40,7 +40,7 @@ function SortMenu(
 
   const defaultSortPossibility: string = useMemo(
     () => `${defaultSort!.id}_${defaultSort!.desc ? 'desc' : 'asc'}`,
-    [],
+    [defaultSort],
   );
 
   /**
@@ -63,7 +63,7 @@ function SortMenu(
         isDesc: true,
       },
     ])
-  ), []);
+  ), [messages, messageKey, sortPossibilities]);
 
   const isCurrentlySelected = (sortElement: SortPossibility) => (
     currentSort.id === sortElement.key && currentSort.desc === sortElement.isDesc

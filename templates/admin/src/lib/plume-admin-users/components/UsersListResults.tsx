@@ -1,10 +1,10 @@
 import { Row } from '@tanstack/react-table';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import usePlumeTheme from '../../../components/theme/hooks/themeHook';
 import useMessages from '../../../i18n/hooks/messagesHook';
-import { SortMenuProps } from '../../plume-admin-theme/table/sort/SortProps';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
+import { SortMenuProps } from '../../plume-admin-theme/table/sort/SortProps';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import UserTile from './UserTile';
 
@@ -21,7 +21,7 @@ function UsersListResults(
   }: Props,
 ) {
   const { messages } = useMessages();
-  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const theme: PlumeAdminTheme = usePlumeTheme();
   const navigate: NavigateFunction = useNavigate();
 
   return (

@@ -1,8 +1,8 @@
 import { ColumnHelper, createColumnHelper } from '@tanstack/react-table';
 import dayjs from 'dayjs';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import usePlumeTheme from '../../../components/theme/hooks/themeHook';
 import {
   filterListContains,
 } from '../../../components/theme/table/filter/SearchFilters';
@@ -31,7 +31,7 @@ export default function UsersList({
   isUsersLoading,
 }: Props) {
   const { messages } = useMessages();
-  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const theme: PlumeAdminTheme = usePlumeTheme();
   const navigate: NavigateFunction = useNavigate();
 
   const columnHelper: ColumnHelper<AdminUserDetails> = createColumnHelper<AdminUserDetails>();
@@ -95,47 +95,49 @@ export default function UsersList({
 
   return (
     <>
-      <theme.pageTitle>{messages.user.title_list}</theme.pageTitle>
-      <theme.pageBloc>
-        <theme.pageBlocColumn columnWidth="50">
-          <theme.searchBar
-            onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
-              tableActions.onGlobalFilterChange(event.target.value);
-            }}
-          />
-        </theme.pageBlocColumn>
-        <theme.pageBlocColumn columnWidth="50">
-          <theme.actionsContainer>
-            <theme.actionButton
-              icon="add"
-              style={ActionStyle.PRIMARY}
-              onClick={() => {
-                navigate(`${usersPath}/create`);
+      <theme.panelTitle level="h2">{messages.user.title_list}</theme.panelTitle>
+      <theme.panelContent>
+        <theme.panelContentElement>
+          <theme.panelContentElementColumn widthPercentage="50">
+            <theme.searchBar
+              onSearch={(event: React.ChangeEvent<HTMLInputElement>) => {
+                tableActions.onGlobalFilterChange(event.target.value);
               }}
-            >
-              {messages.user.add}
-            </theme.actionButton>
-          </theme.actionsContainer>
-        </theme.pageBlocColumn>
-      </theme.pageBloc>
-      <theme.pageBloc>
-        <theme.pageBlocColumn columnWidth="20">
-          <theme.multipleChoiceFilterMenu
-            messageKey={tableActions.filterConfiguration.messageKey}
-            filters={tableActions.filterConfiguration.filters}
-            onFilterValueClicked={tableActions.filterConfiguration.onFilterValueClicked}
-            selectedValues={tableActions.filterConfiguration.selectedValues}
-          />
-        </theme.pageBlocColumn>
-        <theme.pageBlocColumn columnWidth="80">
-          <UsersListResults
-            userList={table.getRowModel().rows}
-            usersPath={usersPath}
-            sortConfiguration={tableActions.sortConfiguration}
-            isLoading={isUsersLoading}
-          />
-        </theme.pageBlocColumn>
-      </theme.pageBloc>
+            />
+          </theme.panelContentElementColumn>
+          <theme.panelContentElementColumn widthPercentage="50">
+            <theme.actionsContainer>
+              <theme.actionButton
+                icon="add"
+                style={ActionStyle.PRIMARY}
+                onClick={() => {
+                  navigate(`${usersPath}/create`);
+                }}
+              >
+                {messages.user.add}
+              </theme.actionButton>
+            </theme.actionsContainer>
+          </theme.panelContentElementColumn>
+        </theme.panelContentElement>
+        <theme.panelContentElement>
+          <theme.panelContentElementColumn widthPercentage="20">
+            <theme.multipleChoiceFilterMenu
+              messageKey={tableActions.filterConfiguration.messageKey}
+              filters={tableActions.filterConfiguration.filters}
+              onFilterValueClicked={tableActions.filterConfiguration.onFilterValueClicked}
+              selectedValues={tableActions.filterConfiguration.selectedValues}
+            />
+          </theme.panelContentElementColumn>
+          <theme.panelContentElementColumn widthPercentage="80">
+            <UsersListResults
+              userList={table.getRowModel().rows}
+              usersPath={usersPath}
+              sortConfiguration={tableActions.sortConfiguration}
+              isLoading={isUsersLoading}
+            />
+          </theme.panelContentElementColumn>
+        </theme.panelContentElement>
+      </theme.panelContent>
     </>
   );
 }

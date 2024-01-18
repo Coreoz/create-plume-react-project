@@ -11,9 +11,9 @@ import {
   InputTextProps,
 } from '../../lib/plume-admin-theme/form/FormInputProps';
 import {
-  LayoutPageBlocColumnProps,
-  LayoutPageBlocProps,
-  LayoutPageTitleProps,
+  PanelContentElementColumnProps,
+  PanelContentElementProps,
+  PanelTitleProps,
   PanelProps,
   StatusDotProps,
 } from '../../lib/plume-admin-theme/layout/LayoutProps';
@@ -38,9 +38,14 @@ import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
-import { PageBloc, PageBlocColumn } from './layout/PageBloc';
-import PageTitle from './layout/PageTitle';
-import { Panel, PanelSeparator } from './layout/Panel';
+import {
+  Panel,
+  PanelContent,
+  PanelSeparator,
+  PanelTitle,
+  PanelContentElement,
+  PanelContentElementColumn,
+} from './layout/Panel';
 import StatusDot from './layout/StatusDot';
 import MultipleChoiceFilterMenu from './table/filter/MultipleChoiceFilterMenu';
 import { ListElements, ListSingleElement } from './table/ListElements';
@@ -50,12 +55,6 @@ import SortMenu from './table/sort/SortMenu';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
-  pageTitle: (props: LayoutPageTitleProps) => JSX.Element = PageTitle;
-
-  pageBloc: (props: LayoutPageBlocProps) => JSX.Element = PageBloc;
-
-  pageBlocColumn: (props: LayoutPageBlocColumnProps) => JSX.Element = PageBlocColumn;
-
   actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
 
   actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
@@ -65,6 +64,14 @@ export default class AdminTheme implements PlumeAdminTheme {
   panel: (props: PanelProps) => JSX.Element = Panel;
 
   panelSeparator: () => JSX.Element = PanelSeparator;
+
+  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
+
+  panelContent: (props: PanelProps) => JSX.Element = PanelContent;
+
+  panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
+
+  panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
 
   searchBar: (props: SearchBarProps) => JSX.Element = SearchBar;
 

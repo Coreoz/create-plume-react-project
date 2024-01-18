@@ -1,6 +1,6 @@
 import { Row } from '@tanstack/react-table';
-import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
+import usePlumeTheme from '../../../components/theme/hooks/themeHook';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import Status from '../../plume-admin-theme/layout/Status';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
@@ -13,7 +13,7 @@ type Props = {
 
 export default function UserTile({ user, onClick }: Props) {
   const { messages } = useMessages();
-  const theme: PlumeAdminTheme = getGlobalInstance(PlumeAdminTheme);
+  const theme: PlumeAdminTheme = usePlumeTheme();
 
   const statusCircle = (isActive: boolean): Status => {
     if (isActive) {

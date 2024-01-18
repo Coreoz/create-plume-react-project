@@ -127,30 +127,30 @@
       }
     }
   }
-}
 
-.nav--reduced {
-  width: 85px;
-  transition: width .3s ease-in;
+  &--reduced {
+    width: 85px;
+    transition: width .3s ease-in;
 
-  .app-info {
-    span {
-      display: none;
-    }
-
-    div {
-      opacity: 0;
-    }
-  }
-
-  .navigation {
-    a {
-      div.MuiListItemIcon-root {
-        left: 10px;
+    .app-info {
+      span {
+        display: none;
       }
 
-      div.MuiListItemText-root {
+      div {
         opacity: 0;
+      }
+    }
+
+    .navigation {
+      a {
+        div.MuiListItemIcon-root {
+          left: 10px;
+        }
+
+        div.MuiListItemText-root {
+          opacity: 0;
+        }
       }
     }
   }
