@@ -87,8 +87,8 @@
     "stylelint": "stylelint 'assets/scss/**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx",
     "typescript": "tsc --noEmit",
-    "test": "jest --config jest.config.js",
-    "coverage": "jest --config jest.config.js --coverage --watchAll=false"
+    "test": "jest --config jest.config.ts",
+    "coverage": "jest --config jest.config.ts --coverage --watchAll=false"
   },
   "packageManager": "yarn@3.6.4",
   "engines": {
