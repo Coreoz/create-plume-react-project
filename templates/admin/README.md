@@ -23,6 +23,33 @@ If you are not using Intellij, make sure not to leave ESLint errors.
 
 If you are using VSCode, you need to also execute `yarn dlx @yarnpkg/sdks vscode`
 
+### Sonar
+Complete the following properties in `sonar-project-frontend.properties` file :
+```
+# Exemple
+sonar.projectKey=project-front-ui
+sonar.projectName=My project - front-ui
+```
+
+### Gitlab ci
+A Gitlab ci file `.gitlab-ci.yml` is provided in the project.
+It is pre-configured to run the following jobs:
+- Front UI build : yarn typescript && yarn eslint
+- SonarQube analyze front UI : sonar
+
+If the frontend project is used inside a [Plume](https://github.com/Coreoz/Plume) backend project :
+- Copy/paste the content of the gitlab ci file in the backend gitlab ci file
+- Add `cd <frontend directory>` as the first step of each job
+```
+# Exemple
+Front UI build:
+  ...
+  script:
+    - cd front-ui
+  ...
+```
+- Remove the frontend gitlab ci file
+
 Launching the application
 -------------------------
 To start the application, you need to run: `yarn start`.
