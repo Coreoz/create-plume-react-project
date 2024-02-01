@@ -125,3 +125,78 @@ To separate access to the two front-end applications, the basic admin router mus
   </Router>
 </React.StrictMode>
 ```
+
+Add a mixin import to all SCSS modules
+--------------------------------------
+
+`assets/scss/variables` are imported in all SCSS modules by default.  
+If you want to do the same for mixins :
+1) Create a mixin folder `assets/scss/mixins`, add as many mixin files as you want in it
+2) Add an `_index.scss` file in the folder, and reference the created mixin files
+3) Reference the created index file in `assets/scss/app.scss`
+4) In vite.config.ts, add the following code :
+```typescript
+export default defineConfig({
+    ...,
+    css: {
+        ...,
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+            },
+        },
+    },
+    resolve: {
+        alias: {
+            ...,
+            '@scssMixins': path.resolve(__dirname, 'assets/scss/mixins'),
+        },
+    },
+});
+```
+5) In typed-scss-modules.config.ts, add the following code :
+```typescript
+// This is configuration for the `typed-scss-modules` package to enable SCSS modules
+export default {
+    ...,
+    aliases: { '@scssVariables': 'assets/scss/variables/', '@scssMixins': 'assets/scss/mixins/' },
+    additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+};
+```
+
+# CSS Modules
+## Configuration
+CSS modules are configured in `vite.config.ts` and `typed-scss-modules.config.ts`.
+In you want to remove local scope of CSS modules, add the following in vite.config.ts :
+```typescript
+{
+  ...
+  css: {
+    modules: {
+      generateScopedName: (name) => { 
+        return name;
+      },  
+    },
+  ...
+}
+```
+
+## Usage, guidelines and good practices
+Usage :
+```
+import scss from './component.module.scss';
+
+export default function Component() {
+  return (
+    <HtmlTag className={scss.myElementBlockModifier or scss['my-element_block--modifier'}}>
+       ...
+    </HtmlTag>
+  );
+}
+```
+- CSS Modules are compiled in a scss-types directory. The generated files follow the same structure as the source files.
+- Name your file like this : `<component's name>.module.scss`
+- Add the scss module in the same directory as the component in which it is used
+- Do not import the scss module in another component
+- Map your modifier class to a typescript enum
+

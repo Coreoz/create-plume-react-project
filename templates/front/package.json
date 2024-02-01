@@ -97,8 +97,8 @@
     "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx",
     "typescript": "tsc --noEmit",
-    "test": "jest --config jest.config.js",
-    "coverage": "jest --config jest.config.js --coverage --watchAll=false",
+    "test": "jest --config jest.config.ts",
+    "coverage": "jest --config jest.config.ts --coverage --watchAll=false",
     "check-scss-types": "typed-scss-modules 'src/**/*.scss' -l",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

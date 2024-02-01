@@ -132,3 +132,39 @@ export default {
     additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
 };
 ```
+
+# CSS Modules
+## Configuration
+CSS modules are configured in `vite.config.ts` and `typed-scss-modules.config.ts`.
+In you want to remove local scope of CSS modules, add the following in vite.config.ts :
+```typescript
+{
+  ...
+  css: {
+    modules: {
+      generateScopedName: (name) => { 
+        return name;
+      },  
+    },
+  ...
+}
+```
+
+## Usage, guidelines and good practices
+Usage :
+```
+import scss from './component.module.scss';
+
+export default function Component() {
+  return (
+    <HtmlTag className={scss.myElementBlockModifier or scss['my-element_block--modifier'}}>
+       ...
+    </HtmlTag>
+  );
+}
+```
+- CSS Modules are compiled in a scss-types directory. The generated files follow the same structure as the source files.
+- Name your file like this : `<component's name>.module.scss`
+- Add the scss module in the same directory as the component in which it is used
+- Do not import the scss module in another component
+- Map your modifier class to a typescript enum
