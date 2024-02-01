@@ -23,33 +23,6 @@ If you are not using Intellij, make sure not to leave ESLint errors.
 
 If you are using VSCode, you need to also execute `yarn dlx @yarnpkg/sdks vscode`
 
-### Sonar
-Complete the following properties in `sonar-project-frontend.properties` file :
-```
-# Exemple
-sonar.projectKey=project-front-ui
-sonar.projectName=My project - front-ui
-```
-
-### Gitlab ci
-A Gitlab ci file `.gitlab-ci.yml` is provided in the project.
-It is pre-configured to run the following jobs:
-- Front UI build : yarn typescript && yarn eslint
-- SonarQube analyze front UI : sonar
-
-If the frontend project is used inside a [Plume](https://github.com/Coreoz/Plume) backend project :
-- Copy/paste the content of the gitlab ci file in the backend gitlab ci file
-- Add `cd <frontend directory>` as the first step of each job
-```
-# Exemple
-Front UI build:
-  ...
-  script:
-    - cd front-ui
-  ...
-```
-- Remove the frontend gitlab ci file
-
 Launching the application
 -------------------------
 To start the application, you need to run: `yarn start`.
@@ -106,15 +79,15 @@ Some key points about the technologies used in the project :
 - Dependency injection is performed with [DI](https://github.com/wessberg/di) and the [Plume TS DI](https://github.com/Coreoz/plume-ts-di) overlay.
 - Global state management is performed in services using the Observable pattern and the [Micro-observables](https://github.com/BeTomorrow/micro-observables) library.
 - Important external libraries:
-    - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
-    - [MUI](https://mui.com/)
-    - [react-router](https://reactrouter.com/)
-    - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
-    - [validator.js](https://github.com/validatorjs/validator.js)
-    - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
-    - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
-    - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
-    - [browser-user-session](https://github.com/Coreoz/browser-user-session)
+  - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
+  - [MUI](https://mui.com/)
+  - [react-router](https://reactrouter.com/)
+  - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
+  - [validator.js](https://github.com/validatorjs/validator.js)
+  - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
+  - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
+  - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
+  - [browser-user-session](https://github.com/Coreoz/browser-user-session)
 
 Prepare administration deployment
 ---------------------------------

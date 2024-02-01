@@ -1,10 +1,11 @@
+# This can be removed if you are not using AppServer
 .before_script_template:
   before_script:
     - check_if_version_installed=$(. ~/init_nodejs.sh >/dev/null; nvm ls --no-colors 16.14.0 | tail -1 | tr -d '\->*' | tr -d '[:space:]')
     - if [[ "$check_if_version_installed" == "N/A" ]]; then . ~/init_nodejs.sh >/dev/null; nvm install 16.14.0; fi
     - . ~/init_nodejs.sh >/dev/null; nvm use --delete-prefix 16.14.0
 
-Front UI build:
+Admin UI build:
   extends: .before_script_template
   script:
     - yarn install
@@ -14,7 +15,7 @@ Front UI build:
   tags:
     - yarn
 
-SonarQube analyze front UI:
+SonarQube analyze admin UI:
   extends: .before_script_template
   script:
     - yarn && yarn coverage --passWithNoTests

@@ -1,3 +1,4 @@
+# This can be removed if you are not using AppServer
 .before_script_template:
   before_script:
     - check_if_version_installed=$(. ~/init_nodejs.sh >/dev/null; nvm ls --no-colors 16.14.0 | tail -1 | tr -d '\->*' | tr -d '[:space:]')

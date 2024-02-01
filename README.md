@@ -28,6 +28,40 @@ So the `template` option can be used like this: `npx create-plume-react-project@
 | targetDirectory   | Current directory                               | Any valid absolute path | The path in which the project will be initialized with the template   |
 | templateDirectory | The build/templates directory of the create cli | Any valid absolute path | The path in which templates will be used                              |
 
+## Configuration
+### Sonar
+Complete the following properties in `sonar-project-frontend.properties` file :
+```
+# Exemple
+sonar.projectKey=project-front-ui
+sonar.projectName=My project - front-ui
+```
+
+### Gitlab ci
+A Gitlab ci file `.gitlab-ci.yml` is provided in the project.
+It is pre-configured to run the following jobs:
+- Front UI build or Admin UI build : yarn typescript && yarn eslint
+- SonarQube analyze front UI or SonarQube analyze admin UI : sonar
+
+If the frontend project is used inside a [Plume](https://github.com/Coreoz/Plume) backend project :
+- Copy/paste the content of the gitlab ci file in the backend gitlab ci file
+- Add `cd <frontend directory>` as the first step of each job
+```
+# Exemple
+Front UI build:
+  ...
+  script:
+    - cd front-ui
+  ...
+  
+Admin UI build:
+  ...
+  script:
+    - cd front-ui
+  ...
+```
+- Remove the frontend gitlab ci file
+
 Development
 -----------
 To set up the development environment to work on this create cli:
