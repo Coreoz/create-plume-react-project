@@ -1,8 +1,8 @@
 Plume React TS
 ====================
 
-Installation
-------------
+Development workstation installation
+------------------------------------
 Make sure you have at least node 18 installed.
 
 Yarn is the preferred way to set up this project. To install it, follow the instructions detailed here: <https://yarnpkg.com/getting-started/install>.
@@ -37,26 +37,9 @@ Launching Storybook
 -------------------
 To start [Storybook](https://storybook.js.org/docs/react/writing-stories/introduction), run: `yarn storybook`
 
-Handling old browsers
----------------------
-This project is supported only relatively new browsers.
-But anything that uses a feature that requires at least es2019 should be used sparsely and carefully.
-
-To have a look on advanced features used by the project, it is possible to:
-1. In `.eslintrc.js`, uncomment the line `'plugin:typescript-compat/recommended'`
-2. Run `yarn eslint`
-
-Errors regarding IE 11 will also be raised, but at least, it enables to have a global view of what features are being
-used.
-
-Valid features being used are listing in `.eslintrc.js` in the `polyfills` part.
-
-A banner is displayed in non-supported browsers. This is configured directly in the root `index.html` file.
-`index.html` uses essential main features detection to choose weather to display the banner in non-supported browsers
-or not.
-
-Opera Mini is by default not supported though it is used in some regions in the World. To support it, the best way
-would be to load dynamically `fetch` and `Promise` polyfills if these features are not available.
+Configuration after project creation
+------------------------------------
+See the Plume archetype project for some [documentation about project configuration](https://github.com/Coreoz/create-plume-react-project#configuration-after-project-creation).
 
 Sources structure
 -----------------

@@ -28,7 +28,10 @@ So the `template` option can be used like this: `npx create-plume-react-project@
 | targetDirectory   | Current directory                               | Any valid absolute path | The path in which the project will be initialized with the template   |
 | templateDirectory | The build/templates directory of the create cli | Any valid absolute path | The path in which templates will be used                              |
 
-## Configuration
+Configuration after project creation
+------------------------------------
+After a project is created using the archetype/template, some additional configurations might be needed.
+
 ### Sonar
 Complete the following properties in `sonar-project-frontend.properties` file :
 ```
@@ -61,6 +64,26 @@ Admin UI build:
   ...
 ```
 - Remove the frontend gitlab ci file
+
+### Handling old browsers
+This project is supported only relatively new browsers.
+But anything that uses a feature that requires at least es2019 should be used sparsely and carefully.
+
+To have a look on advanced features used by the project, it is possible to:
+1. In `.eslintrc.js`, uncomment the line `'plugin:typescript-compat/recommended'`
+2. Run `yarn eslint`
+
+Errors regarding IE 11 will also be raised, but at least, it enables to have a global view of what features are being
+used.
+
+Valid features being used are listing in `.eslintrc.js` in the `polyfills` part.
+
+A banner is displayed in non-supported browsers. This is configured directly in the root `index.html` file.
+`index.html` uses essential main features detection to choose weather to display the banner in non-supported browsers
+or not.
+
+Opera Mini is by default not supported though it is used in some regions in the World. To support it, the best way
+would be to load dynamically `fetch` and `Promise` polyfills if these features are not available.
 
 Development
 -----------
