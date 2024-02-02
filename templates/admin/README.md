@@ -79,15 +79,15 @@ Some key points about the technologies used in the project :
 - Dependency injection is performed with [DI](https://github.com/wessberg/di) and the [Plume TS DI](https://github.com/Coreoz/plume-ts-di) overlay.
 - Global state management is performed in services using the Observable pattern and the [Micro-observables](https://github.com/BeTomorrow/micro-observables) library.
 - Important external libraries:
-    - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
-    - [MUI](https://mui.com/)
-    - [react-router](https://reactrouter.com/)
-    - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
-    - [validator.js](https://github.com/validatorjs/validator.js)
-    - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
-    - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
-    - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
-    - [browser-user-session](https://github.com/Coreoz/browser-user-session)
+  - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
+  - [MUI](https://mui.com/)
+  - [react-router](https://reactrouter.com/)
+  - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
+  - [validator.js](https://github.com/validatorjs/validator.js)
+  - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
+  - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
+  - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
+  - [browser-user-session](https://github.com/Coreoz/browser-user-session)
 
 Prepare administration deployment
 ---------------------------------

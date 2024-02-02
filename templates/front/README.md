@@ -83,53 +83,53 @@ Some key points about the technologies used in the project :
 - Dependency injection is performed with [DI](https://github.com/wessberg/di) and the [Plume TS DI](https://github.com/Coreoz/plume-ts-di) overlay.
 - Global state management is performed in services using the Observable pattern and the [Micro-observables](https://github.com/BeTomorrow/micro-observables) library.
 - Important external libraries included in this template:
-    - [react-router](https://reactrouter.com/)
-    - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
-    - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
-    - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
-    - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
+  - [react-router](https://reactrouter.com/)
+  - [dayjs](https://github.com/iamkun/dayjs) : the alternative to Moment.js
+  - [simple-logging-system](https://github.com/Coreoz/simple-logging-system)
+  - [simple-job-scheduler](https://github.com/Coreoz/simple-job-scheduler)
+  - [simple-http-rest-client](https://github.com/Coreoz/simple-http-rest-client)
 - External libraries that can be included if needed:
-    - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
-    - [MUI](https://mui.com/)
-    - [validator.js](https://github.com/validatorjs/validator.js)
-    - [browser-user-session](https://github.com/Coreoz/browser-user-session)
+  - [react-hook-form](https://github.com/react-hook-form/react-hook-form)
+  - [MUI](https://mui.com/)
+  - [validator.js](https://github.com/validatorjs/validator.js)
+  - [browser-user-session](https://github.com/Coreoz/browser-user-session)
 - Frontend workshop for UI components and pages in isolation is perform with [Storybook](https://storybook.js.org/docs/react/get-started/install/)
 
 Add a mixin import to all SCSS modules
 --------------------------------------
 
 `assets/scss/variables` are imported in all SCSS modules by default.  
-If you want to do the same for mixins :  
+If you want to do the same for mixins :
 1) Create a mixin folder `assets/scss/mixins`, add as many mixin files as you want in it
 2) Add an `_index.scss` file in the folder, and reference the created mixin files
 3) Reference the created index file in `assets/scss/app.scss`
-4) In vite.config.ts, add the following code : 
+4) In vite.config.ts, add the following code :
 ```typescript
 export default defineConfig({
+  ...,
+  css: {
     ...,
-    css: {
-        ...,
-        preprocessorOptions: {
-            scss: {
-                additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
-            },
-        },
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+      },
     },
-    resolve: {
-        alias: {
-            ...,
-            '@scssMixins': path.resolve(__dirname, 'assets/scss/mixins'),
-        },
+  },
+  resolve: {
+    alias: {
+      ...,
+      '@scssMixins': path.resolve(__dirname, 'assets/scss/mixins'),
     },
+  },
 });
 ```
-5) In typed-scss-modules.config.ts, add the following code : 
+5) In typed-scss-modules.config.ts, add the following code :
 ```typescript
 // This is configuration for the `typed-scss-modules` package to enable SCSS modules
 export default {
-    ...,
-    aliases: { '@scssVariables': 'assets/scss/variables/', '@scssMixins': 'assets/scss/mixins/' },
-    additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+  ...,
+  aliases: { '@scssVariables': 'assets/scss/variables/', '@scssMixins': 'assets/scss/mixins/' },
+  additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
 };
 ```
 

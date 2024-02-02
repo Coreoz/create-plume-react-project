@@ -85,7 +85,7 @@
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint 'assets/scss/**/*.scss'",
-    "eslint": "eslint src --ext .ts,.tsx",
+    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.js",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.ts",
     "coverage": "jest --config jest.config.ts --coverage --watchAll=false"

@@ -1,0 +1,26 @@
+# This can be removed if you are not using AppServer
+.before_script_template:
+  before_script:
+    - check_if_version_installed=$(. ~/init_nodejs.sh >/dev/null; nvm ls --no-colors 16.14.0 | tail -1 | tr -d '\->*' | tr -d '[:space:]')
+    - if [[ "$check_if_version_installed" == "N/A" ]]; then . ~/init_nodejs.sh >/dev/null; nvm install 16.14.0; fi
+    - . ~/init_nodejs.sh >/dev/null; nvm use --delete-prefix 16.14.0
+
+Front UI build:
+  extends: .before_script_template
+  script:
+    - yarn install
+    # CI=false : avoid warnings to be treated as errors
+    - CI=false yarn typescript
+    # Pipeline will use .eslintrc.ci.js configuration file (debugger/console.log are not allowed)
+    # You can configure your IDE to use .eslintrc.js for development if you want to allow debugger/console.log
+    - CI=false yarn eslint
+  tags:
+    - yarn
+
+SonarQube analyze front UI:
+  extends: .before_script_template
+  script:
+    - yarn && yarn coverage --passWithNoTests
+    - sonar-scanner -D project.settings=sonar-project-frontend.properties
+  tags:
+    - sonar
