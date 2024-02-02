@@ -11,6 +11,8 @@ Front UI build:
     - yarn install
     # CI=false : avoid warnings to be treated as errors
     - CI=false yarn typescript
+    # Pipeline will use .eslintrc.ci.js configuration file (debugger/console.log are not allowed)
+    # You can configure your IDE to use .eslintrc.js for development if you want to allow debugger/console.log
     - CI=false yarn eslint
   tags:
     - yarn
