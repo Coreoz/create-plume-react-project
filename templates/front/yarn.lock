@@ -15630,13 +15630,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"simple-http-rest-client@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "simple-http-rest-client@npm:2.0.2"
+"simple-http-rest-client@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "simple-http-rest-client@npm:2.1.0"
   dependencies:
     simple-http-request-builder: ^2.0.0
     simple-logging-system: ^1.1.0
-  checksum: 9f41ccac234e81e6d39ec0bd3fa942ef727dd3a9fe3b3a46d433ba510d9e729d5fb0ef79840c0d552e46d6730e037a237a6e5d670f3cc7452f6ddf3690944310
+  checksum: 9552a627a769e5b2a4d62ca0d29dd128647c8c21f4267c5929ef40814809329b4e3256fb502cc7b23f85fb11e9df869bc4239fd70eecf6773318a21c7fc86072
   languageName: node
   linkType: hard
 
@@ -16705,7 +16705,7 @@ resolve@^2.0.0-next.3:
     react-router-dom: ^6.4.2
     sass: ^1.55.0
     simple-http-request-builder: ^2.0.0
-    simple-http-rest-client: ^2.0.2
+    simple-http-rest-client: ^2.1.0
     simple-job-scheduler: ^1.1.2
     simple-logging-system: ^1.1.0
     storybook: 7.4.6
