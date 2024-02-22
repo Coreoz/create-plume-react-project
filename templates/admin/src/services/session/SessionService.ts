@@ -11,9 +11,11 @@ const HTTP_ERROR_ALREADY_EXPIRED_SESSION_TOKEN: string = 'ALREADY_EXPIRED_SESSIO
 export default class SessionService {
   private jwtSessionManager: JwtSessionManager<UserWithExpiration>;
 
-  constructor(private readonly sessionApi: SessionApi,
+  constructor(
+    private readonly sessionApi: SessionApi,
     private readonly scheduler: Scheduler,
-    private readonly idlenessDetector: IdlenessDetector) {
+    private readonly idlenessDetector: IdlenessDetector
+  ) {
     this.jwtSessionManager = new JwtSessionManager<UserWithExpiration>(
       sessionApi,
       scheduler,
