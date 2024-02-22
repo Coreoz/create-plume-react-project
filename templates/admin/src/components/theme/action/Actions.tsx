@@ -66,7 +66,7 @@ export function ActionButton(
           'action-container',
           'loading-button',
           cssClasses,
-          { ['loading-button--loading']: isLoading },
+          { 'loading-button--loading': isLoading },
         )
       }
     >

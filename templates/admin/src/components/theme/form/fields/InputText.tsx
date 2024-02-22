@@ -25,7 +25,7 @@ export default function InputText(
 
   return (
     <TextFieldElement
-      className={classNames({ ['field-required']: !!rules?.required })}
+      className={classNames({ 'field-required': Boolean(rules?.required) })}
       control={control}
       label={label}
       type={type}
