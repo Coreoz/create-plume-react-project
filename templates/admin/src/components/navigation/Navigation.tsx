@@ -9,6 +9,7 @@ import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages from '../../i18n/hooks/messagesHook';
+import classNames from '../../lib/class-names/ClassNames';
 
 export default function Navigation() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
@@ -17,7 +18,7 @@ export default function Navigation() {
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 
   return (
-    <nav className={`main-nav ${isDrawerOpened ? 'nav' : 'nav nav--reduced'}`}>
+    <nav className={classNames('main-nav', isDrawerOpened ? 'nav' : 'nav nav--reduced')}>
       <button type="button" className="toggle-nav">
         <Icon
           onClick={toggleDrawerOpening}
