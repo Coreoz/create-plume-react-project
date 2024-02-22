@@ -1,6 +1,7 @@
 import { Button, CircularProgress, Icon } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classNames from '../../../lib/class-names/ClassNames';
 import {
   ActionButtonProps,
   ActionContainerProps,
@@ -21,22 +22,22 @@ function actionStyleToCssClass(
 }
 
 export function ActionsContainer({
-  children,
-  cssClasses,
-}: ActionContainerProps) {
+                                   children,
+                                   cssClasses,
+                                 }: ActionContainerProps) {
   return (
-    <div className={`actions ${cssClasses ?? ''}`}>
+    <div className={classNames('actions', cssClasses)}>
       {children}
     </div>
   );
 }
 
 export function ActionLink({
-  style, icon, linkTo, children,
-}: ActionLinkProps) {
+                             style, icon, linkTo, children,
+                           }: ActionLinkProps) {
   return (
     <Button
-      className={`action-container ${actionStyleToCssClass(style)}`}
+      className={classNames('action-container', actionStyleToCssClass(style))}
       variant="contained"
       color={actionStyleToCssClass(style)}
       component={Link}
@@ -48,18 +49,25 @@ export function ActionLink({
   );
 }
 
-export function ActionButton({
-  style,
-  icon,
-  cssClasses,
-  onClick,
-  isLoading,
-  children,
-}: ActionButtonProps) {
+export function ActionButton(
+  {
+    style,
+    icon,
+    cssClasses,
+    onClick,
+    isLoading = false,
+    children,
+  }: ActionButtonProps,
+) {
   return (
     <div
       className={
-        `action-container loading-button ${cssClasses ?? ''}${isLoading ? ' loading-button--loading' : ''}`
+        classNames(
+          'action-container',
+          'loading-button',
+          cssClasses,
+          { ['loading-button--loading']: isLoading },
+        )
       }
     >
       <Button

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
+    "clsx": "^2.1.0",
     "dayjs": "^1.11.5",
     "micro-observables": "^1.7.2",
     "plume-ts-di": "^1.2.4",

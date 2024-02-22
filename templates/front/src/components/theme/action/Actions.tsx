@@ -1,18 +1,23 @@
-import React from 'react';
+import classNames from '@lib/class-names/ClassNames';
+import React, { ReactNode } from 'react';
 import scss from './actions.module.scss';
 
 export type ActionButtonProps = {
   onClick?: () => void,
   isLoading?: boolean,
   cssClasses?: string,
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
-export function ActionButton({
-  cssClasses, onClick, isLoading, children,
-}: ActionButtonProps) {
+export function ActionButton(
+  {
+    cssClasses,
+    onClick,
+    isLoading,
+    children,
+  }: ActionButtonProps) {
   return (
-    <div className={`${scss.actionContainer} ${scss.loadingButton} ${cssClasses}`}>
+    <div className={classNames(scss.actionContainer, scss.loadingButton, cssClasses)}>
       <button
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
@@ -20,11 +25,14 @@ export function ActionButton({
       >
         {children}
       </button>
-      {isLoading && (
-        <div className={scss.loadingProgress}>
-          Loading...
-        </div>
-      )}
+      {
+        isLoading
+        && (
+          <div className={scss.loadingProgress}>
+            Loading...
+          </div>
+        )
+      }
     </div>
   );
 }

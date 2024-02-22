@@ -118,6 +118,10 @@ module.exports = {
             'group': ['/**/**.module.scss', '!./**.module.scss'],
             'message': 'SCSS modules can not be imported from outside of its component folder.',
           },
+          {
+            'group': ['clsx'],
+            'message': 'Please use the classNames function in lib folder',
+          },
         ],
       },
     ],

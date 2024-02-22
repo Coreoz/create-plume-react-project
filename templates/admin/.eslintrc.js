@@ -14,7 +14,7 @@ module.exports = {
     // => par contre on ne peut pas laisser ce plugin tout le temps
     // => car il ne tient ni compte des polyfill, ni des navigateurs configurés dans browserslist
     // 'plugin:typescript-compat/recommended',
-    'plugin:@sayari/recommended'
+    'plugin:@sayari/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,16 +23,16 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
-    project: './tsconfig.eslint.json'
+    project: './tsconfig.eslint.json',
   },
   plugins: [
     'react',
     '@typescript-eslint',
-    'react-hooks'
+    'react-hooks',
   ],
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
     polyfills: [
       'AbortController',
@@ -48,10 +48,10 @@ module.exports = {
       'ObjectConstructor.values',
       'Map.values',
       'Map.keys',
-    ]
+    ],
   },
   rules: {
-    'max-len': ["error", { "code": 120 }],
+    'max-len': ['error', { 'code': 120 }],
     'react/require-default-props': 0,
     'import/no-absolute-path': 'off',
     'function-paren-newline': 'off',
@@ -79,15 +79,15 @@ module.exports = {
       'functions': false,
     }],
     // Uniformize TS type members delimiter (comma instead of semicolon)
-    "@typescript-eslint/member-delimiter-style": ["error", {
-      "multiline": {
-        "delimiter": "comma",
-        "requireLast": true
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      'multiline': {
+        'delimiter': 'comma',
+        'requireLast': true,
       },
-      "singleline": {
-        "delimiter": "comma",
-        "requireLast": false
-      }
+      'singleline': {
+        'delimiter': 'comma',
+        'requireLast': false,
+      },
     }],
     // Force explicit type definition
     '@typescript-eslint/typedef': [
@@ -102,8 +102,8 @@ module.exports = {
         'propertyDeclaration': true,
         'objectDestructuring': false,
         'variableDeclaration': true,
-        'variableDeclarationIgnoreFunction': true
-      }
+        'variableDeclarationIgnoreFunction': true,
+      },
     ],
     'react-hooks/rules-of-hooks': 'error',
     // Add all your custom hooks which have dependencies in the additional hooks
@@ -116,6 +116,10 @@ module.exports = {
           {
             'group': ['/**/**.module.scss', '!./**.module.scss'],
             'message': 'SCSS modules can not be imported from outside of its component folder.',
+          },
+          {
+            'group': ['clsx'],
+            'message': 'Please use the classNames function in lib folder',
           },
         ],
       },
