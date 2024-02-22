@@ -44,8 +44,6 @@ export default defineConfig({
     modules: {
       localsConvention: 'camelCase',
       globalModulePaths: [/.+\.global\.module\.(css|scss)$/],
-      // ts-ignore => Vite types are not up-to-date
-      // @ts-ignore
       exportGlobals: true,
     },
     preprocessorOptions: {
