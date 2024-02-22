@@ -43,6 +43,8 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: 'camelCase',
+      globalModulePaths: [/.+\.global\.module\.(css|scss)$/],
+      exportGlobals: true,
     },
     preprocessorOptions: {
       scss: {
