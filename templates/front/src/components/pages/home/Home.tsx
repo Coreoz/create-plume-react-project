@@ -5,6 +5,8 @@ import SampleService from '@services/sample/SampleService';
 import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
 import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useMessages from '@i18n/hooks/messagesHook';
+import { NavigateFunction, useNavigate } from 'react-router';
+import Routes from '../../../routes/Routes';
 
 import scss from './home.module.scss';
 
@@ -13,6 +15,8 @@ export default function Home() {
   const sampleService: SampleService = getGlobalInstance(SampleService);
   const loader: LoaderState = useLoader();
   const [sample, setSample] = useState<Sample>();
+
+  const navigate: NavigateFunction = useNavigate();
 
   useOnComponentMounted(() => {
     loader.monitor(sampleService
@@ -30,6 +34,9 @@ export default function Home() {
         {loader.error && <div>Could not call API: {httpError(loader.error)}</div>}
         {sample && <div>API call success! Result: {sample.name}</div>}
       </div>
+      <button onClick={() => navigate(Routes.PARAMETRIZED_EXAMPLE.getParametrizedPath({ param: 'example' }))}>
+        Test parametrized navigation
+      </button>
     </div>
   );
 }
