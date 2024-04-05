@@ -12,8 +12,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.37.0",
     "react-router-dom": "^6.4.2",
-    "simple-http-request-builder": "^2.0.0",
-    "simple-http-rest-client": "^2.1.0",
+    "simple-http-request-builder": "^2.0.1",
+    "simple-http-rest-client": "^2.1.1",
     "simple-job-scheduler": "^1.1.2",
     "simple-logging-system": "^1.1.0"
   },
