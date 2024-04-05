@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div id={scss.homeLayout}>
-      <h1>{messages['home.title']}</h1>
+      <h1>{messages.home.title}</h1>
       <div>
         <h2>API call test</h2>
         {loader.isLoading && <div>Loading...</div>}
