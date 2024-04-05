@@ -73,7 +73,7 @@ export type Translations = {
     TIMEOUT_ERROR: string,
     FORBIDDEN_ERROR: string,
     WRONG_LOGIN_OR_PASSWORD: string,
-    TOO_MANY_WRONG_ATTEMPTS: (seconds: string) => string,
+    TOO_MANY_WRONG_ATTEMPS: (seconds: string) => string,
     FIELD_REQUIRED: (fieldName: string) => string,
     MESSAGE: (message: string) => string,
   },

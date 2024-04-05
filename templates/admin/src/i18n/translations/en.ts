@@ -73,7 +73,7 @@ const enMessages: Translations = {
     FORBIDDEN_ERROR: 'It seems you do not have access to this resource or this action',
     WRONG_LOGIN_OR_PASSWORD: 'User name or password incorrect',
     // eslint-disable-next-line max-len
-    TOO_MANY_WRONG_ATTEMPTS: (seconds: string) => `Due to login attempt errors, your account is locked for ${seconds} seconds, please try again later`,
+    TOO_MANY_WRONG_ATTEMPS: (seconds: string) => `Due to login attempt errors, your account is locked for ${seconds} seconds, please try again later`,
     FIELD_REQUIRED: (fieldName: string) => `Field '${fieldName}' is required`,
     MESSAGE: (message: string) => message,
   },
