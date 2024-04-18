@@ -1,5 +1,7 @@
-import React from 'react';
 import { Button, Icon, Menu } from '@mui/material';
+import React from 'react';
+import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
+import usePlumeTheme from '../hooks/ThemeHook';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {
@@ -23,7 +25,9 @@ export function useOnClickSubscriber() {
     subscribeOnClick: (onClick: () => void) => {
       onClickSubscriber = onClick;
     },
-    click: () => { onClickSubscriber(); },
+    click: () => {
+      onClickSubscriber();
+    },
     wrapOnClick: (onClick: () => void) => () => {
       onClickSubscriber();
       onClick();
@@ -37,12 +41,13 @@ export function useOnClickSubscriber() {
  * @param icon The icon name of the dropdown
  * @param label The text label of the dropdown
  * @param subscribeOnClick Should be provided using {@link useOnClickSubscriber}
-if the dropdown menu should collapse when an item is clicked
+ if the dropdown menu should collapse when an item is clicked
  * @param children The MenuItem children
  */
 export default function DropdownMenu({
   id, icon, label, subscribeOnClick, children,
 }: DropdownMenuType) {
+  const theme: PlumeAdminTheme = usePlumeTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,13 +1,15 @@
 import React from 'react';
-import { Panel } from '../theme/layout/Panel';
-import useMessages from '../../i18n/hooks/messagesHook';
+import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
+import usePlumeTheme from '../hooks/ThemeHook';
+import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 
 export default function Home() {
-  const { messages } = useMessages();
+  const { messages }: Messages = useMessages();
+  const theme: PlumeAdminTheme = usePlumeTheme();
 
   return (
-    <Panel>
-      <h1>{messages.home.title}</h1>
-    </Panel>
+    <theme.panel>
+      <theme.panelTitle>{messages.home.title}</theme.panelTitle>
+    </theme.panel>
   );
 }

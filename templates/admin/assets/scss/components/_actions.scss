@@ -2,7 +2,12 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: $spacer-3;
+
+  &--end {
+    justify-content: flex-end;
+  }
 
   .action-container {
     margin-left: 10px;

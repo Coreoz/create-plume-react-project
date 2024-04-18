@@ -167,7 +167,7 @@ export default class UsersEdit {
         </this.theme.popin>
         )}
         <h2>{isCreation ? messages.t('user.title_create') : messages.t('user.title_edit')}</h2>
-        <this.theme.actionsContainer>
+        <this.theme.actionsContainer cssClasses="actions--end">
           <this.theme.actionLink
             icon="keyboard_arrow_left"
             linkTo={usersPath}

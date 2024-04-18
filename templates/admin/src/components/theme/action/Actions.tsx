@@ -22,9 +22,9 @@ function actionStyleToCssClass(
 }
 
 export function ActionsContainer({
-                                   children,
-                                   cssClasses,
-                                 }: ActionContainerProps) {
+  children,
+  cssClasses,
+}: ActionContainerProps) {
   return (
     <div className={classNames('actions', cssClasses)}>
       {children}
@@ -33,11 +33,11 @@ export function ActionsContainer({
 }
 
 export function ActionLink({
-                             style, icon, linkTo, children,
-                           }: ActionLinkProps) {
+  style, icon, linkTo, children, cssClasses
+}: ActionLinkProps) {
   return (
     <Button
-      className={classNames('action-container', actionStyleToCssClass(style))}
+      className={classNames('action-container', actionStyleToCssClass(style), cssClasses)}
       variant="contained"
       color={actionStyleToCssClass(style)}
       component={Link}

@@ -1,47 +1,111 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 body {
   background: white;
-  overflow: hidden;
+  margin: 0;
   height: 100%;
 }
 
 #root {
   height: 100%;
-  overflow: hidden;
+}
+
+#main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #main-layout {
   height: 100%;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: "nav content";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
 
   #content-layout {
+    grid-area: content;
+    display: grid;
+    grid-template-areas:
+            "header"
+            "panel";
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
     height: 100%;
-    overflow: auto;
-    flex-grow: 1;
+    overflow: hidden;
   }
 }
 
+#main-header {
+  grid-area: header;
+}
+
+.main-nav {
+  grid-area: nav;
+}
+
 .panel {
-  padding: $spacer-6;
-}
+  grid-area: panel;
+  display: grid;
+  grid-template-areas:
+            "title"
+            "content";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  position: relative;
+  overflow: hidden;
+  margin: $spacer-2 0;
 
-.page-title {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: $spacer-4;
-  font-size: $font-size-large;
-  color: $secondary-color;
-}
+  .panel-title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    gap: $spacer-4;
+    color: $primary-color;
+    padding-left: $spacer-5;
+    font-family: $base-font-family;
 
-.app-icon {
-  position: absolute;
-  bottom: 0;
-  padding: $spacer-4;
-  display: block;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 150px;
-  width: 100%;
+    h1 {
+      font-size: $font-size-large;
+    }
+
+    &_button {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: $spacer-4;
+
+      svg {
+        rotate: -90deg;
+      }
+    }
+
+    .MuiIconButton-root {
+      height: 25px;
+      width: 25px;
+      font-size: $font-size-little;
+      color: $secondary-color;
+    }
+  }
+
+  .panel-content {
+    grid-area: content;
+    padding: $spacer-4 $spacer-5;
+    overflow: hidden;
+
+    .columns-container {
+      margin-bottom: $spacer-5;
+      overflow: hidden;
+      height: 100%;
+
+      .column {
+        height: 100%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

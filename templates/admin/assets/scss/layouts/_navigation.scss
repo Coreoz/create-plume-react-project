@@ -23,7 +23,7 @@
     top: calc((#{$height-header} / 2) - 15px);
     right: 0;
     transform: translateX(50%);
-    z-index: 1;
+    z-index: $z-index-foreground;
     display: flex;
     align-items: center;
     justify-content: center;

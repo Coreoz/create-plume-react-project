@@ -2,6 +2,9 @@
 $base-font-family: 'Roboto', sans-serif;
 $base-font-size: 14px;
 $font-size-big: 18px;
+// font-weight
+$font-weight-normal: normal;
+$font-weight-bold: 600;
 
 // colors
 $background-color: #EEE;
@@ -43,6 +46,7 @@ $spacer-8: 4rem;
 $spacer-9: 6rem;
 $spacer-10: 10rem;
 
+// buttons
 $button-height: 24px;
 
 // variable components
@@ -54,8 +58,19 @@ $animation-timing: 0.25s;
 /// separators
 $separator: 1px solid $separator-color;
 
+// border radius
+$border-radius-3: 3px;
+$border-radius-5: 5px;
+$border-radius-8: 8px;
+
 // screen sizes
 $width-small-screen-px: 800;
 $width-medium-screen-px: 1150;
 
 $app-max-width: 1200px;
+
+// Z-INDEX
+$z-index-background: -1;
+$z-index-initial: 0;
+$z-index-foreground: 1;
+$z-index-top-layer: 2;
