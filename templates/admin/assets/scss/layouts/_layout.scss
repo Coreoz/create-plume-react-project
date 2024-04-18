@@ -69,18 +69,6 @@ body {
       font-size: $font-size-large;
     }
 
-    &_button {
-      background: none;
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: $spacer-4;
-
-      svg {
-        rotate: -90deg;
-      }
-    }
-
     .MuiIconButton-root {
       height: 25px;
       width: 25px;

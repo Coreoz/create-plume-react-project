@@ -1,22 +1,19 @@
-import React from 'react';
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
-import Permission from '../../services/session/Permission';
-import SessionService from '../../services/session/SessionService';
-import usePlumeTheme from '../hooks/ThemeHook';
-import { HOME, USERS } from '../Routes';
-import LinkListItem from './LinkListItem';
-import NestedListItem from './NestedListItem';
+import React from 'react';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 import classNames from '../../lib/class-names/ClassNames';
+import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
+import Permission from '../../services/session/Permission';
+import SessionService from '../../services/session/SessionService';
+import { HOME, USERS } from '../Routes';
+import LinkListItem from './LinkListItem';
+import NestedListItem from './NestedListItem';
 
 export default function Navigation() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages }: Messages = useMessages();
-  const theme: PlumeAdminTheme = usePlumeTheme();
 
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 

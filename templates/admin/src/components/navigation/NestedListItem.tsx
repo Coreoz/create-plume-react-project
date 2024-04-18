@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Collapse,
   Icon,
@@ -7,9 +6,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
+import React from 'react';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
-import usePlumeTheme from '../hooks/ThemeHook';
 import { IconType } from '../theme/IconType';
 
 type NestedItemProps = {
@@ -25,7 +23,6 @@ function NestedListItem(
     icon, label, opened, children, drawerOpen,
   }: NestedItemProps,
 ) {
-  const theme: PlumeAdminTheme = usePlumeTheme();
   const [isItemOpened, toggleItemOpening] = useToggle(opened ?? true);
 
   return (

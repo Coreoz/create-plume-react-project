@@ -1,7 +1,5 @@
 import { Button, Icon, Menu } from '@mui/material';
 import React from 'react';
-import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import usePlumeTheme from '../hooks/ThemeHook';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {
@@ -47,7 +45,6 @@ export function useOnClickSubscriber() {
 export default function DropdownMenu({
   id, icon, label, subscribeOnClick, children,
 }: DropdownMenuType) {
-  const theme: PlumeAdminTheme = usePlumeTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
