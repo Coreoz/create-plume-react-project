@@ -33,67 +33,17 @@ body {
     grid-template-rows: auto 1fr;
     height: 100%;
     overflow: hidden;
-  }
-}
 
-#main-header {
-  grid-area: header;
-}
-
-.main-nav {
-  grid-area: nav;
-}
-
-.panel {
-  grid-area: panel;
-  display: grid;
-  grid-template-areas:
-            "title"
-            "content";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  position: relative;
-  overflow: hidden;
-  margin: $spacer-2 0;
-
-  .panel-title {
-    grid-area: title;
-    display: flex;
-    align-items: center;
-    gap: $spacer-4;
-    color: $primary-color;
-    padding-left: $spacer-5;
-    font-family: $base-font-family;
-
-    h1 {
-      font-size: $font-size-large;
+    #main-header {
+      grid-area: header;
     }
 
-    .MuiIconButton-root {
-      height: 25px;
-      width: 25px;
-      font-size: $font-size-little;
-      color: $secondary-color;
+    .panel {
+      grid-area: panel;
     }
   }
 
-  .panel-content {
-    grid-area: content;
-    padding: $spacer-4 $spacer-5;
-    overflow: hidden;
-
-    .columns-container {
-      margin-bottom: $spacer-5;
-      overflow: hidden;
-      height: 100%;
-
-      .column {
-        height: 100%;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+  .main-nav {
+    grid-area: nav;
   }
 }
