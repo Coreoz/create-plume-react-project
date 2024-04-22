@@ -33,7 +33,7 @@ export function ActionsContainer({
 }
 
 export function ActionLink({
-  style, icon, linkTo, children, cssClasses
+  style, icon, linkTo, children, cssClasses,
 }: ActionLinkProps) {
   return (
     <Button
