@@ -125,5 +125,6 @@ module.exports = {
         ],
       },
     ],
+    'react/react-in-jsx-scope': 0
   },
 };
