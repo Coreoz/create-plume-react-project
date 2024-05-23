@@ -1,5 +1,4 @@
 import Layout from '@components/layout/Layout';
-import React from 'react';
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
 import { Logger } from 'simple-logging-system';
 import { HOME } from '../../Routes';

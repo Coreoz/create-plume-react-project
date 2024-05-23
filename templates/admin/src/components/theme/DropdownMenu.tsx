@@ -1,5 +1,5 @@
 import { Button, Icon, Menu } from '@mui/material';
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {
@@ -7,7 +7,7 @@ export type DropdownMenuType = {
   label: string,
   id: string,
   subscribeOnClick?: (onClick: () => void) => void,
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
 /**
@@ -45,7 +45,7 @@ export function useOnClickSubscriber() {
 export default function DropdownMenu({
   id, icon, label, subscribeOnClick, children,
 }: DropdownMenuType) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

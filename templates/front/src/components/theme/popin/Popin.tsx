@@ -1,11 +1,11 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import scss from './popin.module.scss';
 
 export type PopinProps = {
   zIndex?: number,
   height?: string,
   width?: string,
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
 export function Popin({

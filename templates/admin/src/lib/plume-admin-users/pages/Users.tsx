@@ -1,7 +1,7 @@
 import { USERS } from '@components/Routes';
 import UserRouter from '@lib/plume-admin-users/router/UserRouter';
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
 import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';

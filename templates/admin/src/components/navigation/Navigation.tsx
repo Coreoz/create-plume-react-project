@@ -1,6 +1,5 @@
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 import classNames from '../../lib/class-names/ClassNames';

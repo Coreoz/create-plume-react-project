@@ -1,10 +1,10 @@
-import React, { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 import { Logger } from 'simple-logging-system';
 
 const logger: Logger = new Logger('GlobalErrorBoundary');
 
 type GlobalErrorBoundaryProps = {
-  children: React.ReactNode,
+  children: ReactNode,
 };
 
 type GlobalErrorBoundaryState = {
