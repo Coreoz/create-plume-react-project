@@ -1,6 +1,5 @@
 import { MenuItem } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
 import { useObservable } from 'micro-observables';
 import LocaleService from '../../i18n/locale/LocaleService';
 import SessionService from '../../services/session/SessionService';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TextFieldElement } from 'react-hook-form-mui';
 import classNames from '../../../../lib/class-names/ClassNames';
 import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';

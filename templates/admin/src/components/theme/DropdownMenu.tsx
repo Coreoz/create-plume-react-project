@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button, Icon, Menu } from '@mui/material';
+import { useState } from 'react';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {
@@ -43,7 +43,7 @@ if the dropdown menu should collapse when an item is clicked
 export default function DropdownMenu({
   id, icon, label, subscribeOnClick, children,
 }: DropdownMenuType) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

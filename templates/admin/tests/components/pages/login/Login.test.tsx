@@ -1,4 +1,3 @@
-import React from 'react';
 import fetchMock from 'fetch-mock';
 import { mount, ReactWrapper } from 'enzyme';
 import { Router } from 'react-router';

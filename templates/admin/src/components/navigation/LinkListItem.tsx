@@ -1,5 +1,6 @@
-import { Icon, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import React from 'react';
+import {
+  Icon, ListItemButton, ListItemIcon, ListItemText,
+} from '@mui/material';
 import { Link, PathMatch, useMatch } from 'react-router-dom';
 import { IconType } from '../theme/IconType';
 

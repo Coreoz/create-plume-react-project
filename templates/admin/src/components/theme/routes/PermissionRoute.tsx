@@ -1,4 +1,3 @@
-import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import Permission from '../../../services/session/Permission';
 import SessionService from '../../../services/session/SessionService';

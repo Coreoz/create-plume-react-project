@@ -1,4 +1,3 @@
-import React from 'react';
 import scss from './popin.module.scss';
 
 export type PopinProps = {

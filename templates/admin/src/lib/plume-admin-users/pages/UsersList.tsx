@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolver from '../../plume-messages/MessageResolver';
