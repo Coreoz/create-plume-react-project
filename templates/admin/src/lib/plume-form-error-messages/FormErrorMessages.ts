@@ -1,5 +1,5 @@
 import { FieldError } from 'react-hook-form';
-import { MessageResolver } from '../plume-messages/MessageResolver';
+import { MessageResolver } from '@lib/plume-messages/MessageResolver';
 
 export function formErrorToMessage(
   messageResolver: MessageResolver, error: FieldError, errorMapping?: (error: FieldError) => string | undefined,

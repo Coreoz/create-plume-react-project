@@ -7,8 +7,10 @@ import {
   ListItemText,
 } from '@mui/material';
 import React from 'react';
-import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
+import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
+
+import scss from './navigation.module.scss';
 
 type NestedItemProps = {
   icon?: IconType,
@@ -34,7 +36,7 @@ function NestedListItem(
         {
           icon
           && (
-            <ListItemIcon>
+            <ListItemIcon className={scss.icon}>
               <Icon fontSize="large">{icon}</Icon>
             </ListItemIcon>
           )
@@ -43,7 +45,7 @@ function NestedListItem(
           drawerOpen
           && (
             <>
-              <ListItemText primary={label} />
+              <ListItemText className={scss.text} primary={label} />
               {
                 isItemOpened
                   ? (
@@ -57,7 +59,7 @@ function NestedListItem(
         }
       </ListItem>
       <Collapse in={drawerOpen && isItemOpened} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding className="nested-items">
+        <List component="div" disablePadding className={scss.nestedItems}>
           {children}
         </List>
       </Collapse>

@@ -1,5 +1,7 @@
-@use "variables" as *;
-@use "mixins" as *;
+/* stylelint-disable selector-class-pattern */
+
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .app {
 
@@ -12,19 +14,22 @@
     border-radius: $border-radius-chip;
     padding: $button-padding;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
+
       @include box-shadow-button();
     }
 
     .MuiButton-startIcon {
       img {
-        width: $button-height*0.75;
+        width: $button-height * 0.75;
         height: 100%;
       }
     }
   }
 
-  .MuiCircularProgress-colorPrimary { /* stylelint-disable-line selector-class-pattern */
+  .MuiCircularProgress-colorPrimary {
     color: $primary-color;
   }
 
@@ -38,7 +43,7 @@
       background-color: rgba($gray-dark, 0.1);
     }
 
-    &, &.Mui-focused {
+    &.Mui-focused {
       background-color: rgba($gray-dark, 0.05);
     }
 
@@ -46,7 +51,8 @@
       background-color: rgba($gray-dark, 0.15);
     }
 
-    &::before, &::after {
+    &::before,
+    &::after {
       content: none;
     }
   }
@@ -58,9 +64,5 @@
   // FORM ERROR
   .Mui-error {
     margin-left: 0;
-  }
-
-  .main-nav span.MuiTouchRipple-root {
-    display: none;
   }
 }

@@ -1,15 +1,21 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from '@components/features/Home';
+import Layout from '@components/layout/Layout';
+import { HOME, LOGIN, USERS } from '@components/Routes';
+import PermissionRoute from '@components/theme/routes/PermissionRoute';
+import PrivateRoute from '@components/theme/routes/PrivateRoute';
+import Users from '@lib/plume-admin-users/pages/Users';
+import Permission from '@services/session/Permission';
+import React, { useMemo } from 'react';
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Logger } from 'simple-logging-system';
-import { getGlobalInstance } from 'plume-ts-di';
-import Router from './layout/Router';
-import Header from './layout/Header';
-import Navigation from './navigation/Navigation';
-import ConditionalRoute from './theme/routes/ConditionalRoute';
 import Login from './features/login/Login';
 import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
-import SessionService from '../services/session/SessionService';
 
 const logger: Logger = new Logger('App');
 // To make the application have a base path that starts with /admin:
@@ -23,31 +29,52 @@ if (window && !window.location.pathname.startsWith(basePath)) {
 }
 
 export default function App() {
-  const sessionService: SessionService = getGlobalInstance(SessionService);
+  const router: ReturnType<typeof createBrowserRouter> = useMemo(() => createBrowserRouter([
+    {
+      path: LOGIN,
+      element: (
+        <Login />
+      ),
+    },
+    {
+      path: '/',
+      element: (
+        <PrivateRoute>
+          <Layout>
+            <Outlet />
+          </Layout>
+        </PrivateRoute>
+      ),
+      children: [
+        {
+          path: HOME,
+          element: (
+            <Home />
+          ),
+        },
+        {
+          path: `${USERS}/*`,
+          element: (
+            <PermissionRoute permission={Permission.MANAGE_USERS}>
+              <Users />
+            </PermissionRoute>
+          ),
+        },
+        {
+          path: '*',
+          element: (
+            <Navigate to={HOME} />
+          ),
+        },
+      ],
+    },
+  ], { basename: basePath }), []);
 
   logger.info('Render App');
   return (
-      <GlobalErrorBoundary>
-        <ToastContainer />
-        <BrowserRouter basename={basePath}>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/*"
-              element={(
-                <ConditionalRoute shouldDisplayRoute={sessionService.isAuthenticated()} defaultRoute="/login">
-                  <div id="main-layout">
-                    <Navigation />
-                    <div id="content-layout">
-                      <Header />
-                      <Router />
-                    </div>
-                  </div>
-                </ConditionalRoute>
-              )}
-            />
-          </Routes>
-        </BrowserRouter>
-      </GlobalErrorBoundary>
+    <GlobalErrorBoundary>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </GlobalErrorBoundary>
   );
 }
