@@ -1,29 +1,38 @@
 @use "../variables" as *;
 
 .login-layout {
-  height: 100%;
-  overflow: auto;
 
-  .login-page {
+  .login-icon {
+    position: initial;
+    transform: initial;
+    margin: $spacer-6 auto;
+    display: block;
+    max-width: 200px;
+    height: 80px;
+  }
 
-    .app-icon {
-      position: initial;
-      transform: initial;
-      margin: $spacer-4 auto;
+  .login-subtitle {
+    color: $secondary-color;
+    text-align: center;
+    margin-bottom: $spacer-6;
+
+    h2 {
+      font-size: $font-size-huge;
+      font-weight: $font-weight-bold;
     }
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 0;
-      color: $primary-color;
-    }
-
-    h2.login-subtitle {
-      color: $secondary-color;
-      font-size: $font-size-extra-large;
-      text-align: center;
-      margin-bottom: $spacer-8;
-    }
+  .login-box {
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-4;
+    margin: 0 auto;
+    width: 550px;
+    padding: $spacer-5 $spacer-8 $spacer-6 $spacer-8;
+    border-radius: $border-radius-5;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: white;
 
     .login-label {
       color: $primary-color;
@@ -31,51 +40,14 @@
       text-align: center;
     }
 
-    .login-box {
-      margin: 0 auto;
-      width: 550px;
-      padding: $spacer-5 $spacer-8 $spacer-6 $spacer-8;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      text-align: center;
-
-      a {
-        display: inline-block;
+    form {
+      .actions {
+        margin-bottom: $spacer-4;
       }
+    }
 
-      form {
-        margin: $spacer-4 0 0 0;
-
-        .actions {
-          padding: 0;
-          display: flex;
-          justify-content: center;
-
-          .action-container {
-            & > button {
-              display: flex;
-              margin: 0 auto;
-            }
-          }
-        }
-      }
-
-      hr {
-        margin: $spacer-6 0;
-      }
-
-      .login-action-button {
-        & > button {
-          width: 60%;
-          background-color: white;
-          border: 1px solid $primary-color;
-          color: $primary-color;
-
-          &:hover {
-            background-color: white;
-          }
-        }
-      }
+    hr {
+      margin: $spacer-2 0;
     }
   }
 }

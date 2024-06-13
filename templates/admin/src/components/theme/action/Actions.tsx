@@ -22,26 +22,39 @@ function actionStyleToCssClass(
 }
 
 export function ActionsContainer({
-                                   children,
-                                   cssClasses,
-                                 }: ActionContainerProps) {
+  children,
+  className,
+  position = 'center',
+  orientation = 'row',
+}: ActionContainerProps) {
   return (
-    <div className={classNames('actions', cssClasses)}>
+    <div className={classNames('actions', className, `actions--${position}`, `actions--${orientation}`)}>
       {children}
     </div>
   );
 }
 
 export function ActionLink({
-                             style, icon, linkTo, children,
-                           }: ActionLinkProps) {
+  style,
+  variant = 'contained',
+  icon,
+  className,
+  disabled,
+  linkTo,
+  children,
+  rel,
+  target,
+}: ActionLinkProps) {
   return (
     <Button
-      className={classNames('action-container', actionStyleToCssClass(style))}
-      variant="contained"
+      className={classNames('link', className, style)}
+      variant={variant}
       color={actionStyleToCssClass(style)}
+      disabled={disabled}
       component={Link}
       to={linkTo}
+      rel={rel}
+      target={target}
       startIcon={icon && <Icon>{icon}</Icon>}
     >
       {children}
@@ -52,42 +65,34 @@ export function ActionLink({
 export function ActionButton(
   {
     style,
+    variant = 'contained',
     icon,
-    cssClasses,
+    className,
     onClick,
+    disabled,
     isLoading = false,
     children,
   }: ActionButtonProps,
 ) {
   return (
-    <div
-      className={
-        classNames(
-          'action-container',
-          'loading-button',
-          cssClasses,
-          { 'loading-button--loading': isLoading },
-        )
-      }
+    <Button
+      onClick={onClick}
+      className={classNames('action', className, { 'action--loading': isLoading }, style)}
+      type={onClick ? 'button' : 'submit'}
+      variant={variant}
+      disabled={isLoading || disabled}
+      color={actionStyleToCssClass(style)}
+      startIcon={icon && <Icon>{icon}</Icon>}
     >
-      <Button
-        onClick={onClick}
-        type={onClick ? 'button' : 'submit'}
-        variant="contained"
-        disabled={isLoading}
-        color={actionStyleToCssClass(style)}
-        startIcon={icon && <Icon>{icon}</Icon>}
-      >
-        {children}
-      </Button>
+      {children}
       {
         isLoading
         && (
           <div className="loading-progress">
-            <CircularProgress size="100%" color="inherit" />
+            <CircularProgress />
           </div>
         )
       }
-    </div>
+    </Button>
   );
 }

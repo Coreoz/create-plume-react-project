@@ -1,47 +1,49 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 body {
   background: white;
-  overflow: hidden;
+  margin: 0;
   height: 100%;
 }
 
 #root {
   height: 100%;
-  overflow: hidden;
+}
+
+#main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #main-layout {
   height: 100%;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: "nav content";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
 
   #content-layout {
+    grid-area: content;
+    display: grid;
+    grid-template-areas:
+            "header"
+            "panel";
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
     height: 100%;
-    overflow: auto;
-    flex-grow: 1;
+    overflow: hidden;
+
+    #main-header {
+      grid-area: header;
+    }
+
+    .panel {
+      grid-area: panel;
+    }
   }
-}
 
-.panel {
-  padding: $spacer-6;
-}
-
-.page-title {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: $spacer-4;
-  font-size: $font-size-large;
-  color: $secondary-color;
-}
-
-.app-icon {
-  position: absolute;
-  bottom: 0;
-  padding: $spacer-4;
-  display: block;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 150px;
-  width: 100%;
+  .main-nav {
+    grid-area: nav;
+  }
 }

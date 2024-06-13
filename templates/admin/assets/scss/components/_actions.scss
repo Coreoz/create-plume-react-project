@@ -2,50 +2,67 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: $spacer-3;
 
-  .action-container {
-    margin-left: 10px;
+  &--end {
+    justify-content: flex-end;
+  }
 
-    &:first-child {
-      margin-left: 0;
-    }
+  &--start {
+    justify-content: flex-start;
   }
 
   &--column {
     flex-direction: column;
-    justify-content: center;
-
-    .action-container {
-      margin-left: 0;
-      margin-top: 10px;
-
-      &:first-child {
-        margin-top: 0;
-      }
-    }
   }
 
-  .loading-button {
+  .action, .link {
     position: relative;
 
-    &--loading {
-      button {
-        color: transparent;
+    &.primary {
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
       }
+    }
+
+    &.secondary {
+      background-color: white;
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+
+    &:disabled {
+      background-color: $gray-lighter;
+      color: transparent;
     }
 
     .loading-progress {
-      height: $button-height;
-      width: $button-height;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -$button-height * 0.5;
-      margin-left: -$button-height * 0.5;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
 
-      > div {
-        display: block;
+      .MuiCircularProgress-root {
+        width: 20px !important; // mui forces a size
+        height: 20px !important; // mui forces a size
+        color: $gray-dark;
+      }
+    }
+
+    &--loading {
+      .loading-progress {
+        display: flex;
       }
     }
   }
