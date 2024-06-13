@@ -1,18 +1,17 @@
-@use 'variables' as *;
+@use 'variables/index' as *;
 
 @font-face {
   font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: $font-weight-normal;
-  src: url(../icons/material-icons-outlined.woff2) format('woff2'),
-  url(../icons/material-icons-outlined.woff) format('woff');
+  src: url(../icons/material-icons-outlined.woff2) format('woff2'), url(../icons/material-icons-outlined.woff) format('woff');
 }
 
 .material-icons {
   font-family: 'Material Icons Outlined'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;

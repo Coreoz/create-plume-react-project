@@ -1,14 +1,17 @@
+import useMessages, { Messages } from '@i18n/hooks/messagesHook';
+import LocaleService from '@i18n/locale/LocaleService';
+import classNames from '@lib/class-names/ClassNames';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
 import { MenuItem } from '@mui/material';
+import SessionService from '@services/session/SessionService';
+import { UserWithExpiration } from '@services/session/User';
+import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import { useObservable } from 'micro-observables';
-import LocaleService from '../../i18n/locale/LocaleService';
-import SessionService from '../../services/session/SessionService';
-import DropdownMenu from '../theme/DropdownMenu';
-import LocaleSelector from '../theme/LocaleSelector';
-import useMessages from '../../i18n/hooks/messagesHook';
-import { UserWithExpiration } from '../../services/session/User';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import DropdownMenu from '../../theme/DropdownMenu';
+import LocaleSelector from '../../theme/LocaleSelector';
+
+import scss from './header.module.scss';
 
 function makeInitials(fullName?: string): string {
   if (!fullName) {
@@ -34,24 +37,33 @@ function LocaleSelectorContainer() {
   />;
 }
 
-export default function Header() {
+type Props = {
+  id: string,
+};
+
+export default function Header({ id }: Props) {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const currentUser: UserWithExpiration | undefined = useObservable(sessionService.getCurrentUser());
-  const { messages } = useMessages();
+  const { messages }: Messages = useMessages();
 
   return (
-    <header id="main-header">
-      <h1 className="section_name">{messages.app.name}</h1>
-      <div className="header_actions">
-        <div className="header_action">
+    <header id={id} className={scss.mainHeader}>
+      <h1>{messages.app.name}</h1>
+      <div className={scss.headerActions}>
+        <div className={scss.headerAction}>
           <LocaleSelectorContainer />
         </div>
         {
           currentUser
           && (
-            <div className="header_action header_action--circle">
-              <DropdownMenu label={makeInitials(currentUser.fullName)} id="user-menu">
-                <div id="user-name">{currentUser.fullName}</div>
+            <div
+              className={classNames(scss.headerAction, scss.headerActionCircle)}
+            >
+              <DropdownMenu
+                label={makeInitials(currentUser.fullName)}
+                id="user-menu"
+              >
+                <div className={scss.userAction}>{currentUser.fullName}</div>
                 <MenuItem
                   onClick={() => sessionService.disconnect()}
                 >

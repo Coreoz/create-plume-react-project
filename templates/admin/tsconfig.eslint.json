@@ -5,6 +5,7 @@
     "asset.d.ts",
     "tests",
     "vite.config.ts",
-    "di-transformer-adapter.ts"
+    "di-transformer-adapter.ts",
+    "typed-scss-modules.config.ts"
   ]
 }

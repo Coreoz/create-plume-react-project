@@ -1,15 +1,17 @@
 import { Button, CircularProgress, Icon } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classNames from '../../../lib/class-names/ClassNames';
+import classNames from '@lib/class-names/ClassNames';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
-} from '../../../lib/plume-admin-theme/action/ActionProps';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+} from '@lib/plume-admin-theme/action/ActionProps';
+import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 
-function actionStyleToCssClass(
+import scss from './actions.module.scss';
+
+function actionStyleToColor(
   actionStyle?: ActionStyle,
 ): 'inherit' | 'primary' | 'secondary' | 'error' {
   if (!actionStyle) {
@@ -28,7 +30,14 @@ export function ActionsContainer({
   orientation = 'row',
 }: ActionContainerProps) {
   return (
-    <div className={classNames('actions', className, `actions--${position}`, `actions--${orientation}`)}>
+    <div
+      className={classNames(
+        scss.actions,
+        className,
+        scss[`actions--${position}`],
+        scss[`actions--${orientation}`],
+      )}
+    >
       {children}
     </div>
   );
@@ -47,9 +56,9 @@ export function ActionLink({
 }: ActionLinkProps) {
   return (
     <Button
-      className={classNames('link', className, style)}
+      className={classNames(scss.link, className, style)}
       variant={variant}
-      color={actionStyleToCssClass(style)}
+      color={actionStyleToColor(style)}
       disabled={disabled}
       component={Link}
       to={linkTo}
@@ -77,19 +86,19 @@ export function ActionButton(
   return (
     <Button
       onClick={onClick}
-      className={classNames('action', className, { 'action--loading': isLoading }, style)}
+      className={classNames(scss.action, className, isLoading ? scss.actionLoading : undefined, style)}
       type={onClick ? 'button' : 'submit'}
       variant={variant}
       disabled={isLoading || disabled}
-      color={actionStyleToCssClass(style)}
+      color={actionStyleToColor(style)}
       startIcon={icon && <Icon>{icon}</Icon>}
     >
       {children}
       {
         isLoading
         && (
-          <div className="loading-progress">
-            <CircularProgress />
+          <div className={scss.loadingProgress}>
+            <CircularProgress className={scss.circleProgress} />
           </div>
         )
       }

@@ -102,8 +102,8 @@ module.exports = {
         'propertyDeclaration': true,
         'objectDestructuring': false,
         'variableDeclaration': true,
-        'variableDeclarationIgnoreFunction': true,
-      },
+        'variableDeclarationIgnoreFunction': true
+      }
     ],
     'react-hooks/rules-of-hooks': 'error',
     // Add all your custom hooks which have dependencies in the additional hooks
