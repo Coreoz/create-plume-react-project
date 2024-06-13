@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import PlumeMessageResolver from '../../plume-messages/MessageResolver';
 import PlumeMessageResolverService
@@ -71,10 +72,11 @@ export default class UsersList {
               {!usersWithRoles && <span>{messages.t('label.loading')}</span>}
             </this.theme.panelContentElementColumn>
             <this.theme.panelContentElementColumn width={1}>
-              <this.theme.actionsContainer>
+              <this.theme.actionsContainer position="end">
                 <this.theme.actionLink
                   icon="add"
                   linkTo={`${usersPath}/create`}
+                  style={ActionStyle.PRIMARY}
                 >
                   {messages.t('action.add')}
                 </this.theme.actionLink>

@@ -47,7 +47,8 @@ $spacer-9: 6rem;
 $spacer-10: 10rem;
 
 // buttons
-$button-height: 24px;
+$button-height: 45px;
+$button-padding: 12px clamp(12px, 2vw, 28px);
 
 // variable components
 $height-header: 6rem;
@@ -62,6 +63,7 @@ $separator: 1px solid $separator-color;
 $border-radius-3: 3px;
 $border-radius-5: 5px;
 $border-radius-8: 8px;
+$border-radius-chip: 5px;
 
 // screen sizes
 $width-small-screen-px: 800;

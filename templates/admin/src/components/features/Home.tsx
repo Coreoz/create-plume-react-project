@@ -4,7 +4,7 @@ import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 
 export default function Home() {
   const { messages }: Messages = useMessages();
-  const { Panel, PanelTitle }: PlumeAdminThemeComponents = usePlumeTheme();
+  const { panel: Panel, panelTitle: PanelTitle }: PlumeAdminThemeComponents = usePlumeTheme();
 
   return (
     <Panel>

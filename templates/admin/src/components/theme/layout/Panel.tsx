@@ -59,16 +59,16 @@ export function PanelContent({ children }: PanelProps) {
  * Layout component that wraps a child, handling page disposition
  * @param children the wrapped component
  * @param columns number of columns displayed
- * @param cssClasses optional additional css classes
+ * @param cssClasses optional additional className
  */
 export function PanelContentElement({
   children,
   columns,
-  cssClasses,
+  className,
 }: PanelContentElementProps) {
   return (
     <Grid
-      className={classNames('columns-container', cssClasses)}
+      className={classNames('columns-container', className)}
       container
       columns={columns}
     >
@@ -81,18 +81,18 @@ export function PanelContentElement({
  * Layout component that must be inside a {@link PanelContentElement} or itself, handling page disposition
  * @param width the width of the column, it depends on the number of columns available
  * @param children the wrapped component
- * @param cssClasses optional additional css classes
+ * @param className optional additional className
  */
 export function PanelContentElementColumn({
   width,
   children,
-  cssClasses,
+  className,
 }: PanelContentElementColumnProps) {
   return (
     <Grid
       item
       xs={width}
-      className={classNames('column', cssClasses)}
+      className={classNames('column', className)}
     >
       {children}
     </Grid>
