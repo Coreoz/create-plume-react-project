@@ -1,4 +1,5 @@
 import appLogo from '/assets/icons/plume_logo.png';
+import InputPassword from '@components/theme/form/fields/InputPassword';
 import { Alert } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
@@ -13,7 +14,6 @@ import SessionService from '../../../services/session/SessionService';
 import { HOME } from '../../Routes';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
 import InputText from '../../theme/form/fields/InputText';
-import FormField from '../../theme/form/FormField';
 import {
   useOnDependenciesChange,
 } from '@lib/react-hooks-alias/ReactHooksAlias';
@@ -60,25 +60,18 @@ export default function Login() {
           {messages.login.title}
         </div>
         <FormContainer onSuccess={tryAuthenticate}>
-          <FormField inputId="userName">
-            <InputText
-              label={messages.users.userName}
-              type="text"
-              name="userName"
-              rules={{ required: true }}
-              useNameAsId
-            />
-          </FormField>
-          <FormField inputId="password">
-            <InputText
-              label={messages.users.password}
-              type="password"
-              name="password"
-              autoComplete="off"
-              rules={{ required: true }}
-              useNameAsId
-            />
-          </FormField>
+          <InputText
+            label={messages.users.userName}
+            type="text"
+            name="userName"
+            rules={{ required: true }}
+          />
+          <InputPassword
+            label={messages.users.password}
+            name="password"
+            autoComplete="off"
+            rules={{ required: true }}
+          />
           <ActionsContainer>
             <ActionButton
               isLoading={loader.isLoading}

@@ -1,22 +1,11 @@
+import { ReactNode } from 'react';
 import { FieldError } from 'react-hook-form';
 
 export type FormFieldProps = {
   /**
-   * The identifier of the input, so the label and the error fields are correctly refering the input
+   * The name of the input
    */
-  inputId?: string,
-  /**
-   * The name of the input, used to retrieve the error if {@link useNameAsId} is true
-   */
-  name?: string,
-  /**
-   * Indicates wether the error should be retrieved using {@link name} or {@link inputId}
-   */
-  useNameAsId?: boolean,
-  /**
-   * The optional label that will be display next to the form field
-   */
-  label?: string,
+  name: string,
   /**
    * The field optional error object returned by the `useForm` hook.
    * For example:
@@ -56,5 +45,5 @@ export type FormFieldProps = {
   /**
    * The field content children nodes
    */
-  children?: React.ReactNode,
+  children?: ReactNode,
 };

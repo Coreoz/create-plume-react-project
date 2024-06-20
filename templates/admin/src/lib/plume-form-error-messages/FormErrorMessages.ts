@@ -1,5 +1,5 @@
-import { FieldError } from 'react-hook-form';
 import { MessageResolver } from '@lib/plume-messages/MessageResolver';
+import { FieldError } from 'react-hook-form';
 
 export function formErrorToMessage(
   messageResolver: MessageResolver, error: FieldError, errorMapping?: (error: FieldError) => string | undefined,
@@ -10,10 +10,7 @@ export function formErrorToMessage(
       return errorMappingMessage;
     }
   }
-  if (error.type === 'required') {
-    return messageResolver('error.field.required');
-  }
-  return `Unhandled error: ${error.type} - ${error.message}`;
+  return messageResolver(`error.field.${error.type}`);
 }
 
 export function makeErrorMessageMapping(message: string, type: string = 'validate') {

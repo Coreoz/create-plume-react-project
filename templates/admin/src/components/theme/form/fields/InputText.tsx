@@ -1,45 +1,42 @@
+import useFormErrorParser
+  from '@components/theme/form/hooks/FormErrorParserHook';
+import classNames from '@lib/class-names/ClassNames';
+import { InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
 import React from 'react';
 import { TextFieldElement } from 'react-hook-form-mui';
-import classNames from '../../../../lib/class-names/ClassNames';
-import { InputTextProps } from '../../../../lib/plume-admin-theme/form/FormInputProps';
+
+import scss from './form-input.module.scss';
 
 export default function InputText(
   {
     type = 'text',
     label,
     name,
-    id,
-    useNameAsId,
-    control,
     rules,
     disabled,
-    defaultValue,
-    onChange,
-    onBlur,
     autoComplete,
     multiline,
     rows,
+    errorMessageMapping,
+    InputProps,
   }: InputTextProps,
 ) {
-  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-
+  const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
   return (
     <TextFieldElement
-      className={classNames({ 'field-required': Boolean(rules?.required) })}
-      control={control}
+      className={classNames(scss.formControl)}
       label={label}
       type={type}
-      name={fieldId}
+      name={name}
       variant="filled"
-      id={fieldId}
-      defaultValue={defaultValue}
+      id={name}
       autoComplete={autoComplete}
       validation={rules}
       disabled={disabled ?? false}
-      onChange={onChange}
-      onBlur={onBlur}
       multiline={multiline}
       rows={rows}
+      InputProps={InputProps}
+      parseError={parseError}
     />
   );
 }

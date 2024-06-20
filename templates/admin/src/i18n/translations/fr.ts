@@ -64,6 +64,13 @@ const frMessages: Translations = {
     field: {
       required: 'Le champ est requis',
       email_wrong_format: 'L\'adresse e-mail saisie semble être incorrecte',
+      password_same_value: 'Veuillez saisir deux mots de passe identiques',
+      password_length: 'Le mot de passe doit contenir au moins 8 caractères',
+      password_lower_character: 'Au moins 1 caractère minuscule est requis',
+      password_number_character: 'Au moins 1 chiffre est requis',
+      password_upper_character: 'Au moins 1 caractère majuscule est requis',
+      password_special_character: 'Au moins 1 caractère spécial est requis',
+      empty_field: 'Le champ entré est vide',
     },
   },
   'http-errors': {
