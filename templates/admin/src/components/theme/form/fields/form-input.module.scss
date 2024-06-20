@@ -1,0 +1,7 @@
+form {
+  // need this for specificity
+  .form-control {
+    width: 100%;
+    margin: 0 0 $spacer-4 0;
+  }
+}
