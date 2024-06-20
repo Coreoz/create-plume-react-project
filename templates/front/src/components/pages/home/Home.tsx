@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { Sample } from '@api/session/SampleApi';
 import SampleService from '@services/sample/SampleService';

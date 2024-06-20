@@ -1,4 +1,3 @@
-import React from 'react';
 import { PanelProps } from '../../../lib/plume-admin-theme/layout/LayoutProps';
 
 export function Panel({ children }: PanelProps) {

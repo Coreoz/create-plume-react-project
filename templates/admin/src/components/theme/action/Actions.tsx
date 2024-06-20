@@ -1,5 +1,4 @@
 import { Button, CircularProgress, Icon } from '@mui/material';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from '../../../lib/class-names/ClassNames';
 import {
@@ -22,9 +21,9 @@ function actionStyleToCssClass(
 }
 
 export function ActionsContainer({
-                                   children,
-                                   cssClasses,
-                                 }: ActionContainerProps) {
+  children,
+  cssClasses,
+}: ActionContainerProps) {
   return (
     <div className={classNames('actions', cssClasses)}>
       {children}
@@ -33,8 +32,8 @@ export function ActionsContainer({
 }
 
 export function ActionLink({
-                             style, icon, linkTo, children,
-                           }: ActionLinkProps) {
+  style, icon, linkTo, children,
+}: ActionLinkProps) {
   return (
     <Button
       className={classNames('action-container', actionStyleToCssClass(style))}

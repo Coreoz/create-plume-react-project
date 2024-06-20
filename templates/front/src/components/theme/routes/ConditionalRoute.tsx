@@ -1,5 +1,4 @@
 import { Navigate } from 'react-router-dom';
-import React from 'react';
 import { Observable, useObservable } from 'micro-observables';
 
 type Props = {

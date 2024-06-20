@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';

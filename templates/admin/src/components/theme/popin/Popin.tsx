@@ -1,4 +1,3 @@
-import React from 'react';
 import { ActionButton, ActionsContainer } from '../action/Actions';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import { PopinCloseWithoutSavingProps, PopinProps } from '../../../lib/plume-admin-theme/popin/PopinProps';

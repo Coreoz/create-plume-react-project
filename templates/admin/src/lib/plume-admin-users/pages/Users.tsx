@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PlumeAdminTheme from '../../plume-admin-theme/PlumeAdminTheme';
 import { useOnComponentMounted } from '../../react-hooks-alias/ReactHooksAlias';
@@ -13,7 +13,8 @@ export default class Users {
     private readonly theme: PlumeAdminTheme,
     private readonly userApi: UserApi,
     private readonly usersEdit: UsersEdit,
-    private readonly usersList: UsersList) {
+    private readonly usersList: UsersList
+  ) {
   }
 
   private static setUsersAndIndexRoles(usersWithRoles: AdminUsersDetails) {

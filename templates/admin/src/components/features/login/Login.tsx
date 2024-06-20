@@ -1,7 +1,6 @@
 import appLogo from '/assets/icons/plume_logo.png';
 import { Alert } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { useObservable } from 'micro-observables';
 import { SessionCredentials } from '../../../api/session/SessionApi';

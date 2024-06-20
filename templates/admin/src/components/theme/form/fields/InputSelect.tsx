@@ -1,4 +1,3 @@
-import React from 'react';
 import { SelectElement } from 'react-hook-form-mui';
 import {
   InputSelectProps,

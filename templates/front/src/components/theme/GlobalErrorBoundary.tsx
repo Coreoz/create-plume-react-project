@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo } from 'react';
 import { Logger } from 'simple-logging-system';
 
 const logger: Logger = new Logger('GlobalErrorBoundary');

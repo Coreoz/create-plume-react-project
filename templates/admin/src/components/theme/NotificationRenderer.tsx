@@ -1,4 +1,3 @@
-import React from 'react';
 import { Slide, toast, TypeOptions } from 'react-toastify';
 import ObservableNotificationEngine, { Notification } from '../../lib/plume-notification/ObservableNotificationEngine';
 import { NotificationOptions } from '../../lib/plume-notification/NotificationEngine';
