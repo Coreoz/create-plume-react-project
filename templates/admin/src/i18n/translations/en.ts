@@ -1,4 +1,6 @@
+import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
+import translationHotReload from './translations-mhr';
 
 const enMessages: Translations = {
   app: {
@@ -79,4 +81,11 @@ const enMessages: Translations = {
   },
 } as const;
 
-export default enMessages;
+const enMessagesObservable: WritableObservable<Translations> = observable(enMessages);
+
+if (import.meta.hot) {
+  // Hot reloading, see translations-mhr.ts
+  import.meta.hot.accept(translationHotReload(enMessagesObservable));
+}
+
+export default enMessagesObservable.readOnly();

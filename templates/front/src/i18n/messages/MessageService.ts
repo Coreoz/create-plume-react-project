@@ -1,4 +1,4 @@
-import { observable, WritableObservable } from 'micro-observables';
+import { Observable } from 'micro-observables';
 import { HttpError } from 'simple-http-rest-client';
 import { Locale } from '@lib/locale-resolver/LocaleResolver';
 import { Translations } from '@i18n/translations/Translations';
@@ -7,22 +7,15 @@ import frMessages from '@i18n/translations/fr';
 import enMessages from '@i18n/translations/en';
 
 export default class MessageService {
-  private messages: WritableObservable<Translations>;
+  private readonly messages: Observable<Translations>;
 
-  private static translations: Map<Locale, Translations> = new Map<Locale, Translations>([
+  private static translations: Map<Locale, Observable<Translations>> = new Map<Locale, Observable<Translations>>([
     [LocaleService.LOCALE_FR, frMessages],
     [LocaleService.LOCALE_EN, enMessages],
   ]);
 
   constructor(localeService: LocaleService) {
-    this.messages = observable(MessageService.fetchMessages(localeService.getCurrentLocale().get()));
-    localeService
-      .getCurrentLocale()
-      .subscribe((locale: Locale) => this.updateMessagesWithLocale(locale));
-  }
-
-  private updateMessagesWithLocale(locale: Locale) {
-    this.messages.set(MessageService.fetchMessages(locale));
+    this.messages = localeService.getCurrentLocale().select(MessageService.fetchMessages);
   }
 
   private static fetchMessages(locale: Locale) {
@@ -57,6 +50,6 @@ export default class MessageService {
    * Return the messages observable for the current locale
    */
   getMessages() {
-    return this.messages.readOnly();
+    return this.messages;
   }
 }
