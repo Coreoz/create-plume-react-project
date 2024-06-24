@@ -8,7 +8,7 @@ import { ModuleNamespace } from 'vite/types/hot';
 // In this file, only the public exported value is available.
 // After the import.meta.hot.accept() function is called, the base file (fr.ts or en.ts) is completely replaced,
 // So we need to put something in place to keep the reference of the original Observable translations.
-// To do that, we add the `observableTmp` field in the `messages` object withing the Observable
+// To do that, we add the `originalMessageObservable` field in the `messages` object withing the Observable
 export default function translationHotReload(messagesObservable: WritableObservable<Translations>) {
   return (newModule: ModuleNamespace | undefined) => {
     if (newModule) {
@@ -17,10 +17,10 @@ export default function translationHotReload(messagesObservable: WritableObserva
       const updatedTranslations: Translations = moduleTranslations.get();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const baseObservable: WritableObservable<Translations> = (messagesObservable.get() as any)
-        .observableTmp ?? messagesObservable;
+        .originalMessageObservable ?? messagesObservable;
       const translationsWithObservable: object = {
         ...updatedTranslations,
-        observableTmp: baseObservable,
+        originalMessageObservable: baseObservable,
       };
       moduleTranslations.set(translationsWithObservable as Translations);
       baseObservable.set(updatedTranslations);
