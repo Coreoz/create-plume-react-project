@@ -1,11 +1,11 @@
+import { Translations } from '@i18n/translations/Translations';
 import { WritableObservable } from 'micro-observables';
 import { ModuleNamespace } from 'vite/types/hot';
-import { Translations } from './Translations';
 
 // Development hot reloading handling, see https://vitejs.dev/guide/api-hmr.html
-// Every time this file changes, the accept function is called with the new fr.ts file compiled.
+// Every time a translation file changes, the import.hot.accept function is called with the new translation file compiled. See fr.ts and en.ts for an exemple.
 // In this file, only the public exported value is available.
-// After the import.meta.hot.accept() function is called, the fr.ts is completely replaced,
+// After the import.meta.hot.accept() function is called, the base file (fr.ts or en.ts) is completely replaced,
 // So we need to put something in place to keep the reference of the original Observable translations.
 // To do that, we add the `observableTmp` field in the `messages` object withing the Observable
 export default function translationHotReload(messagesObservable: WritableObservable<Translations>) {

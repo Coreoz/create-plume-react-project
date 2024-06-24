@@ -1,5 +1,5 @@
 import { observable, WritableObservable } from 'micro-observables';
-import translationHotReload from '@i18n/translations/translations-mhr';
+import translationHotReload from '@i18n/translations/translations-hmr';
 import { Translations } from './Translations';
 
 const frMessages: Translations = {
@@ -81,7 +81,7 @@ const frMessages: Translations = {
 const frMessagesObservable: WritableObservable<Translations> = observable(frMessages);
 
 if (import.meta.hot) {
-  // Hot reloading, see translations-mhr.ts
+  // Hot reloading, see translations-hmr.ts
   import.meta.hot.accept(translationHotReload(frMessagesObservable));
 }
 
