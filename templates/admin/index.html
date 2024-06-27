@@ -12,11 +12,19 @@
     <div id="root" class="app"></div>
     <script type="module" src="/ts-built/index.js"></script>
     <script>
-      if (!window.Promise || !window.Promise.prototype.finally || !window.Array
-              || !window.Array.prototype.flatMap || !window.Map || !window.fetch) {
-        var s = document.createElement('script');
-        s.src = '/assets/js/outdated-browser.js';
-        document.head.appendChild(s);
+      function optionalChainingUnsupported() {
+        try {
+          eval('const f = {}; f?.b');
+          return false;
+        } catch(e) {
+          return true;
+        }
+      }
+
+      if (optionalChainingUnsupported()) {
+        var script = document.createElement('script');
+        script.src = "/assets/js/outdated-browser.js";
+        document.head.appendChild(script);
       }
     </script>
   </body>
