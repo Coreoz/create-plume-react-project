@@ -2,7 +2,6 @@ import path from 'path';
 import { defineConfig, ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import fs from 'fs';
-import autoprefixer from 'autoprefixer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -57,11 +56,6 @@ export default defineConfig({
       scss: {
         additionalData: '@use \'@scssVariables\' as *;',
       },
-    },
-    postcss: {
-      plugins: [
-        autoprefixer({}),
-      ],
     },
   },
   resolve: {
