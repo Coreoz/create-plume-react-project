@@ -96,7 +96,7 @@
     "copy-scss": "copyfiles -u 1 ./src/**/*.scss ts-built",
     "build": "rm -rf build && yarn copy-scss && ttsc && vite build",
     "stylelint": "stylelint '**/*.scss'",
-    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.js",
+    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.cjs",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.ts",
     "coverage": "jest --config jest.config.ts --coverage --watchAll=false",
