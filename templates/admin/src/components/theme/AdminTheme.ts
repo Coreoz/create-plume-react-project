@@ -5,19 +5,28 @@ import {
 } from '../../lib/plume-admin-theme/action/ActionProps';
 import { FormFieldProps } from '../../lib/plume-admin-theme/form/FormFieldProps';
 import { InputSelectProps, InputTextProps } from '../../lib/plume-admin-theme/form/FormInputProps';
-import { LayoutPageTitleProps, PanelProps } from '../../lib/plume-admin-theme/layout/LayoutProps';
+import {
+  PanelContentElementColumnProps,
+  PanelContentElementProps,
+  PanelProps,
+  PanelTitleProps,
+} from '../../lib/plume-admin-theme/layout/LayoutProps';
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
 import { PopinCloseWithoutSavingProps, PopinProps } from '../../lib/plume-admin-theme/popin/PopinProps';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
 import FormField from './form/FormField';
-import PageTitle from './layout/PageTitle';
-import { Panel, PanelSeparator } from './layout/Panel';
+import {
+  Panel,
+  PanelContent, PanelContentElement, PanelContentElementColumn,
+  PanelSeparator,
+  PanelTitle,
+} from './layout/Panel';
 import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
 
 export default class AdminTheme implements PlumeAdminTheme {
-  pageTitle: (props: LayoutPageTitleProps) => JSX.Element = PageTitle;
+  // actions
 
   actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
 
@@ -25,9 +34,21 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   actionLink: (props: ActionLinkProps) => JSX.Element = ActionLink;
 
+  // layout
+
   panel: (props: PanelProps) => JSX.Element = Panel;
 
   panelSeparator: () => JSX.Element = PanelSeparator;
+
+  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
+
+  panelContent: (props: PanelProps) => JSX.Element = PanelContent;
+
+  panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
+
+  panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
+
+  // popin
 
   popin: (props: PopinProps) => JSX.Element = Popin;
 

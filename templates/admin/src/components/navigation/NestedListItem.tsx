@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Collapse,
   Icon,
@@ -7,6 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import React from 'react';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
 import { IconType } from '../theme/IconType';
 
@@ -28,7 +28,6 @@ function NestedListItem(
   return (
     <>
       <ListItem
-        button
         component="a"
         onClick={toggleItemOpening}
       >

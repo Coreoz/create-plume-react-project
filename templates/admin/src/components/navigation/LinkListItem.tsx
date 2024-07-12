@@ -1,4 +1,9 @@
-import { Icon, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  Icon,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import React from 'react';
 import { Link, PathMatch, useMatch } from 'react-router-dom';
 import { IconType } from '../theme/IconType';
@@ -19,6 +24,7 @@ function LinkListItem(
   }: LinkListItemProps,
 ) {
   const routeMatch: PathMatch<string> | null = useMatch({ path: route });
+
   return (
     <ListItemButton
       component={Link}

@@ -5,10 +5,12 @@
 
   /* BUTTONS */
   .MuiButton-root {
-    height: 45px;
-    line-height: 1;
+    height: $button-height;
     text-transform: uppercase;
     box-shadow: none;
+    font-family: $base-font-family;
+    border-radius: $border-radius-chip;
+    padding: $button-padding;
 
     &:hover, &:active, &:focus {
       @include box-shadow-button();
@@ -19,24 +21,6 @@
         width: $button-height*0.75;
         height: 100%;
       }
-    }
-  }
-
-  .MuiButton-containedSecondary {
-    background-color: white;
-    border: 1px solid $secondary-color;
-    color: $secondary-color;
-
-    &:hover {
-      background-color: white;
-    }
-  }
-
-  .MuiButton-containedPrimary { /* stylelint-disable-line selector-class-pattern */
-    background-color: $primary-color;
-
-    &:hover {
-      background-color: darken($primary-color, 10%);
     }
   }
 
