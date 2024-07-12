@@ -1,5 +1,5 @@
 build/*
 public/*
-.eslintrc.js
-stylelint.config.js
+.eslintrc.cjs
+stylelint.config.cjs
 jest.config.ts

@@ -39,8 +39,9 @@
     "@types/validator": "^13.7.7",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vitejs/plugin-react": "4.0.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
+    "autoprefixer": "latest",
     "concurrently": "^7.4.0",
     "enzyme": "^3.11.0",
     "eslint": "^8.30.0",
@@ -59,6 +60,7 @@
     "jest-config": "^29.2.0",
     "jsdom": "^20.0.1",
     "node-fetch": "^3.2.10",
+    "postcss": "latest",
     "react-router": "^6.4.2",
     "sass": "^1.69.2",
     "stylelint": "^14.13.0",
@@ -69,16 +71,15 @@
     "ts-transformer-classname": "^2.0.0",
     "ttypescript": "^1.5.15",
     "typescript": "4.9.4",
-    "vite": "^4.4.11"
+    "vite": "^5.3.1"
   },
   "browserslist": [
     "defaults",
     "not IE 11",
     "not op_mini all",
-    "Firefox >= 75",
     "Chrome >= 80",
-    "Firefox >= 75",
-    "safari >= 12"
+    "Firefox >= 80",
+    "safari >= 13"
   ],
   "scripts": {
     "start": "concurrently \"yarn watch-ts\" \"yarn watch-js\"",
@@ -86,7 +87,7 @@
     "watch-js": "vite",
     "build": "rm -rf build && ttsc && vite build",
     "stylelint": "stylelint 'assets/scss/**/*.scss'",
-    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.js",
+    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.cjs",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.ts",
     "coverage": "jest --config jest.config.ts --coverage --watchAll=false"
