@@ -33,15 +33,51 @@
       &:hover {
         background-color: color-mix(in srgb, #{$primary-color}, #000000 10%);
       }
+
+      &--outlined {
+        background-color: white;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+
+        &:hover {
+          background-color: white;
+        }
+      }
     }
 
     &.secondary {
-      background-color: white;
-      border: 1px solid $secondary-color;
-      color: $secondary-color;
+      background-color: $secondary-color;
 
       &:hover {
+        background-color: color-mix(in srgb, #{$secondary-color}, #000000 10%);
+      }
+
+      &--outlined {
         background-color: white;
+        border: 1px solid $secondary-color;
+        color: $secondary-color;
+
+        &:hover {
+          background-color: white;
+        }
+      }
+    }
+
+    &.danger {
+      background-color: $red-danger;
+
+      &:hover {
+        background-color: color-mix(in srgb, #{$red-danger}, #000000 10%);
+      }
+
+      &--outlined {
+        background-color: white;
+        border: 1px solid $red-danger;
+        color: $red-danger;
+
+        &:hover {
+          background-color: white;
+        }
       }
     }
 

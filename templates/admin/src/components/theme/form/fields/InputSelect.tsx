@@ -1,43 +1,36 @@
+import useFormErrorParser
+  from '@components/theme/form/hooks/FormErrorParserHook';
 import React from 'react';
 import { SelectElement } from 'react-hook-form-mui';
 import {
   InputSelectProps,
-} from '../../../../lib/plume-admin-theme/form/FormInputProps';
+} from '@lib/plume-admin-theme/form/FormInputProps';
+
+import scss from './form-input.module.scss';
 
 export default function InputSelect(
   {
     name,
-    id,
     label,
     options,
     disabled,
-    useNameAsId,
-    defaultValue,
-    control,
     required,
-    onBlur,
-    onChange,
+    errorMessageMapping,
   }: InputSelectProps) {
-  const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
-
+  const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
   return (
     <SelectElement
-      className={required ? 'field-required' : ''}
-      control={control}
+      className={scss.formControl}
       label={label}
-      name={fieldId}
+      name={name}
       variant="filled"
-      id={fieldId}
+      id={name}
       options={options}
       valueKey="value"
       labelKey="label"
-      defaultValue={defaultValue}
       required={required}
       disabled={disabled ?? false}
-      onBlur={onBlur}
-      onChange={onChange}
-      // disable FormHelper
-      parseError={() => ''}
+      parseError={parseError}
     />
   );
 }
