@@ -8,7 +8,7 @@
       "esnext"
     ],
     "rootDirs": [".", "./scss-types"],
-    "types": ["vite/client", "node"],
+    "types": ["node", "vite/client"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
