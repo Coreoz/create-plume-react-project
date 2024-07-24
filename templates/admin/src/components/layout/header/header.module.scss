@@ -1,6 +1,4 @@
-@use "../variables" as *;
-
-#main-header {
+.main-header {
   display: flex;
   align-items: center;
   height: $height-header;
@@ -12,12 +10,12 @@
     font-size: $font-size-large;
   }
 
-  .header_actions {
+  .header-actions {
     display: flex;
     height: 100%;
     margin-left: auto;
 
-    .header_action {
+    .header-action {
       display: flex;
       align-items: center;
       height: 100%;
@@ -28,7 +26,7 @@
       button {
         font-size: $font-size-medium;
 
-        .MuiIcon-root {
+        span {
           margin-right: $spacer-2;
         }
       }
@@ -51,14 +49,14 @@
         }
       }
     }
-  }
-}
 
-#user-name {
-  color: $gray-dark;
-  min-width: 75px;
-  text-align: center;
-  padding: 0 $spacer-4 $spacer-2 $spacer-4;
-  border-bottom: $separator;
-  margin-bottom: $spacer-3;
+    .user-action {
+      color: $gray-dark;
+      min-width: 75px;
+      text-align: center;
+      padding: 0 $spacer-4 $spacer-2 $spacer-4;
+      border-bottom: $separator;
+      margin-bottom: $spacer-3;
+    }
+  }
 }

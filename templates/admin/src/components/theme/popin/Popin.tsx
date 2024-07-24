@@ -1,16 +1,21 @@
+import useMessages from '@i18n/hooks/messagesHook';
+import {
+  PopinCloseWithoutSavingProps,
+  PopinProps,
+} from '@lib/plume-admin-theme/popin/PopinProps';
 import React from 'react';
-import { ActionButton, ActionsContainer } from '../action/Actions';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import { PopinCloseWithoutSavingProps, PopinProps } from '../../../lib/plume-admin-theme/popin/PopinProps';
+import { ActionButton, ActionsContainer } from '../action/Actions';
 import { Panel } from '../layout/Panel';
-import useMessages from '../../../i18n/hooks/messagesHook';
+
+import scss from './popin.module.scss';
 
 export function Popin({
   children, zIndex, height, width,
 }: PopinProps) {
   return (
-    <div className="popin" style={{ zIndex: zIndex ?? 100 }}>
-      <div className="popin-container" style={{ height, width }}>
+    <div className={scss.popin} style={{ zIndex: zIndex ?? 100 }}>
+      <div className={scss.popinContainer} style={{ height, width }}>
         {children}
       </div>
     </div>
@@ -18,7 +23,10 @@ export function Popin({
 }
 
 export function PopinCloseWithoutSaving(
-  { confirmCloseWithoutSaving, closeWithoutSavingAction }: PopinCloseWithoutSavingProps,
+  {
+    confirmCloseWithoutSaving,
+    closeWithoutSavingAction,
+  }: PopinCloseWithoutSavingProps,
 ) {
   const { messages } = useMessages();
 

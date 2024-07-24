@@ -11,6 +11,8 @@ import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
 import NestedListItem from './NestedListItem';
 
+import scss from './navigation.module.scss';
+
 export default function Navigation() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages }: Messages = useMessages();
@@ -18,19 +20,18 @@ export default function Navigation() {
   const [isDrawerOpened, toggleDrawerOpening] = useToggle(true);
 
   return (
-    <nav className={classNames('main-nav', isDrawerOpened ? 'nav' : 'nav nav--reduced')}>
-      <button type="button" className="toggle-nav" onClick={toggleDrawerOpening}>
+    <nav className={classNames(scss.mainNav, isDrawerOpened ? undefined : scss.mainNavClosed)}>
+      <button type="button" className={scss.toggleNav} onClick={toggleDrawerOpening}>
         <Icon>
           {isDrawerOpened ? 'arrow_back_ios' : 'arrow_forward_ios'}
         </Icon>
       </button>
 
-      <div className="app-info">
+      <div className={scss.appInfo}>
         <img src={plumeLogo} className="logo" alt="logo" />
-        <span>{messages.app.name}</span>
+        <span className={scss.appName}>{messages.app.name}</span>
       </div>
-
-      <List className="navigation">
+      <List className={scss.navigation}>
         <LinkListItem
           icon="home"
           route={HOME}

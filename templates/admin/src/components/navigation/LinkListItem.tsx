@@ -8,6 +8,8 @@ import React from 'react';
 import { Link, PathMatch, useMatch } from 'react-router-dom';
 import { IconType } from '../theme/IconType';
 
+import scss from './navigation.module.scss';
+
 type LinkListItemProps = {
   icon: IconType,
   route: string,
@@ -29,15 +31,15 @@ function LinkListItem(
     <ListItemButton
       component={Link}
       to={route}
-      className={routeMatch ? 'active list-item' : 'list-item'}
+      className={routeMatch ? scss.active : ''}
     >
-      <ListItemIcon>
+      <ListItemIcon className={scss.icon}>
         <Icon fontSize="large">{icon}</Icon>
       </ListItemIcon>
       {
         drawerOpen
         && (
-          <ListItemText primary={label} />
+          <ListItemText className={scss.text} primary={label} />
         )
       }
     </ListItemButton>

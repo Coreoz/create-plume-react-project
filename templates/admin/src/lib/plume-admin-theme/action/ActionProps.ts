@@ -1,5 +1,5 @@
 import { ReactNode, MouseEvent } from 'react';
-import { IconType } from '../../../components/theme/IconType';
+import { IconType } from '@components/theme/IconType';
 import ActionStyle from './ActionStyle';
 
 type ActionsPosition = 'start' | 'center' | 'end';
