@@ -13,18 +13,19 @@ const config: Config = {
     ],
   },
   setupFilesAfterEnv: [
-    './tests/setupTests.ts',
+    '<rootDir>/tests/installation/setupTests.ts',
   ],
-  globals: {
-    'ts-jest': {
-      'compiler': 'ttypescript',
-      'tsconfig': 'tsconfig.json',
-    },
-  },
   moduleNameMapper: {
-    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$': '<rootDir>/tests/jestMock.js',
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$': '<rootDir>/tests/installation/jestMock.js',
+    '\\.(css|scss)$': '<rootDir>/tests/installation/styleMock.js',
+    "@api/(.*)": ["<rootDir>/src/api/$1"],
+    "@components/(.*)": ["<rootDir>/src/components/$1"],
+    "@i18n/(.*)": ["<rootDir>/src/i18n/$1"],
+    "@lib/(.*)": ["<rootDir>/src/lib/$1"],
+    "@services/(.*)": ["<rootDir>/src/services/$1"],
+    "@assets/(.*)": ["<rootDir>/assets/$1"],
   },
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   verbose: true,
 };
 
