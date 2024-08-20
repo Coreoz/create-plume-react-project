@@ -20,4 +20,5 @@ export interface ActionLinkProps extends ActionProps {
 export interface ActionButtonProps extends ActionProps {
   onClick?: () => void,
   isLoading?: boolean,
+  disabled?: boolean,
 }

@@ -19,6 +19,7 @@ export default function InputText(
     autoComplete,
     multiline,
     rows,
+    dataTestId,
   }: InputTextProps,
 ) {
   const fieldId: string = useNameAsId ? (name ?? 'undefined_input_name') : (id ?? 'undefined_input_id');
@@ -40,6 +41,9 @@ export default function InputText(
       onBlur={onBlur}
       multiline={multiline}
       rows={rows}
+      // data-testid is not known by the library
+      //@ts-ignore
+      InputProps={dataTestId ? { 'data-testid': dataTestId } : undefined}
     />
   );
 }

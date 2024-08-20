@@ -20,6 +20,7 @@ export type InputTextProps = {
   placeholder?: string,
   multiline?: boolean,
   rows?: number,
+  dataTestId?: string,
 };
 
 export type InputSelectProps = {
