@@ -13,7 +13,7 @@ import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
 import '@testing-library/jest-dom';
 
-describe('LoginForm', () => {
+describe('Login', () => {
   const injector = createInjector();
   installServicesModule(injector);
   installComponentsModule(injector);

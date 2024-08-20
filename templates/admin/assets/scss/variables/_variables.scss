@@ -2,10 +2,13 @@
 $base-font-family: 'Roboto', sans-serif;
 $base-font-size: 14px;
 $font-size-big: 18px;
+// font-weight
+$font-weight-normal: normal;
+$font-weight-bold: 600;
 
 // colors
-$background-color: #EEE;
-$separator-color: #DDD;
+$background-color: #eeeeee;
+$separator-color: #dddddd;
 
 $primary-color: #1469b3;
 $secondary-color: #df623b;
@@ -14,11 +17,11 @@ $active-background-color: #e3ebf2;
 $navigation-width-open: 240px;
 $navigation-width-close: 100px;
 
-$gray-lighter: #F5F5F5;
-$gray-lighter-border: #E5E3E3;
-$gray-light: #CDCDCD;
-$gray: #BCBCBC;
-$gray-text: #ABABAB;
+$gray-lighter: #f5f5f5;
+$gray-lighter-border: #e5e3e3;
+$gray-light: #cdcdcd;
+$gray: #bcbcbc;
+$gray-text: #ababab;
 $gray-dark: #444444;
 
 // font-size
@@ -43,7 +46,9 @@ $spacer-8: 4rem;
 $spacer-9: 6rem;
 $spacer-10: 10rem;
 
-$button-height: 24px;
+// buttons
+$button-height: 45px;
+$button-padding: 12px clamp(12px, 2vw, 28px);
 
 // variable components
 $height-header: 6rem;
@@ -54,8 +59,20 @@ $animation-timing: 0.25s;
 /// separators
 $separator: 1px solid $separator-color;
 
+// border radius
+$border-radius-3: 3px;
+$border-radius-5: 5px;
+$border-radius-8: 8px;
+$border-radius-chip: 5px;
+
 // screen sizes
 $width-small-screen-px: 800;
 $width-medium-screen-px: 1150;
 
 $app-max-width: 1200px;
+
+// Z-INDEX
+$z-index-background: -1;
+$z-index-initial: 0;
+$z-index-foreground: 1;
+$z-index-top-layer: 2;

@@ -1,0 +1,31 @@
+#main-layout {
+  height: 100%;
+  display: grid;
+  grid-template-areas: 'nav content';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+
+  #content-layout {
+    grid-area: content;
+    display: grid;
+    grid-template-areas: /* stylelint-disable-line declaration-colon-space-after */
+      'header'
+      'content';
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    overflow: hidden;
+
+    #main-header {
+      grid-area: header;
+    }
+
+    #main-content {
+      grid-area: content;
+    }
+  }
+
+  .main-nav {
+    grid-area: nav;
+  }
+}

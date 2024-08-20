@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['./.eslintrc.js'],
+  extends: ['./.eslintrc.cjs'],
   rules: {
     'no-debugger': 'error',
     'no-console': 'error',

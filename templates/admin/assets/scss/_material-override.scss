@@ -1,46 +1,35 @@
-@use "variables" as *;
-@use "mixins" as *;
+/* stylelint-disable selector-class-pattern */
+
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .app {
 
   /* BUTTONS */
   .MuiButton-root {
-    height: 45px;
-    line-height: 1;
+    height: $button-height;
     text-transform: uppercase;
     box-shadow: none;
+    font-family: $base-font-family;
+    border-radius: $border-radius-chip;
+    padding: $button-padding;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
+
       @include box-shadow-button();
     }
 
     .MuiButton-startIcon {
       img {
-        width: $button-height*0.75;
+        width: $button-height * 0.75;
         height: 100%;
       }
     }
   }
 
-  .MuiButton-containedSecondary {
-    background-color: white;
-    border: 1px solid $secondary-color;
-    color: $secondary-color;
-
-    &:hover {
-      background-color: white;
-    }
-  }
-
-  .MuiButton-containedPrimary { /* stylelint-disable-line selector-class-pattern */
-    background-color: $primary-color;
-
-    &:hover {
-      background-color: darken($primary-color, 10%);
-    }
-  }
-
-  .MuiCircularProgress-colorPrimary { /* stylelint-disable-line selector-class-pattern */
+  .MuiCircularProgress-colorPrimary {
     color: $primary-color;
   }
 
@@ -54,7 +43,7 @@
       background-color: rgba($gray-dark, 0.1);
     }
 
-    &, &.Mui-focused {
+    &.Mui-focused {
       background-color: rgba($gray-dark, 0.05);
     }
 
@@ -62,7 +51,8 @@
       background-color: rgba($gray-dark, 0.15);
     }
 
-    &::before, &::after {
+    &::before,
+    &::after {
       content: none;
     }
   }
@@ -74,9 +64,5 @@
   // FORM ERROR
   .Mui-error {
     margin-left: 0;
-  }
-
-  .main-nav span.MuiTouchRipple-root {
-    display: none;
   }
 }

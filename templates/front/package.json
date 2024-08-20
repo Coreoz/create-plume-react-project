@@ -42,7 +42,8 @@
     "@types/validator": "^13.7.7",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vitejs/plugin-react": "4.0.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "autoprefixer": "latest",
     "concurrently": "^7.4.0",
     "copyfiles": "^2.4.1",
     "eslint": "^8.30.0",
@@ -63,7 +64,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^20.0.1",
     "node-fetch": "^2.6.7",
-    "postcss": "^8.4.18",
+    "postcss": "latest",
     "react-router": "^6.4.2",
     "sass": "^1.55.0",
     "storybook": "7.4.6",
@@ -78,16 +79,15 @@
     "ttypescript": "^1.5.15",
     "typed-scss-modules": "^7.1.1",
     "typescript": "4.9.4",
-    "vite": "^5.1.4"
+    "vite": "^5.3.1"
   },
   "browserslist": [
     "defaults",
     "not IE 11",
     "not op_mini all",
-    "Firefox >= 75",
     "Chrome >= 80",
-    "Firefox >= 75",
-    "safari >= 12"
+    "Firefox >= 80",
+    "safari >= 13"
   ],
   "scripts": {
     "start": "concurrently  \"yarn watch-ts\" \"yarn copy-scss\" \"yarn watch-scss-module\" \"yarn watch-js\"",
@@ -97,7 +97,7 @@
     "copy-scss": "copyfiles -u 1 ./src/**/*.scss ts-built",
     "build": "rm -rf build && yarn copy-scss && ttsc && vite build",
     "stylelint": "stylelint '**/*.scss'",
-    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.js",
+    "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.cjs",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.ts",
     "coverage": "jest --config jest.config.ts --coverage --watchAll=false",

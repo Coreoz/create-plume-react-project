@@ -1,6 +1,6 @@
+import { SessionCredentials } from '@api/session/SessionApi';
 import React from 'react';
 import { FormContainer } from 'react-hook-form-mui';
-import { SessionCredentials } from '../../../api/session/SessionApi';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';

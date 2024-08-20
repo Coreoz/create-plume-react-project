@@ -50,7 +50,6 @@ module.exports = {
         // "id,class,type",
         // selector-max-specificity
         'declaration-no-important': true,
-        'selector-no-qualifying-type': true,
 
         // Selectors
         'no-duplicate-selectors': true,

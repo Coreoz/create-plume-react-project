@@ -1,15 +1,16 @@
-import { Button, CircularProgress, Icon } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import classNames from '../../../lib/class-names/ClassNames';
+import classNames from '@lib/class-names/ClassNames';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
-} from '../../../lib/plume-admin-theme/action/ActionProps';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+} from '@lib/plume-admin-theme/action/ActionProps';
+import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
+import { Button, CircularProgress, Icon } from '@mui/material';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import scss from './actions.module.scss';
 
-function actionStyleToCssClass(
+function actionStyleToColor(
   actionStyle?: ActionStyle,
 ): 'inherit' | 'primary' | 'secondary' | 'error' {
   if (!actionStyle) {
@@ -21,27 +22,51 @@ function actionStyleToCssClass(
   return actionStyle;
 }
 
-export function ActionsContainer({
-                                   children,
-                                   cssClasses,
-                                 }: ActionContainerProps) {
+export function ActionsContainer(
+  {
+    children,
+    className,
+    position = 'center',
+    orientation = 'row',
+  }: ActionContainerProps,
+) {
   return (
-    <div className={classNames('actions', cssClasses)}>
+    <div
+      className={classNames(
+        scss.actions,
+        className,
+        scss[`actions--${position}`],
+        scss[`actions--${orientation}`],
+      )}
+    >
       {children}
     </div>
   );
 }
 
-export function ActionLink({
-                             style, icon, linkTo, children,
-                           }: ActionLinkProps) {
+export function ActionLink(
+  {
+    style,
+    variant = 'contained',
+    icon,
+    className,
+    disabled,
+    linkTo,
+    children,
+    rel,
+    target,
+  }: ActionLinkProps,
+) {
   return (
     <Button
-      className={classNames('action-container', actionStyleToCssClass(style))}
-      variant="contained"
-      color={actionStyleToCssClass(style)}
+      className={classNames(scss.link, className, style)}
+      variant={variant}
+      color={actionStyleToColor(style)}
+      disabled={disabled}
       component={Link}
       to={linkTo}
+      rel={rel}
+      target={target}
       startIcon={icon && <Icon>{icon}</Icon>}
     >
       {children}
@@ -52,8 +77,9 @@ export function ActionLink({
 export function ActionButton(
   {
     style,
+    variant = 'contained',
     icon,
-    cssClasses,
+    className,
     onClick,
     isLoading = false,
     children,
@@ -61,34 +87,24 @@ export function ActionButton(
   }: ActionButtonProps,
 ) {
   return (
-    <div
-      className={
-        classNames(
-          'action-container',
-          'loading-button',
-          cssClasses,
-          { 'loading-button--loading': isLoading },
-        )
-      }
+    <Button
+      onClick={onClick}
+      className={classNames(scss.action, className, isLoading ? scss.actionLoading : undefined, style)}
+      type={onClick ? 'button' : 'submit'}
+      variant={variant}
+      disabled={isLoading || disabled}
+      color={actionStyleToColor(style)}
+      startIcon={icon && <Icon>{icon}</Icon>}
     >
-      <Button
-        onClick={onClick}
-        type={onClick ? 'button' : 'submit'}
-        variant="contained"
-        disabled={isLoading || disabled}
-        color={actionStyleToCssClass(style)}
-        startIcon={icon && <Icon>{icon}</Icon>}
-      >
-        {children}
-      </Button>
+      {children}
       {
         isLoading
         && (
-          <div className="loading-progress">
-            <CircularProgress size="100%" color="inherit" />
+          <div className={scss.loadingProgress}>
+            <CircularProgress className={scss.circleProgress} />
           </div>
         )
       }
-    </div>
+    </Button>
   );
 }

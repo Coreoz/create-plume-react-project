@@ -1,0 +1,53 @@
+.panel {
+  $side-padding: $spacer-6;
+  display: grid;
+  grid-template-areas: /* stylelint-disable-line declaration-colon-space-after */
+    'title'
+    'content';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  position: relative;
+  overflow: hidden;
+  margin: $spacer-4 0;
+
+  .panel-title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    gap: $spacer-4;
+    color: $secondary-color;
+    padding-left: $side-padding;
+    font-family: $base-font-family;
+
+    h1 {
+      font-size: $font-size-large;
+    }
+
+    .link {
+      height: 25px;
+      width: 25px;
+      font-size: $font-size-little;
+      color: $secondary-color;
+    }
+  }
+
+  .panel-content {
+    grid-area: content;
+    padding: $spacer-6 $side-padding;
+    overflow: hidden;
+
+    .columns-container {
+      margin-bottom: $side-padding;
+      overflow: hidden;
+      height: 100%;
+
+      .column {
+        height: 100%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

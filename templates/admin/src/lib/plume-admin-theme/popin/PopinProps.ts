@@ -1,4 +1,4 @@
-import { ReactHookConfirm } from '../../react-hook-confirm/ReactHookConfirm';
+import { ReactHookConfirm } from '@lib/react-hook-confirm/ReactHookConfirm';
 
 export type PopinProps = {
   zIndex?: number,

@@ -1,0 +1,51 @@
+.login-layout {
+
+  .login-icon {
+    position: initial;
+    transform: initial;
+    margin: $spacer-6 auto;
+    display: block;
+    max-width: 200px;
+    height: 80px;
+  }
+
+  .login-subtitle {
+    color: $secondary-color;
+    text-align: center;
+    margin-bottom: $spacer-6;
+
+    h2 {
+      font-size: $font-size-huge;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .login-box {
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-4;
+    margin: 0 auto;
+    width: 550px;
+    padding: $spacer-5 $spacer-8 $spacer-6 $spacer-8;
+    border-radius: $border-radius-5;
+    border: 1px solid $separator-color;
+    text-align: center;
+    background-color: white;
+
+    .login-label {
+      color: $primary-color;
+      font-size: $font-size-large;
+      text-align: center;
+    }
+
+    form {
+      .actions {
+        margin-bottom: $spacer-4;
+      }
+    }
+
+    hr {
+      margin: $spacer-2 0;
+    }
+  }
+}

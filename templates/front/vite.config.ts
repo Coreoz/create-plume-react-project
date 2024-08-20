@@ -1,12 +1,18 @@
 import path from 'path';
 import { defineConfig, ViteDevServer } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import fs from 'fs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      // eslint-disable-next-line consistent-return
+      parserConfig(id: string) {
+        // fix hot reloading with js files exported by TypeScript in the ts-built directory
+        if (id.endsWith('.js')) return { syntax: 'ecmascript', jsx: true };
+      },
+    }),
     {
       name: 'copy-scss-files-in-dev',
       configureServer: (server: ViteDevServer) => {
