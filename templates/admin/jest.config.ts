@@ -15,8 +15,6 @@ const config: Config = {
   setupFilesAfterEnv: [
     '<rootDir>/tests/installation/setupTests.ts',
   ],
-  transformIgnorePatterns: [
-  ],
   moduleNameMapper: {
     '@i18n/translations/hmr-config': '<rootDir>/tests/installation/hmrMock.js',
     '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$': '<rootDir>/tests/installation/jestMock.js',
