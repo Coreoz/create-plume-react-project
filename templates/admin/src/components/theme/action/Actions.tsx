@@ -3,6 +3,7 @@ import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
+  ThemeStyle,
 } from '@lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { Button, CircularProgress, Icon } from '@mui/material';
@@ -23,13 +24,23 @@ function actionStyleToColor(
   return actionStyle;
 }
 
-function typeClassName(type: ActionStyle = ActionStyle.PRIMARY, outlined?: boolean): string {
-  const classMap: { [key in ActionStyle]: string } = {
-    [ActionStyle.PRIMARY]: outlined ? scss.primaryOutlined : scss.primary,
-    [ActionStyle.SECONDARY]: outlined ? scss.secondaryOutlined : scss.secondary,
-    [ActionStyle.DANGER]: outlined ? scss.dangerOutlined : scss.danger,
-  };
-  return classMap[type] ?? scss.primary;
+const classMap: { [key in ActionStyle]: { [key in ThemeStyle]: string }} = {
+  [ActionStyle.PRIMARY]: {
+    'outlined': scss.primaryOutlined,
+    'contained': scss.primary,
+  },
+  [ActionStyle.SECONDARY]: {
+    'outlined': scss.secondaryOutlined,
+    'contained': scss.secondary,
+  },
+  [ActionStyle.DANGER]: {
+    'outlined': scss.dangerOutlined,
+    'contained': scss.danger,
+  },
+};
+
+function typeClassName(type: ActionStyle = ActionStyle.PRIMARY, outlined: ThemeStyle = 'contained'): string {
+  return classMap[type][outlined] ?? scss.primary;
 }
 
 export function ActionsContainer({
@@ -65,7 +76,7 @@ export function ActionLink({
 }: ActionLinkProps) {
   return (
     <Button
-      className={classNames(scss.link, className, typeClassName(style, variant === 'outlined'))}
+      className={classNames(scss.link, className, typeClassName(style, variant))}
       variant={variant}
       color={actionStyleToColor(style)}
       disabled={disabled}
@@ -99,7 +110,7 @@ export function ActionButton(
         scss.action,
         className,
         isLoading ? scss.actionLoading : undefined,
-        typeClassName(style, variant === 'outlined'),
+        typeClassName(style, variant),
       )}
       type={onClick ? 'button' : 'submit'}
       variant={variant}

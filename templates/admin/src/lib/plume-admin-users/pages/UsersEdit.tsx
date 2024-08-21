@@ -4,7 +4,6 @@ import {
   checkHasNumberChar,
   checkHasSpecialChar,
   checkHasUpperChar,
-  checkEmptyTrimmed,
 } from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
@@ -275,7 +274,6 @@ export default function UsersEdit({
               password_same_value: (value: string) => (
                 formContext.getValues().password === value
               ),
-              empty_field: checkEmptyTrimmed,
             },
           }}
           errorMessageMapping={makeErrorMessageMapping(messages.user.error_passwords_different)}

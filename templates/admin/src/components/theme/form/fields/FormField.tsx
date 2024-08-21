@@ -15,7 +15,8 @@ import scss from './form-input.module.scss';
 
 /**
  * FormField should be used in forms created with react-hook-form
- * It will replace the react-hook-form-mui wrapper if the input has not been implemented
+ * It replaces the react-hook-form-mui wrapper if the input has not been implemented in the library
+ * If you need to create your own input, use this component to wrap it
  */
 export default function FormField({
   name, children, errorMessageMapping, error,
