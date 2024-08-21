@@ -44,6 +44,7 @@ export default function Login() {
           loader.error
           && (
             <Alert
+              data-testid="login-alert"
               className="form-errors"
               severity="error"
             >

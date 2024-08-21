@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { configureGlobalInjector } from 'plume-ts-di';
 import React from 'react';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 import installApiModule from '../../../../src/api/api-module';
 import installComponentsModule from '../../../../src/components/components-module';
 import Login from '../../../../src/components/features/login/Login';

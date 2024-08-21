@@ -18,6 +18,7 @@ const config: Config = {
   transformIgnorePatterns: [
   ],
   moduleNameMapper: {
+    '@i18n/translations/hmr-config': '<rootDir>/tests/installation/hmrMock.js',
     '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$': '<rootDir>/tests/installation/jestMock.js',
     '\\.(css|scss)$': '<rootDir>/tests/installation/styleMock.js',
     "@api/(.*)": ["<rootDir>/src/api/$1"],

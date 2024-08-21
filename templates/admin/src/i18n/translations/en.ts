@@ -1,3 +1,4 @@
+import { viteHotContext } from '@i18n/translations/hmr-config';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
 import translationHotReload from './translations-hmr';
@@ -83,9 +84,9 @@ const enMessages: Translations = {
 
 const enMessagesObservable: WritableObservable<Translations> = observable(enMessages);
 
-if (import.meta.hot) {
+if (viteHotContext?.hot) {
   // Hot reloading, see translations-hmr.ts
-  import.meta.hot.accept(translationHotReload(enMessagesObservable));
+  viteHotContext.hot.accept(translationHotReload(enMessagesObservable));
 }
 
 export default enMessagesObservable.readOnly();
