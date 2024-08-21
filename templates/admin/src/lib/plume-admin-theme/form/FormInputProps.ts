@@ -2,7 +2,11 @@ import { FocusEvent, ChangeEvent } from 'react';
 import { Control } from 'react-hook-form/dist/types/form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
-export type InputTextProps = {
+type DataTest = {
+  dataTestId?: string, // used to select element in Jest tests
+}
+
+export type InputTextProps = DataTest & {
   type?: string,
   name?: string,
   id?: string,
@@ -20,7 +24,6 @@ export type InputTextProps = {
   placeholder?: string,
   multiline?: boolean,
   rows?: number,
-  dataTestId?: string,
 };
 
 export type InputSelectProps = {
