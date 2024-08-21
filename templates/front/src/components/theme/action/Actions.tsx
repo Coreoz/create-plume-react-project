@@ -17,7 +17,8 @@ export function ActionButton(
     isLoading,
     children,
     disabled = false,
-  }: ActionButtonProps) {
+  }: ActionButtonProps,
+) {
   return (
     <div className={classNames(scss.actionContainer, scss.loadingButton, cssClasses)}>
       <button
