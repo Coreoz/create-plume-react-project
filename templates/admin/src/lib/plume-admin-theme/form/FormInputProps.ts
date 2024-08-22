@@ -2,9 +2,9 @@ import { InputProps } from '@mui/material';
 import { FieldError } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
-type DataTest = {
-  dataTestId?: string, // used to select element in Jest tests
-}
+type DataTestIdPropsOverride = {
+  'data-testid'?: string,
+};
 
 type BaseInputProps = {
   name: string,
@@ -15,12 +15,12 @@ type BaseInputProps = {
   errorMessageMapping?: (error: FieldError) => string | undefined,
 };
 
-export type InputTextProps = BaseInputProps & DataTest & {
+export type InputTextProps = BaseInputProps & {
   type?: string,
   autoComplete?: string,
   multiline?: boolean,
   rows?: number,
-  InputProps?: Partial<InputProps>,
+  InputProps?: Partial<InputProps> & DataTestIdPropsOverride,
 };
 
 export type InputPasswordProps = Omit<InputTextProps, 'type'>;

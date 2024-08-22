@@ -1,3 +1,4 @@
+import { DataTestProps } from '@lib/plume-admin-theme/tests/TestsProps';
 import { ReactNode, MouseEvent } from 'react';
 import { IconType } from '@components/theme/IconType';
 import ActionStyle from './ActionStyle';
@@ -23,13 +24,13 @@ type ActionProps = {
   children?: ReactNode,
 };
 
-export interface ActionLinkProps extends ActionProps {
+export interface ActionLinkProps extends ActionProps, DataTestProps {
   linkTo: string,
   rel?: string,
   target?: string,
 }
 
-export interface ActionButtonProps extends ActionProps {
+export interface ActionButtonProps extends ActionProps, DataTestProps {
   onClick?: (event?: MouseEvent<HTMLButtonElement>) => void,
   isLoading?: boolean,
   disabled?: boolean,

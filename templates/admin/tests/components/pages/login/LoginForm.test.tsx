@@ -13,7 +13,7 @@ describe('LoginForm', () => {
 
   it('should render a disabled button', () => {
     const wrapper: RenderResult = render(<LoginForm isLoading tryAuthenticate={jest.fn()} />);
-    const button: HTMLElement = wrapper.getByRole('button');
+    const button: HTMLElement | null = wrapper.queryByTestId("login-form-submit");
     expect(button).toBeDisabled();
   });
 });

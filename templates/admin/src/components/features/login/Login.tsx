@@ -1,7 +1,6 @@
 import appLogo from '/assets/icons/plume_logo.png';
 import { SessionCredentials } from '@api/session/SessionApi';
 import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
-import InputPassword from '@components/theme/form/fields/InputPassword';
 import { Alert } from '@mui/material';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
@@ -13,16 +12,8 @@ import useLoader, {
 } from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import SessionService from '../../../services/session/SessionService';
 import { HOME } from '../../Routes';
-import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
-import InputText from '../../theme/form/fields/InputText';
-import {
-  useOnDependenciesChange,
-} from '@lib/react-hooks-alias/ReactHooksAlias';
-import useMessages from '../../../i18n/hooks/messagesHook';
-import { FormContainer } from 'react-hook-form-mui';
-
-import scss from './login.module.scss';
 import LoginForm from './LoginForm';
+import scss from './login.module.scss';
 
 export default function Login() {
   const sessionService: SessionService = getGlobalInstance(SessionService);

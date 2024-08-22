@@ -41,7 +41,8 @@ describe('Login', () => {
         <Login />
       </MemoryRouter>,
     );
-    const button: HTMLElement | null = await wrapper.findByRole("button");
+    const button: HTMLElement | null = wrapper.queryByTestId("login-form-submit");
+
     expect(button).toBeDefined();
     expect(button).not.toBeDisabled();
   });

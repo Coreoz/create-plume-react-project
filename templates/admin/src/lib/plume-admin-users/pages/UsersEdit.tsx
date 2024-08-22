@@ -1,9 +1,6 @@
 import usePlumeTheme from '@components/hooks/ThemeHook';
 import {
-  checkHasLowerChar,
-  checkHasNumberChar,
-  checkHasSpecialChar,
-  checkHasUpperChar,
+  checkEmptyTrimmed,
 } from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
@@ -255,14 +252,9 @@ export default function UsersEdit({
           rules={{
             required: isCreation,
             validate: {
-              password_length: (pass: string) => pass.length >= 8,
-              password_lower_character: checkHasLowerChar,
-              password_number_character: checkHasNumberChar,
-              password_upper_character: checkHasUpperChar,
-              password_special_character: checkHasSpecialChar,
+              empty_field: checkEmptyTrimmed,
             },
           }}
-          errorMessageMapping={makeErrorMessageMapping(messages.user.error_passwords_different)}
         />
         <InputPassword
           name="passwordConfirmation"

@@ -75,10 +75,12 @@ export function ActionLink(
     children,
     rel,
     target,
+    dataTestId,
   }: ActionLinkProps,
 ) {
   return (
     <Button
+      data-testid={dataTestId}
       className={classNames(scss.link, className, typeClassName(style, variant))}
       variant={variant}
       color={actionStyleToColor(style)}
@@ -104,10 +106,12 @@ export function ActionButton(
     isLoading = false,
     children,
     disabled = false,
+    dataTestId,
   }: ActionButtonProps,
 ) {
   return (
     <Button
+      data-testid={dataTestId}
       onClick={onClick}
       className={
         classNames(
