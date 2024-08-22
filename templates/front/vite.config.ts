@@ -48,14 +48,13 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        additionalData: '@use \'@scssVariables\' as *; @use \'@scssMixins\' as *;',
+        additionalData: '@use \'@scssVariables\' as *;',
       },
     },
   },
   resolve: {
     alias: {
       '@scssVariables': path.resolve(__dirname, 'assets/scss/variables'),
-      '@scssMixins': path.resolve(__dirname, 'assets/scss/mixins'),
       '@api': path.resolve(__dirname, 'ts-built/api'),
       '@components': path.resolve(__dirname, 'ts-built/components'),
       '@i18n': path.resolve(__dirname, 'ts-built/i18n'),
