@@ -1,6 +1,6 @@
 import { SessionCredentials } from '@api/session/SessionApi';
 import InputPassword from '@components/theme/form/fields/InputPassword';
-import React from 'react';
+import React, { FormHTMLAttributes } from 'react';
 import { FormContainer } from 'react-hook-form-mui';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
@@ -16,9 +16,11 @@ export default function LoginForm({ isLoading, tryAuthenticate }: LoginFormProps
   const { messages } = useMessages();
 
   return (
-    // data-testid is not known by the library
-    // @ts-ignore
-    <FormContainer FormProps={{ 'data-testid': 'login-form' }} onSuccess={tryAuthenticate}>
+    <FormContainer
+      // data-testid is not known by the library, so we need to cast it to the correct type
+      FormProps={{ 'data-testid': 'login-form' } as FormHTMLAttributes<HTMLFormElement>}
+      onSuccess={tryAuthenticate}
+    >
       <InputText
         label={messages.users.userName}
         type="text"
