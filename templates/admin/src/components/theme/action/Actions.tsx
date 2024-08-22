@@ -9,7 +9,6 @@ import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { Button, CircularProgress, Icon } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import scss from './actions.module.scss';
 
 function actionStyleToColor(
@@ -24,7 +23,7 @@ function actionStyleToColor(
   return actionStyle;
 }
 
-const classMap: { [key in ActionStyle]: { [key in ThemeStyle]: string }} = {
+const classMap: { [key in ActionStyle]: { [key in ThemeStyle]: string } } = {
   [ActionStyle.PRIMARY]: {
     'outlined': scss.primaryOutlined,
     'contained': scss.primary,
@@ -43,12 +42,14 @@ function typeClassName(type: ActionStyle = ActionStyle.PRIMARY, outlined: ThemeS
   return classMap[type][outlined] ?? scss.primary;
 }
 
-export function ActionsContainer({
-  children,
-  className,
-  position = 'center',
-  orientation = 'row',
-}: ActionContainerProps) {
+export function ActionsContainer(
+  {
+    children,
+    className,
+    position = 'center',
+    orientation = 'row',
+  }: ActionContainerProps,
+) {
   return (
     <div
       className={classNames(
@@ -63,19 +64,23 @@ export function ActionsContainer({
   );
 }
 
-export function ActionLink({
-  style = ActionStyle.PRIMARY,
-  variant = 'contained',
-  icon,
-  className,
-  disabled,
-  linkTo,
-  children,
-  rel,
-  target,
-}: ActionLinkProps) {
+export function ActionLink(
+  {
+    style = ActionStyle.PRIMARY,
+    variant = 'contained',
+    icon,
+    className,
+    disabled,
+    linkTo,
+    children,
+    rel,
+    target,
+    dataTestId,
+  }: ActionLinkProps,
+) {
   return (
     <Button
+      data-testid={dataTestId}
       className={classNames(scss.link, className, typeClassName(style, variant))}
       variant={variant}
       color={actionStyleToColor(style)}
@@ -98,20 +103,24 @@ export function ActionButton(
     icon,
     className,
     onClick,
-    disabled,
     isLoading = false,
     children,
+    disabled = false,
+    dataTestId,
   }: ActionButtonProps,
 ) {
   return (
     <Button
+      data-testid={dataTestId}
       onClick={onClick}
-      className={classNames(
-        scss.action,
-        className,
-        isLoading ? scss.actionLoading : undefined,
-        typeClassName(style, variant),
-      )}
+      className={
+        classNames(
+          scss.action,
+          className,
+          isLoading ? scss.actionLoading : undefined,
+          typeClassName(style, variant),
+        )
+      }
       type={onClick ? 'button' : 'submit'}
       variant={variant}
       disabled={isLoading || disabled}
