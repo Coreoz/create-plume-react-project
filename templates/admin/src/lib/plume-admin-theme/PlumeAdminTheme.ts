@@ -7,7 +7,7 @@ import {
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
 import { FormFieldProps } from './form/FormFieldProps';
-import { InputSelectProps, InputTextProps } from './form/FormInputProps';
+import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
@@ -43,4 +43,6 @@ export default abstract class PlumeAdminTheme {
   abstract inputText: (props: InputTextProps) => JSX.Element;
 
   abstract inputSelect: (props: InputSelectProps) => JSX.Element;
+
+  abstract inputPassword: (props: InputPasswordProps) => JSX.Element;
 }

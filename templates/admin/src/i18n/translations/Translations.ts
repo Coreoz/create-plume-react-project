@@ -65,6 +65,8 @@ export type Translations = {
     field : {
       required: string,
       email_wrong_format: string,
+      password_same_value: string,
+      empty_field: string,
     },
   },
   'http-errors': {

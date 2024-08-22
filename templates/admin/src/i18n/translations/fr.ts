@@ -66,6 +66,8 @@ const frMessages: Translations = {
     field: {
       required: 'Le champ est requis',
       email_wrong_format: 'L\'adresse e-mail saisie semble être incorrecte',
+      password_same_value: 'Veuillez saisir deux mots de passe identiques',
+      empty_field: 'Le champ entré est vide',
     },
   },
   'http-errors': {
