@@ -14,7 +14,7 @@ describe('ActionButton', () => {
   it('should render a disabled "click me" submit button', async () => {
     // Render action button
     render(
-      <ActionButton disabled>
+      <ActionButton disabled dataTestId="custom-button">
         Click me
       </ActionButton>
     );

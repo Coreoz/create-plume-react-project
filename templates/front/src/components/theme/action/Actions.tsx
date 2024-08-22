@@ -8,6 +8,7 @@ export type ActionButtonProps = {
   cssClasses?: string,
   children?: ReactNode,
   disabled?: boolean,
+  dataTestId?: string,
 };
 
 export function ActionButton(
@@ -17,12 +18,13 @@ export function ActionButton(
     isLoading,
     children,
     disabled = false,
+    dataTestId,
   }: ActionButtonProps,
 ) {
   return (
     <div className={classNames(scss.actionContainer, scss.loadingButton, cssClasses)}>
       <button
-        data-testid="custom-button"
+        data-testid={dataTestId}
         onClick={onClick}
         type={onClick ? 'button' : 'submit'}
         disabled={isLoading || disabled}
