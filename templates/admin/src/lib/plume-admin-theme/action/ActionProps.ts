@@ -5,6 +5,8 @@ import ActionStyle from './ActionStyle';
 type ActionsPosition = 'start' | 'center' | 'end';
 type ActionsOrientation = 'column' | 'row';
 
+export type ThemeStyle = 'outlined' | 'contained';
+
 export type ActionContainerProps = {
   className?: string,
   children?: ReactNode,
@@ -14,7 +16,7 @@ export type ActionContainerProps = {
 
 type ActionProps = {
   style?: ActionStyle,
-  variant?: 'outlined' | 'contained',
+  variant?: ThemeStyle,
   icon?: IconType,
   className?: string,
   disabled?: boolean,

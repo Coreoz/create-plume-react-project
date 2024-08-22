@@ -1,22 +1,27 @@
+import InputPassword from '@components/theme/form/fields/InputPassword';
 import {
   ActionButtonProps,
   ActionContainerProps,
   ActionLinkProps,
-} from '../../lib/plume-admin-theme/action/ActionProps';
-import { FormFieldProps } from '../../lib/plume-admin-theme/form/FormFieldProps';
-import { InputSelectProps, InputTextProps } from '../../lib/plume-admin-theme/form/FormInputProps';
+} from '@lib/plume-admin-theme/action/ActionProps';
+import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
+import {
+  InputPasswordProps,
+  InputSelectProps,
+  InputTextProps,
+} from '@lib/plume-admin-theme/form/FormInputProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
-} from '../../lib/plume-admin-theme/layout/LayoutProps';
-import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
-import { PopinCloseWithoutSavingProps, PopinProps } from '../../lib/plume-admin-theme/popin/PopinProps';
+} from '@lib/plume-admin-theme/layout/LayoutProps';
+import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
+import { PopinCloseWithoutSavingProps, PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
-import FormField from './form/FormField';
+import FormField from './form/fields/FormField';
 import {
   Panel,
   PanelContent, PanelContentElement, PanelContentElementColumn,
@@ -59,4 +64,6 @@ export default class AdminTheme implements PlumeAdminTheme {
   inputText: (props: InputTextProps) => JSX.Element = InputText;
 
   inputSelect: (props: InputSelectProps) => JSX.Element = InputSelect;
+
+  inputPassword: (props: InputPasswordProps) => JSX.Element = InputPassword;
 }

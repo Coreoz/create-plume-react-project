@@ -1,4 +1,10 @@
 import usePlumeTheme from '@components/hooks/ThemeHook';
+import {
+  checkHasLowerChar,
+  checkHasNumberChar,
+  checkHasSpecialChar,
+  checkHasUpperChar,
+} from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
@@ -17,7 +23,6 @@ import useConfirmation, {
 import {
   useOnDependenciesChange,
 } from '@lib/react-hooks-alias/ReactHooksAlias';
-import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useMemo } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
@@ -55,7 +60,18 @@ export default function UsersEdit({
   const userApi: UserApi = getGlobalInstance(UserApi);
   const { userId } = useParams<UsersRouteParams>();
 
-  const theme: PlumeAdminTheme = usePlumeTheme();
+  const {
+    actionLink: ActionLink,
+    actionsContainer: ActionContainer,
+    actionButton: ActionButton,
+    popin: Popin,
+    popinCloseWithoutSaving: PopinCloseWithoutSaving,
+    panelSeparator: PanelSeparator,
+    inputText: InputText,
+    inputSelect: InputSelect,
+    inputPassword: InputPassword,
+  }: PlumeAdminTheme = usePlumeTheme();
+
   const { messages }: Messages = useMessages();
   const {
     notifyHttpError,
@@ -77,7 +93,10 @@ export default function UsersEdit({
   });
 
   const {
-    getValues, setError, reset, formState,
+    getValues,
+    setError,
+    reset,
+    formState,
   } = formContext;
 
   // when the users are loaded from the upper component, we need update the form with the new values
@@ -156,174 +175,139 @@ export default function UsersEdit({
   });
 
   return (
-    <theme.popin>
-      <theme.popinCloseWithoutSaving
+    <Popin>
+      <PopinCloseWithoutSaving
         confirmCloseWithoutSaving={confirmCloseWithoutSaving}
         closeWithoutSavingAction={cancelEdit}
       />
       {confirmDeleteUser.shouldAskConfirmation && (
-        <theme.popin zIndex={101}>
+        <Popin zIndex={101}>
           {messages.message.confirm_delete}
-          <theme.actionsContainer>
-            <theme.actionButton
+          <ActionContainer>
+            <ActionButton
               style={ActionStyle.SECONDARY}
               onClick={confirmDeleteUser.reset}
             >
               {messages.action.cancel}
-            </theme.actionButton>
+            </ActionButton>
             {userId && (
-              <theme.actionButton
+              <ActionButton
                 style={ActionStyle.DANGER}
                 onClick={confirmDeleteUser.confirm(() => tryDeleteUser(userId))}
               >
                 {messages.action.delete}
-              </theme.actionButton>
+              </ActionButton>
             )}
-          </theme.actionsContainer>
-        </theme.popin>
+          </ActionContainer>
+        </Popin>
       )}
       <h2>{isCreation ? messages.user.title_create : messages.user.title_edit}</h2>
-      <theme.actionsContainer position="end">
-        <theme.actionLink
+      <ActionContainer position="end">
+        <ActionLink
           icon="keyboard_arrow_left"
           linkTo={`/${usersPath}`}
+          variant="outlined"
           style={ActionStyle.SECONDARY}
         >
           {messages.action.back}
-        </theme.actionLink>
-      </theme.actionsContainer>
+        </ActionLink>
+      </ActionContainer>
       <FormContainer formContext={formContext} onSuccess={trySaveUser}>
         <input type="hidden" name="id" value={userToEdit?.id} />
-        <theme.formField
-          inputId="userName"
-        >
-          <theme.inputText
-            label={messages.users.userName}
-            name="userName"
-            rules={{ required: true }}
-            useNameAsId
-          />
-        </theme.formField>
-        <theme.formField
-          inputId="email"
+        <InputText
+          label={messages.users.userName}
+          name="userName"
+          rules={{ required: true }}
+        />
+        <InputText
+          name="email"
+          label={messages.users.email}
+          rules={{ required: true, validate: isEmail }}
           errorMessageMapping={makeErrorMessageMapping(messages.error.field.email_wrong_format)}
-        >
-          <theme.inputText
-            name="email"
-            label={messages.users.email}
-            rules={{ required: true, validate: isEmail }}
-            useNameAsId
-          />
-        </theme.formField>
-        <theme.formField
-          inputId="firstName"
-        >
-          <theme.inputText
-            name="firstName"
-            rules={{ required: true }}
-            label={messages.users.firstName}
-            useNameAsId
-          />
-        </theme.formField>
-        <theme.formField
-          inputId="lastName"
-        >
-          <theme.inputText
-            name="lastName"
-            label={messages.users.lastName}
-            rules={{ required: true }}
-            useNameAsId
-          />
-        </theme.formField>
-        <theme.formField
-          inputId="idRole"
-        >
-          <theme.inputSelect
-            name="idRole"
-            useNameAsId
-            label={messages.users.role}
-            defaultValue={userToEdit?.idRole}
-            required
-            options={
-              Array.from(usersWithRoles?.roles || []).map(
-                ([roleId, roleName]: [string, string]) => ({
-                  value: roleId,
-                  label: roleName,
-                }))
-            }
-          />
-        </theme.formField>
-        <theme.panelSeparator />
-        <theme.formField
-          inputId="password"
+        />
+        <InputText
+          name="firstName"
+          rules={{ required: true }}
+          label={messages.users.firstName}
+        />
+        <InputText
+          name="lastName"
+          label={messages.users.lastName}
+          rules={{ required: true }}
+        />
+        <InputSelect
+          name="idRole"
+          label={messages.users.role}
+          required
+          options={
+            Array.from(usersWithRoles?.roles || []).map(
+              ([roleId, roleName]: [string, string]) => ({
+                value: roleId,
+                label: roleName,
+              }))
+          }
+        />
+        <PanelSeparator />
+        <InputPassword
+          name="password"
+          label={messages.users.password}
+          autoComplete="off"
+          rules={{
+            required: isCreation,
+            validate: {
+              password_length: (pass: string) => pass.length >= 8,
+              password_lower_character: checkHasLowerChar,
+              password_number_character: checkHasNumberChar,
+              password_upper_character: checkHasUpperChar,
+              password_special_character: checkHasSpecialChar,
+            },
+          }}
           errorMessageMapping={makeErrorMessageMapping(messages.user.error_passwords_different)}
-        >
-          <theme.inputText
-            type="password"
-            name="password"
-            label={messages.users.password}
-            autoComplete="off"
-            onBlur={() => validatePasswordAndConfirmation()}
-            rules={{ required: isCreation }}
-            useNameAsId
-          />
-        </theme.formField>
-        <theme.formField
-          inputId="passwordConfirmation"
-        >
-          <theme.inputText
-            type="password"
-            name="passwordConfirmation"
-            label={messages.user.password_confirm}
-            autoComplete="off"
-            onBlur={() => validatePasswordAndConfirmation()}
-            rules={{ required: isCreation }}
-            useNameAsId
-          />
-        </theme.formField>
-        {userToEdit
-          && (
-            <>
-              <theme.panelSeparator />
-              <theme.formField>
-                <theme.inputText
-                  label={messages.label.creation_date}
-                  disabled
-                  defaultValue={dayjs(userToEdit.creationDate).format('L LT')}
-                />
-              </theme.formField>
-            </>
-          )
-        }
-        <theme.actionsContainer>
-          <theme.actionButton
+        />
+        <InputPassword
+          name="passwordConfirmation"
+          label={messages.user.password_confirm}
+          autoComplete="off"
+          rules={{
+            required: isCreation,
+            validate: {
+              password_same_value: (value: string) => (
+                formContext.getValues().password === value
+              ),
+            },
+          }}
+          errorMessageMapping={makeErrorMessageMapping(messages.user.error_passwords_different)}
+        />
+        <ActionContainer>
+          <ActionButton
             icon="keyboard_arrow_left"
             style={ActionStyle.SECONDARY}
+            variant="outlined"
             onClick={confirmCloseWithoutSaving.handleConfirmation(cancelEdit)}
           >
             {messages.action.back}
-          </theme.actionButton>
+          </ActionButton>
           {
             userId && (
-              <theme.actionButton
+              <ActionButton
                 icon="delete"
                 style={ActionStyle.DANGER}
                 onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
                 isLoading={deletingLoader.isLoading}
               >
                 {messages.action.delete}
-              </theme.actionButton>
+              </ActionButton>
             )
           }
-          <theme.actionButton
+          <ActionButton
             icon="save"
             style={ActionStyle.PRIMARY}
             isLoading={savingLoader.isLoading}
           >
             {messages.action.save}
-          </theme.actionButton>
-        </theme.actionsContainer>
+          </ActionButton>
+        </ActionContainer>
       </FormContainer>
-    </theme.popin>
+    </Popin>
   );
 }

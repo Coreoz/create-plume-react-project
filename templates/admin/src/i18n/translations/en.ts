@@ -67,6 +67,13 @@ const enMessages: Translations = {
     field: {
       required: 'Field is required',
       email_wrong_format: 'The input email address is invalid',
+      password_same_value: 'Both passwords must be the same',
+      password_length: 'Password must be at least 8 characters',
+      password_lower_character: 'At least 1 lowercase char is required',
+      password_number_character: 'At least 1 number is required',
+      password_upper_character: 'At least 1 uppercase char is required',
+      password_special_character: 'At least 1 special char is required',
+      empty_field: 'The field entered is empty',
     },
   },
   'http-errors': {
