@@ -183,3 +183,47 @@ export default function Component() {
 - Do not import the scss module in another component
 - Map your modifier class to a typescript enum
 
+# Forms
+## Presentation
+Forms are handled by the react-hook-form library https://react-hook-form.com/.
+
+An additional library is used to simplify the use of react-hook-form with MUI : https://github.com/dohomi/react-hook-form-mui
+
+## Usage, guidelines and good practices
+### Usage
+Several inputs are already implemented in the template, you will find them under src > components > theme > form.
+### Form validation
+React Hook Form offers a simple API to create an input validation.
+
+To create your own validator, add it in `Validators.ts`, :
+```ts
+const checkRegexpMatches = (value: string, regExp: RegExp) => {
+  const match: RegExpMatchArray | null = value.match(regExp);
+  return !!match && match.length >= 1;
+};
+
+export const checkHasLowerChar = (value: string): boolean => checkRegexpMatches(value, /[a-z]/g);
+```
+and use it in your input like this :
+```tsx
+<InputPassword
+    name="password"
+    label={messages.users.password}
+    autoComplete="off"
+    rules={{
+      required: isCreation,
+      validate: {
+        empty_field: checkEmptyTrimmed,
+        password_length: (pass: string) => pass.length >= 8,
+        password_lower_character: checkHasLowerChar,
+        password_number_character: checkHasNumberChar,
+        password_upper_character: checkHasUpperChar,
+        password_special_character: checkHasSpecialChar,
+      },
+    }}
+    errorMessageMapping={makeErrorMessageMapping('other error')}
+/>
+```
+then write the corresponding error in your translations `Translations.ts`, under `error.field.<you_error>`.
+
+You can also write your own message mapper with the `errorMessageMapping` props.
