@@ -27,6 +27,7 @@ import { FormContainer } from 'react-hook-form-mui';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { HttpError } from 'simple-http-rest-client';
 import isEmail from 'validator/lib/isEmail';
+import dayjs from 'dayjs';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import {
@@ -243,6 +244,13 @@ export default function UsersEdit({
                 label: roleName,
               }))
           }
+        />
+        <PanelSeparator />
+        <InputText
+          label={messages.label.creation_date}
+          name="date"
+          disabled={true}
+          InputProps={{ value: dayjs(userToEdit?.creationDate).format('L LT') }}
         />
         <PanelSeparator />
         <InputPassword
