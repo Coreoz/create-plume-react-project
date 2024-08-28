@@ -16,7 +16,6 @@ export default function LocaleSelector(
 
   return (
     <DropdownMenu
-      icon="language"
       label={currentLocale.code.toUpperCase()}
       id="lang-menu"
       subscribeOnClick={subscribeOnClick}

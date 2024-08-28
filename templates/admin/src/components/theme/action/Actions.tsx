@@ -23,18 +23,18 @@ function actionStyleToColor(
   return actionStyle;
 }
 
-const classMap: { [key in ActionStyle]: { [key in ThemeStyle]: string } } = {
+const classMap: { [key in ActionStyle]: { [themeKey in ThemeStyle]: string } } = {
   [ActionStyle.PRIMARY]: {
-    'outlined': scss.primaryOutlined,
-    'contained': scss.primary,
+    outlined: scss.primaryOutlined,
+    contained: scss.primary,
   },
   [ActionStyle.SECONDARY]: {
-    'outlined': scss.secondaryOutlined,
-    'contained': scss.secondary,
+    outlined: scss.secondaryOutlined,
+    contained: scss.secondary,
   },
   [ActionStyle.DANGER]: {
-    'outlined': scss.dangerOutlined,
-    'contained': scss.danger,
+    outlined: scss.dangerOutlined,
+    contained: scss.danger,
   },
 };
 

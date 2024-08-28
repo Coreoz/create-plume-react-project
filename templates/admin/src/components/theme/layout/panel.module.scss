@@ -1,5 +1,5 @@
 .panel {
-  $side-padding: $spacer-6;
+  $side-padding: $spacer-8;
   display: grid;
   grid-template-areas: /* stylelint-disable-line declaration-colon-space-after */
     'title'
@@ -8,7 +8,7 @@
   grid-template-rows: auto 1fr;
   position: relative;
   overflow: hidden;
-  margin: $spacer-4 0;
+  padding: $spacer-6 $side-padding;
 
   .panel-title {
     grid-area: title;
@@ -16,11 +16,11 @@
     align-items: center;
     gap: $spacer-4;
     color: $secondary-color;
-    padding-left: $side-padding;
     font-family: $base-font-family;
 
     h1 {
-      font-size: $font-size-large;
+      font-weight: 300;
+      font-size: $font-size-extra-large;
     }
 
     .link {
@@ -33,7 +33,7 @@
 
   .panel-content {
     grid-area: content;
-    padding: $spacer-6 $side-padding;
+    padding: $spacer-6 0;
     overflow: hidden;
 
     .columns-container {

@@ -14,20 +14,19 @@ import useLoader, {
 import useNotification, {
   PlumeNotification,
 } from '@lib/plume-notification/NotificationHook';
-import useConfirmation, {
-  ReactHookConfirm,
+import useConfirmationPopIn, {
+  ConfirmationPopInType,
 } from '@lib/react-hook-confirm/ReactHookConfirm';
 import {
   useOnDependenciesChange,
 } from '@lib/react-hooks-alias/ReactHooksAlias';
+import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useMemo } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
-import { FormContainer } from 'react-hook-form-mui';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { HttpError } from 'simple-http-rest-client';
 import isEmail from 'validator/lib/isEmail';
-import dayjs from 'dayjs';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import {
@@ -59,17 +58,18 @@ export default function UsersEdit({
   const { userId } = useParams<UsersRouteParams>();
 
   const {
-    actionLink: ActionLink,
     actionsContainer: ActionContainer,
     actionButton: ActionButton,
     popin: Popin,
-    popinCloseWithoutSaving: PopinCloseWithoutSaving,
+    confirmationPopIn: ConfirmationPopIn,
     panelSeparator: PanelSeparator,
+    formContainer: FormContainer,
     inputText: InputText,
     inputSelect: InputSelect,
     inputPassword: InputPassword,
   }: PlumeAdminTheme = usePlumeTheme();
 
+  const { showConfirmationPopIn, popInProps }: ConfirmationPopInType = useConfirmationPopIn();
   const { messages }: Messages = useMessages();
   const {
     notifyHttpError,
@@ -148,8 +148,6 @@ export default function UsersEdit({
 
   const deletingLoader: LoaderState = useLoader();
 
-  const confirmDeleteUser: ReactHookConfirm = useConfirmation();
-
   const tryDeleteUser = (idUser: string) => {
     deletingLoader.monitor(
       userApi
@@ -162,54 +160,47 @@ export default function UsersEdit({
         .catch((httpError: HttpError) => notifyHttpError(httpError)));
   };
 
+  const onDeleteUser = (idUser: string) => {
+    showConfirmationPopIn({
+      title: messages.label.confirm_delete,
+      message: messages.users.messages.confirm_delete(userToEdit?.userName ?? ''),
+      onConfirm: {
+        title: messages.action.delete,
+        action: () => tryDeleteUser(idUser),
+      },
+    });
+  };
+
   // cancel modification handling
 
   const cancelEdit = () => navigate(`/${usersPath}`);
 
   const { dirtyFields } = formState;
   // usage of dirtyFields instead of isDirty: https://github.com/react-hook-form/react-hook-form/issues/3562
-  const confirmCloseWithoutSaving: ReactHookConfirm = useConfirmation({
-    onlyIf: Object.keys(dirtyFields).length !== 0,
-  });
+  const onClosePopIn = () => {
+    if (Object.keys(dirtyFields).length === 0) {
+      cancelEdit();
+      return;
+    }
+    showConfirmationPopIn({
+      title: messages.action.close_without_saving,
+      message: messages.message.unsaved_data,
+      onConfirm: {
+        title: messages.action.close,
+        action: () => cancelEdit(),
+      },
+      onCancel: {
+        title: messages.action.keep_editing,
+      },
+    });
+  };
 
   return (
-    <Popin>
-      <PopinCloseWithoutSaving
-        confirmCloseWithoutSaving={confirmCloseWithoutSaving}
-        closeWithoutSavingAction={cancelEdit}
-      />
-      {confirmDeleteUser.shouldAskConfirmation && (
-        <Popin zIndex={101}>
-          {messages.message.confirm_delete}
-          <ActionContainer>
-            <ActionButton
-              style={ActionStyle.SECONDARY}
-              onClick={confirmDeleteUser.reset}
-            >
-              {messages.action.cancel}
-            </ActionButton>
-            {userId && (
-              <ActionButton
-                style={ActionStyle.DANGER}
-                onClick={confirmDeleteUser.confirm(() => tryDeleteUser(userId))}
-              >
-                {messages.action.delete}
-              </ActionButton>
-            )}
-          </ActionContainer>
-        </Popin>
-      )}
-      <h2>{isCreation ? messages.user.title_create : messages.user.title_edit}</h2>
-      <ActionContainer position="end">
-        <ActionLink
-          icon="keyboard_arrow_left"
-          linkTo={`/${usersPath}`}
-          variant="outlined"
-          style={ActionStyle.SECONDARY}
-        >
-          {messages.action.back}
-        </ActionLink>
-      </ActionContainer>
+    <Popin
+      title={isCreation ? messages.user.title_create : messages.user.title_edit}
+      isOpen
+      onClose={onClosePopIn}
+    >
       <FormContainer formContext={formContext} onSuccess={trySaveUser}>
         <input type="hidden" name="id" value={userToEdit?.id} />
         <InputText
@@ -283,7 +274,7 @@ export default function UsersEdit({
             icon="keyboard_arrow_left"
             style={ActionStyle.SECONDARY}
             variant="outlined"
-            onClick={confirmCloseWithoutSaving.handleConfirmation(cancelEdit)}
+            onClick={onClosePopIn}
           >
             {messages.action.back}
           </ActionButton>
@@ -292,7 +283,7 @@ export default function UsersEdit({
               <ActionButton
                 icon="delete"
                 style={ActionStyle.DANGER}
-                onClick={confirmDeleteUser.handleConfirmation(() => tryDeleteUser(userId))}
+                onClick={() => onDeleteUser(userId)}
                 isLoading={deletingLoader.isLoading}
               >
                 {messages.action.delete}
@@ -308,6 +299,7 @@ export default function UsersEdit({
           </ActionButton>
         </ActionContainer>
       </FormContainer>
+      <ConfirmationPopIn {...popInProps} />
     </Popin>
   );
 }
