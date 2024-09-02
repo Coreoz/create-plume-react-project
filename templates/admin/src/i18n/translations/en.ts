@@ -67,6 +67,17 @@ const enMessages: Translations = {
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
   },
+  // filters
+  filters: {
+    title: 'Filters',
+    reset: 'Reset filters',
+    user_name: {
+      title: 'Search',
+    },
+    user_email: {
+      title: 'Emails',
+    },
+  },
   // errors
   error: {
     field: {

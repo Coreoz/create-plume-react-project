@@ -1,3 +1,7 @@
+import Filter from '@components/theme/filter/Filter';
+import FilterGroup from '@components/theme/filter/FilterGroup';
+import FilterMenu from '@components/theme/filter/FilterMenu';
+import { FilterContainerProps, FilterGroupProps, FilterMenuProps } from '@lib/plume-filters/FilterTypes';
 import { PropsWithChildren } from 'react';
 import InputPassword from '@components/theme/form/fields/InputPassword';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
@@ -79,4 +83,12 @@ export default class AdminTheme implements PlumeAdminTheme {
   inputSelect: (props: InputSelectProps) => JSX.Element = InputSelect;
 
   inputPassword: (props: InputPasswordProps) => JSX.Element = InputPassword;
+
+  // filters
+
+  filterMenu: (props: PropsWithChildren<FilterMenuProps>) => JSX.Element = FilterMenu;
+
+  filter: (props: PropsWithChildren<FilterContainerProps>) => JSX.Element = Filter;
+
+  filterGroup: (props: FilterGroupProps) => JSX.Element = FilterGroup;
 }
