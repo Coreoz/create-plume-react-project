@@ -64,6 +64,17 @@ export type Translations = {
     password_confirm: string,
     error_passwords_different: string,
   },
+  // filters
+  filters: {
+    title: string,
+    reset: string,
+    user_name: {
+      title: string,
+    },
+    user_email: {
+      title: string,
+    },
+  },
   // errors
   error: {
     field : {

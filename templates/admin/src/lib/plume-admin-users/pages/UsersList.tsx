@@ -1,8 +1,11 @@
 import usePlumeTheme, {
   PlumeAdminThemeComponents,
 } from '@components/hooks/ThemeHook';
+import SearchBarFilter from '@components/theme/filter/SearchBarFilter';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
+import useFilteredObjects, { FilteredObjectsHookType } from '@lib/plume-filters/FilteredObjectsHook';
+import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-filters/SearchFilterHook';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -16,6 +19,11 @@ type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
 };
 
+type UserSearch = {
+  userName: string,
+  email: string[],
+};
+
 export default function UsersList({ usersWithRoles }: Props) {
   const { messages }: Messages = useMessages();
   const {
@@ -26,7 +34,26 @@ export default function UsersList({ usersWithRoles }: Props) {
     panelContentElementColumn: PanelContentElementColumn,
     actionsContainer: ActionContainer,
     actionLink: ActionLink,
+    filter: Filter,
+    filterMenu: FilterMenu,
+    filterGroup: FilterGroup,
   }: PlumeAdminThemeComponents = usePlumeTheme();
+
+  const {
+    searchObject,
+    updateSearchField,
+    onReset,
+  }: UseSearchFilterHook<UserSearch> = useSearchFilter<UserSearch>();
+
+  const { elements } : FilteredObjectsHookType<AdminUserDetails> = useFilteredObjects<AdminUserDetails, UserSearch>(
+    usersWithRoles?.users ?? [],
+    searchObject,
+    (filter: Partial<UserSearch>) => (user: AdminUserDetails) => (
+      user.userName.includes(filter.userName ?? '')
+      || (filter.email?.includes(user.email) ?? false)
+    ),
+    (users: AdminUserDetails[], filter: Partial<UserSearch>) => !!filter.userName || (filter.email?.length ?? 0) > 0,
+  );
 
   return (
     <Panel>
@@ -34,7 +61,31 @@ export default function UsersList({ usersWithRoles }: Props) {
         {messages.user.title_list}
       </PanelTitle>
       <PanelContent>
-        <PanelContentElement columns={5}>
+        <PanelContentElement columns={6}>
+          <PanelContentElementColumn width={1}>
+            <FilterMenu title={messages.filters.title} onResetFilters={onReset}>
+              <Filter messageKey="user_name">
+                <SearchBarFilter
+                  value={searchObject.userName ?? ''}
+                  onChange={(value: string) => updateSearchField('userName', value)}
+                  onClear={() => updateSearchField('userName', '')}
+                />
+              </Filter>
+              <FilterGroup
+                messageKey="user_email"
+                type="multiple"
+                onChange={(values: string[]) => updateSearchField('email', values)}
+                possibleValues={usersWithRoles?.users?.map((user: AdminUserDetails) => ({
+                  label: user.email,
+                  value: user.email,
+                  CheckboxProps: {
+                    disableRipple: true,
+                  },
+                })) ?? []}
+                selectedValues={searchObject.email}
+              />
+            </FilterMenu>
+          </PanelContentElementColumn>
           <PanelContentElementColumn width={4}>
             {usersWithRoles && (
               <table>
@@ -49,52 +100,55 @@ export default function UsersList({ usersWithRoles }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {usersWithRoles.users.map((user: AdminUserDetails) => (
-                    <tr key={user.id}>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {user.userName}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {user.email}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {user.firstName}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {user.lastName}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {usersWithRoles.roles.get(user.idRole)}
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          to={user.id}
-                        >
-                          {dayjs(user.creationDate).format('L LT')}
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
+                  {
+                    elements.map((user: AdminUserDetails) => (
+                      <tr key={user.id}>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {user.userName}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {user.email}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {user.firstName}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {user.lastName}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {usersWithRoles.roles.get(user.idRole)}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={user.id}
+                          >
+                            {dayjs(user.creationDate)
+                              .format('L LT')}
+                          </Link>
+                        </td>
+                      </tr>
+                    ))
+                  }
                 </tbody>
               </table>
             )}

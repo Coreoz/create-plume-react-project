@@ -1,0 +1,65 @@
+.filter-menu-container {
+  $filter-height: 50px;
+  $header-height: $button-height;
+  height: 100%;
+  width: 100%;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $spacer-2;
+    height: $header-height;
+
+    h2 {
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      color: $primary-color;
+    }
+  }
+
+  .filters {
+    margin-top: $spacer-3;
+    padding-right: $spacer-4;
+    padding-bottom: $spacer-4;
+    overflow-y: auto;
+    height: calc(100% - $header-height);
+    width: 100%;
+
+    .filter {
+      display: flex;
+      flex-direction: column;
+
+      & + .filter {
+        margin-top: $spacer-5;
+      }
+
+      .filter-title {
+        display: flex;
+        align-items: center;
+        gap: $spacer-2;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-normal;
+        margin-bottom: $spacer-2;
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .filter-reset-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    button {
+      color: $secondary-color;
+    }
+
+    &--filter-row {
+      align-items: flex-start;
+      // $font-size-normal = title font + $spacer-2 = title margin + 50px = input size - 8px = button padding
+      margin-top: calc(($font-size-normal + $spacer-2 + 50px - 8px) / 2);
+    }
+  }
+}

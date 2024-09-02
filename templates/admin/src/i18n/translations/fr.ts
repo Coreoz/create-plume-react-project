@@ -67,6 +67,17 @@ const frMessages: Translations = {
     password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
   },
+  // filters
+  filters: {
+    title: 'Filtres',
+    user_name: {
+      title: 'Recherche',
+    },
+    reset: 'Réinitialiser les filtres',
+    user_email: {
+      title: 'Email',
+    },
+  },
   // errors
   error: {
     field: {
