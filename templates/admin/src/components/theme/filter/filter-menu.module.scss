@@ -41,7 +41,14 @@
         font-weight: $font-weight-bold;
         font-size: $font-size-normal;
         margin-bottom: $spacer-2;
-        color: $secondary-color;
+        color: $gray-dark;
+      }
+
+      .input-filter {
+        padding-left: $spacer-3;
+        span > svg {
+          color: $secondary-color;
+        }
       }
     }
   }
@@ -54,12 +61,6 @@
 
     button {
       color: $secondary-color;
-    }
-
-    &--filter-row {
-      align-items: flex-start;
-      // $font-size-normal = title font + $spacer-2 = title margin + 50px = input size - 8px = button padding
-      margin-top: calc(($font-size-normal + $spacer-2 + 50px - 8px) / 2);
     }
   }
 }

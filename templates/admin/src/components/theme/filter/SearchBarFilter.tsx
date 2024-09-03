@@ -9,6 +9,7 @@ function SearchBarFilter({
   value,
   onChange,
   onClear,
+  className,
   InputProps,
 }: SearchBarFilterProps) {
   const { messages }: Messages = useMessages();
@@ -17,6 +18,7 @@ function SearchBarFilter({
       type="search"
       value={value}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+      className={className}
       InputProps={{
         placeholder: messages.action.search,
         startAdornment: (

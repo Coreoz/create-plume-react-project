@@ -9,6 +9,7 @@ function CheckboxFilter(
     disabled,
     selected,
     onValueClicked,
+    className,
     CheckboxProps,
   }: Readonly<CheckboxFilterProps>,
 ) {
@@ -16,6 +17,7 @@ function CheckboxFilter(
     <FormControlLabel
       disabled={disabled ?? false}
       label={label}
+      className={className}
       control={
         <Checkbox
           {...(CheckboxProps ?? {})}

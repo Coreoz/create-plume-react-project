@@ -15,6 +15,7 @@ export type FilterContainerProps = {
 export type FilterProps = {
   value: string,
   disabled?: boolean,
+  className?: string,
 };
 
 export type SearchBarFilterProps = FilterProps & {
@@ -22,7 +23,6 @@ export type SearchBarFilterProps = FilterProps & {
   onClear?: () => void,
   InputProps?: InputProps,
 };
-
 
 export type CheckboxFilterProps = FilterProps & {
   label: string,

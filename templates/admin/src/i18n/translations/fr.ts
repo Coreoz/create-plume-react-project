@@ -75,7 +75,10 @@ const frMessages: Translations = {
     },
     reset: 'Réinitialiser les filtres',
     user_email: {
-      title: 'Email',
+      title: 'Mail',
+    },
+    user_role: {
+      title: 'Rôle',
     },
   },
   // errors
