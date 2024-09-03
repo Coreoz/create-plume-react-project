@@ -22,6 +22,7 @@ type Props = {
 type UserSearch = {
   userName: string,
   email: string[],
+  roles: string[],
 };
 
 export default function UsersList({ usersWithRoles }: Props) {
@@ -45,12 +46,13 @@ export default function UsersList({ usersWithRoles }: Props) {
     onReset,
   }: UseSearchFilterHook<UserSearch> = useSearchFilter<UserSearch>();
 
-  const { elements } : FilteredObjectsHookType<AdminUserDetails> = useFilteredObjects<AdminUserDetails, UserSearch>(
+  const { elements }: FilteredObjectsHookType<AdminUserDetails> = useFilteredObjects<AdminUserDetails, UserSearch>(
     usersWithRoles?.users ?? [],
     searchObject,
     (filter: Partial<UserSearch>) => (user: AdminUserDetails) => (
       user.userName.includes(filter.userName ?? '')
-      || (filter.email?.includes(user.email) ?? false)
+      && (filter.email?.includes(user.email) ?? true)
+      && (filter.roles?.includes(user.idRole) ?? true)
     ),
     (users: AdminUserDetails[], filter: Partial<UserSearch>) => !!filter.userName || (filter.email?.length ?? 0) > 0,
   );
@@ -73,16 +75,26 @@ export default function UsersList({ usersWithRoles }: Props) {
               </Filter>
               <FilterGroup
                 messageKey="user_email"
-                type="multiple"
+                type="single"
                 onChange={(values: string[]) => updateSearchField('email', values)}
                 possibleValues={usersWithRoles?.users?.map((user: AdminUserDetails) => ({
                   label: user.email,
                   value: user.email,
-                  CheckboxProps: {
-                    disableRipple: true,
-                  },
                 })) ?? []}
                 selectedValues={searchObject.email}
+              />
+              <FilterGroup
+                messageKey="user_role"
+                type="multiple"
+                onChange={(values: string[]) => updateSearchField('roles', values)}
+                possibleValues={
+                  Array.from(usersWithRoles?.roles.entries() ?? [])
+                    .map(([value, label]: [string, string]) => ({
+                      label,
+                      value,
+                    })) ?? []
+                }
+                selectedValues={searchObject.roles}
               />
             </FilterMenu>
           </PanelContentElementColumn>

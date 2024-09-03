@@ -8,6 +8,7 @@ function RadioFilter(
     value,
     disabled,
     selected,
+    className,
     onValueClicked,
     RadioProps,
   }: Readonly<RadioFilterProps>,
@@ -15,10 +16,11 @@ function RadioFilter(
   return (
     <FormControlLabel
       disabled={disabled ?? false}
+      className={className}
       label={label}
       control={
         <Radio
-          {...RadioProps}
+          {...(RadioProps ?? {})}
           value={value}
           checked={selected}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

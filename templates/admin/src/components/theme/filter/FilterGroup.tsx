@@ -9,6 +9,8 @@ import {
 } from '@lib/plume-filters/FilterTypes';
 import React from 'react';
 
+import scss from './filter-menu.module.scss';
+
 function FilterGroup(
   {
     messageKey,
@@ -33,6 +35,17 @@ function FilterGroup(
     onChange((selectedValues ?? []).concat(value));
   };
 
+  const onSingleValueClicked = (
+    value: string,
+    check: boolean,
+  ) => {
+    if (!check) {
+      onChange([]);
+      return;
+    }
+    onChange([value]);
+  };
+
   return (
     <Filter messageKey={messageKey} info={info}>
       {
@@ -47,6 +60,7 @@ function FilterGroup(
                   disabled={(value.disabled ?? false) || disabled}
                   selected={selectedValues?.includes(value.value) ?? false}
                   onValueClicked={(check: boolean) => onValueClicked(value.value, check)}
+                  className={scss.inputFilter}
                   CheckboxProps={(value as CheckboxFilterProps).CheckboxProps}
                 />
               ) : (
@@ -56,7 +70,8 @@ function FilterGroup(
                   value={value.value}
                   disabled={(value.disabled ?? false) || disabled}
                   selected={selectedValues?.includes(value.value) ?? false}
-                  onValueClicked={(check: boolean) => onValueClicked(value.value, check)}
+                  onValueClicked={(check: boolean) => onSingleValueClicked(value.value, check)}
+                  className={scss.inputFilter}
                   RadioProps={(value as RadioFilterProps).RadioProps}
                 />
               )

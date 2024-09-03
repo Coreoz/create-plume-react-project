@@ -75,7 +75,10 @@ const enMessages: Translations = {
       title: 'Search',
     },
     user_email: {
-      title: 'Emails',
+      title: 'Email',
+    },
+    user_role: {
+      title: 'Role',
     },
   },
   // errors

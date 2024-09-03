@@ -74,6 +74,9 @@ export type Translations = {
     user_email: {
       title: string,
     },
+    user_role: {
+      title: string,
+    },
   },
   // errors
   error: {
