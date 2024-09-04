@@ -1,7 +1,4 @@
-import usePlumeTheme, {
-  PlumeAdminThemeComponents,
-} from '@components/hooks/ThemeHook';
-import SearchBarFilter from '@components/theme/filter/SearchBarFilter';
+import usePlumeTheme, { PlumeAdminThemeComponents } from '@components/hooks/ThemeHook';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
 import useFilteredObjects, { FilteredObjectsHookType } from '@lib/plume-filters/FilteredObjectsHook';
@@ -11,9 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import { AdminUserDetails } from '../api/AdminUserTypes';
-import {
-  AdminUsersWithIndexedRolesType,
-} from './AdminUsersWithIndexedRolesType';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
@@ -35,9 +30,9 @@ export default function UsersList({ usersWithRoles }: Props) {
     panelContentElementColumn: PanelContentElementColumn,
     actionsContainer: ActionContainer,
     actionLink: ActionLink,
-    filter: Filter,
     filterMenu: FilterMenu,
     filterGroup: FilterGroup,
+    filterInputSearch: FilterInputSearch,
   }: PlumeAdminThemeComponents = usePlumeTheme();
 
   const {
@@ -64,15 +59,28 @@ export default function UsersList({ usersWithRoles }: Props) {
       </PanelTitle>
       <PanelContent>
         <PanelContentElement columns={6}>
+          <PanelContentElementColumn width={3}>
+            <FilterInputSearch
+              value={searchObject.userName ?? ''}
+              onChange={(value: string) => updateSearchField('userName', value)}
+              onClear={() => updateSearchField('userName', '')}
+            />
+          </PanelContentElementColumn>
+          <PanelContentElementColumn width={3}>
+            <ActionContainer position="end">
+              <ActionLink
+                icon="add"
+                linkTo={CREATE}
+                style={ActionStyle.PRIMARY}
+              >
+                {messages.user.add_user}
+              </ActionLink>
+            </ActionContainer>
+          </PanelContentElementColumn>
+        </PanelContentElement>
+        <PanelContentElement columns={5}>
           <PanelContentElementColumn width={1}>
             <FilterMenu title={messages.filters.title} onResetFilters={onReset}>
-              <Filter messageKey="user_name">
-                <SearchBarFilter
-                  value={searchObject.userName ?? ''}
-                  onChange={(value: string) => updateSearchField('userName', value)}
-                  onClear={() => updateSearchField('userName', '')}
-                />
-              </Filter>
               <FilterGroup
                 messageKey="user_email"
                 type="single"
@@ -165,17 +173,6 @@ export default function UsersList({ usersWithRoles }: Props) {
               </table>
             )}
             {!usersWithRoles && <span>{messages.label.loading}</span>}
-          </PanelContentElementColumn>
-          <PanelContentElementColumn width={1}>
-            <ActionContainer position="end">
-              <ActionLink
-                icon="add"
-                linkTo={CREATE}
-                style={ActionStyle.PRIMARY}
-              >
-                {messages.action.add}
-              </ActionLink>
-            </ActionContainer>
           </PanelContentElementColumn>
         </PanelContentElement>
       </PanelContent>

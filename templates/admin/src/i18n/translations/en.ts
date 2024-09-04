@@ -64,6 +64,7 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    add_user: 'Add user',
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
   },
@@ -71,9 +72,6 @@ const enMessages: Translations = {
   filters: {
     title: 'Filters',
     reset: 'Reset filters',
-    user_name: {
-      title: 'Search',
-    },
     user_email: {
       title: 'Email',
     },

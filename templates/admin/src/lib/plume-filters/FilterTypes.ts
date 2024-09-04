@@ -18,7 +18,7 @@ export type FilterProps = {
   className?: string,
 };
 
-export type SearchBarFilterProps = FilterProps & {
+export type FilterInputSearchProps = FilterProps & {
   onChange: (value: string) => void,
   onClear?: () => void,
   InputProps?: InputProps,

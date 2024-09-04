@@ -1,7 +1,13 @@
 import Filter from '@components/theme/filter/Filter';
 import FilterGroup from '@components/theme/filter/FilterGroup';
 import FilterMenu from '@components/theme/filter/FilterMenu';
-import { FilterContainerProps, FilterGroupProps, FilterMenuProps } from '@lib/plume-filters/FilterTypes';
+import FilterInputSearch from '@components/theme/filter/inputsearch/FilterInputSearch';
+import {
+  FilterContainerProps,
+  FilterGroupProps,
+  FilterInputSearchProps,
+  FilterMenuProps,
+} from '@lib/plume-filters/FilterTypes';
 import { PropsWithChildren } from 'react';
 import InputPassword from '@components/theme/form/fields/InputPassword';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
@@ -91,4 +97,6 @@ export default class AdminTheme implements PlumeAdminTheme {
   filter: (props: PropsWithChildren<FilterContainerProps>) => JSX.Element = Filter;
 
   filterGroup: (props: FilterGroupProps) => JSX.Element = FilterGroup;
+
+  filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element = FilterInputSearch;
 }

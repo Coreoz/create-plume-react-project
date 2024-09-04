@@ -1,0 +1,37 @@
+.filter-input-search {
+  $component-max-width: 600px;
+  $end-button-width: 150px;
+  width: 100%;
+  max-width: $component-max-width;
+  position: relative;
+
+  .filter-input-container {
+    width: 100%;
+
+    .filter-input {
+      input {
+        width: calc(90% - #{$end-button-width});
+      }
+
+      &--no-options {
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .end-button {
+    position: absolute;
+    width: $end-button-width;
+    right: $spacer-2;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50%;
+  }
+
+  &_options {
+    padding: $spacer-4 $spacer-6;
+    width: $component-max-width;
+  }
+}

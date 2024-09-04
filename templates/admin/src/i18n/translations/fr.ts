@@ -64,15 +64,13 @@ const frMessages: Translations = {
     title_list: 'Liste des utilisateurs',
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
+    add_user: 'Ajouter un utilisateur',
     password_confirm: 'Confirmation du mot de passe',
     error_passwords_different: 'Le mot de passe et sa confirmation sont différents',
   },
   // filters
   filters: {
     title: 'Filtres',
-    user_name: {
-      title: 'Recherche',
-    },
     reset: 'Réinitialiser les filtres',
     user_email: {
       title: 'Mail',

@@ -61,6 +61,7 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    add_user: string,
     password_confirm: string,
     error_passwords_different: string,
   },
@@ -68,9 +69,6 @@ export type Translations = {
   filters: {
     title: string,
     reset: string,
-    user_name: {
-      title: string,
-    },
     user_email: {
       title: string,
     },
