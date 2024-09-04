@@ -2,7 +2,7 @@ import PlumeMessageResolver from '@lib/plume-messages/MessageResolver';
 import PlumeMessageResolverService from '@lib/plume-messages/MessageResolverService';
 import useMessagesResolver from '@lib/plume-messages/messagesResolveHook';
 import React, { PropsWithChildren } from 'react';
-import { FilterContainerProps } from '@lib/plume-filters/FilterTypes';
+import { FilterContainerProps } from '@lib/plume-search/filters/FilterTypes';
 import { Icon, Tooltip } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 

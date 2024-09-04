@@ -7,7 +7,7 @@ import {
   FilterGroupProps,
   FilterInputSearchProps,
   FilterMenuProps,
-} from '@lib/plume-filters/FilterTypes';
+} from '@lib/plume-search/filters/FilterTypes';
 import { PropsWithChildren } from 'react';
 import InputPassword from '@components/theme/form/fields/InputPassword';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';

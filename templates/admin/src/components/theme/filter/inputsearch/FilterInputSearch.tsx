@@ -1,6 +1,6 @@
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
-import { FilterInputSearchProps } from '@lib/plume-filters/FilterTypes';
+import { FilterInputSearchProps } from '@lib/plume-search/filters/FilterTypes';
 import {
   Button, Icon, IconButton, InputAdornment, Popover, TextField,
 } from '@mui/material';

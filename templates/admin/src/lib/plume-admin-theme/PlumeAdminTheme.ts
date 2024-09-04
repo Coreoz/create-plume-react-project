@@ -1,6 +1,6 @@
 import {
   FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
-} from '@lib/plume-filters/FilterTypes';
+} from '@lib/plume-search/filters/FilterTypes';
 import { FieldValues } from 'react-hook-form';
 import { PropsWithChildren } from 'react';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';

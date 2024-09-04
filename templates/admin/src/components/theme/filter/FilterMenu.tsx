@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { FilterMenuProps } from '@lib/plume-filters/FilterTypes';
+import { FilterMenuProps } from '@lib/plume-search/filters/FilterTypes';
 import { Icon, IconButton, Tooltip } from '@mui/material';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';

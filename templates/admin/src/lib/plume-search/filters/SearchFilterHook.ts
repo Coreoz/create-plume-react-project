@@ -1,4 +1,4 @@
-import { FilterValue } from '@lib/plume-filters/FilterTypes';
+import { FilterValue } from '@lib/plume-search/filters/FilterTypes';
 import { useState } from 'react';
 
 export type UseSearchFilterHook<T> = {
