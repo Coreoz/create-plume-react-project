@@ -6,7 +6,7 @@ import ActionStyle from './ActionStyle';
 type ActionsPosition = 'start' | 'center' | 'end';
 type ActionsOrientation = 'column' | 'row';
 
-export type ThemeStyle = 'outlined' | 'contained';
+export type ThemeStyle = 'outlined' | 'contained' | 'text';
 
 export type ActionContainerProps = {
   className?: string,

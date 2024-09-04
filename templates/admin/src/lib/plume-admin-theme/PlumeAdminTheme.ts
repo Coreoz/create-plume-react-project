@@ -1,5 +1,5 @@
 import {
-  FilterContainerProps, FilterGroupProps, FilterMenuProps,
+  FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
 } from '@lib/plume-filters/FilterTypes';
 import { FieldValues } from 'react-hook-form';
 import { PropsWithChildren } from 'react';
@@ -68,4 +68,6 @@ export default abstract class PlumeAdminTheme {
   abstract filter: (props: PropsWithChildren<FilterContainerProps>) => JSX.Element;
 
   abstract filterGroup: (props: FilterGroupProps) => JSX.Element;
+
+  abstract filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element;
 }

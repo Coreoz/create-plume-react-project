@@ -37,12 +37,12 @@
     overflow: hidden;
 
     .columns-container {
-      margin-bottom: $side-padding;
+      margin-bottom: $spacer-4;
       overflow: hidden;
-      height: 100%;
+      max-height: 100%;
 
       .column {
-        height: 100%;
+        max-height: 100%;
       }
 
       &:last-child {
