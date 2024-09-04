@@ -1,4 +1,4 @@
-import { RadioFilterProps } from '@lib/plume-filters/FilterTypes';
+import { RadioFilterProps } from '@lib/plume-search/filters/FilterTypes';
 import { Radio, FormControlLabel } from '@mui/material';
 import React from 'react';
 

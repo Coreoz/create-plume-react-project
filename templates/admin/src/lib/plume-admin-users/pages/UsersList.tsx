@@ -1,8 +1,8 @@
 import usePlumeTheme, { PlumeAdminThemeComponents } from '@components/hooks/ThemeHook';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
-import useFilteredObjects, { FilteredObjectsHookType } from '@lib/plume-filters/FilteredObjectsHook';
-import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-filters/SearchFilterHook';
+import useFilteredObjects, { FilteredObjectsHookType } from '@lib/plume-search/filters/FilteredObjectsHook';
+import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-search/filters/SearchFilterHook';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
