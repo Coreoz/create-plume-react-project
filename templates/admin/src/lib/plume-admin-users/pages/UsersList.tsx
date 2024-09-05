@@ -1,8 +1,11 @@
 import usePlumeTheme, { PlumeAdminThemeComponents } from '@components/hooks/ThemeHook';
+import { ActionButton } from '@components/theme/action/Actions';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
-import useFilteredObjects, { FilteredObjectsHookType } from '@lib/plume-search/filters/FilteredObjectsHook';
+import filterFunctions from '@lib/plume-search/filters/FilterFunctions';
 import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-search/filters/SearchFilterHook';
+import useSearchLoadedData from '@lib/plume-search/SearchLoadedDataHook';
+import { SearchDataHookType } from '@lib/plume-search/SearchTypes';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -41,15 +44,20 @@ export default function UsersList({ usersWithRoles }: Props) {
     onReset,
   }: UseSearchFilterHook<UserSearch> = useSearchFilter<UserSearch>();
 
-  const { elements }: FilteredObjectsHookType<AdminUserDetails> = useFilteredObjects<AdminUserDetails, UserSearch>(
+  const {
+    elements,
+    displayMore,
+    hasMore,
+  }: SearchDataHookType<AdminUserDetails> = useSearchLoadedData<AdminUserDetails, UserSearch>(
     usersWithRoles?.users ?? [],
-    searchObject,
-    (filter: Partial<UserSearch>) => (user: AdminUserDetails) => (
-      user.userName.includes(filter.userName ?? '')
-      && (filter.email?.includes(user.email) ?? true)
-      && (filter.roles?.includes(user.idRole) ?? true)
-    ),
-    (users: AdminUserDetails[], filter: Partial<UserSearch>) => !!filter.userName || (filter.email?.length ?? 0) > 0,
+    {
+      object: searchObject,
+      apply: (user: AdminUserDetails, filter: Partial<UserSearch>) => (
+        filterFunctions.includesString(user.userName, filter.userName ?? '')
+        && filterFunctions.nonEmptyArrIncludes(user.email, filter.email ?? [])
+        && filterFunctions.nonEmptyArrIncludes(user.idRole, filter.roles ?? [])
+      ),
+    },
   );
 
   return (
@@ -173,6 +181,13 @@ export default function UsersList({ usersWithRoles }: Props) {
               </table>
             )}
             {!usersWithRoles && <span>{messages.label.loading}</span>}
+            {hasMore && (
+              <ActionContainer>
+                <ActionButton onClick={displayMore} variant="outlined">
+                  {messages.action.display_more}
+                </ActionButton>
+              </ActionContainer>
+            )}
           </PanelContentElementColumn>
         </PanelContentElement>
       </PanelContent>

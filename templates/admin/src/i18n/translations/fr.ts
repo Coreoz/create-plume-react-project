@@ -19,6 +19,7 @@ const frMessages: Translations = {
     add: 'Ajouter',
     authenticate: 'Me connecter',
     disconnect: 'Me déconnecter',
+    display_more: 'Afficher plus',
     keep_editing: 'Rester sur la page',
     close_without_saving: 'Fermer sans sauvegarder',
   },

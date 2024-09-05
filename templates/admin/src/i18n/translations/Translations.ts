@@ -17,6 +17,7 @@ export type Translations = {
     add: string,
     authenticate: string,
     disconnect: string,
+    display_more: string,
     keep_editing: string,
     close_without_saving: string,
   },
