@@ -23,6 +23,7 @@ export type Translations = {
   },
   // common labels
   label: {
+    more_options: string,
     confirm_delete: string,
     creation_date: string,
     loading: string,

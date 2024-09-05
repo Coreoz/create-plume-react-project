@@ -25,6 +25,7 @@ const frMessages: Translations = {
   },
   // common labels
   label: {
+    more_options: 'Plus d\'options',
     confirm_delete: 'Confirmation de suppression',
     creation_date: 'Date de création',
     loading: 'Chargement...',

@@ -25,6 +25,7 @@ const enMessages: Translations = {
   },
   // common labels
   label: {
+    more_options: 'More options',
     confirm_delete: 'Confirm deletion',
     creation_date: 'Creation date',
     loading: 'Loading...',

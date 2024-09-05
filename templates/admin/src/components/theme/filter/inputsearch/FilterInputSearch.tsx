@@ -57,7 +57,7 @@ function FilterInputSearch({
               className={scss.endButton}
               disableElevation
             >
-              Plus d&apos;options
+              {messages.label.more_options}
             </Button>
             <Popover
               open={displayMoreOptions}
