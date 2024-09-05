@@ -19,6 +19,7 @@ const enMessages: Translations = {
     add: 'Add',
     authenticate: 'Log in',
     disconnect: 'Log out',
+    display_more: 'Display more',
     keep_editing: 'Keep editing',
     close_without_saving: 'Close without saving',
   },
