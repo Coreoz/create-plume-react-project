@@ -1,3 +1,5 @@
+import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
+
 export interface ErrorFunction {
   (...args: string[]): string,
 }
@@ -63,6 +65,7 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    found: (count: number) => string,
     add_user: string,
     password_confirm: string,
     error_passwords_different: string,
@@ -71,11 +74,21 @@ export type Translations = {
   filters: {
     title: string,
     reset: string,
-    user_email: {
+    user_last_login: {
       title: string,
+      options: Record<CreationDateOption, string>,
     },
     user_role: {
       title: string,
+    },
+  },
+  // sorts
+  sorts: {
+    user: {
+      user_name_asc: string,
+      user_name_desc: string,
+      creation_date_asc: string,
+      creation_date_desc: string,
     },
   },
   // errors

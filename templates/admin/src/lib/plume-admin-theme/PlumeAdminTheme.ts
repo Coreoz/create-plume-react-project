@@ -1,9 +1,8 @@
-import { FieldValues } from 'react-hook-form';
-import { PropsWithChildren } from 'react';
-import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
   FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
+import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
 import { PropsWithChildren } from 'react';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
@@ -35,6 +34,10 @@ export default abstract class PlumeAdminTheme {
   abstract panelContentElement: (props: PanelContentElementProps) => JSX.Element;
 
   abstract panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element;
+
+  // lists
+
+  abstract listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element;
 
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
@@ -73,4 +76,8 @@ export default abstract class PlumeAdminTheme {
   abstract filterGroup: (props: FilterGroupProps) => JSX.Element;
 
   abstract filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element;
+
+  // sort
+
+  abstract sortSelect: <S extends string>(props: SortSelectProps<S>) => JSX.Element;
 }
