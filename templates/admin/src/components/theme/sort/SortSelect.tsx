@@ -68,7 +68,7 @@ function SortSelect<S extends string>(
         className={scss.sortSelect}
         value={makeKey(sort)}
         onChange={(event: SelectChangeEvent<string>) => handleSortingBar(event)}
-        IconComponent={(props) => <Icon className={props.className}>expand_more</Icon>}
+        IconComponent={(iconProps: { className: string }) => <Icon className={iconProps.className}>expand_more</Icon>}
         SelectDisplayProps={{
           className: scss.select,
         }}
