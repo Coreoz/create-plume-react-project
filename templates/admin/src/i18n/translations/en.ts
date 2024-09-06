@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { viteHotContext } from '@i18n/translations/hmr-config';
+import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
 import translationHotReload from './translations-hmr';
@@ -66,6 +67,7 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    found: (count: number) => `${count} user${count > 0 ? 's' : ''} found`,
     add_user: 'Add user',
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
@@ -74,11 +76,25 @@ const enMessages: Translations = {
   filters: {
     title: 'Filters',
     reset: 'Reset filters',
-    user_email: {
-      title: 'Email',
+    user_last_login: {
+      title: 'Creation date',
+      options: {
+        [CreationDateOption.LESS_THAN_15_DAYS]: 'Less than 15 days',
+        [CreationDateOption.BETWEEN_15_45_DAYS]: 'Between 15 and 45 days',
+        [CreationDateOption.MORE_THAN_45_DAYS]: 'More than 45 days',
+      },
     },
     user_role: {
       title: 'Role',
+    },
+  },
+  // sorts
+  sorts: {
+    user: {
+      user_name_asc: 'Trier par nom utilisateur (Z - A)',
+      user_name_desc: 'Trier par nom utilisateur (A - Z)',
+      creation_date_asc: 'Trier par date de création (ancienne à récente)',
+      creation_date_desc: 'Trier par date de création (récente à ancienne)',
     },
   },
   // errors

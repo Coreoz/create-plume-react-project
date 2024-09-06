@@ -2,12 +2,15 @@ import Filter from '@components/theme/filter/Filter';
 import FilterGroup from '@components/theme/filter/FilterGroup';
 import FilterMenu from '@components/theme/filter/FilterMenu';
 import FilterInputSearch from '@components/theme/filter/inputsearch/FilterInputSearch';
+import ListHead from '@components/theme/list/ListHead';
+import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
   FilterContainerProps,
   FilterGroupProps,
   FilterInputSearchProps,
   FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
+import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { PropsWithChildren } from 'react';
 import InputPassword from '@components/theme/form/fields/InputPassword';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
@@ -47,6 +50,7 @@ import {
 } from './layout/Panel';
 import Popin from './popin/Popin';
 import FormContainer from './form/FormContainer';
+import SortSelect from './sort/SortSelect';
 
 export default class AdminTheme implements PlumeAdminTheme {
   // actions
@@ -70,6 +74,10 @@ export default class AdminTheme implements PlumeAdminTheme {
   panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
 
   panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
+
+  // lists
+
+  listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element = ListHead;
 
   // popin
 
@@ -99,4 +107,8 @@ export default class AdminTheme implements PlumeAdminTheme {
   filterGroup: (props: FilterGroupProps) => JSX.Element = FilterGroup;
 
   filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element = FilterInputSearch;
+
+  // sort
+
+  sortSelect: <S extends string>(props: SortSelectProps<S>) => JSX.Element = SortSelect;
 }

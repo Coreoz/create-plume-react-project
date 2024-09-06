@@ -24,6 +24,7 @@ function usePagination({ pageSize }: UsePaginationProps): PaginationType {
   return {
     currentPage,
     totalPages,
+    pageSize,
     setPage,
     setElementCount,
     setPageSize,
