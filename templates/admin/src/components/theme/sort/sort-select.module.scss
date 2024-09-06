@@ -1,0 +1,50 @@
+@use '../../../../assets/scss/mixins' as *;
+
+.sort-select-container {
+  $sort-menu-font-size: $font-size-little;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacer-4;
+  height: $button-height;
+  border-radius: $border-radius-5;
+  background-color: rgba($gray-dark, 0.05);
+  width: 100%;
+  max-width: 400px;
+  @include box-shadow-button();
+
+  &:hover,
+  &:active,
+  &:focus {
+
+    @include box-shadow-button();
+  }
+
+  .sort-select {
+    // $spacer-4 from the parent padding
+    width: calc(100% - $spacer-4);
+    font-size: $sort-menu-font-size;
+
+    .select {
+      // 32px is the MUI padding + $spacer-2 of the padding
+      width: calc(100% - (32px + $spacer-2));
+      padding: 0 $spacer-2;
+      font-size: $sort-menu-font-size;
+
+      .item {
+        width: 100%;
+      }
+      .item-value {
+        width: 100%;
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    fieldset {
+      border: none;
+    }
+  }
+}

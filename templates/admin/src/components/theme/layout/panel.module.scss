@@ -7,7 +7,6 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   position: relative;
-  overflow: hidden;
   padding: $spacer-6 $side-padding;
 
   .panel-title {
@@ -34,14 +33,13 @@
   .panel-content {
     grid-area: content;
     padding: $spacer-6 0;
-    overflow: hidden;
 
     .columns-container {
       margin-bottom: $spacer-4;
-      overflow: hidden;
       max-height: 100%;
 
       .column {
+        padding: $spacer-1 0;
         max-height: 100%;
       }
 

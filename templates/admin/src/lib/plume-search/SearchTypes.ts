@@ -15,6 +15,7 @@ export type PaginationParamsType = {
 export type PaginationType = {
   currentPage: number,
   totalPages: number,
+  pageSize: number,
   setPage: (page: number) => void,
   setPageSize: (size: number) => void,
   setElementCount: (elementCount: number) => void,
