@@ -1,4 +1,4 @@
-import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
+import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
   FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
@@ -23,21 +23,25 @@ import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/For
 export default abstract class PlumeAdminTheme {
   // layout
 
-  abstract panel: (props: PanelProps) => JSX.Element;
+  abstract panel: (props: PropsWithChildren<PanelProps>) => JSX.Element;
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract panelTitle: (props: PanelTitleProps) => JSX.Element;
+  abstract panelTitle: (props: PropsWithChildren<PanelTitleProps>) => JSX.Element;
 
-  abstract panelContent: (props: PanelProps) => JSX.Element;
+  abstract panelContent: (props: PropsWithChildren<PanelProps>) => JSX.Element;
 
-  abstract panelContentElement: (props: PanelContentElementProps) => JSX.Element;
+  abstract panelContentElement: (props: PropsWithChildren<PanelContentElementProps>) => JSX.Element;
 
   abstract panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element;
 
   // lists
 
   abstract listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element;
+
+  abstract list: (props: PropsWithChildren<ListProps>) => JSX.Element;
+
+  abstract listItem: (props: PropsWithChildren<ListItemProps>) => JSX.Element;
 
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
