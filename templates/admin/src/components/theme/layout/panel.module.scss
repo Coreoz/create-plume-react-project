@@ -7,7 +7,10 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   position: relative;
-  padding: $spacer-6 $side-padding;
+  padding: $spacer-6 0;
+  gap: $spacer-5;
+  overflow: hidden;
+  height: 100%;
 
   .panel-title {
     grid-area: title;
@@ -16,6 +19,7 @@
     gap: $spacer-4;
     color: $secondary-color;
     font-family: $base-font-family;
+    padding-left: $side-padding;
 
     h1 {
       font-weight: 300;
@@ -32,7 +36,9 @@
 
   .panel-content {
     grid-area: content;
-    padding: $spacer-6 0;
+    padding: 0 $side-padding;
+    overflow: hidden;
+    height: 100%;
 
     .columns-container {
       margin-bottom: $spacer-4;

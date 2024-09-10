@@ -1,4 +1,7 @@
-import { InputProps } from '@mui/material';
+import { ElementType } from 'react';
+import {
+  BaseTextFieldProps, FilledInputProps, SlotProps,
+} from '@mui/material';
 import { FieldError } from 'react-hook-form';
 import { RegisterOptions } from 'react-hook-form/dist/types/validator';
 
@@ -20,7 +23,7 @@ export type InputTextProps = BaseInputProps & {
   autoComplete?: string,
   multiline?: boolean,
   rows?: number,
-  InputProps?: Partial<InputProps> & DataTestIdPropsOverride,
+  InputProps?: SlotProps<ElementType<FilledInputProps>, {}, BaseTextFieldProps> & DataTestIdPropsOverride,
 };
 
 export type InputPasswordProps = Omit<InputTextProps, 'type'>;

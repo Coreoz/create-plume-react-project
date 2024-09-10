@@ -1,6 +1,10 @@
 import usePlumeTheme, { PlumeAdminThemeComponents } from '@components/hooks/ThemeHook';
 import { ActionButton } from '@components/theme/action/Actions';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
+import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
+
+import scss from '@lib/plume-admin-theme/layout/search-layout.module.scss';
+import UserTile from '@lib/plume-admin-users/components/UserTile';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
 import filterFunctions from '@lib/plume-search/filters/FilterFunctions';
 import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-search/filters/SearchFilterHook';
@@ -11,13 +15,13 @@ import sortFunctions from '@lib/plume-search/sorts/SortFunctions';
 import { SearchSortType } from '@lib/plume-search/sorts/SortTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { AdminUserDetails } from '../api/AdminUserTypes';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
+  isLoading: boolean,
 };
 
 export enum CreationDateOption {
@@ -40,26 +44,36 @@ enum UserSort {
 const filterLastLoginDateFromOption = (value: AdminUserDetails, option: CreationDateOption | undefined) => {
   const creationDate: Dayjs = dayjs(value.creationDate);
   if (option === CreationDateOption.MORE_THAN_45_DAYS) {
-    return creationDate.diff(dayjs()) > 45;
+    return dayjs()
+      .diff(creationDate, 'day') > 45;
   }
   if (option === CreationDateOption.LESS_THAN_15_DAYS) {
-    return creationDate.diff(dayjs()) < 15;
+    return dayjs()
+      .diff(creationDate, 'day') < 15;
   }
   if (option === CreationDateOption.BETWEEN_15_45_DAYS) {
-    return !(creationDate.diff(dayjs()) < 15 || creationDate.diff(dayjs()) > 45);
+    return !(dayjs()
+      .diff(creationDate, 'day') < 15 || dayjs()
+      .diff(creationDate, 'day') > 45);
   }
   return true;
 };
 
-export default function UsersList({ usersWithRoles }: Props) {
+export default function UsersList(
+  {
+    usersWithRoles,
+    isLoading,
+  }: Props,
+) {
+  const navigate: NavigateFunction = useNavigate();
   const { messages }: Messages = useMessages();
   const {
     panel: Panel,
     panelTitle: PanelTitle,
     panelContent: PanelContent,
-    panelContentElement: PanelContentElement,
-    panelContentElementColumn: PanelContentElementColumn,
     listHead: ListHead,
+    list: List,
+    listItem: ListItem,
     actionsContainer: ActionContainer,
     actionLink: ActionLink,
     filterMenu: FilterMenu,
@@ -130,29 +144,27 @@ export default function UsersList({ usersWithRoles }: Props) {
       <PanelTitle>
         {messages.user.title_list}
       </PanelTitle>
-      <PanelContent>
-        <PanelContentElement columns={6}>
-          <PanelContentElementColumn width={3}>
+      <PanelContent className={scss.searchLayout}>
+        <div className={scss.searchHead}>
+          <div className={scss.searchInput}>
             <FilterInputSearch
               value={searchObject.userName ?? ''}
               onChange={(value: string) => updateSearchField('userName', value)}
               onClear={() => updateSearchField('userName', '')}
             />
-          </PanelContentElementColumn>
-          <PanelContentElementColumn width={3}>
-            <ActionContainer position="end">
-              <ActionLink
-                icon="add"
-                linkTo={CREATE}
-                style={ActionStyle.PRIMARY}
-              >
-                {messages.user.add_user}
-              </ActionLink>
-            </ActionContainer>
-          </PanelContentElementColumn>
-        </PanelContentElement>
-        <PanelContentElement columns={5}>
-          <PanelContentElementColumn width={1}>
+          </div>
+          <ActionContainer className={scss.searchActions} position="end">
+            <ActionLink
+              icon="add"
+              linkTo={CREATE}
+              style={ActionStyle.PRIMARY}
+            >
+              {messages.user.add_user}
+            </ActionLink>
+          </ActionContainer>
+        </div>
+        <div className={scss.searchDisplay}>
+          <div className={scss.searchFilters}>
             <FilterMenu title={messages.filters.title} onResetFilters={onReset}>
               <FilterGroup
                 messageKey="user_last_login"
@@ -188,9 +200,9 @@ export default function UsersList({ usersWithRoles }: Props) {
                 selectedValues={searchObject.roles}
               />
             </FilterMenu>
-          </PanelContentElementColumn>
-          <PanelContentElementColumn width={4}>
-            <ListHead title={messages.user.found(totalElements)}>
+          </div>
+          <div className={scss.searchResults}>
+            <ListHead title={messages.user.found(totalElements)} className={scss.searchResultsHead}>
               <SortSelect<UserSort>
                 messageKey="user"
                 sortPossibilities={sortOptions}
@@ -198,81 +210,34 @@ export default function UsersList({ usersWithRoles }: Props) {
                 onSort={updateSort}
               />
             </ListHead>
-            {usersWithRoles && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>{messages.users.userName}</th>
-                    <th>{messages.users.email}</th>
-                    <th>{messages.users.firstName}</th>
-                    <th>{messages.users.lastName}</th>
-                    <th>{messages.users.role}</th>
-                    <th>{messages.label.creation_date}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    elements.map((user: AdminUserDetails) => (
-                      <tr key={user.id}>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {user.userName}
-                          </Link>
-                        </td>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {user.email}
-                          </Link>
-                        </td>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {user.firstName}
-                          </Link>
-                        </td>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {user.lastName}
-                          </Link>
-                        </td>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {usersWithRoles.roles.get(user.idRole)}
-                          </Link>
-                        </td>
-                        <td>
-                          <Link
-                            to={user.id}
-                          >
-                            {dayjs(user.creationDate)
-                              .format('L LT')}
-                          </Link>
-                        </td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            )}
-            {!usersWithRoles && <span>{messages.label.loading}</span>}
-            {hasMore && (
-              <ActionContainer>
-                <ActionButton onClick={displayMore} variant="outlined">
-                  {messages.action.display_more}
-                </ActionButton>
-              </ActionContainer>
-            )}
-          </PanelContentElementColumn>
-        </PanelContentElement>
+            <List
+              isEmpty={!usersWithRoles?.users.length}
+              className={scss.searchResultsResults}
+              isLoading={isLoading}
+            >
+              {
+                elements.map((user: AdminUserDetails) => (
+                  <ListItem
+                    key={user.id}
+                    onClick={() => navigate(user.id)}
+                  >
+                    <UserTile user={user} />
+                  </ListItem>
+                ))
+              }
+            </List>
+            {
+              hasMore
+              && (
+                <ActionContainer className={scss.searchResultsActions}>
+                  <ActionButton onClick={displayMore} variant="outlined">
+                    {messages.action.display_more}
+                  </ActionButton>
+                </ActionContainer>
+              )
+            }
+          </div>
+        </div>
       </PanelContent>
     </Panel>
   );

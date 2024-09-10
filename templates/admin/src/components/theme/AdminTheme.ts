@@ -2,8 +2,24 @@ import Filter from '@components/theme/filter/Filter';
 import FilterGroup from '@components/theme/filter/FilterGroup';
 import FilterMenu from '@components/theme/filter/FilterMenu';
 import FilterInputSearch from '@components/theme/filter/inputsearch/FilterInputSearch';
+import InputPassword from '@components/theme/form/fields/InputPassword';
+import List from '@components/theme/list/List';
 import ListHead from '@components/theme/list/ListHead';
-import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
+import ListItem from '@components/theme/list/ListItem';
+import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
+import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from '@lib/plume-admin-theme/action/ActionProps';
+import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
+import { InputPasswordProps, InputSelectProps, InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
+import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import {
+  PanelContentElementColumnProps,
+  PanelContentElementProps,
+  PanelProps,
+  PanelTitleProps,
+} from '@lib/plume-admin-theme/layout/LayoutProps';
+import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
+import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
+import { ConfirmationPopInProps, PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
 import {
   FilterContainerProps,
   FilterGroupProps,
@@ -12,44 +28,21 @@ import {
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { PropsWithChildren } from 'react';
-import InputPassword from '@components/theme/form/fields/InputPassword';
-import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
-import {
-  ActionButtonProps,
-  ActionContainerProps,
-  ActionLinkProps,
-} from '@lib/plume-admin-theme/action/ActionProps';
-import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
-import {
-  InputPasswordProps,
-  InputSelectProps,
-  InputTextProps,
-} from '@lib/plume-admin-theme/form/FormInputProps';
-import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
-import {
-  PanelContentElementColumnProps,
-  PanelContentElementProps,
-  PanelProps,
-  PanelTitleProps,
-} from '@lib/plume-admin-theme/layout/LayoutProps';
-import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
-import {
-  ConfirmationPopInProps,
-  PopinProps,
-} from '@lib/plume-admin-theme/popin/PopinProps';
 import { FieldValues } from 'react-hook-form';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
+import FormField from './form/fields/FormField';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
-import FormField from './form/fields/FormField';
+import FormContainer from './form/FormContainer';
 import {
   Panel,
-  PanelContent, PanelContentElement, PanelContentElementColumn,
+  PanelContent,
+  PanelContentElement,
+  PanelContentElementColumn,
   PanelSeparator,
   PanelTitle,
 } from './layout/Panel';
 import Popin from './popin/Popin';
-import FormContainer from './form/FormContainer';
 import SortSelect from './sort/SortSelect';
 
 export default class AdminTheme implements PlumeAdminTheme {
@@ -63,21 +56,25 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   // layout
 
-  panel: (props: PanelProps) => JSX.Element = Panel;
+  panel: (props: PropsWithChildren<PanelProps>) => JSX.Element = Panel;
 
   panelSeparator: () => JSX.Element = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
+  panelTitle: (props: PropsWithChildren<PanelTitleProps>) => JSX.Element = PanelTitle;
 
   panelContent: (props: PanelProps) => JSX.Element = PanelContent;
 
-  panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
+  panelContentElement: (props: PropsWithChildren<PanelContentElementProps>) => JSX.Element = PanelContentElement;
 
   panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
 
   // lists
 
   listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element = ListHead;
+
+  list: (props: PropsWithChildren<ListProps>) => JSX.Element = List;
+
+  listItem: (props: PropsWithChildren<ListItemProps>) => JSX.Element = ListItem;
 
   // popin
 

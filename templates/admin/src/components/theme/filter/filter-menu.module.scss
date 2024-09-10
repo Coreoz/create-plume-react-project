@@ -1,8 +1,13 @@
+@use '../../../../assets/scss/mixins' as *;
+
 .filter-menu-container {
   $filter-height: 50px;
   $header-height: $button-height;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 
   header {
     display: flex;
@@ -20,11 +25,11 @@
 
   .filters {
     margin-top: $spacer-3;
-    padding-right: $spacer-4;
-    padding-bottom: $spacer-4;
     overflow-y: auto;
     height: calc(100% - $header-height);
     width: 100%;
+
+    @include smooth-scrollbar();
 
     .filter {
       display: flex;

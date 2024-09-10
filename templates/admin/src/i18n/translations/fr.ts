@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import { viteHotContext } from '@i18n/translations/hmr-config';
-import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
 import translationHotReload from './translations-hmr';
@@ -29,6 +28,7 @@ const frMessages: Translations = {
     more_options: 'Plus d\'options',
     confirm_delete: 'Confirmation de suppression',
     creation_date: 'Date de création',
+    empty: 'Aucun élément',
     loading: 'Chargement...',
   },
   // common messages
@@ -67,6 +67,7 @@ const frMessages: Translations = {
     title_list: 'Liste des utilisateurs',
     title_create: 'Création d\'un utilisateur',
     title_edit: 'Modification d\'un utilisateur',
+    created: (date: string) => `Créé le ${date}`,
     found: (count: number) => `${count} utilisateur${count > 1 ? 's' : ''} trouvé${count > 1 ? 's' : ''}`,
     add_user: 'Ajouter un utilisateur',
     password_confirm: 'Confirmation du mot de passe',
@@ -79,9 +80,9 @@ const frMessages: Translations = {
     user_last_login: {
       title: 'Date de création',
       options: {
-        [CreationDateOption.LESS_THAN_15_DAYS]: 'Il y a moins de 15 jours',
-        [CreationDateOption.BETWEEN_15_45_DAYS]: 'Entre 15 et 45 jours',
-        [CreationDateOption.MORE_THAN_45_DAYS]: 'Il y a plus de 45 jours',
+        less_than_15_days: 'Il y a moins de 15 jours',
+        between_15_45_days: 'Entre 15 et 45 jours',
+        more_than_45_days: 'Il y a plus de 45 jours',
       },
     },
     user_role: {
@@ -91,10 +92,10 @@ const frMessages: Translations = {
   // sorts
   sorts: {
     user: {
-      user_name_asc: 'Sort username (Z to A)',
-      user_name_desc: 'Sort username (A to Z)',
-      creation_date_asc: 'Sort creation date (oldest first)',
-      creation_date_desc: 'Sort creation date (most recent first)',
+      user_name_asc: 'Trier par nom utilisateur (A - Z)',
+      user_name_desc: 'Trier par nom utilisateur (Z - A)',
+      creation_date_asc: 'Trier par date de création (ancienne à récente)',
+      creation_date_desc: 'Trier par date de création (récente à ancienne)',
     },
   },
   // errors
