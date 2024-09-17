@@ -1,5 +1,5 @@
 import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from '@lib/class-names/ClassNames';
 import {
@@ -12,7 +12,7 @@ import {
 
 import scss from './panel.module.scss';
 
-export function Panel({ className, children }: PropsWithChildren<PanelProps>) {
+export function Panel({ className, children }: Readonly<PanelProps>) {
   return (
     <div className={classNames(scss.panel, className)}>
       {children}
@@ -29,7 +29,7 @@ export function PanelTitle(
     children,
     level = 'h1',
     backLink,
-  }: PropsWithChildren<PanelTitleProps>,
+  }: Readonly<PanelTitleProps>,
 ) {
   const Level: HeadingLevel = level;
   return (
@@ -49,7 +49,7 @@ export function PanelTitle(
   );
 }
 
-export function PanelContent({ children, className }: PropsWithChildren<PanelProps>) {
+export function PanelContent({ children, className }: Readonly<PanelProps>) {
   return (
     <div className={classNames(scss.panelContent, className)}>
       {children}
@@ -67,7 +67,7 @@ export function PanelContentElement({
   children,
   columns,
   className,
-}: PropsWithChildren<PanelContentElementProps>) {
+}: Readonly<PanelContentElementProps>) {
   return (
     <Grid
       className={classNames(scss.columnsContainer, className)}
@@ -89,7 +89,7 @@ export function PanelContentElementColumn({
   width,
   children,
   className,
-}: PanelContentElementColumnProps) {
+}: Readonly<PanelContentElementColumnProps>) {
   return (
     <Grid
       size={width}

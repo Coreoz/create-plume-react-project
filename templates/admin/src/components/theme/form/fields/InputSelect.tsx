@@ -16,7 +16,7 @@ export default function InputSelect(
     disabled,
     required,
     errorMessageMapping,
-  }: InputSelectProps) {
+  }: Readonly<InputSelectProps>) {
   const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
   return (
     <SelectElement

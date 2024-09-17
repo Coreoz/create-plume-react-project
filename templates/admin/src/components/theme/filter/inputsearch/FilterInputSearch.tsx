@@ -4,7 +4,7 @@ import { FilterInputSearchProps } from '@lib/plume-search/filters/FilterTypes';
 import {
   Button, Icon, IconButton, InputAdornment, Popover, TextField,
 } from '@mui/material';
-import React, { PropsWithChildren, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import scss from './filter-input-search.module.scss';
 import FilterInputSearchOptions from './FilterInputSearchOptions';
@@ -16,7 +16,7 @@ function FilterInputSearch({
   className,
   InputProps,
   children,
-}: PropsWithChildren<FilterInputSearchProps>) {
+}: FilterInputSearchProps) {
   const anchorEl: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 
   const [displayMoreOptions, setDisplayMoreOptions] = useState<boolean>(false);
@@ -40,7 +40,7 @@ function FilterInputSearch({
           endAdornment: (
             value && (
               <InputAdornment position="end">
-                <IconButton onClick={() => onClear && onClear()}><Icon>close</Icon></IconButton>
+                <IconButton onClick={() => onClear?.()}><Icon>close</Icon></IconButton>
               </InputAdornment>
             )
           ),

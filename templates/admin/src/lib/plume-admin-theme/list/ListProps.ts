@@ -1,18 +1,18 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
-export type ListHeadProps = {
+export type ListHeadProps = PropsWithChildren<{
   title: string,
   isLoading?: boolean,
   className?: string,
-};
+}>;
 
-export type ListProps = {
+export type ListProps = PropsWithChildren<{
   isEmpty: boolean,
   isLoading?: boolean,
   showLoader?: boolean,
   className?: string,
   emptyStateLabel?: string,
-};
+}>;
 
 export type ListItemAction = {
   onClick: () => void,
@@ -21,8 +21,8 @@ export type ListItemAction = {
   disabled?: boolean,
 };
 
-export type ListItemProps = {
+export type ListItemProps = PropsWithChildren<{
   className?: string,
   onClick?: () => void,
   actions?: ListItemAction[],
-};
+}>;

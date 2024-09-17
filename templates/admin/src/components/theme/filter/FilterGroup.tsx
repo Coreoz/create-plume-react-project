@@ -11,6 +11,17 @@ import React from 'react';
 
 import scss from './filter-menu.module.scss';
 
+/**
+ * Creates a multi or single select filter group, displaying possible values
+ *
+ * @param messageKey message key of the menu that is under "filter" entry in {@link Translations}
+ * @param info optional tooltip to display
+ * @param onChange callback when selecting a filter value
+ * @param disabled disables the filter group
+ * @param selectedValues current selected values
+ * @param type 'multiple' | 'single' ; displays either a checkbox or a radio button
+ * @param possibleValues the possible values for the filter group
+ */
 function FilterGroup(
   {
     messageKey,

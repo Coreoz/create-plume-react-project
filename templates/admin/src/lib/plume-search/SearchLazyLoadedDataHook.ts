@@ -12,6 +12,17 @@ type SearchLazyLoadedDataOptions<F, S> = {
   defaultPageSize: number,
 };
 
+/**
+ * Hook to handle API call search with pagination
+ * This search relies on results and pagination provided by the API call
+ *
+ * @param loadData the paginated search API call
+ * @param options the options to apply to the search
+ * @return elements the elements to display
+ * @return totalElements total elements of the list you are paginating
+ * @return hasMore boolean set to false if at the end of the list you are paginating
+ * @return displayMore function to call to display the next page of the list you are paginating
+ */
 function useSearchLazyLoadedData<T, F, S extends string>(
   loadData: (
     filters: Partial<F> | undefined,

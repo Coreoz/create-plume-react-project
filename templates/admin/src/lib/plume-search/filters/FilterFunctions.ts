@@ -1,9 +1,7 @@
-export type FilterFn<TData, FilterType> = {
-  (
-    rowValue: TData,
-    filterValue: FilterType,
-  ): boolean,
-};
+export type FilterFn<TData, FilterType> = (
+  rowValue: TData,
+  filterValue: FilterType,
+) => boolean;
 
 // utils
 const arrEmpty = (filterValue: unknown[]) => (filterValue?.length ?? 0) === 0;

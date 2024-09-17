@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { FilterMenuProps } from '@lib/plume-search/filters/FilterTypes';
 import { Icon, IconButton, Tooltip } from '@mui/material';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
@@ -45,7 +45,7 @@ export function FilterMenuHead(
   );
 }
 
-export default function FilterMenu({ title, onResetFilters, children }: Readonly<PropsWithChildren<FilterMenuProps>>) {
+export default function FilterMenu({ title, onResetFilters, children }: Readonly<FilterMenuProps>) {
   return (
     <div className={scss.filterMenuContainer}>
       <FilterMenuHead

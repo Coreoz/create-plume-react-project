@@ -1,7 +1,7 @@
 import PlumeMessageResolver from '@lib/plume-messages/MessageResolver';
 import PlumeMessageResolverService from '@lib/plume-messages/MessageResolverService';
 import useMessagesResolver from '@lib/plume-messages/messagesResolveHook';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { FilterContainerProps } from '@lib/plume-search/filters/FilterTypes';
 import { Icon, Tooltip } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
@@ -12,7 +12,7 @@ export default function Filter({
   messageKey,
   info,
   children,
-}: Readonly<PropsWithChildren<FilterContainerProps>>,
+}: Readonly<FilterContainerProps>,
 ) {
   const messages: PlumeMessageResolver = useMessagesResolver(getGlobalInstance(PlumeMessageResolverService));
   return (

@@ -1,10 +1,8 @@
 import { Dayjs } from 'dayjs';
 
-export type SortingFn<TData> = {
-  (rowA: TData, rowB: TData): number,
-};
+export type SortingFn<TData> = (rowA: TData, rowB: TData) => number;
 
-export const reSplitAlphaNumeric: RegExp = /([0-9]+)/gm;
+export const reSplitAlphaNumeric: RegExp = /(\d+)/gm;
 
 const alphanumeric: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareAlphanumeric(
   toString(rowA)
@@ -90,7 +88,7 @@ function compareAlphanumeric(aStr: string, bStr: string) {
     const combo: number[] = [an, bn].sort();
 
     // Both are string
-    if (Number.isNaN(combo[0]!)) {
+    if (Number.isNaN(combo[0])) {
       if (aa > bb) {
         return 1;
       }
@@ -102,7 +100,7 @@ function compareAlphanumeric(aStr: string, bStr: string) {
     }
 
     // One is a string, one is a number
-    if (Number.isNaN(combo[1]!)) {
+    if (Number.isNaN(combo[1])) {
       return Number.isNaN(an) ? -1 : 1;
     }
 

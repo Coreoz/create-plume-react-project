@@ -4,7 +4,6 @@ import {
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
-import { PropsWithChildren } from 'react';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import {
   PanelContentElementColumnProps,
@@ -23,25 +22,25 @@ import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/For
 export default abstract class PlumeAdminTheme {
   // layout
 
-  abstract panel: (props: PropsWithChildren<PanelProps>) => JSX.Element;
+  abstract panel: (props: PanelProps) => JSX.Element;
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract panelTitle: (props: PropsWithChildren<PanelTitleProps>) => JSX.Element;
+  abstract panelTitle: (props: PanelTitleProps) => JSX.Element;
 
-  abstract panelContent: (props: PropsWithChildren<PanelProps>) => JSX.Element;
+  abstract panelContent: (props: PanelProps) => JSX.Element;
 
-  abstract panelContentElement: (props: PropsWithChildren<PanelContentElementProps>) => JSX.Element;
+  abstract panelContentElement: (props: PanelContentElementProps) => JSX.Element;
 
   abstract panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element;
 
   // lists
 
-  abstract listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element;
+  abstract listHead: (props: ListHeadProps) => JSX.Element;
 
-  abstract list: (props: PropsWithChildren<ListProps>) => JSX.Element;
+  abstract list: (props: ListProps) => JSX.Element;
 
-  abstract listItem: (props: PropsWithChildren<ListItemProps>) => JSX.Element;
+  abstract listItem: (props: ListItemProps) => JSX.Element;
 
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
@@ -53,12 +52,12 @@ export default abstract class PlumeAdminTheme {
   // popin
   abstract popin: (props: PopinProps) => JSX.Element;
 
-  abstract confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element | null;
+  abstract confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element;
 
   // form
 
   abstract formContainer: <TFieldValues extends FieldValues = FieldValues>(
-    props: PropsWithChildren<FormContainerProps<TFieldValues>>,
+    props: FormContainerProps<TFieldValues>,
   ) => JSX.Element;
 
   // form fields
@@ -73,13 +72,13 @@ export default abstract class PlumeAdminTheme {
 
   // filters
 
-  abstract filterMenu: (props: PropsWithChildren<FilterMenuProps>) => JSX.Element;
+  abstract filterMenu: (props: FilterMenuProps) => JSX.Element;
 
-  abstract filter: (props: PropsWithChildren<FilterContainerProps>) => JSX.Element;
+  abstract filter: (props: FilterContainerProps) => JSX.Element;
 
   abstract filterGroup: (props: FilterGroupProps) => JSX.Element;
 
-  abstract filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element;
+  abstract filterInputSearch: (props: FilterInputSearchProps) => JSX.Element;
 
   // sort
 

@@ -1,7 +1,7 @@
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
 import { ListProps } from '@lib/plume-admin-theme/list/ListProps';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import ListLoader from './ListLoader';
 
 import scss from './list.module.scss';
@@ -10,7 +10,7 @@ type ListEmptyStateProps = {
   label: string,
 };
 
-function EmptyState({ label }: ListEmptyStateProps) {
+function EmptyState({ label }: Readonly<ListEmptyStateProps>) {
   return (
     <div className={scss.listEmpty}>
       <span>{label}</span>
@@ -25,7 +25,7 @@ function List({
   emptyStateLabel,
   className,
   children,
-}: PropsWithChildren<ListProps>) {
+}: Readonly<ListProps>) {
   const { messages }: Messages = useMessages();
 
   if (isLoading && showLoader) {
