@@ -1,20 +1,44 @@
-.popin {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(#000000, .4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.popin-container {
+  // as mui dialog
+  $popin-width: 600px;
+  $popin-padding: $spacer-6;
 
-  .popin-container {
-    background-color: #ffffff;
-    box-shadow: 0 3px 5px 1px rgba(#000000, .25);
-    border-radius: 3px;
-    padding: $spacer-6;
-    max-height: 100%;
-    overflow: auto;
+  .popin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: $border-radius-3;
+    width: $popin-width;
+    padding: $spacer-2 $popin-padding $spacer-4;
+
+    &_title {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      color: $secondary-color;
+      font-size: $font-size-extra-large;
+      height: 60px;
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      gap: $spacer-6;
+      text-align: left;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: $spacer-6;
+      padding: $spacer-6 $popin-padding;
+      height: 80px;
+
+      button {
+        height: $button-height;
+      }
+    }
   }
 }

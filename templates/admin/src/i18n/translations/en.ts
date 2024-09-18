@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { viteHotContext } from '@i18n/translations/hmr-config';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
@@ -13,6 +14,7 @@ const enMessages: Translations = {
     cancel: 'Cancel',
     save: 'Save',
     delete: 'Delete',
+    close: 'Close',
     search: 'Search',
     add: 'Add',
     authenticate: 'Log in',
@@ -22,6 +24,7 @@ const enMessages: Translations = {
   },
   // common labels
   label: {
+    confirm_delete: 'Confirm deletion',
     creation_date: 'Creation date',
     loading: 'Loading...',
   },
@@ -30,7 +33,6 @@ const enMessages: Translations = {
     changes_saved: 'Changes have been successfully saved',
     unsaved_data: 'There are unsaved changes. '
       + 'If you would like to save changes, press the "Keep editing" button',
-    confirm_delete: 'To confirm the deleting, press the "Delete" button',
   },
   // navigation
   nav: {
@@ -53,6 +55,9 @@ const enMessages: Translations = {
     firstName: 'First name',
     lastName: 'Last name',
     role: 'Role',
+    messages: {
+      confirm_delete: (userName: string) => `You are about to delete ${userName}. This action is irreversible.`,
+    },
   },
   // pages users
   user: {

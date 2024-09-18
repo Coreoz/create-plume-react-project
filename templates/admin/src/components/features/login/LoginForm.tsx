@@ -8,8 +8,8 @@ import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
 import InputText from '../../theme/form/fields/InputText';
 
 export type LoginFormProps = {
-  isLoading: boolean;
-  tryAuthenticate: (credentials: SessionCredentials) => void;
+  isLoading: boolean,
+  tryAuthenticate: (credentials: SessionCredentials) => void,
 };
 
 export default function LoginForm({ isLoading, tryAuthenticate }: LoginFormProps) {

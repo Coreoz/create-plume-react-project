@@ -1,13 +1,24 @@
-import { ReactHookConfirm } from '@lib/react-hook-confirm/ReactHookConfirm';
+import { ActionButtonProps } from '@lib/plume-admin-theme/action/ActionProps';
+import { ReactNode } from 'react';
 
 export type PopinProps = {
-  zIndex?: number,
-  height?: string,
-  width?: string,
-  children?: React.ReactNode,
+  title: string,
+  isOpen: boolean,
+  onClose: () => void,
+  children: ReactNode,
+  className?: string,
 };
 
-export type PopinCloseWithoutSavingProps = {
-  confirmCloseWithoutSaving: ReactHookConfirm,
-  closeWithoutSavingAction: () => void,
+type PopinAction = {
+  title: string,
+  action: () => void,
+  buttonProps?: Omit<ActionButtonProps, 'onClick' | 'children'>,
+};
+
+export type ConfirmationPopInProps = {
+  isOpen: boolean,
+  title: string,
+  message: string,
+  onConfirm: PopinAction,
+  onCancel: PopinAction,
 };

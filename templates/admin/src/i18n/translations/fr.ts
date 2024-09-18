@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { viteHotContext } from '@i18n/translations/hmr-config';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';
@@ -13,6 +14,7 @@ const frMessages: Translations = {
     cancel: 'Annuler',
     save: 'Enregistrer',
     delete: 'Supprimer',
+    close: 'Fermer',
     search: 'Rechercher',
     add: 'Ajouter',
     authenticate: 'Me connecter',
@@ -22,6 +24,7 @@ const frMessages: Translations = {
   },
   // common labels
   label: {
+    confirm_delete: 'Confirmation de suppression',
     creation_date: 'Date de création',
     loading: 'Chargement...',
   },
@@ -30,7 +33,6 @@ const frMessages: Translations = {
     changes_saved: 'Les modifications ont bien été enregistrées',
     unsaved_data: 'Des modifications n\'ont pas été enregistrées. '
       + 'Si vous voulez enregistrer ces modifications, cliquez sur le bouton "Rester sur la page"',
-    confirm_delete: 'Pour confirmer la suppression, cliquez sur le bouton "Supprimer"',
   },
   // navigation
   nav: {
@@ -53,6 +55,9 @@ const frMessages: Translations = {
     firstName: 'Prénom',
     lastName: 'Nom',
     role: 'Rôle',
+    messages: {
+      confirm_delete: (userName: string) => `Vous êtes sur le point de supprimer ${userName}. Cette action est irreversible.`,
+    },
   },
   // pages users
   user: {

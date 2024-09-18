@@ -3,11 +3,12 @@
   align-items: center;
   height: $height-header;
   border-bottom: $separator;
+  padding-left: $spacer-8;
 
   h1 {
+    color: $primary-color;
     padding: $spacer-4 0;
-    margin-left: $spacer-6;
-    font-size: $font-size-large;
+    font-size: $font-size-extra-large;
   }
 
   .header-actions {
@@ -24,11 +25,9 @@
       color: $secondary-color;
 
       button {
+        padding: $spacer-2;
+        text-align: center;
         font-size: $font-size-medium;
-
-        span {
-          margin-right: $spacer-2;
-        }
       }
 
       &--circle {
@@ -48,15 +47,6 @@
           }
         }
       }
-    }
-
-    .user-action {
-      color: $gray-dark;
-      min-width: 75px;
-      text-align: center;
-      padding: 0 $spacer-4 $spacer-2 $spacer-4;
-      border-bottom: $separator;
-      margin-bottom: $spacer-3;
     }
   }
 }
