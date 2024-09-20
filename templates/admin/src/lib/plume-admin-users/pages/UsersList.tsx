@@ -6,7 +6,10 @@ import filterFunctions from '@lib/plume-search/filters/FilterFunctions';
 import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-search/filters/SearchFilterHook';
 import useSearchLoadedData from '@lib/plume-search/SearchLoadedDataHook';
 import { SearchDataHookType } from '@lib/plume-search/SearchTypes';
-import dayjs from 'dayjs';
+import useSearchSort from '@lib/plume-search/sorts/SearchSortHook';
+import sortFunctions from '@lib/plume-search/sorts/SortFunctions';
+import { SearchSortType } from '@lib/plume-search/sorts/SortTypes';
+import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
@@ -17,10 +20,35 @@ type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
 };
 
+export enum CreationDateOption {
+  LESS_THAN_15_DAYS = 'less_than_15_days',
+  BETWEEN_15_45_DAYS = 'between_15_45_days',
+  MORE_THAN_45_DAYS = 'more_than_45_days',
+}
+
 type UserSearch = {
   userName: string,
-  email: string[],
+  lastLoginDate: CreationDateOption,
   roles: string[],
+};
+
+enum UserSort {
+  USER_NAME = 'USER_NAME',
+  CREATION_DATE = 'CREATION_DATE',
+}
+
+const filterLastLoginDateFromOption = (value: AdminUserDetails, option: CreationDateOption | undefined) => {
+  const daysDifferenceBetweenCreationAndToday: number = dayjs(value.creationDate).diff(dayjs());
+  if (option === CreationDateOption.MORE_THAN_45_DAYS) {
+    return daysDifferenceBetweenCreationAndToday > 45;
+  }
+  if (option === CreationDateOption.LESS_THAN_15_DAYS) {
+    return daysDifferenceBetweenCreationAndToday < 15;
+  }
+  if (option === CreationDateOption.BETWEEN_15_45_DAYS) {
+    return !(daysDifferenceBetweenCreationAndToday < 15 || daysDifferenceBetweenCreationAndToday > 45);
+  }
+  return true;
 };
 
 export default function UsersList({ usersWithRoles }: Props) {
@@ -31,11 +59,13 @@ export default function UsersList({ usersWithRoles }: Props) {
     panelContent: PanelContent,
     panelContentElement: PanelContentElement,
     panelContentElementColumn: PanelContentElementColumn,
+    listHead: ListHead,
     actionsContainer: ActionContainer,
     actionLink: ActionLink,
     filterMenu: FilterMenu,
     filterGroup: FilterGroup,
     filterInputSearch: FilterInputSearch,
+    sortSelect: SortSelect,
   }: PlumeAdminThemeComponents = usePlumeTheme();
 
   const {
@@ -45,18 +75,53 @@ export default function UsersList({ usersWithRoles }: Props) {
   }: UseSearchFilterHook<UserSearch> = useSearchFilter<UserSearch>();
 
   const {
+    sortOptions,
+    currentSort,
+    updateSort,
+  }: SearchSortType<UserSort> = useSearchSort(
+    {
+      sortOptionKeys: [UserSort.USER_NAME, UserSort.CREATION_DATE],
+      defaultSortOption: {
+        id: UserSort.CREATION_DATE,
+        desc: true,
+      },
+    },
+  );
+
+  const {
     elements,
+    totalElements,
     displayMore,
     hasMore,
-  }: SearchDataHookType<AdminUserDetails> = useSearchLoadedData<AdminUserDetails, UserSearch>(
+  }: SearchDataHookType<AdminUserDetails> = useSearchLoadedData<AdminUserDetails, UserSearch, UserSort>(
     usersWithRoles?.users ?? [],
     {
-      object: searchObject,
-      apply: (user: AdminUserDetails, filter: Partial<UserSearch>) => (
-        filterFunctions.includesString(user.userName, filter.userName ?? '')
-        && filterFunctions.nonEmptyArrIncludes(user.email, filter.email ?? [])
-        && filterFunctions.nonEmptyArrIncludes(user.idRole, filter.roles ?? [])
-      ),
+      filters: {
+        object: searchObject,
+        apply: (user: AdminUserDetails, filter: Partial<UserSearch>) => (
+          filterFunctions.includesString(user.userName, filter.userName ?? '')
+          && filterLastLoginDateFromOption(user, filter.lastLoginDate)
+          && filterFunctions.nonEmptyArrIncludes(user.idRole, filter.roles ?? [])
+        ),
+      },
+      sort: {
+        object: currentSort,
+        apply: {
+          [UserSort.USER_NAME]: (
+            value: AdminUserDetails,
+            compared: AdminUserDetails,
+            isDesc: boolean,
+          ) => sortFunctions.withSortDirection<string>(sortFunctions.text, isDesc)(value.userName, compared.userName),
+          [UserSort.CREATION_DATE]: (
+            value: AdminUserDetails,
+            compared: AdminUserDetails,
+            isDesc: boolean,
+          ) => sortFunctions.withSortDirection<Dayjs>(sortFunctions.datetime, isDesc)(
+            dayjs(value.creationDate),
+            dayjs(compared.creationDate),
+          ),
+        },
+      },
     },
   );
 
@@ -90,14 +155,24 @@ export default function UsersList({ usersWithRoles }: Props) {
           <PanelContentElementColumn width={1}>
             <FilterMenu title={messages.filters.title} onResetFilters={onReset}>
               <FilterGroup
-                messageKey="user_email"
+                messageKey="user_last_login"
                 type="single"
-                onChange={(values: string[]) => updateSearchField('email', values)}
-                possibleValues={usersWithRoles?.users?.map((user: AdminUserDetails) => ({
-                  label: user.email,
-                  value: user.email,
-                })) ?? []}
-                selectedValues={searchObject.email}
+                onChange={(values: string[]) => updateSearchField('lastLoginDate', values[0])}
+                possibleValues={[
+                  {
+                    label: messages.filters.user_last_login.options[CreationDateOption.LESS_THAN_15_DAYS],
+                    value: CreationDateOption.LESS_THAN_15_DAYS,
+                  },
+                  {
+                    label: messages.filters.user_last_login.options[CreationDateOption.BETWEEN_15_45_DAYS],
+                    value: CreationDateOption.BETWEEN_15_45_DAYS,
+                  },
+                  {
+                    label: messages.filters.user_last_login.options[CreationDateOption.MORE_THAN_45_DAYS],
+                    value: CreationDateOption.MORE_THAN_45_DAYS,
+                  },
+                ]}
+                selectedValues={searchObject.lastLoginDate ? [searchObject.lastLoginDate] : []}
               />
               <FilterGroup
                 messageKey="user_role"
@@ -115,6 +190,14 @@ export default function UsersList({ usersWithRoles }: Props) {
             </FilterMenu>
           </PanelContentElementColumn>
           <PanelContentElementColumn width={4}>
+            <ListHead title={messages.user.found(totalElements)}>
+              <SortSelect<UserSort>
+                messageKey="user"
+                sortPossibilities={sortOptions}
+                sort={currentSort}
+                onSort={updateSort}
+              />
+            </ListHead>
             {usersWithRoles && (
               <table>
                 <thead>
