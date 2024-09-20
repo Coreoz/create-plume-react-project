@@ -1,24 +1,24 @@
 import { Dayjs } from 'dayjs';
 
-export type SortingFn<TData> = (rowA: TData, rowB: TData) => number;
+export type SortingFunction<TData> = (rowA: TData, rowB: TData) => number;
 
 export const reSplitAlphaNumeric: RegExp = /(\d+)/gm;
 
-const alphanumeric: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareAlphanumeric(
+const alphanumeric: SortingFunction<unknown> = (rowA: unknown, rowB: unknown) => compareAlphanumeric(
   toString(rowA)
     .toLowerCase(),
   toString(rowB)
     .toLowerCase(),
 );
 
-const alphanumericCaseSensitive: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareAlphanumeric(
+const alphanumericCaseSensitive: SortingFunction<unknown> = (rowA: unknown, rowB: unknown) => compareAlphanumeric(
   toString(rowA),
   toString(rowB),
 );
 
 // The text filter is more basic (less numeric support)
 // but is much faster
-const text: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareBasic(
+const text: SortingFunction<unknown> = (rowA: unknown, rowB: unknown) => compareBasic(
   toString(rowA)
     .toLowerCase(),
   toString(rowB)
@@ -27,12 +27,12 @@ const text: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareBasic(
 
 // The text filter is more basic (less numeric support)
 // but is much faster
-const textCaseSensitive: SortingFn<unknown> = (rowA: unknown, rowB: unknown) => compareBasic(
+const textCaseSensitive: SortingFunction<unknown> = (rowA: unknown, rowB: unknown) => compareBasic(
   toString(rowA),
   toString(rowB),
 );
 
-const datetime: SortingFn<Dayjs> = (rowA: Dayjs, rowB: Dayjs) => {
+const datetime: SortingFunction<Dayjs> = (rowA: Dayjs, rowB: Dayjs) => {
   if (rowA.isAfter(rowB)) {
     return 1;
   }
@@ -42,7 +42,7 @@ const datetime: SortingFn<Dayjs> = (rowA: Dayjs, rowB: Dayjs) => {
   return 0;
 };
 
-const basic: SortingFn<string> = (rowA: string, rowB: string) => compareBasic(rowA, rowB);
+const basic: SortingFunction<string> = (rowA: string, rowB: string) => compareBasic(rowA, rowB);
 
 // Utils
 
@@ -117,7 +117,7 @@ function compareAlphanumeric(aStr: string, bStr: string) {
 }
 
 function withSortDirection<T>(
-  sortFn: SortingFn<T>,
+  sortFn: SortingFunction<T>,
   isDesc: boolean,
 ): (a: T, b: T) => number {
   return (a: T, b: T) => {
@@ -129,13 +129,13 @@ function withSortDirection<T>(
 // Exports
 
 const sortingFunctions: {
-  alphanumeric: SortingFn<unknown>,
-  alphanumericCaseSensitive: SortingFn<unknown>,
-  text: SortingFn<unknown>,
-  textCaseSensitive: SortingFn<unknown>,
-  datetime: SortingFn<Dayjs>,
-  basic: SortingFn<string>,
-  withSortDirection: <T>(sortFn: SortingFn<T>, isDesc: boolean) => SortingFn<T>,
+  alphanumeric: SortingFunction<unknown>,
+  alphanumericCaseSensitive: SortingFunction<unknown>,
+  text: SortingFunction<unknown>,
+  textCaseSensitive: SortingFunction<unknown>,
+  datetime: SortingFunction<Dayjs>,
+  basic: SortingFunction<string>,
+  withSortDirection: <T>(sortFn: SortingFunction<T>, isDesc: boolean) => SortingFunction<T>,
 } = {
   alphanumeric,
   alphanumericCaseSensitive,

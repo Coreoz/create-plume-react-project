@@ -27,17 +27,14 @@ const classMap: { [key in ActionStyle]: { [themeKey in ThemeStyle]: string } } =
   [ActionStyle.PRIMARY]: {
     outlined: scss.primaryOutlined,
     contained: scss.primary,
-    text: scss.primary,
   },
   [ActionStyle.SECONDARY]: {
     outlined: scss.secondaryOutlined,
     contained: scss.secondary,
-    text: scss.secondary,
   },
   [ActionStyle.DANGER]: {
     outlined: scss.dangerOutlined,
     contained: scss.danger,
-    text: scss.danger,
   },
 };
 

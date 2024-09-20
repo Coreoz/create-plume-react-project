@@ -1,14 +1,14 @@
 import useNotification, { PlumeNotification } from '@lib/plume-notification/NotificationHook';
 import {
-  Page, PaginationParamsType, PaginationType, SearchDataHookType,
+  Page, PaginationParamsType, PaginationType, PaginatedSearch,
 } from '@lib/plume-search/SearchTypes';
 import { useEffect, useState } from 'react';
 import { HttpPromise } from 'simple-http-rest-client';
 import usePagination from './pagination/PaginationHook';
 
-type SearchLazyLoadedDataOptions<F, S> = {
-  filters: Partial<F>,
-  sort: S,
+type SearchLazyLoadedDataOptions<TFilter, TSort> = {
+  filters: Partial<TFilter>,
+  sort: TSort,
   defaultPageSize: number,
 };
 
@@ -18,22 +18,22 @@ type SearchLazyLoadedDataOptions<F, S> = {
  *
  * @param loadData the paginated search API call
  * @param options the options to apply to the search
- * @return elements the elements to display
- * @return totalElements total elements of the list you are paginating
+ * @return displayedItems the elements to display
+ * @return totalCount total elements of the list you are paginating
  * @return hasMore boolean set to false if at the end of the list you are paginating
  * @return displayMore function to call to display the next page of the list you are paginating
  */
-function useSearchLazyLoadedData<T, F, S extends string>(
+function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   loadData: (
-    filters: Partial<F> | undefined,
-    sort: S | undefined,
+    filters: Partial<TFilter> | undefined,
+    sort: TSort | undefined,
     pagination: PaginationParamsType | undefined,
-  ) => HttpPromise<Page<T>>,
-  options: Partial<SearchLazyLoadedDataOptions<F, S>>,
-): SearchDataHookType<T> {
+  ) => HttpPromise<Page<TData>>,
+  options: Partial<SearchLazyLoadedDataOptions<TFilter, TSort>>,
+): PaginatedSearch<TData> {
   const { notifyHttpError }: PlumeNotification = useNotification();
-  const [elements, setElements] = useState<T[]>([]);
-  const [totalElements, setTotalElements] = useState<number>(0);
+  const [elements, setElements] = useState<TData[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const pagination: PaginationType = usePagination({ pageSize: options?.defaultPageSize ?? 10 });
 
@@ -47,11 +47,11 @@ function useSearchLazyLoadedData<T, F, S extends string>(
         limit: pagination.pageSize,
       },
     )
-      .then((page: Page<T>) => {
-        setElements((currentElements: T[]) => [...currentElements, ...page.elements]);
-        setTotalElements(page.totalElements);
-        setHasMore(!page.lastPage);
-        pagination.setElementCount(page.totalElements);
+      .then((page: Page<TData>) => {
+        setElements((currentElements: TData[]) => [...currentElements, ...page.items]);
+        setTotalCount(page.totalCount);
+        setHasMore(page.hasMore);
+        pagination.setElementCount(page.totalCount);
       })
       .catch(notifyHttpError);
   };
@@ -62,11 +62,11 @@ function useSearchLazyLoadedData<T, F, S extends string>(
   }, [options?.filters ?? {}, options?.sort ?? {}]);
 
   return {
-    elements,
-    totalElements,
+    displayedItems: elements,
+    totalCount,
     hasMore,
     displayMore: () => loadPage(pagination.currentPage + 1),
   };
 }
 
-export default useSearchLazyLoadedData;
+export default useApiPaginatedSearch;

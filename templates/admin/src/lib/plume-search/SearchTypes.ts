@@ -1,10 +1,9 @@
 export type Page<T> = {
-  elements: T[],
-  totalElements: number,
-  totalPages: number,
+  items: T[],
+  totalCount: number,
+  pagesCount: number,
   currentPage: number,
-  currentPageSize: number,
-  lastPage: boolean,
+  hasMore: boolean,
 };
 
 export type PaginationParamsType = {
@@ -21,9 +20,9 @@ export type PaginationType = {
   setElementCount: (elementCount: number) => void,
 };
 
-export type SearchDataHookType<T> = {
-  elements: T[],
-  totalElements: number,
+export type PaginatedSearch<TData> = {
+  displayedItems: TData[],
+  totalCount: number,
   displayMore: () => void,
   hasMore: boolean,
 };

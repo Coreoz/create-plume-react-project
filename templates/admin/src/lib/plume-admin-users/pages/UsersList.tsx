@@ -7,12 +7,12 @@ import scss from '@lib/plume-admin-theme/layout/search-layout.module.scss';
 import UserTile from '@lib/plume-admin-users/components/UserTile';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
 import filterFunctions from '@lib/plume-search/filters/FilterFunctions';
-import useSearchFilter, { UseSearchFilterHook } from '@lib/plume-search/filters/SearchFilterHook';
-import useSearchLoadedData from '@lib/plume-search/SearchLoadedDataHook';
-import { SearchDataHookType } from '@lib/plume-search/SearchTypes';
+import useSearchFilters, { SearchFilters } from '@lib/plume-search/filters/SearchFilterHook';
+import useInMemoryPaginatedSearch from '@lib/plume-search/InMemoryPaginatedSearchHook';
+import { PaginatedSearch } from '@lib/plume-search/SearchTypes';
 import useSearchSort from '@lib/plume-search/sorts/SearchSortHook';
 import sortFunctions from '@lib/plume-search/sorts/SortFunctions';
-import { SearchSortType } from '@lib/plume-search/sorts/SortTypes';
+import { SearchSortType, SortOption } from '@lib/plume-search/sorts/SortTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ export enum CreationDateOption {
 }
 
 type UserSearch = {
-  userName: string,
+  text: string,
   lastLoginDate: CreationDateOption,
   roles: string[],
 };
@@ -80,10 +80,10 @@ export default function UsersList(
   }: PlumeAdminThemeComponents = usePlumeTheme();
 
   const {
-    searchObject,
-    updateSearchField,
-    onReset,
-  }: UseSearchFilterHook<UserSearch> = useSearchFilter<UserSearch>();
+    filterValues,
+    setFilterValue,
+    resetFilters,
+  }: SearchFilters<UserSearch> = useSearchFilters<UserSearch>();
 
   const {
     sortOptions,
@@ -100,37 +100,42 @@ export default function UsersList(
   );
 
   const {
-    elements,
-    totalElements,
+    displayedItems,
+    totalCount,
     displayMore,
     hasMore,
-  }: SearchDataHookType<AdminUserDetails> = useSearchLoadedData<AdminUserDetails, UserSearch, UserSort>(
+  }: PaginatedSearch<AdminUserDetails> = useInMemoryPaginatedSearch<AdminUserDetails, UserSearch, UserSort>(
     usersWithRoles?.users ?? [],
     {
-      filters: {
-        object: searchObject,
-        apply: (user: AdminUserDetails, filter: Partial<UserSearch>) => (
-          filterFunctions.includesString(user.userName, filter.userName ?? '')
+      filter: {
+        values: filterValues,
+        isElementDisplayed: (user: AdminUserDetails, filter: Partial<UserSearch>) => (
+          (
+            filterFunctions.includesStringInsensitive(user.userName, filter.text ?? '')
+            || filterFunctions.includesStringInsensitive(user.firstName, filter.text ?? '')
+            || filterFunctions.includesStringInsensitive(user.lastName, filter.text ?? '')
+            || filterFunctions.includesStringInsensitive(user.email, filter.text ?? '')
+          )
           && filterLastLoginDateFromOption(user, filter.lastLoginDate)
-          && filterFunctions.nonEmptyArrIncludes(user.idRole, filter.roles ?? [])
+          && filterFunctions.nonEmptyArrayIncludes(user.idRole, filter.roles ?? [])
         ),
       },
       sort: {
-        object: currentSort,
-        apply: {
-          [UserSort.USER_NAME]: (
-            value: AdminUserDetails,
-            compared: AdminUserDetails,
-            isDesc: boolean,
-          ) => sortFunctions.withSortDirection<string>(sortFunctions.text, isDesc)(value.userName, compared.userName),
-          [UserSort.CREATION_DATE]: (
-            value: AdminUserDetails,
-            compared: AdminUserDetails,
-            isDesc: boolean,
-          ) => sortFunctions.withSortDirection<Dayjs>(sortFunctions.datetime, isDesc)(
-            dayjs(value.creationDate),
-            dayjs(compared.creationDate),
-          ),
+        value: currentSort,
+        sortElement: (value: AdminUserDetails, compared: AdminUserDetails, sortOption: SortOption<UserSort>) => {
+          if (sortOption.id === UserSort.USER_NAME) {
+            return sortFunctions.withSortDirection<string>(sortFunctions.text, sortOption.desc)(
+              value.userName,
+              compared.userName,
+            );
+          }
+          if (sortOption.id === UserSort.CREATION_DATE) {
+            return sortFunctions.withSortDirection<Dayjs>(sortFunctions.datetime, sortOption.desc)(
+              dayjs(value.creationDate),
+              dayjs(compared.creationDate),
+            );
+          }
+          return 0;
         },
       },
     },
@@ -145,9 +150,9 @@ export default function UsersList(
         <div className={scss.searchHead}>
           <div className={scss.searchInput}>
             <FilterInputSearch
-              value={searchObject.userName ?? ''}
-              onChange={(value: string) => updateSearchField('userName', value)}
-              onClear={() => updateSearchField('userName', '')}
+              value={filterValues.text ?? ''}
+              onChange={(value: string) => setFilterValue('text', value)}
+              onClear={() => setFilterValue('text', '')}
             />
           </div>
           <ActionContainer className={scss.searchActions} position="end">
@@ -162,11 +167,11 @@ export default function UsersList(
         </div>
         <div className={scss.searchDisplay}>
           <div className={scss.searchFilters}>
-            <FilterMenu title={messages.filters.title} onResetFilters={onReset}>
+            <FilterMenu title={messages.filters.title} onResetFilters={resetFilters}>
               <FilterGroup
                 messageKey="user_last_login"
                 type="single"
-                onChange={(values: string[]) => updateSearchField('lastLoginDate', values[0])}
+                onChange={(values: string[]) => setFilterValue('lastLoginDate', values[0])}
                 possibleValues={[
                   {
                     label: messages.filters.user_last_login.options[CreationDateOption.LESS_THAN_15_DAYS],
@@ -181,12 +186,12 @@ export default function UsersList(
                     value: CreationDateOption.MORE_THAN_45_DAYS,
                   },
                 ]}
-                selectedValues={searchObject.lastLoginDate ? [searchObject.lastLoginDate] : []}
+                selectedValues={filterValues.lastLoginDate ? [filterValues.lastLoginDate] : []}
               />
               <FilterGroup
                 messageKey="user_role"
                 type="multiple"
-                onChange={(values: string[]) => updateSearchField('roles', values)}
+                onChange={(values: string[]) => setFilterValue('roles', values)}
                 possibleValues={
                   Array.from(usersWithRoles?.roles.entries() ?? [])
                     .map(([value, label]: [string, string]) => ({
@@ -194,12 +199,12 @@ export default function UsersList(
                       value,
                     })) ?? []
                 }
-                selectedValues={searchObject.roles}
+                selectedValues={filterValues.roles}
               />
             </FilterMenu>
           </div>
           <div className={scss.searchResults}>
-            <ListHead title={messages.user.found(totalElements)} className={scss.searchResultsHead}>
+            <ListHead title={messages.user.found(totalCount)} className={scss.searchResultsHead}>
               <SortSelect<UserSort>
                 messageKey="user"
                 sortPossibilities={sortOptions}
@@ -213,7 +218,7 @@ export default function UsersList(
               isLoading={isLoading}
             >
               {
-                elements.map((user: AdminUserDetails) => (
+                displayedItems.map((user: AdminUserDetails) => (
                   <ListItem
                     key={user.id}
                     onClick={() => navigate(user.id)}

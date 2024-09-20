@@ -6,7 +6,7 @@ function CheckboxFilter(
   {
     label,
     value,
-    disabled,
+    disabled = false,
     selected,
     onValueClicked,
     className,
@@ -15,7 +15,7 @@ function CheckboxFilter(
 ) {
   return (
     <FormControlLabel
-      disabled={disabled ?? false}
+      disabled={disabled}
       label={label}
       className={className}
       control={
@@ -26,7 +26,7 @@ function CheckboxFilter(
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             onValueClicked(e.target.checked);
           }}
-          disabled={disabled ?? false}
+          disabled={disabled}
         />
       }
     />

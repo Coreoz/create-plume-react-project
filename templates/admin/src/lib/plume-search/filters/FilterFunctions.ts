@@ -1,55 +1,57 @@
-export type FilterFn<TData, FilterType> = (
-  rowValue: TData,
-  filterValue: FilterType,
-) => boolean;
+export type FilterFunction<TData, TFilter> = {
+  (
+    rowValue: TData,
+    filterValue: TFilter,
+  ): boolean,
+};
 
 // utils
-const arrEmpty = (filterValue: unknown[]) => (filterValue?.length ?? 0) === 0;
+const isArrayEmpty = (filterValue: unknown[]) => filterValue.length === 0;
 
 // filters
-const includesString: FilterFn<unknown, string> = (
+const includesStringInsensitive: FilterFunction<unknown, string> = (
   rowValue: unknown,
   filterValue: string,
 ) => {
-  const search: string = filterValue?.toString()?.toLowerCase();
+  const search: string = filterValue.toString().toLowerCase();
   return Boolean(
     rowValue?.toString()?.toLowerCase()?.includes(search),
   );
 };
 
-const includesStringSensitive: FilterFn<unknown, string> = (
+const includesStringSensitive: FilterFunction<unknown, string> = (
   rowValue: unknown,
   filterValue: string,
 ) => Boolean(rowValue?.toString()?.includes(filterValue));
 
-const equalsString: FilterFn<unknown, string> = (
+const equalsString: FilterFunction<unknown, string> = (
   rowValue: unknown,
   filterValue: string,
-) => (rowValue?.toString()?.toLowerCase() === filterValue?.toLowerCase());
+) => (rowValue?.toString().toLowerCase() === filterValue.toLowerCase());
 
-const arrIncludes: FilterFn<unknown, unknown[]> = (
+const arrIncludes: FilterFunction<unknown, unknown[]> = (
   rowValue: unknown,
   filterValue: unknown[],
-) => filterValue?.includes(rowValue);
+) => filterValue.includes(rowValue);
 
-const nonEmptyArrIncludes: FilterFn<unknown, unknown[]> = (
+const nonEmptyArrayIncludes: FilterFunction<unknown, unknown[]> = (
   rowValue: unknown,
   filterValue: unknown[],
-) => arrEmpty(filterValue) || filterValue?.includes(rowValue);
+) => isArrayEmpty(filterValue) || filterValue.includes(rowValue);
 
-const arrIncludesAll: FilterFn<unknown[], unknown[]> = (
+const arrayIncludesAll: FilterFunction<unknown[], unknown[]> = (
   rowValue: unknown[],
   filterValue: unknown[],
-) => !filterValue.some((val: unknown) => !rowValue?.includes(val));
+) => !filterValue.some((val: unknown) => !rowValue.includes(val));
 
-const arrIncludesSome: FilterFn<unknown[], unknown[]> = (
+const arrayIncludesSome: FilterFunction<unknown[], unknown[]> = (
   rowValue: unknown[],
   filterValue: unknown[],
-) => filterValue.some((val: unknown) => rowValue?.includes(val));
+) => filterValue.some((val: unknown) => rowValue.includes(val));
 
-const equals: FilterFn<unknown, unknown> = (rowValue: unknown, filterValue: unknown) => rowValue === filterValue;
+const equals: FilterFunction<unknown, unknown> = (rowValue: unknown, filterValue: unknown) => rowValue === filterValue;
 
-const inNumberRange: FilterFn<number, [number, number]> = (
+const inNumberRange: FilterFunction<number, [number, number]> = (
   rowValue: number,
   filterValue: [number, number],
 ) => {
@@ -59,23 +61,23 @@ const inNumberRange: FilterFn<number, [number, number]> = (
 
 // Export
 const filterFunctions: {
-  includesString: FilterFn<unknown, string>,
-  includesStringSensitive: FilterFn<unknown, string>,
-  equalsString: FilterFn<unknown, string>,
-  arrIncludes: FilterFn<unknown, unknown[]>,
-  nonEmptyArrIncludes: FilterFn<unknown, unknown[]>,
-  arrIncludesAll: FilterFn<unknown[], unknown[]>,
-  arrIncludesSome: FilterFn<unknown[], unknown[]>,
-  equals: FilterFn<unknown, unknown>,
-  inNumberRange: FilterFn<number, [number, number]>,
+  includesStringInsensitive: FilterFunction<unknown, string>,
+  includesStringSensitive: FilterFunction<unknown, string>,
+  equalsString: FilterFunction<unknown, string>,
+  arrIncludes: FilterFunction<unknown, unknown[]>,
+  nonEmptyArrayIncludes: FilterFunction<unknown, unknown[]>,
+  arrayIncludesAll: FilterFunction<unknown[], unknown[]>,
+  arrayIncludesSome: FilterFunction<unknown[], unknown[]>,
+  equals: FilterFunction<unknown, unknown>,
+  inNumberRange: FilterFunction<number, [number, number]>,
 } = {
-  includesString,
+  includesStringInsensitive,
   includesStringSensitive,
   equalsString,
   arrIncludes,
-  nonEmptyArrIncludes,
-  arrIncludesAll,
-  arrIncludesSome,
+  nonEmptyArrayIncludes,
+  arrayIncludesAll,
+  arrayIncludesSome,
   equals,
   inNumberRange,
 };
