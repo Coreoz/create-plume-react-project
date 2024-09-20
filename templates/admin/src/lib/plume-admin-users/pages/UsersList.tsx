@@ -42,19 +42,15 @@ enum UserSort {
 }
 
 const filterLastLoginDateFromOption = (value: AdminUserDetails, option: CreationDateOption | undefined) => {
-  const creationDate: Dayjs = dayjs(value.creationDate);
+  const daysDifferenceBetweenCreationAndToday: number = dayjs(value.creationDate).diff(dayjs());
   if (option === CreationDateOption.MORE_THAN_45_DAYS) {
-    return dayjs()
-      .diff(creationDate, 'day') > 45;
+    return daysDifferenceBetweenCreationAndToday > 45;
   }
   if (option === CreationDateOption.LESS_THAN_15_DAYS) {
-    return dayjs()
-      .diff(creationDate, 'day') < 15;
+    return daysDifferenceBetweenCreationAndToday < 15;
   }
   if (option === CreationDateOption.BETWEEN_15_45_DAYS) {
-    return !(dayjs()
-      .diff(creationDate, 'day') < 15 || dayjs()
-      .diff(creationDate, 'day') > 45);
+    return !(daysDifferenceBetweenCreationAndToday < 15 || daysDifferenceBetweenCreationAndToday > 45);
   }
   return true;
 };
