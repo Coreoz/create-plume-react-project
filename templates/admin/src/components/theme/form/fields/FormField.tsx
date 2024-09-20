@@ -20,7 +20,7 @@ import scss from './form-input.module.scss';
  */
 export default function FormField({
   name, children, errorMessageMapping, error,
-}: FormFieldProps) {
+}: Readonly<FormFieldProps>) {
   const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
 
   const { errors }: UseFormStateReturn<FieldValues> = useFormState({ name });

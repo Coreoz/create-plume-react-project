@@ -27,7 +27,6 @@ import {
   FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
-import { PropsWithChildren } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import FormField from './form/fields/FormField';
@@ -56,35 +55,35 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   // layout
 
-  panel: (props: PropsWithChildren<PanelProps>) => JSX.Element = Panel;
+  panel: (props: PanelProps) => JSX.Element = Panel;
 
   panelSeparator: () => JSX.Element = PanelSeparator;
 
-  panelTitle: (props: PropsWithChildren<PanelTitleProps>) => JSX.Element = PanelTitle;
+  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
 
   panelContent: (props: PanelProps) => JSX.Element = PanelContent;
 
-  panelContentElement: (props: PropsWithChildren<PanelContentElementProps>) => JSX.Element = PanelContentElement;
+  panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
 
   panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
 
   // lists
 
-  listHead: (props: PropsWithChildren<ListHeadProps>) => JSX.Element = ListHead;
+  listHead: (props: ListHeadProps) => JSX.Element = ListHead;
 
-  list: (props: PropsWithChildren<ListProps>) => JSX.Element = List;
+  list: (props: ListProps) => JSX.Element = List;
 
-  listItem: (props: PropsWithChildren<ListItemProps>) => JSX.Element = ListItem;
+  listItem: (props: ListItemProps) => JSX.Element = ListItem;
 
   // popin
 
   popin: (props: PopinProps) => JSX.Element = Popin;
 
-  confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element | null = ConfirmationPopIn;
+  confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element = ConfirmationPopIn;
 
   // form
   formContainer: <TFieldValues extends FieldValues = FieldValues>(
-    props: PropsWithChildren<FormContainerProps<TFieldValues>>,
+    props: FormContainerProps<TFieldValues>,
   ) => JSX.Element = FormContainer;
 
   formField: (props: FormFieldProps) => JSX.Element = FormField;
@@ -97,13 +96,13 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   // filters
 
-  filterMenu: (props: PropsWithChildren<FilterMenuProps>) => JSX.Element = FilterMenu;
+  filterMenu: (props: FilterMenuProps) => JSX.Element = FilterMenu;
 
-  filter: (props: PropsWithChildren<FilterContainerProps>) => JSX.Element = Filter;
+  filter: (props: FilterContainerProps) => JSX.Element = Filter;
 
   filterGroup: (props: FilterGroupProps) => JSX.Element = FilterGroup;
 
-  filterInputSearch: (props: PropsWithChildren<FilterInputSearchProps>) => JSX.Element = FilterInputSearch;
+  filterInputSearch: (props: FilterInputSearchProps) => JSX.Element = FilterInputSearch;
 
   // sort
 

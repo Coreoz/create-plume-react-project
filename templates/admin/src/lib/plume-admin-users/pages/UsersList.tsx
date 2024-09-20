@@ -42,7 +42,8 @@ enum UserSort {
 }
 
 const filterLastLoginDateFromOption = (value: AdminUserDetails, option: CreationDateOption | undefined) => {
-  const daysDifferenceBetweenCreationAndToday: number = dayjs(value.creationDate).diff(dayjs());
+  const daysDifferenceBetweenCreationAndToday: number = dayjs(value.creationDate)
+    .diff(dayjs());
   if (option === CreationDateOption.MORE_THAN_45_DAYS) {
     return daysDifferenceBetweenCreationAndToday > 45;
   }

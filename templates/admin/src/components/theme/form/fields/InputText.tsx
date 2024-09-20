@@ -17,7 +17,7 @@ export default function InputText(
     rows,
     errorMessageMapping,
     InputProps,
-  }: InputTextProps,
+  }: Readonly<InputTextProps>,
 ) {
   const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
   return (

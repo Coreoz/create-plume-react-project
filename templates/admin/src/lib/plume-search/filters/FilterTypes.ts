@@ -1,16 +1,17 @@
 import { CheckboxProps, InputProps, RadioProps } from '@mui/material';
+import { PropsWithChildren } from 'react';
 
 export type FilterValue = string | string[] | boolean;
 
-export type FilterMenuProps = {
+export type FilterMenuProps = PropsWithChildren<{
   title: string,
   onResetFilters: () => void,
-};
+}>;
 
-export type FilterContainerProps = {
+export type FilterContainerProps = PropsWithChildren<{
   messageKey: string,
   info?: string,
-};
+}>;
 
 export type FilterProps = {
   value: string,
@@ -18,11 +19,11 @@ export type FilterProps = {
   className?: string,
 };
 
-export type FilterInputSearchProps = FilterProps & {
+export type FilterInputSearchProps = FilterProps & PropsWithChildren<{
   onChange: (value: string) => void,
   onClear?: () => void,
   InputProps?: InputProps,
-};
+}>;
 
 export type CheckboxFilterProps = FilterProps & {
   label: string,

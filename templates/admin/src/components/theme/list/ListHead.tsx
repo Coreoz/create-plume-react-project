@@ -1,13 +1,13 @@
 import useMessages from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
 import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
 import scss from './list-head.module.scss';
 
 function ListHead({
   title, isLoading, className, children,
-}: PropsWithChildren<ListHeadProps>) {
+}: Readonly<ListHeadProps>) {
   const { messages } = useMessages();
   return (
     <header className={classNames(scss.listHead, className)}>

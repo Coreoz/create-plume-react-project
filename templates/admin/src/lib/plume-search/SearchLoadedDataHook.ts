@@ -15,6 +15,20 @@ type SearchLoadedDataHookOptions<T, F, S extends string> = {
   defaultPageSize: number,
 };
 
+/**
+ * Hook to handle search with pagination with data already loaded
+ * This search relies on results provided in the parameters
+ *
+ * @param data the loaded data to be paginated
+ * @param options options to apply to the given data
+ * filters : provide the filter object and how to apply it
+ * sort : provide the sort object and how to apply it
+ *
+ * @return elements the elements to display
+ * @return totalElements total elements of the list you are paginating
+ * @return hasMore boolean set to false if at the end of the list you are paginating
+ * @return displayMore function to call to display the next page of the list you are paginating
+ */
 function useSearchLoadedData<T, F, S extends string>(
   data: T[],
   options?: Partial<SearchLoadedDataHookOptions<T, F, S>>,

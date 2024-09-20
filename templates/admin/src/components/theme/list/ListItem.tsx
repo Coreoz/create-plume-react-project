@@ -1,7 +1,7 @@
 import classNames from '@lib/class-names/ClassNames';
 import { ListItemAction, ListItemProps } from '@lib/plume-admin-theme/list/ListProps';
 import { Icon, IconButton } from '@mui/material';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { ActionsContainer } from '../action/Actions';
 
 import scss from './list.module.scss';
@@ -12,7 +12,7 @@ function ListItem(
     onClick,
     actions = [],
     children,
-  }: PropsWithChildren<ListItemProps>,
+  }: Readonly<ListItemProps>,
 ) {
   return (
     <div
