@@ -13,7 +13,7 @@
       'content';
     grid-template-columns: 1fr auto;
     grid-template-rows: auto 1fr;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
 
     #main-header {
@@ -22,6 +22,8 @@
 
     #main-content {
       grid-area: content;
+      height: 100%;
+      overflow: hidden;
     }
   }
 

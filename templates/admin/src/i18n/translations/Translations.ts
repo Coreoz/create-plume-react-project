@@ -29,6 +29,7 @@ export type Translations = {
     confirm_delete: string,
     creation_date: string,
     loading: string,
+    empty: string,
   },
   // common messages
   message: {
@@ -65,6 +66,7 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    created: (date: string) => string,
     found: (count: number) => string,
     add_user: string,
     password_confirm: string,

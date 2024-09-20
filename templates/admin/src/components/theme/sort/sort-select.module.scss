@@ -11,8 +11,6 @@
   width: 100%;
   max-width: 400px;
 
-  @include box-shadow-button();
-
   .sort-select {
     // $spacer-4 from the parent padding
     width: calc(100% - $spacer-4);
