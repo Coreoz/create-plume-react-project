@@ -201,6 +201,7 @@ export default function UsersEdit({
       isOpen
       onClose={onClosePopIn}
     >
+      <ConfirmationPopIn {...popInProps} />
       <FormContainer formContext={formContext} onSuccess={trySaveUser}>
         <input type="hidden" name="id" value={userToEdit?.id} />
         <InputText
@@ -299,7 +300,6 @@ export default function UsersEdit({
           </ActionButton>
         </ActionContainer>
       </FormContainer>
-      <ConfirmationPopIn {...popInProps} />
     </Popin>
   );
 }
