@@ -12,6 +12,7 @@ export type Translations = {
     cancel: string,
     save: string,
     delete: string,
+    close: string,
     search: string,
     add: string,
     authenticate: string,
@@ -21,6 +22,7 @@ export type Translations = {
   },
   // common labels
   label: {
+    confirm_delete: string,
     creation_date: string,
     loading: string,
   },
@@ -28,7 +30,6 @@ export type Translations = {
   message: {
     changes_saved: string,
     unsaved_data: string,
-    confirm_delete: string,
   },
   // navigation
   nav: {
@@ -51,6 +52,9 @@ export type Translations = {
     firstName: string,
     lastName: string,
     role: string,
+    messages: {
+      confirm_delete: (userName: string) => string,
+    },
   },
   // pages users
   user: {

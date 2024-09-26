@@ -1,4 +1,6 @@
+import { PropsWithChildren } from 'react';
 import InputPassword from '@components/theme/form/fields/InputPassword';
+import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
 import {
   ActionButtonProps,
   ActionContainerProps,
@@ -10,6 +12,7 @@ import {
   InputSelectProps,
   InputTextProps,
 } from '@lib/plume-admin-theme/form/FormInputProps';
+import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
@@ -17,7 +20,11 @@ import {
   PanelTitleProps,
 } from '@lib/plume-admin-theme/layout/LayoutProps';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
-import { PopinCloseWithoutSavingProps, PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
+import {
+  ConfirmationPopInProps,
+  PopinProps,
+} from '@lib/plume-admin-theme/popin/PopinProps';
+import { FieldValues } from 'react-hook-form';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import InputSelect from './form/fields/InputSelect';
 import InputText from './form/fields/InputText';
@@ -28,7 +35,8 @@ import {
   PanelSeparator,
   PanelTitle,
 } from './layout/Panel';
-import { Popin, PopinCloseWithoutSaving } from './popin/Popin';
+import Popin from './popin/Popin';
+import FormContainer from './form/FormContainer';
 
 export default class AdminTheme implements PlumeAdminTheme {
   // actions
@@ -57,7 +65,12 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   popin: (props: PopinProps) => JSX.Element = Popin;
 
-  popinCloseWithoutSaving: (props: PopinCloseWithoutSavingProps) => JSX.Element | null = PopinCloseWithoutSaving;
+  confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element | null = ConfirmationPopIn;
+
+  // form
+  formContainer: <TFieldValues extends FieldValues = FieldValues>(
+    props: PropsWithChildren<FormContainerProps<TFieldValues>>,
+  ) => JSX.Element = FormContainer;
 
   formField: (props: FormFieldProps) => JSX.Element = FormField;
 

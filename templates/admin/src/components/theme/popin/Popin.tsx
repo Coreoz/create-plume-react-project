@@ -1,56 +1,22 @@
-import useMessages from '@i18n/hooks/messagesHook';
-import {
-  PopinCloseWithoutSavingProps,
-  PopinProps,
-} from '@lib/plume-admin-theme/popin/PopinProps';
+import scss from '@components/theme/popin/popin.module.scss';
+import classNames from '@lib/class-names/ClassNames';
+import { PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
+import { Dialog } from '@mui/material';
 import React from 'react';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
-import { ActionButton, ActionsContainer } from '../action/Actions';
-import { Panel } from '../layout/Panel';
 
-import scss from './popin.module.scss';
-
-export function Popin({
-  children, zIndex, height, width,
+export default function Popin({
+  children, isOpen, onClose, className, title,
 }: PopinProps) {
   return (
-    <div className={scss.popin} style={{ zIndex: zIndex ?? 100 }}>
-      <div className={scss.popinContainer} style={{ height, width }}>
+    <Dialog
+      className={classNames(scss.popinContainer, className)}
+      open={isOpen}
+      onClose={onClose}
+    >
+      <div className={scss.popin}>
+        <div className={scss.popin_title}>{title}</div>
         {children}
       </div>
-    </div>
+    </Dialog>
   );
-}
-
-export function PopinCloseWithoutSaving(
-  {
-    confirmCloseWithoutSaving,
-    closeWithoutSavingAction,
-  }: PopinCloseWithoutSavingProps,
-) {
-  const { messages } = useMessages();
-
-  return confirmCloseWithoutSaving.shouldAskConfirmation
-    ? (
-      <Popin zIndex={101}>
-        <Panel>
-          {messages.message.unsaved_data}
-        </Panel>
-        <ActionsContainer>
-          <ActionButton
-            style={ActionStyle.DANGER}
-            onClick={confirmCloseWithoutSaving.confirm(closeWithoutSavingAction)}
-          >
-            {messages.action.close_without_saving}
-          </ActionButton>
-          <ActionButton
-            style={ActionStyle.SECONDARY}
-            onClick={confirmCloseWithoutSaving.reset}
-          >
-            {messages.action.keep_editing}
-          </ActionButton>
-        </ActionsContainer>
-      </Popin>
-    )
-    : null;
 }

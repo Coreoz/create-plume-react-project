@@ -1,3 +1,6 @@
+import { FieldValues } from 'react-hook-form';
+import { PropsWithChildren } from 'react';
+import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
@@ -5,7 +8,10 @@ import {
   PanelTitleProps,
 } from './layout/LayoutProps';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
-import { PopinCloseWithoutSavingProps, PopinProps } from './popin/PopinProps';
+import {
+  ConfirmationPopInProps,
+  PopinProps,
+} from './popin/PopinProps';
 import { FormFieldProps } from './form/FormFieldProps';
 import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
 
@@ -34,12 +40,18 @@ export default abstract class PlumeAdminTheme {
   // popin
   abstract popin: (props: PopinProps) => JSX.Element;
 
-  abstract popinCloseWithoutSaving: (props: PopinCloseWithoutSavingProps) => JSX.Element | null;
+  abstract confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element | null;
 
   // form
-  abstract formField: (props: FormFieldProps) => JSX.Element;
+
+  abstract formContainer: <TFieldValues extends FieldValues = FieldValues>(
+    props: PropsWithChildren<FormContainerProps<TFieldValues>>,
+  ) => JSX.Element;
 
   // form fields
+
+  abstract formField: (props: FormFieldProps) => JSX.Element;
+
   abstract inputText: (props: InputTextProps) => JSX.Element;
 
   abstract inputSelect: (props: InputSelectProps) => JSX.Element;

@@ -2,7 +2,7 @@ import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import LocaleService from '@i18n/locale/LocaleService';
 import classNames from '@lib/class-names/ClassNames';
 import { Locale } from '@lib/locale-resolver/LocaleResolver';
-import { MenuItem } from '@mui/material';
+import { MenuItem, Divider } from '@mui/material';
 import SessionService from '@services/session/SessionService';
 import { UserWithExpiration } from '@services/session/User';
 import { useObservable } from 'micro-observables';
@@ -63,7 +63,10 @@ export default function Header({ id }: Props) {
                 label={makeInitials(currentUser.fullName)}
                 id="user-menu"
               >
-                <div className={scss.userAction}>{currentUser.fullName}</div>
+                <MenuItem disabled>
+                  {currentUser.fullName}
+                </MenuItem>
+                <Divider />
                 <MenuItem
                   onClick={() => sessionService.disconnect()}
                 >
