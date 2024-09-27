@@ -68,7 +68,7 @@ function useInMemoryPaginatedSearch<TData, TFilter, TSort extends string>(
     displayedItems: elements,
     totalCount: totalElements,
     hasMore: pagination.currentPage < pagination.totalPages,
-    displayMore: () => displayPage(pagination.currentPage + 1),
+    onDisplayMore: () => displayPage(pagination.currentPage + 1),
   };
 }
 

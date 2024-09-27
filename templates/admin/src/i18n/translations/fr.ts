@@ -77,7 +77,7 @@ const frMessages: Translations = {
   filters: {
     title: 'Filtres',
     reset: 'Réinitialiser les filtres',
-    user_last_login: {
+    user_creation_date: {
       title: 'Date de création',
       options: {
         less_than_15_days: 'Il y a moins de 15 jours',

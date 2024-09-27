@@ -76,7 +76,7 @@ export type Translations = {
   filters: {
     title: string,
     reset: string,
-    user_last_login: {
+    user_creation_date: {
       title: string,
       options: Record<CreationDateOption, string>,
     },

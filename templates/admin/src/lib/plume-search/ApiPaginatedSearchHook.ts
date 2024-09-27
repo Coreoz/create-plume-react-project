@@ -2,13 +2,14 @@ import useNotification, { PlumeNotification } from '@lib/plume-notification/Noti
 import {
   Page, PaginationParamsType, PaginationType, PaginatedSearch,
 } from '@lib/plume-search/SearchTypes';
+import { SortOption } from '@lib/plume-search/sorts/SortTypes';
 import { useEffect, useState } from 'react';
 import { HttpPromise } from 'simple-http-rest-client';
 import usePagination from './pagination/PaginationHook';
 
-type SearchLazyLoadedDataOptions<TFilter, TSort> = {
-  filters: Partial<TFilter>,
-  sort: TSort,
+type SearchLazyLoadedDataOptions<TFilter, TSort extends string> = {
+  filterValues: Partial<TFilter>,
+  sort: SortOption<TSort>,
   defaultPageSize: number,
 };
 
@@ -25,8 +26,8 @@ type SearchLazyLoadedDataOptions<TFilter, TSort> = {
  */
 function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   loadData: (
-    filters: Partial<TFilter> | undefined,
-    sort: TSort | undefined,
+    filterValues: Partial<TFilter>,
+    sort: SortOption<TSort> | undefined,
     pagination: PaginationParamsType | undefined,
   ) => HttpPromise<Page<TData>>,
   options: Partial<SearchLazyLoadedDataOptions<TFilter, TSort>>,
@@ -40,7 +41,7 @@ function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   const loadPage = (pageNumber: number) => {
     pagination.setPage(pageNumber);
     loadData(
-      options?.filters,
+      options?.filterValues ?? {},
       options?.sort,
       {
         page: pageNumber,
@@ -59,13 +60,13 @@ function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   useEffect(() => {
     setElements([]);
     loadPage(1);
-  }, [options?.filters ?? {}, options?.sort ?? {}]);
+  }, [options?.filterValues ?? {}, options?.sort ?? {}]);
 
   return {
     displayedItems: elements,
     totalCount,
     hasMore,
-    displayMore: () => loadPage(pagination.currentPage + 1),
+    onDisplayMore: () => loadPage(pagination.currentPage + 1),
   };
 }
 

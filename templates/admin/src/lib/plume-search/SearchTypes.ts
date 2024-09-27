@@ -23,6 +23,6 @@ export type PaginationType = {
 export type PaginatedSearch<TData> = {
   displayedItems: TData[],
   totalCount: number,
-  displayMore: () => void,
+  onDisplayMore: () => void,
   hasMore: boolean,
 };

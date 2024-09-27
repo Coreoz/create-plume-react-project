@@ -77,7 +77,7 @@ const enMessages: Translations = {
   filters: {
     title: 'Filters',
     reset: 'Reset filters',
-    user_last_login: {
+    user_creation_date: {
       title: 'Creation date',
       options: {
         less_than_15_days: 'Less than 15 days',

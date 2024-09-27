@@ -32,7 +32,7 @@ export enum CreationDateOption {
 
 type UserSearch = {
   text: string,
-  lastLoginDate: CreationDateOption,
+  creationDate: CreationDateOption,
   roles: string[],
 };
 
@@ -42,8 +42,8 @@ enum UserSort {
 }
 
 const filterLastLoginDateFromOption = (value: AdminUserDetails, option: CreationDateOption | undefined) => {
-  const daysDifferenceBetweenCreationAndToday: number = dayjs(value.creationDate)
-    .diff(dayjs());
+  const daysDifferenceBetweenCreationAndToday: number = dayjs()
+    .diff(dayjs(value.creationDate), 'day');
   if (option === CreationDateOption.MORE_THAN_45_DAYS) {
     return daysDifferenceBetweenCreationAndToday > 45;
   }
@@ -102,7 +102,7 @@ export default function UsersList(
   const {
     displayedItems,
     totalCount,
-    displayMore,
+    onDisplayMore,
     hasMore,
   }: PaginatedSearch<AdminUserDetails> = useInMemoryPaginatedSearch<AdminUserDetails, UserSearch, UserSort>(
     usersWithRoles?.users ?? [],
@@ -116,7 +116,7 @@ export default function UsersList(
             || filterFunctions.includesStringInsensitive(user.lastName, filter.text ?? '')
             || filterFunctions.includesStringInsensitive(user.email, filter.text ?? '')
           )
-          && filterLastLoginDateFromOption(user, filter.lastLoginDate)
+          && filterLastLoginDateFromOption(user, filter.creationDate)
           && filterFunctions.nonEmptyArrayIncludes(user.idRole, filter.roles ?? [])
         ),
       },
@@ -169,24 +169,24 @@ export default function UsersList(
           <div className={scss.searchFilters}>
             <FilterMenu title={messages.filters.title} onResetFilters={resetFilters}>
               <FilterGroup
-                messageKey="user_last_login"
+                messageKey="user_creation_date"
                 type="single"
-                onChange={(values: string[]) => setFilterValue('lastLoginDate', values[0])}
+                onChange={(values: string[]) => setFilterValue('creationDate', values[0])}
                 possibleValues={[
                   {
-                    label: messages.filters.user_last_login.options[CreationDateOption.LESS_THAN_15_DAYS],
+                    label: messages.filters.user_creation_date.options[CreationDateOption.LESS_THAN_15_DAYS],
                     value: CreationDateOption.LESS_THAN_15_DAYS,
                   },
                   {
-                    label: messages.filters.user_last_login.options[CreationDateOption.BETWEEN_15_45_DAYS],
+                    label: messages.filters.user_creation_date.options[CreationDateOption.BETWEEN_15_45_DAYS],
                     value: CreationDateOption.BETWEEN_15_45_DAYS,
                   },
                   {
-                    label: messages.filters.user_last_login.options[CreationDateOption.MORE_THAN_45_DAYS],
+                    label: messages.filters.user_creation_date.options[CreationDateOption.MORE_THAN_45_DAYS],
                     value: CreationDateOption.MORE_THAN_45_DAYS,
                   },
                 ]}
-                selectedValues={filterValues.lastLoginDate ? [filterValues.lastLoginDate] : []}
+                selectedValues={filterValues.creationDate ? [filterValues.creationDate] : []}
               />
               <FilterGroup
                 messageKey="user_role"
@@ -232,7 +232,7 @@ export default function UsersList(
               hasMore
               && (
                 <ActionContainer className={scss.searchResultsActions}>
-                  <ActionButton onClick={displayMore} variant="outlined">
+                  <ActionButton onClick={onDisplayMore} variant="outlined">
                     {messages.action.display_more}
                   </ActionButton>
                 </ActionContainer>
