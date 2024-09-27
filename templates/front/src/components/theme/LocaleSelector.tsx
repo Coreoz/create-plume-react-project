@@ -1,5 +1,4 @@
-import React from 'react';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
 
 type LocaleSelectorProps = {
   availableLocales: Locale[],

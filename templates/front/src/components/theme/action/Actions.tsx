@@ -1,5 +1,5 @@
 import classNames from '@lib/class-names/ClassNames';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import scss from './actions.module.scss';
 
 export type ActionButtonProps = {

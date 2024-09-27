@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { Location, useLocation } from 'react-router-dom';
 import { LOGIN } from '../../Routes';
@@ -6,7 +6,7 @@ import ConditionalRoute from './ConditionalRoute';
 import SessionService from '../../../services/session/SessionService';
 
 type Props = {
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
 function PrivateRoute(

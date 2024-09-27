@@ -1,4 +1,3 @@
-import React from 'react';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useObservable } from 'micro-observables';
 import { Locale } from '@lib/locale-resolver/LocaleResolver';

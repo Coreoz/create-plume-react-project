@@ -2,7 +2,6 @@ import {
   AdminUsersWithIndexedRolesType,
 } from '@lib/plume-admin-users/pages/AdminUsersWithIndexedRolesType';
 import { CREATE, UPDATE } from '@lib/plume-admin-users/router/UserRoutes';
-import React from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import UsersEdit from '../pages/UsersEdit';
 

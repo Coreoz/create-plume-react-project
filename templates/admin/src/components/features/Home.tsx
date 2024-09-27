@@ -1,4 +1,3 @@
-import React from 'react';
 import usePlumeTheme, { PlumeAdminThemeComponents } from '../hooks/ThemeHook';
 import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 

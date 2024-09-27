@@ -7,7 +7,6 @@ import {
 } from '@lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { Button, CircularProgress, Icon } from '@mui/material';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import scss from './actions.module.scss';
 

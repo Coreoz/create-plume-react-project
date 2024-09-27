@@ -1,7 +1,6 @@
 import {
   ConfirmationPopInProps,
 } from '@lib/plume-admin-theme/popin/PopinProps';
-import React from 'react';
 import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
 import { ActionButton, ActionsContainer } from '../action/Actions';
 import Popin from './Popin';

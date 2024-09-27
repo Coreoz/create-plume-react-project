@@ -1,7 +1,6 @@
 import { InputPasswordProps } from '@lib/plume-admin-theme/form/FormInputProps';
 import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
 import { Icon, IconButton, InputAdornment } from '@mui/material';
-import React from 'react';
 import InputText from './InputText';
 
 function InputPassword(

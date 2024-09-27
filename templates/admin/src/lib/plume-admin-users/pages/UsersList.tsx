@@ -4,7 +4,6 @@ import usePlumeTheme, {
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
 import dayjs from 'dayjs';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import ActionStyle from '../../plume-admin-theme/action/ActionStyle';
 import { AdminUserDetails } from '../api/AdminUserTypes';

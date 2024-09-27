@@ -5,7 +5,7 @@ import PermissionRoute from '@components/theme/routes/PermissionRoute';
 import PrivateRoute from '@components/theme/routes/PrivateRoute';
 import Users from '@lib/plume-admin-users/pages/Users';
 import Permission from '@services/session/Permission';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   createBrowserRouter,
   Navigate,

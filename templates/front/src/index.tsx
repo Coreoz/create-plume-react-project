@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'micro-observables/batchingForReactDom';
 import { Logger } from 'simple-logging-system';
@@ -29,9 +29,9 @@ configureGlobalInjector(injector);
 initializeLocalizedDate(injector.getInstance(LocaleService));
 
 const reactApp: JSX.Element = (
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
 const rootElement: HTMLElement | null = document.getElementById('root');
 if (!rootElement) {

@@ -7,7 +7,6 @@ import SessionService from '@services/session/SessionService';
 import { UserWithExpiration } from '@services/session/User';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
 import DropdownMenu from '../../theme/DropdownMenu';
 import LocaleSelector from '../../theme/LocaleSelector';
 
