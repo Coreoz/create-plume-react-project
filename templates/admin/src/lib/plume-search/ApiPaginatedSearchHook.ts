@@ -22,7 +22,7 @@ type SearchLazyLoadedDataOptions<TFilter, TSort extends string> = {
  * @return displayedItems the elements to display
  * @return totalCount total elements of the list you are paginating
  * @return hasMore boolean set to false if at the end of the list you are paginating
- * @return displayMore function to call to display the next page of the list you are paginating
+ * @return onDisplayMore function to call to display the next page of the list you are paginating
  */
 function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   loadData: (
