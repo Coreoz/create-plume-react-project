@@ -10,7 +10,7 @@ import {
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
-} from './layout/LayoutProps';
+} from './panel/PanelProps';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import {
   ConfirmationPopInProps,

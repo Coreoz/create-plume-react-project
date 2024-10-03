@@ -29,7 +29,8 @@ const unmakeKey = <S extends string>(sort: string): SortOption<S> => {
 const IconComponent = ({ className }: { className: string }) => <Icon className={className}>expand_more</Icon>;
 
 /**
- * Creates a Select input that displays all the sort possibilities available
+ * Creates a Select input that displays all the sort possibilities available :
+ * It creates a single key by sort possibility, combining the key and if it is desc or not with {@link makeKey} function
  *
  * @param messageKey message key of the menu that is under "sorts" entry in {@link Translations}
  * @param sortPossibilities the sort possibilities {@link SortOption}

@@ -29,7 +29,7 @@ export default function UserTile({ user }: Props) {
       <div className={scss.userData}>
         <div className={scss.data}>
           <span className={scss.valueLittle}>
-            {messages.user.created(dayjs(user.creationDate).format('DD/MM/YYYY hh:mm'))}
+            {messages.user.created(dayjs(user.creationDate).format('L LT'))}
           </span>
         </div>
       </div>

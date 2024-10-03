@@ -1,3 +1,5 @@
+import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
+
 export type AdminUserDetails = {
   id: string,
   idRole: string,
@@ -28,3 +30,14 @@ export type AdminUserParameters = {
   password?: string,
   passwordConfirmation?: string,
 };
+
+export type UserSearch = {
+  text: string,
+  creationDate: CreationDateOption,
+  roles: string[],
+};
+
+export enum UserSort {
+  USER_NAME = 'USER_NAME',
+  CREATION_DATE = 'CREATION_DATE',
+}

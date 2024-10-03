@@ -3,7 +3,7 @@ import { ActionButton } from '@components/theme/action/Actions';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 
-import scss from '@lib/plume-admin-theme/layout/search-layout.module.scss';
+import scss from '@components/layout/search-layout.module.scss';
 import UserTile from '@lib/plume-admin-users/components/UserTile';
 import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
 import filterFunctions from '@lib/plume-search/filters/FilterFunctions';

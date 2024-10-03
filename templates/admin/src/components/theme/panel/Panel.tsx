@@ -8,7 +8,7 @@ import {
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
-} from '@lib/plume-admin-theme/layout/LayoutProps';
+} from '@lib/plume-admin-theme/panel/PanelProps';
 
 import scss from './panel.module.scss';
 

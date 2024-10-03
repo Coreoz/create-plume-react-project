@@ -18,6 +18,12 @@ function EmptyState({ label }: Readonly<ListEmptyStateProps>) {
   );
 }
 
+/**
+ * This component handles the display of a loading list
+ * - A loader is displayed when the elements are loading
+ * - An empty state is displayed when no elements were found
+ * - Otherwise, the elements are displayed through the {@param children}
+ */
 function List({
   isEmpty,
   isLoading = false,

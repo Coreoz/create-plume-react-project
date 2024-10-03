@@ -16,7 +16,7 @@ import {
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
-} from '@lib/plume-admin-theme/layout/LayoutProps';
+} from '@lib/plume-admin-theme/panel/PanelProps';
 import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
 import { ConfirmationPopInProps, PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
@@ -40,7 +40,7 @@ import {
   PanelContentElementColumn,
   PanelSeparator,
   PanelTitle,
-} from './layout/Panel';
+} from './panel/Panel';
 import Popin from './popin/Popin';
 import SortSelect from './sort/SortSelect';
 

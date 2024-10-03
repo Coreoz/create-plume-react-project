@@ -109,7 +109,7 @@ module.exports = {
     'linebreak-style': 'off',
     // Add all your custom hooks which have dependencies in the additional hooks
     // If you have several hooks, here is the syntax 'additionalHooks': '(hook1|hook2)'
-    'react-hooks/exhaustive-deps': 'off',
+    'react-hooks/exhaustive-deps': ['warn', { 'additionalHooks': 'useOnDependenciesChange|useEffectWithSsrSupport|useObservableLoader' }],
     'no-restricted-imports': [
       'error',
       {

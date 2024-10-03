@@ -62,6 +62,7 @@ function useInMemoryPaginatedSearch<TData, TFilter, TSort extends string>(
   useEffect(() => {
     setElements([]);
     displayPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options?.filter?.values, data, options?.sort?.value]);
 
   return {

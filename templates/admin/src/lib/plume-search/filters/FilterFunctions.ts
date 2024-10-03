@@ -15,14 +15,14 @@ const includesStringInsensitive: FilterFunction<unknown, string> = (
 ) => {
   const search: string = filterValue.toString().toLowerCase();
   return Boolean(
-    rowValue?.toString()?.toLowerCase()?.includes(search),
+    rowValue?.toString().toLowerCase().includes(search),
   );
 };
 
 const includesStringSensitive: FilterFunction<unknown, string> = (
   rowValue: unknown,
   filterValue: string,
-) => Boolean(rowValue?.toString()?.includes(filterValue));
+) => Boolean(rowValue?.toString().includes(filterValue));
 
 const equalsString: FilterFunction<unknown, string> = (
   rowValue: unknown,

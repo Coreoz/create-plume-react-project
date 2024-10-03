@@ -60,6 +60,7 @@ function useApiPaginatedSearch<TData, TFilter, TSort extends string>(
   useEffect(() => {
     setElements([]);
     loadPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options?.filterValues ?? {}, options?.sort ?? {}]);
 
   return {
