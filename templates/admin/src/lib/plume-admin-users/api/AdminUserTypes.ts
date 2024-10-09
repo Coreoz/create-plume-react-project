@@ -1,5 +1,3 @@
-import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
-
 export type AdminUserDetails = {
   id: string,
   idRole: string,
@@ -30,6 +28,12 @@ export type AdminUserParameters = {
   password?: string,
   passwordConfirmation?: string,
 };
+
+export enum CreationDateOption {
+  LESS_THAN_15_DAYS = 'less_than_15_days',
+  BETWEEN_15_45_DAYS = 'between_15_45_days',
+  MORE_THAN_45_DAYS = 'more_than_45_days',
+}
 
 export type UserSearch = {
   text: string,

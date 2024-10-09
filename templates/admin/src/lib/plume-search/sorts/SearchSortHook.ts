@@ -40,8 +40,8 @@ function useSearchSort<S extends string>({
 
   return {
     sortOptions,
-    currentSort: currentSortOption,
-    updateSort: (sortOption: SortOption<S>) => setCurrentSortOption(sortOption),
+    sort: currentSortOption,
+    onSort: (sortOption: SortOption<S>) => setCurrentSortOption(sortOption),
   };
 }
 

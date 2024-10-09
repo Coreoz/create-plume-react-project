@@ -29,7 +29,7 @@ const equalsString: FilterFunction<unknown, string> = (
   filterValue: string,
 ) => (rowValue?.toString().toLowerCase() === filterValue.toLowerCase());
 
-const arrIncludes: FilterFunction<unknown, unknown[]> = (
+const arrayIncludes: FilterFunction<unknown, unknown[]> = (
   rowValue: unknown,
   filterValue: unknown[],
 ) => filterValue.includes(rowValue);
@@ -64,7 +64,7 @@ const filterFunctions: {
   includesStringInsensitive: FilterFunction<unknown, string>,
   includesStringSensitive: FilterFunction<unknown, string>,
   equalsString: FilterFunction<unknown, string>,
-  arrIncludes: FilterFunction<unknown, unknown[]>,
+  arrayIncludes: FilterFunction<unknown, unknown[]>,
   nonEmptyArrayIncludes: FilterFunction<unknown, unknown[]>,
   arrayIncludesAll: FilterFunction<unknown[], unknown[]>,
   arrayIncludesSome: FilterFunction<unknown[], unknown[]>,
@@ -74,7 +74,7 @@ const filterFunctions: {
   includesStringInsensitive,
   includesStringSensitive,
   equalsString,
-  arrIncludes,
+  arrayIncludes,
   nonEmptyArrayIncludes,
   arrayIncludesAll,
   arrayIncludesSome,

@@ -10,7 +10,7 @@ type SearchLoadedDataHookOptions<TData, TFilter, TSort extends string> = {
   },
   sort: {
     value: SortOption<TSort>,
-    sortElement: (value: TData, compared: TData, sortOption: SortOption<TSort>) => number,
+    sortElement: Record<TSort, (value: TData, compared: TData, isDesc: boolean) => number>,
   },
   defaultPageSize: number,
 };
@@ -43,8 +43,9 @@ function useInMemoryPaginatedSearch<TData, TFilter, TSort extends string>(
     pagination.setPage(page);
     const filteredElements: TData[] = data
       .filter((value: TData) => options?.filter?.isElementDisplayed(value, options?.filter?.values) ?? true)
-      .sort((value: TData, compared: TData) => (
-        options?.sort ? (options?.sort?.sortElement(value, compared, options?.sort?.value) ?? 0) : 0),
+      .sort((value: TData, compared: TData) => (options?.sort
+        ? (options.sort.sortElement[options.sort.value.id](value, compared, options.sort.value.desc) ?? 0)
+        : 0),
       );
 
     setTotalElements(filteredElements.length);

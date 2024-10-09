@@ -1,4 +1,4 @@
-import { CreationDateOption } from '@lib/plume-admin-users/pages/UsersList';
+import { CreationDateOption } from '@lib/plume-admin-users/api/AdminUserTypes';
 
 export interface ErrorFunction {
   (...args: string[]): string,

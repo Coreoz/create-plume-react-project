@@ -33,14 +33,14 @@ const IconComponent = ({ className }: { className: string }) => <Icon className=
  * It creates a single key by sort possibility, combining the key and if it is desc or not with {@link makeKey} function
  *
  * @param messageKey message key of the menu that is under "sorts" entry in {@link Translations}
- * @param sortPossibilities the sort possibilities {@link SortOption}
+ * @param sortOptions the sort possibilities {@link SortOption}
  * @param onSort callback when selecting a sort
  * @param sort the current sort selected
  */
 function SortSelect<S extends string>(
   {
     messageKey,
-    sortPossibilities,
+    sortOptions,
     onSort,
     sort,
   }: Readonly<SortSelectProps<S>>,
@@ -49,7 +49,7 @@ function SortSelect<S extends string>(
 
   const handleSortingBar = (event: SelectChangeEvent<string>) => {
     const sortOption: SortOption<S> = unmakeKey(event.target.value.toString());
-    const sortChoice: SortOption<S> | undefined = sortPossibilities.find((element: SortOption<S>) => (
+    const sortChoice: SortOption<S> | undefined = sortOptions.find((element: SortOption<S>) => (
       element.id.localeCompare(sortOption.id) === 0
       && element.desc === sortOption.desc
     ));
@@ -60,10 +60,10 @@ function SortSelect<S extends string>(
   };
 
   const sortedList: SortOption<S>[] = useMemo(
-    () => [...sortPossibilities].sort((sortElement: SortOption<S>) => (
+    () => [...sortOptions].sort((sortElement: SortOption<S>) => (
       sort.id === sortElement.id && sort.desc === sortElement.desc ? -1 : 0
     )),
-    [sortPossibilities, sort],
+    [sortOptions, sort],
   );
 
   return (
