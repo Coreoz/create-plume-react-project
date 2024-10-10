@@ -1,5 +1,5 @@
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import {
   FieldValues,
   FormContainer as MuiFormContainer,
@@ -10,7 +10,7 @@ import './forms.module.scss';
 function FormContainer<TFieldValues extends FieldValues = FieldValues>(
   {
     handleSubmit, children, FormProps, formContext, onSuccess, onError,
-  }: PropsWithChildren<FormContainerProps<TFieldValues>>,
+  }: Readonly<FormContainerProps<TFieldValues>>,
 ) {
   return (
     <MuiFormContainer<TFieldValues>

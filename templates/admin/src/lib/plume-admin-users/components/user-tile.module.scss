@@ -1,0 +1,52 @@
+.user-tile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .user-initials {
+    $user-initials-height: 35px;
+    width: $user-initials-height;
+    height: $user-initials-height;
+    border-radius: $border-radius-circle;
+    color: $secondary-color;
+    text-align: center;
+    line-height: $user-initials-height;
+    background: $gray-lighter;
+  }
+
+  .user-data {
+    $user-data-font-size: $font-size-normal;
+    min-width: 40%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: $user-data-font-size;
+
+    .data {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 $spacer-2;
+      margin-left: $spacer-3;
+
+      .label {
+        color: black;
+        text-transform: uppercase;
+      }
+
+      .value {
+        color: $gray;
+        text-align: right;
+
+        &--little {
+          font-size: $font-size-little;
+        }
+      }
+    }
+  }
+}

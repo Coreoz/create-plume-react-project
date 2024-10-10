@@ -1,4 +1,4 @@
-import { Grid, Icon, IconButton } from '@mui/material';
+import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from '@lib/class-names/ClassNames';
@@ -8,13 +8,13 @@ import {
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
-} from '@lib/plume-admin-theme/layout/LayoutProps';
+} from '@lib/plume-admin-theme/panel/PanelProps';
 
 import scss from './panel.module.scss';
 
-export function Panel({ children }: PanelProps) {
+export function Panel({ className, children }: Readonly<PanelProps>) {
   return (
-    <div className={scss.panel}>
+    <div className={classNames(scss.panel, className)}>
       {children}
     </div>
   );
@@ -29,7 +29,7 @@ export function PanelTitle(
     children,
     level = 'h1',
     backLink,
-  }: PanelTitleProps,
+  }: Readonly<PanelTitleProps>,
 ) {
   const Level: HeadingLevel = level;
   return (
@@ -49,9 +49,9 @@ export function PanelTitle(
   );
 }
 
-export function PanelContent({ children }: PanelProps) {
+export function PanelContent({ children, className }: Readonly<PanelProps>) {
   return (
-    <div className={scss.panelContent}>
+    <div className={classNames(scss.panelContent, className)}>
       {children}
     </div>
   );
@@ -67,7 +67,7 @@ export function PanelContentElement({
   children,
   columns,
   className,
-}: PanelContentElementProps) {
+}: Readonly<PanelContentElementProps>) {
   return (
     <Grid
       className={classNames(scss.columnsContainer, className)}
@@ -89,11 +89,10 @@ export function PanelContentElementColumn({
   width,
   children,
   className,
-}: PanelContentElementColumnProps) {
+}: Readonly<PanelContentElementColumnProps>) {
   return (
     <Grid
-      item
-      xs={width}
+      size={width}
       className={classNames(scss.column, className)}
     >
       {children}
