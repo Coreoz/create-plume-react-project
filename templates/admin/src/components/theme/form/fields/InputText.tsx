@@ -17,7 +17,7 @@ export default function InputText(
     rows,
     errorMessageMapping,
     InputProps,
-  }: InputTextProps,
+  }: Readonly<InputTextProps>,
 ) {
   const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
   return (
@@ -29,11 +29,13 @@ export default function InputText(
       variant="filled"
       id={name}
       autoComplete={autoComplete}
-      validation={rules}
+      rules={rules}
       disabled={disabled ?? false}
       multiline={multiline}
       rows={rows}
-      InputProps={InputProps}
+      slotProps={{
+        input: InputProps,
+      }}
       parseError={parseError}
     />
   );

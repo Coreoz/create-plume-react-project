@@ -1,0 +1,72 @@
+@use '../../../../assets/scss/mixins' as *;
+
+.filter-menu-container {
+  $filter-height: 50px;
+  $header-height: $button-height;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $spacer-2;
+    height: $header-height;
+
+    h2 {
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      color: $primary-color;
+    }
+  }
+
+  .filters {
+    margin-top: $spacer-3;
+    overflow-y: auto;
+    height: calc(100% - $header-height);
+    width: 100%;
+
+    @include smooth-scrollbar();
+
+    .filter {
+      display: flex;
+      flex-direction: column;
+
+      + .filter {
+        margin-top: $spacer-5;
+      }
+
+      .filter-title {
+        display: flex;
+        align-items: center;
+        gap: $spacer-2;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-normal;
+        margin-bottom: $spacer-2;
+        color: $gray-dark;
+      }
+
+      .input-filter {
+        padding-left: $spacer-3;
+
+        span > svg {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  .filter-reset-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    button {
+      color: $secondary-color;
+    }
+  }
+}

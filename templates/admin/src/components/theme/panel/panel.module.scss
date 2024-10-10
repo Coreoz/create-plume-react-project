@@ -7,8 +7,10 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   position: relative;
+  padding: $spacer-6 0;
+  gap: $spacer-5;
   overflow: hidden;
-  padding: $spacer-6 $side-padding;
+  height: 100%;
 
   .panel-title {
     grid-area: title;
@@ -17,6 +19,7 @@
     gap: $spacer-4;
     color: $secondary-color;
     font-family: $base-font-family;
+    padding-left: $side-padding;
 
     h1 {
       font-weight: 300;
@@ -33,16 +36,17 @@
 
   .panel-content {
     grid-area: content;
-    padding: $spacer-6 0;
+    padding: 0 $side-padding;
     overflow: hidden;
+    height: 100%;
 
     .columns-container {
-      margin-bottom: $side-padding;
-      overflow: hidden;
-      height: 100%;
+      margin-bottom: $spacer-4;
+      max-height: 100%;
 
       .column {
-        height: 100%;
+        padding: $spacer-1 0;
+        max-height: 100%;
       }
 
       &:last-child {

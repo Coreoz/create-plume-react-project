@@ -19,14 +19,17 @@ const enMessages: Translations = {
     add: 'Add',
     authenticate: 'Log in',
     disconnect: 'Log out',
+    display_more: 'Display more',
     keep_editing: 'Keep editing',
     close_without_saving: 'Close without saving',
   },
   // common labels
   label: {
+    more_options: 'More options',
     confirm_delete: 'Confirm deletion',
     creation_date: 'Creation date',
     loading: 'Loading...',
+    empty: 'No element',
   },
   // common messages
   message: {
@@ -64,8 +67,36 @@ const enMessages: Translations = {
     title_list: 'Users list',
     title_create: 'User creation',
     title_edit: 'User modification',
+    created: (date: string) => `Created on ${date}`,
+    found: (count: number) => `${count} user${count > 1 ? 's' : ''} found`,
+    add_user: 'Add user',
     password_confirm: 'Password confirmation',
     error_passwords_different: 'Password do not match its confirmation',
+  },
+  // filters
+  filters: {
+    title: 'Filters',
+    reset: 'Reset filters',
+    user_creation_date: {
+      title: 'Creation date',
+      options: {
+        less_than_15_days: 'Less than 15 days',
+        between_15_45_days: 'Between 15 and 45 days',
+        more_than_45_days: 'More than 45 days',
+      },
+    },
+    user_role: {
+      title: 'Role',
+    },
+  },
+  // sorts
+  sorts: {
+    user: {
+      user_name_asc: 'Sort username (A to Z)',
+      user_name_desc: 'Sort username (Z to A)',
+      creation_date_asc: 'Sort creation date (oldest first)',
+      creation_date_desc: 'Sort creation date (most recent first)',
+    },
   },
   // errors
   error: {
