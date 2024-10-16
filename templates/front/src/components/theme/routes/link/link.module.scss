@@ -1,0 +1,11 @@
+.router-link {
+  text-decoration: none;
+
+  &--active {
+    font-weight: bold;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}
