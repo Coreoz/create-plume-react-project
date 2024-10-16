@@ -4,6 +4,7 @@ import 'micro-observables/batchingForReactDom';
 import { Logger } from 'simple-logging-system';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import './polyfill-loader';
+import { RouteProvider } from './router/Router';
 import installServicesModule from './services/services-module';
 import installComponentsModule from './components/components-module';
 import App from './components/App';
@@ -30,7 +31,9 @@ initializeLocalizedDate(injector.getInstance(LocaleService));
 
 const reactApp: JSX.Element = (
   <React.StrictMode>
-    <App />
+    <RouteProvider>
+      <App />
+    </RouteProvider>
   </React.StrictMode>
 );
 const rootElement: HTMLElement | null = document.getElementById('root');
