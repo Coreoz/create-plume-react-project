@@ -49,6 +49,10 @@ export type LoaderState = {
    */
   isLoaded: boolean,
   /**
+   * If the `Promise` is still running and waiting for result for the first time
+   */
+  isFirstLoading: boolean,
+  /**
    * The main function provided by the hook {@link useLoader} to monitor the loading of a {@link LoadingPromise}.
    * @param httpPromise The `Promise` that needs to be monitored: is it loading? Has it raised any error?
    */
@@ -62,6 +66,7 @@ export type LoaderState = {
  */
 export default function useLoader(): LoaderState {
   const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const isFirstLoading: MutableRefObject<boolean> = useRef<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
@@ -71,7 +76,9 @@ export default function useLoader(): LoaderState {
 
   return {
     isLoading: isLoading ?? false,
-    isLoaded: !isLoading && loadingError === undefined,
+    // do not simplify, if undefined then it is NOT loaded
+    isLoaded: isLoading === false && loadingError === undefined,
+    isFirstLoading: isFirstLoading.current,
     error: loadingError,
     monitor: (httpPromise: LoadingPromise<unknown>) => {
       setIsLoading(true);
@@ -80,6 +87,7 @@ export default function useLoader(): LoaderState {
         .then(() => {
           // don't update state if the component is unmounted to avoid errors
           if (isMountedRef.current) {
+            isFirstLoading.current = false;
             setIsLoading(false);
           }
         })
