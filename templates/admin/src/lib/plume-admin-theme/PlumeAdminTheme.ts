@@ -1,23 +1,24 @@
+import { DrawerProps } from '@lib/plume-admin-theme/drawer/DrawerProps';
+import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
-  FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
+  FilterContainerProps,
+  FilterGroupProps,
+  FilterInputSearchProps,
+  FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
-import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
+import { FormFieldProps } from './form/FormFieldProps';
+import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
 } from './panel/PanelProps';
-import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
-import {
-  ConfirmationPopInProps,
-  PopinProps,
-} from './popin/PopinProps';
-import { FormFieldProps } from './form/FormFieldProps';
-import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
+import { ConfirmationPopInProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
@@ -53,6 +54,10 @@ export default abstract class PlumeAdminTheme {
   abstract popin: (props: PopinProps) => JSX.Element;
 
   abstract confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element;
+
+  // drawer
+
+  abstract drawer: (props: DrawerProps) => JSX.Element;
 
   // form
 

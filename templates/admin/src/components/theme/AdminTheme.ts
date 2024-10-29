@@ -1,3 +1,4 @@
+import Drawer from '@components/theme/drawer/Drawer';
 import Filter from '@components/theme/filter/Filter';
 import FilterGroup from '@components/theme/filter/FilterGroup';
 import FilterMenu from '@components/theme/filter/FilterMenu';
@@ -8,6 +9,7 @@ import ListHead from '@components/theme/list/ListHead';
 import ListItem from '@components/theme/list/ListItem';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from '@lib/plume-admin-theme/action/ActionProps';
+import { DrawerProps } from '@lib/plume-admin-theme/drawer/DrawerProps';
 import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
 import { InputPasswordProps, InputSelectProps, InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
@@ -80,6 +82,10 @@ export default class AdminTheme implements PlumeAdminTheme {
   popin: (props: PopinProps) => JSX.Element = Popin;
 
   confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element = ConfirmationPopIn;
+
+  // drawer
+
+  drawer: (props: DrawerProps) => JSX.Element = Drawer;
 
   // form
   formContainer: <TFieldValues extends FieldValues = FieldValues>(

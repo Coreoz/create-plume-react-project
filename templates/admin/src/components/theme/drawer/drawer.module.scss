@@ -1,0 +1,55 @@
+.drawer-container {
+  $header-height: 80px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .drawer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .drawer-header {
+      height: $header-height;
+      display: flex;
+      padding: $spacer-4 + $spacer-2;
+      position: relative;
+      justify-content: center;
+      background: rgba($secondary-color, 10%);
+      box-sizing: border-box;
+
+      .drawer-button-container {
+        position: absolute;
+        top: 50%;
+        left: $spacer-5;
+        transform: translateY(-50%);
+
+        span {
+          margin-right: $spacer-3;
+        }
+      }
+
+      .drawer-title-container {
+        position: absolute;
+        height: 100%;
+        top: 50%;
+        left: 40%;
+        display: flex;
+        align-items: center;
+        transform: translateY(-50%);
+
+        h1 {
+          color: $secondary-color;
+          font-size: $font-size-large;
+          text-align: center;
+        }
+      }
+    }
+
+    .drawer-content {
+      height: 100%;
+      overflow: auto;
+      padding: $spacer-6 $spacer-8;
+    }
+  }
+}

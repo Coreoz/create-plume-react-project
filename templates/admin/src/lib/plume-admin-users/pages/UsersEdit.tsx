@@ -1,25 +1,14 @@
 import usePlumeTheme from '@components/hooks/ThemeHook';
-import {
-  checkEmptyTrimmed,
-} from '@components/theme/form/validators/Validators';
+import useStandaloneDrawer from '@components/theme/drawer/hooks/StandaloneDrawerHook';
+import { checkEmptyTrimmed } from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
-import {
-  makeErrorMessageMapping,
-} from '@lib/plume-form-error-messages/FormErrorMessages';
-import useLoader, {
-  LoaderState,
-} from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
-import useNotification, {
-  PlumeNotification,
-} from '@lib/plume-notification/NotificationHook';
-import useConfirmationPopIn, {
-  ConfirmationPopInType,
-} from '@lib/react-hook-confirm/ReactHookConfirm';
-import {
-  useOnDependenciesChange,
-} from '@lib/react-hooks-alias/ReactHooksAlias';
+import { makeErrorMessageMapping } from '@lib/plume-form-error-messages/FormErrorMessages';
+import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useNotification, { PlumeNotification } from '@lib/plume-notification/NotificationHook';
+import useConfirmationPopIn, { ConfirmationPopInType } from '@lib/react-hook-confirm/ReactHookConfirm';
+import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
 import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import React, { useMemo } from 'react';
@@ -29,9 +18,7 @@ import { HttpError } from 'simple-http-rest-client';
 import isEmail from 'validator/lib/isEmail';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
-import {
-  AdminUsersWithIndexedRolesType,
-} from './AdminUsersWithIndexedRolesType';
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type UsersRouteParams = {
   userId: string,
@@ -60,7 +47,7 @@ export default function UsersEdit({
   const {
     actionsContainer: ActionContainer,
     actionButton: ActionButton,
-    popin: Popin,
+    drawer: Drawer,
     confirmationPopIn: ConfirmationPopIn,
     panelSeparator: PanelSeparator,
     formContainer: FormContainer,
@@ -77,6 +64,8 @@ export default function UsersEdit({
   }: PlumeNotification = useNotification();
 
   const navigate: NavigateFunction = useNavigate();
+
+  const { isDrawerOpen, onCloseDrawer } = useStandaloneDrawer({ onCloseDrawer: () => navigate(`/${usersPath}`) });
 
   const isCreation: boolean = userId === undefined;
 
@@ -155,7 +144,7 @@ export default function UsersEdit({
         .then(() => {
           updateUsersAndRoles();
           notifySuccess(messages.message.changes_saved);
-          navigate(`/${usersPath}`);
+          onCloseDrawer();
         })
         .catch((httpError: HttpError) => notifyHttpError(httpError)));
   };
@@ -173,13 +162,11 @@ export default function UsersEdit({
 
   // cancel modification handling
 
-  const cancelEdit = () => navigate(`/${usersPath}`);
-
   const { dirtyFields } = formState;
   // usage of dirtyFields instead of isDirty: https://github.com/react-hook-form/react-hook-form/issues/3562
   const onClosePopIn = () => {
     if (Object.keys(dirtyFields).length === 0) {
-      cancelEdit();
+      onCloseDrawer();
       return;
     }
     showConfirmationPopIn({
@@ -187,7 +174,7 @@ export default function UsersEdit({
       message: messages.message.unsaved_data,
       onConfirm: {
         title: messages.action.close,
-        action: () => cancelEdit(),
+        action: () => onCloseDrawer(),
       },
       onCancel: {
         title: messages.action.keep_editing,
@@ -196,10 +183,10 @@ export default function UsersEdit({
   };
 
   return (
-    <Popin
+    <Drawer
       title={isCreation ? messages.user.title_create : messages.user.title_edit}
-      isOpen
-      onClose={onClosePopIn}
+      onClose={onCloseDrawer}
+      isOpen={isDrawerOpen}
     >
       <ConfirmationPopIn {...popInProps} />
       <FormContainer formContext={formContext} onSuccess={trySaveUser}>
@@ -300,6 +287,6 @@ export default function UsersEdit({
           </ActionButton>
         </ActionContainer>
       </FormContainer>
-    </Popin>
+    </Drawer>
   );
 }
