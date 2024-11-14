@@ -1,0 +1,5 @@
+build/*
+public/*
+.eslintrc.cjs
+stylelint.config.cjs
+jest.config.ts

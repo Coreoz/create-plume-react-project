@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "outDir": "ts-built",
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "rootDirs": [".", "./scss-types"],
+    "types": ["vite/client", "node"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "plugins": [
+      {
+        "transform": "ts-transformer-classname",
+        "import": "diTransformerAdapter"
+      },
+      {
+        "transform": "ts-transformer-classname",
+        "import": "classNameTransformer"
+      }
+    ],
+    "paths": {
+      "@api/*": ["./src/api/*"],
+      "@components/*": ["./src/components/*"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@services/*": ["./src/services/*"],
+    }
+  },
+  "include": [
+    "src",
+    "asset.d.ts"
+  ],
+}

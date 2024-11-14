@@ -1,0 +1,43 @@
+@use 'variables/index' as *;
+
+html {
+  height: 100%;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $separator-color;
+  margin: $box-padding 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: $box-padding 0 0 0;
+}
+
+#root {
+  background-color: $background-color;
+  height: 100%;
+  overflow: hidden;
+}
