@@ -7,7 +7,6 @@ import {
   FilterGroupProps,
   RadioFilterProps,
 } from '@lib/plume-search/filters/FilterTypes';
-import React from 'react';
 
 import scss from './filter-menu.module.scss';
 

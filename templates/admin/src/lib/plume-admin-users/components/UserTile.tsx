@@ -1,7 +1,6 @@
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import { AdminUserDetails } from '@lib/plume-admin-users/api/AdminUserTypes';
 import dayjs from 'dayjs';
-import React from 'react';
 
 import scss from './user-tile.module.scss';
 

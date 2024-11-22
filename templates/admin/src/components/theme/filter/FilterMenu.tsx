@@ -1,4 +1,3 @@
-import React from 'react';
 import { FilterMenuProps } from '@lib/plume-search/filters/FilterTypes';
 import { Icon, IconButton, Tooltip } from '@mui/material';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';

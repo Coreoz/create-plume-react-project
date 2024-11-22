@@ -1,6 +1,5 @@
 import Header from '@components/layout/header/Header';
 import Navigation from '@components/navigation/Navigation';
-import GlobalErrorBoundary from '@components/theme/GlobalErrorBoundary';
 import { ReactNode } from 'react';
 import { ScrollRestoration } from 'react-router-dom';
 import scss from './layout.module.scss';

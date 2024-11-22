@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import scss from './filter-input-search.module.scss';
 
