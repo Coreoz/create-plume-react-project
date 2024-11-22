@@ -2,7 +2,6 @@ import { ActionButton } from '@components/theme/action/Actions';
 import installI18nModule from '@i18n/i18n-module';
 import { render, screen } from '@testing-library/react';
 import { configureGlobalInjector } from 'plume-ts-di';
-import React from 'react';
 import '@testing-library/jest-dom';
 import { createInjector } from '../../TestUtils';
 

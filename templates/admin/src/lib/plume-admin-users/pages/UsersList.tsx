@@ -25,7 +25,6 @@ import useInMemoryPaginatedSearch from '@lib/plume-search/InMemoryPaginatedSearc
 import { PaginatedSearch } from '@lib/plume-search/SearchTypes';
 import useSearchSort from '@lib/plume-search/sorts/SearchSortHook';
 import { SearchSortType } from '@lib/plume-search/sorts/SortTypes';
-import React from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 

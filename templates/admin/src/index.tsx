@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CssBaseline } from '@mui/material';
@@ -42,9 +42,9 @@ initializeLocalizedDate(injector.getInstance(LocaleService));
 injector.getInstance(NotificationRenderer).initialize();
 
 const reactApp: JSX.Element = (
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
 const rootElement: HTMLElement | null = document.getElementById('root');
 if (!rootElement) {

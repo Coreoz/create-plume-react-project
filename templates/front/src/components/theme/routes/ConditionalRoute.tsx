@@ -1,11 +1,11 @@
+import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import React from 'react';
 import { Observable, useObservable } from 'micro-observables';
 
 type Props = {
   shouldDisplayRoute: Observable<unknown>,
   defaultRoute: string,
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
 export default function ConditionalRoute({

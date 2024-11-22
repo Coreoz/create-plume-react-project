@@ -1,5 +1,4 @@
 import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from '@lib/class-names/ClassNames';
 import {

@@ -1,7 +1,6 @@
 import useMessages from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
 import { ListHeadProps } from '@lib/plume-admin-theme/list/ListProps';
-import React from 'react';
 
 import scss from './list-head.module.scss';
 

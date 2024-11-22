@@ -3,7 +3,7 @@ import UserRouter from '@lib/plume-admin-users/router/UserRouter';
 import useLoader from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useNotification from '@lib/plume-notification/NotificationHook';
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
 import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';

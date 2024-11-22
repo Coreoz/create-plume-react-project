@@ -102,11 +102,11 @@ export default defineConfig({
 To separate access to the two front-end applications, the basic admin router must specify the path on which the application can be accessed: `/admin`
 
 ```
-<React.StrictMode>
+<StrictMode>
   <Router basename="/admin">
     <app.render />
   </Router>
-</React.StrictMode>
+</StrictMode>
 ```
 
 Add a mixin import to all SCSS modules

@@ -6,8 +6,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import React from 'react';
 import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
+import { ReactNode } from 'react';
 import { IconType } from '../theme/IconType';
 
 import scss from './navigation.module.scss';
@@ -17,7 +17,7 @@ type NestedItemProps = {
   opened?: boolean,
   label: string,
   drawerOpen: boolean,
-  children?: React.ReactNode,
+  children?: ReactNode,
 };
 
 function NestedListItem(

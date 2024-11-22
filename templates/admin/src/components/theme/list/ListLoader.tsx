@@ -1,6 +1,5 @@
 import classNames from '@lib/class-names/ClassNames';
 import { Skeleton } from '@mui/material';
-import React from 'react';
 
 import scss from './list.module.scss';
 

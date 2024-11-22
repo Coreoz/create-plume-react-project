@@ -1,6 +1,5 @@
 import useFormErrorParser
   from '@components/theme/form/hooks/FormErrorParserHook';
-import React from 'react';
 import { SelectElement } from 'react-hook-form-mui';
 import {
   InputSelectProps,
