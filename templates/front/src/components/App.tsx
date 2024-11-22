@@ -1,27 +1,22 @@
-import React, { useMemo } from 'react';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { Logger } from 'simple-logging-system';
 import Layout from '@components/layout/Layout';
-import ErrorPage from '@components/pages/error/ErrorPage';
+import NotFoundPage from '@components/pages/error/NotFoundPage';
+import HelloWorld from '@components/pages/home/HelloWorld';
 import Home from '@components/pages/home/Home';
+import Route from '@components/theme/routes/route/Route';
+import React from 'react';
+import { Logger } from 'simple-logging-system';
+import { ROUTE_HOME, ROUTE_HELLO } from '../router/Router';
 
 const logger: Logger = new Logger('App');
 
 export default function App() {
-  const router: ReturnType<typeof createBrowserRouter> = useMemo(() => createBrowserRouter([
-    {
-      path: '/',
-      element: <Layout><Outlet /></Layout>,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-      ],
-    },
-  ]), []);
-
   logger.info('Render App');
-  return <RouterProvider router={router} />;
+
+  return (
+    <Layout>
+      <Route route={ROUTE_HOME} Component={Home} />
+      <Route route={ROUTE_HELLO} Component={HelloWorld} />
+      <NotFoundPage />
+    </Layout>
+  );
 }
