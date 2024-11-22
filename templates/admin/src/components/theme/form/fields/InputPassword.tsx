@@ -11,7 +11,7 @@ function InputPassword(
     autoComplete,
     errorMessageMapping,
     InputProps,
-  }: InputPasswordProps,
+  }: Readonly<InputPasswordProps>,
 ) {
   const [showPassword, toggleShowPassword] = useToggle(false);
   return (

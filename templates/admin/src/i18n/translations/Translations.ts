@@ -1,3 +1,5 @@
+import { CreationDateOption } from '@lib/plume-admin-users/api/AdminUserTypes';
+
 export interface ErrorFunction {
   (...args: string[]): string,
 }
@@ -17,14 +19,17 @@ export type Translations = {
     add: string,
     authenticate: string,
     disconnect: string,
+    display_more: string,
     keep_editing: string,
     close_without_saving: string,
   },
   // common labels
   label: {
+    more_options: string,
     confirm_delete: string,
     creation_date: string,
     loading: string,
+    empty: string,
   },
   // common messages
   message: {
@@ -61,8 +66,32 @@ export type Translations = {
     title_list: string,
     title_create: string,
     title_edit: string,
+    created: (date: string) => string,
+    found: (count: number) => string,
+    add_user: string,
     password_confirm: string,
     error_passwords_different: string,
+  },
+  // filters
+  filters: {
+    title: string,
+    reset: string,
+    user_creation_date: {
+      title: string,
+      options: Record<CreationDateOption, string>,
+    },
+    user_role: {
+      title: string,
+    },
+  },
+  // sorts
+  sorts: {
+    user: {
+      user_name_asc: string,
+      user_name_desc: string,
+      creation_date_asc: string,
+      creation_date_desc: string,
+    },
   },
   // errors
   error: {

@@ -47,7 +47,7 @@ export function ActionsContainer(
     className,
     position = 'center',
     orientation = 'row',
-  }: ActionContainerProps,
+  }: Readonly<ActionContainerProps>,
 ) {
   return (
     <div
@@ -75,7 +75,7 @@ export function ActionLink(
     rel,
     target,
     dataTestId,
-  }: ActionLinkProps,
+  }: Readonly<ActionLinkProps>,
 ) {
   return (
     <Button
@@ -106,7 +106,7 @@ export function ActionButton(
     children,
     disabled = false,
     dataTestId,
-  }: ActionButtonProps,
+  }: Readonly<ActionButtonProps>,
 ) {
   return (
     <Button

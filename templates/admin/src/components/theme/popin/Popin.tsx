@@ -5,7 +5,7 @@ import { Dialog } from '@mui/material';
 
 export default function Popin({
   children, isOpen, onClose, className, title,
-}: PopinProps) {
+}: Readonly<PopinProps>) {
   return (
     <Dialog
       className={classNames(scss.popinContainer, className)}

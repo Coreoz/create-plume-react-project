@@ -1,0 +1,47 @@
+@use '../../../../assets/scss/mixins' as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+
+  @include smooth-scrollbar();
+
+  &_empty {
+    width: 100%;
+
+    span {
+      font-size: $font-size-medium;
+    }
+  }
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacer-4 $spacer-5;
+    border: 1px solid $separator-color;
+    border-radius: $border-radius-5;
+    box-sizing: border-box;
+
+    &--clickable {
+      cursor: pointer;
+    }
+
+    &--loader {
+      min-height: 100px;
+    }
+
+    + .list-item {
+      margin-top: $spacer-3;
+    }
+
+    .actions {
+      max-width: 15%;
+      min-width: 5%;
+      justify-content: flex-end;
+      flex-grow: 1;
+    }
+  }
+}

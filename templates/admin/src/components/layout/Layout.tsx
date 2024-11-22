@@ -11,7 +11,7 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <GlobalErrorBoundary>
+    <>
       <div id={scss.mainLayout}>
         <Navigation />
         <div id={scss.contentLayout}>
@@ -22,6 +22,6 @@ export default function Layout({ children }: Props) {
         </div>
       </div>
       <ScrollRestoration />
-    </GlobalErrorBoundary>
+    </>
   );
 }
