@@ -1,5 +1,4 @@
-import { USERS } from '@components/Routes';
-import UserRouter from '@lib/plume-admin-users/router/UserRouter';
+import UsersRouterComponent from '@lib/plume-admin-users/router/UsersRouterComponent';
 import useLoader from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useNotification from '@lib/plume-notification/NotificationHook';
 import { getGlobalInstance } from 'plume-ts-di';
@@ -11,8 +10,6 @@ import {
   AdminUsersWithIndexedRolesType,
 } from './AdminUsersWithIndexedRolesType';
 import UsersList from './UsersList';
-
-const usersPath: string = USERS;
 
 const setUsersAndIndexRoles = (usersWithRoles: AdminUsersDetails) => ({
   users: usersWithRoles.users,
@@ -55,8 +52,7 @@ export default function Users() {
         usersWithRoles={usersWithRoles}
         isLoading={isLoading}
       />
-      <UserRouter
-        usersPath={usersPath}
+      <UsersRouterComponent
         usersWithRoles={usersWithRoles}
         updateUsersAndRoles={updateUsersAndRoles}
       />

@@ -11,13 +11,13 @@ import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from '@lib/p
 import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
 import { InputPasswordProps, InputSelectProps, InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
 } from '@lib/plume-admin-theme/panel/PanelProps';
-import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
 import { ConfirmationPopInProps, PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
 import {
@@ -28,6 +28,7 @@ import {
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
+import { Link } from 'type-route';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import FormField from './form/fields/FormField';
 import InputSelect from './form/fields/InputSelect';
@@ -44,14 +45,14 @@ import {
 import Popin from './popin/Popin';
 import SortSelect from './sort/SortSelect';
 
-export default class AdminTheme implements PlumeAdminTheme {
+export default class AdminTheme <T extends { link: Link }> implements PlumeAdminTheme<T> {
   // actions
 
   actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
 
   actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
 
-  actionLink: (props: ActionLinkProps) => JSX.Element = ActionLink;
+  actionLink: (props: ActionLinkProps<T>) => JSX.Element = ActionLink;
 
   // layout
 
@@ -59,7 +60,7 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   panelSeparator: () => JSX.Element = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
+  panelTitle: (props: PanelTitleProps<T>) => JSX.Element = PanelTitle;
 
   panelContent: (props: PanelProps) => JSX.Element = PanelContent;
 
