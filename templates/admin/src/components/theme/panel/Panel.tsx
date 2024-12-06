@@ -1,5 +1,5 @@
 import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import classNames from '@lib/class-names/ClassNames';
 import {
   HeadingLevel,
@@ -10,6 +10,7 @@ import {
 } from '@lib/plume-admin-theme/panel/PanelProps';
 
 import scss from './panel.module.scss';
+import { routes } from '../../../router/Router';
 
 export function Panel({ className, children }: Readonly<PanelProps>) {
   return (
@@ -23,20 +24,25 @@ export function PanelSeparator() {
   return <hr />;
 }
 
-export function PanelTitle(
+export function PanelTitle<T extends keyof typeof routes>(
   {
     children,
     level = 'h1',
-    backLink,
-  }: Readonly<PanelTitleProps>,
+    backRoute,
+  }: Readonly<PanelTitleProps<T>>,
 ) {
   const Level: HeadingLevel = level;
   return (
     <div className={scss.panelTitle}>
       {
-        backLink
+        backRoute
         && (
-          <IconButton className={scss.link} component={Link} to={backLink!}>
+          <IconButton
+            className={scss.link}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            component={(props: any) => <a {...props}>test</a>}
+            to={backRoute().link}
+          >
             <Icon>arrow_back</Icon>
           </IconButton>
         )

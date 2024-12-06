@@ -5,6 +5,7 @@ import {
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import { routes } from '../../router/Router'; // TODO Conflict dependency with base module
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
@@ -26,7 +27,7 @@ export default abstract class PlumeAdminTheme {
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract panelTitle: (props: PanelTitleProps) => JSX.Element;
+  abstract panelTitle: <T extends keyof typeof routes> (props: PanelTitleProps<T>) => JSX.Element;
 
   abstract panelContent: (props: PanelProps) => JSX.Element;
 
@@ -45,7 +46,7 @@ export default abstract class PlumeAdminTheme {
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
 
-  abstract actionLink: (props: ActionLinkProps) => JSX.Element;
+  abstract actionLink: <T extends keyof typeof routes> (props: ActionLinkProps<T>) => JSX.Element;
 
   abstract actionButton: (props: ActionButtonProps) => JSX.Element;
 
