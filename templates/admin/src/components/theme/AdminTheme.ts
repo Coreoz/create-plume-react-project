@@ -28,6 +28,7 @@ import {
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
+import { routes } from '../../router/Router';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import FormField from './form/fields/FormField';
 import InputSelect from './form/fields/InputSelect';
@@ -51,7 +52,7 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
 
-  actionLink: (props: ActionLinkProps) => JSX.Element = ActionLink;
+  actionLink: <T extends keyof typeof routes> (props: ActionLinkProps<T>) => JSX.Element = ActionLink;
 
   // layout
 
@@ -59,7 +60,7 @@ export default class AdminTheme implements PlumeAdminTheme {
 
   panelSeparator: () => JSX.Element = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
+  panelTitle: <T extends keyof typeof routes> (props: PanelTitleProps<T>) => JSX.Element = PanelTitle;
 
   panelContent: (props: PanelProps) => JSX.Element = PanelContent;
 
