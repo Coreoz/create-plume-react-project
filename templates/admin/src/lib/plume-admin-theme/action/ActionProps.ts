@@ -1,6 +1,7 @@
-import { DataTestProps } from '@lib/plume-admin-theme/tests/TestsProps';
-import { ReactNode, MouseEvent } from 'react';
 import { IconType } from '@components/theme/IconType';
+import { DataTestProps } from '@lib/plume-admin-theme/tests/TestsProps';
+import { MouseEvent, ReactNode } from 'react';
+import { DeclaredRoutePaths, routes } from '../../../router/Router'; // TODO Conflict dependency with base module
 import ActionStyle from './ActionStyle';
 
 type ActionsPosition = 'start' | 'center' | 'end';
@@ -24,8 +25,8 @@ type ActionProps = {
   children?: ReactNode,
 };
 
-export interface ActionLinkProps extends ActionProps, DataTestProps {
-  linkTo: string,
+export interface ActionLinkProps<T extends DeclaredRoutePaths> extends ActionProps, DataTestProps {
+  linkTo: () => ReturnType<typeof routes[T]>,
   rel?: string,
   target?: string,
 }

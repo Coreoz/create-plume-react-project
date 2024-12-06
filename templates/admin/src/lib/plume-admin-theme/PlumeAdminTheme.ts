@@ -1,23 +1,24 @@
+import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
-  FilterContainerProps, FilterGroupProps, FilterInputSearchProps, FilterMenuProps,
+  FilterContainerProps,
+  FilterGroupProps,
+  FilterInputSearchProps,
+  FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
-import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
+import { DeclaredRoutePaths } from '../../router/Router'; // TODO Conflict dependency with base module
+import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
+import { FormFieldProps } from './form/FormFieldProps';
+import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
 import {
   PanelContentElementColumnProps,
   PanelContentElementProps,
   PanelProps,
   PanelTitleProps,
 } from './panel/PanelProps';
-import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
-import {
-  ConfirmationPopInProps,
-  PopinProps,
-} from './popin/PopinProps';
-import { FormFieldProps } from './form/FormFieldProps';
-import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
+import { ConfirmationPopInProps, PopinProps } from './popin/PopinProps';
 
 export default abstract class PlumeAdminTheme {
   // layout
@@ -26,7 +27,7 @@ export default abstract class PlumeAdminTheme {
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract panelTitle: (props: PanelTitleProps) => JSX.Element;
+  abstract panelTitle: <T extends DeclaredRoutePaths> (props: PanelTitleProps<T>) => JSX.Element;
 
   abstract panelContent: (props: PanelProps) => JSX.Element;
 
@@ -45,7 +46,7 @@ export default abstract class PlumeAdminTheme {
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
 
-  abstract actionLink: (props: ActionLinkProps) => JSX.Element;
+  abstract actionLink: <T extends DeclaredRoutePaths> (props: ActionLinkProps<T>) => JSX.Element;
 
   abstract actionButton: (props: ActionButtonProps) => JSX.Element;
 
