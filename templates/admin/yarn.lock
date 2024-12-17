@@ -3800,20 +3800,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@remix-run/router@npm:1.0.2"
-  checksum: 10/df4f0d148432df386b3e369432e3bcfc0c1db83951229b9eceff0701754c9c60b6442ca399002cf9b630da82f65130d1f48112280b52ba52b8691af08cff73eb
-  languageName: node
-  linkType: hard
-
-"@remix-run/router@npm:1.19.1":
-  version: 1.19.1
-  resolution: "@remix-run/router@npm:1.19.1"
-  checksum: 10/2800c2f6567a982fe942aacc4cb5b170e7cc89bd455960e3bea2424161ff7dac32d01886322d88dd19b88d1bea711f39566d17f02b73eeb74999affb471f8f52
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-android-arm-eabi@npm:4.21.0":
   version: 4.21.0
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.21.0"
@@ -4683,20 +4669,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/history@npm:*":
-  version: 4.7.8
-  resolution: "@types/history@npm:4.7.8"
-  checksum: 10/9c867532afd80f72a7101a5bb3c10c1ad7cc8c2c14e92fdbc54d5fed0ef8cdb6060c0f261a39884e243424636c6ff85d8aaffb984e2edaac348d2f216f9eedeb
-  languageName: node
-  linkType: hard
-
-"@types/history@npm:^4.7.11":
-  version: 4.7.11
-  resolution: "@types/history@npm:4.7.11"
-  checksum: 10/1da529a3485f3015daf794effa3185493bf7dd2551c26932389c614f5a0aab76ab97645897d1eef9c74ead216a3848fcaa019f165bbd6e4b71da6eff164b4c68
-  languageName: node
-  linkType: hard
-
 "@types/http-errors@npm:*":
   version: 2.0.4
   resolution: "@types/http-errors@npm:2.0.4"
@@ -4873,37 +4845,6 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10/6ff53f5a7b7fba952a68e114d3b542ebdc1e87a794234785ebab0bcd9bde7fb4885f21ebaf93d26dc0a1b5b93287f42cad68b78ae04dddf6b20da7aceff0beaf
-  languageName: node
-  linkType: hard
-
-"@types/react-router-dom@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "@types/react-router-dom@npm:5.3.3"
-  dependencies:
-    "@types/history": "npm:^4.7.11"
-    "@types/react": "npm:*"
-    "@types/react-router": "npm:*"
-  checksum: 10/28c4ea48909803c414bf5a08502acbb8ba414669b4b43bb51297c05fe5addc4df0b8fd00e0a9d1e3535ec4073ef38aaafac2c4a2b95b787167d113bc059beff3
-  languageName: node
-  linkType: hard
-
-"@types/react-router@npm:*":
-  version: 5.1.12
-  resolution: "@types/react-router@npm:5.1.12"
-  dependencies:
-    "@types/history": "npm:*"
-    "@types/react": "npm:*"
-  checksum: 10/424fcbfedac26904268b4da29bfe9f13d8d0c18faeff7904b1335306fe77c547484162aebd45749f15fcd14e90e9cd8922a9223616115934f954c00797057ac4
-  languageName: node
-  linkType: hard
-
-"@types/react-router@npm:^5.1.20":
-  version: 5.1.20
-  resolution: "@types/react-router@npm:5.1.20"
-  dependencies:
-    "@types/history": "npm:^4.7.11"
-    "@types/react": "npm:*"
-  checksum: 10/72d78d2f4a4752ec40940066b73d7758a0824c4d0cbeb380ae24c8b1cdacc21a6fc835a99d6849b5b295517a3df5466fc28be038f1040bd870f8e39e5ded43a4
   languageName: node
   linkType: hard
 
@@ -6706,13 +6647,6 @@ __metadata:
   version: 1.0.1
   resolution: "commondir@npm:1.0.1"
   checksum: 10/4620bc4936a4ef12ce7dfcd272bb23a99f2ad68889a4e4ad766c9f8ad21af982511934d6f7050d4a8bde90011b1c15d56e61a1b4576d9913efbf697a20172d6c
-  languageName: node
-  linkType: hard
-
-"compare-versions@npm:^6.0.0":
-  version: 6.1.1
-  resolution: "compare-versions@npm:6.1.1"
-  checksum: 10/9325c0fadfba81afa0ec17e6fc2ef823ba785c693089698b8d9374e5460509f1916a88591644d4cb4045c9a58e47fafbcc0724fe8bf446d2a875a3d6eeddf165
   languageName: node
   linkType: hard
 
@@ -9638,7 +9572,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:5.3.0":
+"history@npm:5.3.0, history@npm:^5.3.0":
   version: 5.3.0
   resolution: "history@npm:5.3.0"
   dependencies:
@@ -13512,15 +13446,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-inspector@npm:6.0.2":
-  version: 6.0.2
-  resolution: "react-inspector@npm:6.0.2"
-  peerDependencies:
-    react: ^16.8.4 || ^17.0.0 || ^18.0.0
-  checksum: 10/5d23ad0f6f920458abd4c01af1b3cbdbe8846c254762fd6cfff4df119c54e08dd98ce8e91acacafb8173c19f07de2066df5b8e6cb19425751c1929a2620cbe77
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -13546,41 +13471,6 @@ __metadata:
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
   checksum: 10/d5f60c87d285af24b1e1e7eaeb123ec256c3c8bdea7061ab3932e3e14685708221bf234ec50b21e10dd07f008f1b966a2730a0ce4ff67905b3872ff2042aec22
-  languageName: node
-  linkType: hard
-
-"react-router-dom@npm:^6.22.3":
-  version: 6.26.1
-  resolution: "react-router-dom@npm:6.26.1"
-  dependencies:
-    "@remix-run/router": "npm:1.19.1"
-    react-router: "npm:6.26.1"
-  peerDependencies:
-    react: ">=16.8"
-    react-dom: ">=16.8"
-  checksum: 10/1bd255d1ff88f477699c72656e7c07702a907e644388a1bea1c648f2df0c3c86db2e90bea945b1d43eaf84ebab194f3868f3788502965ad5f20c508c6874f1fe
-  languageName: node
-  linkType: hard
-
-"react-router@npm:6.26.1":
-  version: 6.26.1
-  resolution: "react-router@npm:6.26.1"
-  dependencies:
-    "@remix-run/router": "npm:1.19.1"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: 10/b3761515c75da65a1678f005d08a6285ceccd9df7237ae6fdd9ab2ab816ef328435b75610f705ecd9ecd41c6878fd22eb9b44c5391cdef2e1ed99ddbc78de8a4
-  languageName: node
-  linkType: hard
-
-"react-router@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "react-router@npm:6.4.2"
-  dependencies:
-    "@remix-run/router": "npm:1.0.2"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: 10/385b2fbd9c0561e5a6c86860378b5329e315aacf8e0ae7d2d757fa0f8a93272db8f5a5af87dbaa2da68d80cf0c164edb7f366e97fbdad250af04a89e7e04d1e0
   languageName: node
   linkType: hard
 
@@ -14639,32 +14529,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook-addon-react-router-v6@npm:^2.0.7":
-  version: 2.0.15
-  resolution: "storybook-addon-react-router-v6@npm:2.0.15"
-  dependencies:
-    compare-versions: "npm:^6.0.0"
-    react-inspector: "npm:6.0.2"
-  peerDependencies:
-    "@storybook/blocks": ^7.0.0
-    "@storybook/channels": ^7.0.0
-    "@storybook/components": ^7.0.0
-    "@storybook/core-events": ^7.0.0
-    "@storybook/manager-api": ^7.0.0
-    "@storybook/preview-api": ^7.0.0
-    "@storybook/theming": ^7.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-router-dom: ^6.4.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10/a6fbebd0f9b44b2866920c61d40e591adf6dc1fcd058814f349a78cded41c239e8f08448edec747b660476d55c44623caadef2b2de90321279debe60bafba4b9
-  languageName: node
-  linkType: hard
-
 "storybook@npm:7.4.6":
   version: 7.4.6
   resolution: "storybook@npm:7.4.6"
@@ -15408,8 +15272,6 @@ __metadata:
     "@types/node": "npm:^20.14.0"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
-    "@types/react-router": "npm:^5.1.20"
-    "@types/react-router-dom": "npm:^5.3.3"
     "@types/validator": "npm:^13.7.7"
     "@typescript-eslint/eslint-plugin": "npm:^5.47.0"
     "@typescript-eslint/parser": "npm:^5.47.0"
@@ -15444,8 +15306,6 @@ __metadata:
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:^7.53.0"
     react-hook-form-mui: "npm:^7.2.0"
-    react-router: "npm:^6.4.2"
-    react-router-dom: "npm:^6.22.3"
     react-toastify: "npm:^9.0.8"
     sass: "npm:^1.55.0"
     simple-http-request-builder: "npm:^2.0.1"
@@ -15453,7 +15313,6 @@ __metadata:
     simple-job-scheduler: "npm:^1.1.2"
     simple-logging-system: "npm:^1.1.0"
     storybook: "npm:7.4.6"
-    storybook-addon-react-router-v6: "npm:^2.0.7"
     stylelint: "npm:^14.13.0"
     stylelint-config-recommended-scss: "npm:^7.0.0"
     stylelint-scss: "npm:^4.3.0"
@@ -15462,6 +15321,7 @@ __metadata:
     ts-transformer-classname: "npm:^2.0.0"
     tslib: "npm:^2.5.3"
     ttypescript: "npm:^1.5.15"
+    type-route: "npm:^1.1.0"
     typed-scss-modules: "npm:^7.1.1"
     typescript: "npm:4.9.4"
     validator: "npm:^13.7.0"
@@ -15716,6 +15576,15 @@ __metadata:
     media-typer: "npm:0.3.0"
     mime-types: "npm:~2.1.24"
   checksum: 10/0bd9eeae5efd27d98fd63519f999908c009e148039d8e7179a074f105362d4fcc214c38b24f6cda79c87e563cbd12083a4691381ed28559220d4a10c2047bed4
+  languageName: node
+  linkType: hard
+
+"type-route@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "type-route@npm:1.1.0"
+  dependencies:
+    history: "npm:^5.3.0"
+  checksum: 10/66ba091c3bf2eb9ad90457131dfd96a34dede62500d0a08c2ad8bce28889a563670ab53f608d81b87948d67ac38e5b1e90daeecbf579ba80694f5021e788d916
   languageName: node
   linkType: hard
 

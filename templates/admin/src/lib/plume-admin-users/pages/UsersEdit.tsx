@@ -1,46 +1,28 @@
 import usePlumeTheme from '@components/hooks/ThemeHook';
-import {
-  checkEmptyTrimmed,
-} from '@components/theme/form/validators/Validators';
+import { checkEmptyTrimmed } from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
-import {
-  makeErrorMessageMapping,
-} from '@lib/plume-form-error-messages/FormErrorMessages';
-import useLoader, {
-  LoaderState,
-} from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
-import useNotification, {
-  PlumeNotification,
-} from '@lib/plume-notification/NotificationHook';
-import useConfirmationPopIn, {
-  ConfirmationPopInType,
-} from '@lib/react-hook-confirm/ReactHookConfirm';
-import {
-  useOnDependenciesChange,
-} from '@lib/react-hooks-alias/ReactHooksAlias';
+import { ROUTE_USERS, ROUTE_USERS_UPDATE, userRoutes } from '@lib/plume-admin-users/router/UserRouter';
+import { makeErrorMessageMapping } from '@lib/plume-form-error-messages/FormErrorMessages';
+import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useNotification, { PlumeNotification } from '@lib/plume-notification/NotificationHook';
+import useConfirmationPopIn, { ConfirmationPopInType } from '@lib/react-hook-confirm/ReactHookConfirm';
+import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
 import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
 import { useMemo } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
-import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { HttpError } from 'simple-http-rest-client';
 import isEmail from 'validator/lib/isEmail';
 import { AdminUserDetails, AdminUserParameters } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
-import {
-  AdminUsersWithIndexedRolesType,
-} from './AdminUsersWithIndexedRolesType';
-
-type UsersRouteParams = {
-  userId: string,
-};
+import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
   usersWithRoles?: AdminUsersWithIndexedRolesType,
   updateUsersAndRoles: () => void,
-  usersPath: string,
+  userId?: string,
 };
 
 function findUser(userId?: string, usersWithRoles?: AdminUsersWithIndexedRolesType): AdminUserDetails | undefined {
@@ -49,13 +31,14 @@ function findUser(userId?: string, usersWithRoles?: AdminUsersWithIndexedRolesTy
     : undefined;
 }
 
-export default function UsersEdit({
-  usersWithRoles,
-  updateUsersAndRoles,
-  usersPath,
-}: Props) {
+export default function UsersEdit(
+  {
+    usersWithRoles,
+    updateUsersAndRoles,
+    userId,
+  }: Props,
+) {
   const userApi: UserApi = getGlobalInstance(UserApi);
-  const { userId } = useParams<UsersRouteParams>();
 
   const {
     actionsContainer: ActionContainer,
@@ -75,8 +58,6 @@ export default function UsersEdit({
     notifyHttpError,
     notifySuccess,
   }: PlumeNotification = useNotification();
-
-  const navigate: NavigateFunction = useNavigate();
 
   const isCreation: boolean = userId === undefined;
 
@@ -136,7 +117,7 @@ export default function UsersEdit({
             updateUsersAndRoles();
             notifySuccess(messages.message.changes_saved);
             if (createdUser) {
-              navigate(createdUser.id);
+              userRoutes[ROUTE_USERS_UPDATE]({ userId: createdUser.id }).push();
             }
           })
           .catch((httpError: HttpError) => notifyHttpError(httpError)),
@@ -155,7 +136,7 @@ export default function UsersEdit({
         .then(() => {
           updateUsersAndRoles();
           notifySuccess(messages.message.changes_saved);
-          navigate(`/${usersPath}`);
+          userRoutes[ROUTE_USERS]().push();
         })
         .catch((httpError: HttpError) => notifyHttpError(httpError)));
   };
@@ -173,7 +154,7 @@ export default function UsersEdit({
 
   // cancel modification handling
 
-  const cancelEdit = () => navigate(`/${usersPath}`);
+  const cancelEdit = () => userRoutes[ROUTE_USERS]().push();
 
   const { dirtyFields } = formState;
   // usage of dirtyFields instead of isDirty: https://github.com/react-hook-form/react-hook-form/issues/3562
