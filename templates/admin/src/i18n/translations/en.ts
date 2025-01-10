@@ -106,6 +106,9 @@ const enMessages: Translations = {
       password_same_value: 'Both passwords must be the same',
       empty_field: 'The field entered is empty',
     },
+    security: {
+      fingerprint_missing: 'Dev environment, fingerprint seems missing',
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',

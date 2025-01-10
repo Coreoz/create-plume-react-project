@@ -68,4 +68,12 @@ export default class SessionService {
   synchronizeSessionFromOtherBrowserTags() {
     this.jwtSessionManager.synchronizeSessionFromOtherBrowserTabs();
   }
+
+  // security
+
+  hasFingerprint() {
+    return this.jwtSessionManager.getCurrentUser().select((user?: UserWithExpiration) => (
+      user?.hashedFingerprint !== undefined && user.hashedFingerprint !== ''),
+    );
+  }
 }
