@@ -72,8 +72,6 @@ export default class SessionService {
   // security
 
   hasFingerprint() {
-    return this.jwtSessionManager.getCurrentUser().select((user?: UserWithExpiration) => (
-      user?.hashedFingerprint !== undefined && user.hashedFingerprint !== ''),
-    );
+    return this.jwtSessionManager.getCurrentUser().select((user?: UserWithExpiration) => user?.hashedFingerprint);
   }
 }
