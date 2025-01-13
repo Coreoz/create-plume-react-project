@@ -106,6 +106,9 @@ const frMessages: Translations = {
       password_same_value: 'Veuillez saisir deux mots de passe identiques',
       empty_field: 'Le champ entré est vide',
     },
+    security: {
+      fingerprint_missing: 'Environnement de développement, le fingerprint semble absent',
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'Une erreur inattendue s\'est produite',

@@ -101,6 +101,9 @@ export type Translations = {
       password_same_value: string,
       empty_field: string,
     },
+    security: {
+      fingerprint_missing: string,
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: string,

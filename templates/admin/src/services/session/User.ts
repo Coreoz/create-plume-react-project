@@ -7,4 +7,5 @@ export type User = {
 
 export interface UserWithExpiration extends User {
   exp: number,
+  hashedFingerprint: string,
 }
