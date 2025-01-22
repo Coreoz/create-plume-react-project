@@ -19,13 +19,13 @@ import {
 } from '@lib/plume-admin-users/api/AdminUserTypes';
 import UserTile from '@lib/plume-admin-users/components/UserTile';
 import { isUserDisplayed, sortUser } from '@lib/plume-admin-users/pages/UsersSearch';
-import { CREATE } from '@lib/plume-admin-users/router/UserRoutes';
+import { ROUTE_USERS_CREATE, ROUTE_USERS_UPDATE, usersRoutes } from '@lib/plume-admin-users/router/UsersRouter';
 import useSearchFilters, { SearchFilters } from '@lib/plume-search/filters/SearchFilterHook';
 import useInMemoryPaginatedSearch from '@lib/plume-search/InMemoryPaginatedSearchHook';
 import { PaginatedSearch } from '@lib/plume-search/SearchTypes';
 import useSearchSort from '@lib/plume-search/sorts/SearchSortHook';
 import { SearchSortType } from '@lib/plume-search/sorts/SortTypes';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import React from 'react';
 import { AdminUsersWithIndexedRolesType } from './AdminUsersWithIndexedRolesType';
 
 type Props = {
@@ -39,7 +39,6 @@ export default function UsersList(
     isLoading,
   }: Props,
 ) {
-  const navigate: NavigateFunction = useNavigate();
   const { messages }: Messages = useMessages();
   const {
     panel: Panel,
@@ -108,7 +107,7 @@ export default function UsersList(
           <SearchActions>
             <ActionLink
               icon="add"
-              linkTo={CREATE}
+              linkTo={usersRoutes[ROUTE_USERS_CREATE]}
               style={ActionStyle.PRIMARY}
             >
               {messages.user.add_user}
@@ -170,7 +169,7 @@ export default function UsersList(
                 displayedItems.map((user: AdminUserDetails) => (
                   <ListItem
                     key={user.id}
-                    onClick={() => navigate(user.id)}
+                    onClick={() => usersRoutes[ROUTE_USERS_UPDATE]({ userId: user.id }).push()}
                   >
                     <UserTile user={user} />
                   </ListItem>

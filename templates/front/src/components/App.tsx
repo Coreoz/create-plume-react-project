@@ -1,27 +1,19 @@
-import { useMemo } from 'react';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import Router from '@components/router/Router';
+import { RouteProvider } from '@components/router/RouterDefinition';
+import React from 'react';
 import { Logger } from 'simple-logging-system';
-import Layout from '@components/layout/Layout';
-import ErrorPage from '@components/pages/error/ErrorPage';
-import Home from '@components/pages/home/Home';
+import GlobalErrorBoundary from './theme/GlobalErrorBoundary';
 
 const logger: Logger = new Logger('App');
 
 export default function App() {
-  const router: ReturnType<typeof createBrowserRouter> = useMemo(() => createBrowserRouter([
-    {
-      path: '/',
-      element: <Layout><Outlet /></Layout>,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-      ],
-    },
-  ]), []);
-
   logger.info('Render App');
-  return <RouterProvider router={router} />;
+
+  return (
+    <GlobalErrorBoundary>
+      <RouteProvider>
+        <Router />
+      </RouteProvider>
+    </GlobalErrorBoundary>
+  );
 }

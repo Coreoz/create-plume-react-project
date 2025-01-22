@@ -4143,13 +4143,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@remix-run/router@npm:1.0.2"
-  checksum: 10/df4f0d148432df386b3e369432e3bcfc0c1db83951229b9eceff0701754c9c60b6442ca399002cf9b630da82f65130d1f48112280b52ba52b8691af08cff73eb
-  languageName: node
-  linkType: hard
-
 "@rollup/pluginutils@npm:^5.0.2":
   version: 5.0.5
   resolution: "@rollup/pluginutils@npm:5.0.5"
@@ -6103,20 +6096,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/history@npm:*":
-  version: 4.7.8
-  resolution: "@types/history@npm:4.7.8"
-  checksum: 10/9c867532afd80f72a7101a5bb3c10c1ad7cc8c2c14e92fdbc54d5fed0ef8cdb6060c0f261a39884e243424636c6ff85d8aaffb984e2edaac348d2f216f9eedeb
-  languageName: node
-  linkType: hard
-
-"@types/history@npm:^4.7.11":
-  version: 4.7.11
-  resolution: "@types/history@npm:4.7.11"
-  checksum: 10/1da529a3485f3015daf794effa3185493bf7dd2551c26932389c614f5a0aab76ab97645897d1eef9c74ead216a3848fcaa019f165bbd6e4b71da6eff164b4c68
-  languageName: node
-  linkType: hard
-
 "@types/http-errors@npm:*":
   version: 2.0.3
   resolution: "@types/http-errors@npm:2.0.3"
@@ -6319,37 +6298,6 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10/6ff53f5a7b7fba952a68e114d3b542ebdc1e87a794234785ebab0bcd9bde7fb4885f21ebaf93d26dc0a1b5b93287f42cad68b78ae04dddf6b20da7aceff0beaf
-  languageName: node
-  linkType: hard
-
-"@types/react-router-dom@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "@types/react-router-dom@npm:5.3.3"
-  dependencies:
-    "@types/history": "npm:^4.7.11"
-    "@types/react": "npm:*"
-    "@types/react-router": "npm:*"
-  checksum: 10/28c4ea48909803c414bf5a08502acbb8ba414669b4b43bb51297c05fe5addc4df0b8fd00e0a9d1e3535ec4073ef38aaafac2c4a2b95b787167d113bc059beff3
-  languageName: node
-  linkType: hard
-
-"@types/react-router@npm:*":
-  version: 5.1.12
-  resolution: "@types/react-router@npm:5.1.12"
-  dependencies:
-    "@types/history": "npm:*"
-    "@types/react": "npm:*"
-  checksum: 10/424fcbfedac26904268b4da29bfe9f13d8d0c18faeff7904b1335306fe77c547484162aebd45749f15fcd14e90e9cd8922a9223616115934f954c00797057ac4
-  languageName: node
-  linkType: hard
-
-"@types/react-router@npm:^5.1.19":
-  version: 5.1.19
-  resolution: "@types/react-router@npm:5.1.19"
-  dependencies:
-    "@types/history": "npm:^4.7.11"
-    "@types/react": "npm:*"
-  checksum: 10/a3e34227eb2755a37488d27b57aa1f051537f0b381ea6a1c1d5f14d82bea79d517a242a4345f9b076181c8d08f753c7d1deb1da8d65f0ede194792f14be14b7a
   languageName: node
   linkType: hard
 
@@ -8279,13 +8227,6 @@ __metadata:
   version: 1.0.1
   resolution: "commondir@npm:1.0.1"
   checksum: 10/4620bc4936a4ef12ce7dfcd272bb23a99f2ad68889a4e4ad766c9f8ad21af982511934d6f7050d4a8bde90011b1c15d56e61a1b4576d9913efbf697a20172d6c
-  languageName: node
-  linkType: hard
-
-"compare-versions@npm:^6.0.0":
-  version: 6.1.0
-  resolution: "compare-versions@npm:6.1.0"
-  checksum: 10/20f349e7f8ad784704c68265f4e660e2abbe2c3d5c75793184fccb85f0c5c0263260e01fdd4488376f6b74b0f069e16c9684463f7316b075716fb1581eb36b77
   languageName: node
   linkType: hard
 
@@ -11253,7 +11194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:5.3.0":
+"history@npm:5.3.0, history@npm:^5.3.0":
   version: 5.3.0
   resolution: "history@npm:5.3.0"
   dependencies:
@@ -15150,7 +15091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-inspector@npm:6.0.2, react-inspector@npm:^6.0.0":
+"react-inspector@npm:^6.0.0":
   version: 6.0.2
   resolution: "react-inspector@npm:6.0.2"
   peerDependencies:
@@ -15226,30 +15167,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10/f0646ac384ce3852d1f41e30a9f9e251b11cf3b430d1d114c937c8fa7f90a895c06378d0d6b6ff0b2d00cbccf15e845921944fd6074ae67a0fb347a718106d88
-  languageName: node
-  linkType: hard
-
-"react-router-dom@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "react-router-dom@npm:6.4.2"
-  dependencies:
-    "@remix-run/router": "npm:1.0.2"
-    react-router: "npm:6.4.2"
-  peerDependencies:
-    react: ">=16.8"
-    react-dom: ">=16.8"
-  checksum: 10/b167df94c4cd81d652e4e8b6efe69080167805b20f52ee295234cc48fbad0f40a21fccb343976e458595b7e1a4b856d7f597a592af165fe660d34e514745eda2
-  languageName: node
-  linkType: hard
-
-"react-router@npm:6.4.2, react-router@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "react-router@npm:6.4.2"
-  dependencies:
-    "@remix-run/router": "npm:1.0.2"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: 10/385b2fbd9c0561e5a6c86860378b5329e315aacf8e0ae7d2d757fa0f8a93272db8f5a5af87dbaa2da68d80cf0c164edb7f366e97fbdad250af04a89e7e04d1e0
   languageName: node
   linkType: hard
 
@@ -16373,32 +16290,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook-addon-react-router-v6@npm:^2.0.7":
-  version: 2.0.8
-  resolution: "storybook-addon-react-router-v6@npm:2.0.8"
-  dependencies:
-    compare-versions: "npm:^6.0.0"
-    react-inspector: "npm:6.0.2"
-  peerDependencies:
-    "@storybook/blocks": ^7.0.0
-    "@storybook/channels": ^7.0.0
-    "@storybook/components": ^7.0.0
-    "@storybook/core-events": ^7.0.0
-    "@storybook/manager-api": ^7.0.0
-    "@storybook/preview-api": ^7.0.0
-    "@storybook/theming": ^7.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-router-dom: ^6.4.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10/7efedbc57a321024c5e4a12abc3a3e11391b017846d3c751a08a920313f6943a5706bdd2938f0a429d1afc8776afa22c912df423e9a0ee13a16bb6c3895b6087
-  languageName: node
-  linkType: hard
-
 "storybook@npm:7.4.6":
   version: 7.4.6
   resolution: "storybook@npm:7.4.6"
@@ -17138,8 +17029,6 @@ __metadata:
     "@types/node": "npm:^20.3.0"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
-    "@types/react-router": "npm:^5.1.19"
-    "@types/react-router-dom": "npm:^5.3.3"
     "@types/storybook__react": "npm:^5.2.1"
     "@types/validator": "npm:^13.7.7"
     "@typescript-eslint/eslint-plugin": "npm:^5.47.0"
@@ -17174,15 +17063,12 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:7.37.0"
-    react-router: "npm:^6.4.2"
-    react-router-dom: "npm:^6.4.2"
     sass: "npm:^1.55.0"
     simple-http-request-builder: "npm:^2.0.1"
     simple-http-rest-client: "npm:^2.1.1"
     simple-job-scheduler: "npm:^1.1.2"
     simple-logging-system: "npm:^1.1.0"
     storybook: "npm:7.4.6"
-    storybook-addon-react-router-v6: "npm:^2.0.7"
     stylelint: "npm:^14.13.0"
     stylelint-config-recommended-scss: "npm:^7.0.0"
     stylelint-scss: "npm:^4.3.0"
@@ -17191,6 +17077,7 @@ __metadata:
     ts-transformer-classname: "npm:^2.0.0"
     tslib: "npm:^2.5.3"
     ttypescript: "npm:^1.5.15"
+    type-route: "npm:^1.1.0"
     typed-scss-modules: "npm:^7.1.1"
     typescript: "npm:4.9.4"
     vite: "npm:^5.3.1"
@@ -17458,6 +17345,15 @@ __metadata:
     media-typer: "npm:0.3.0"
     mime-types: "npm:~2.1.24"
   checksum: 10/0bd9eeae5efd27d98fd63519f999908c009e148039d8e7179a074f105362d4fcc214c38b24f6cda79c87e563cbd12083a4691381ed28559220d4a10c2047bed4
+  languageName: node
+  linkType: hard
+
+"type-route@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "type-route@npm:1.1.0"
+  dependencies:
+    history: "npm:^5.3.0"
+  checksum: 10/66ba091c3bf2eb9ad90457131dfd96a34dede62500d0a08c2ad8bce28889a563670ab53f608d81b87948d67ac38e5b1e90daeecbf579ba80694f5021e788d916
   languageName: node
   linkType: hard
 

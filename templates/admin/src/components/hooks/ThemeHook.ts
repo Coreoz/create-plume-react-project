@@ -1,8 +1,10 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
+import { DeclaredRoutePaths, routes } from '../../router/RouterDefinition';
 
 export type PlumeAdminThemeComponents = {
-  [K in keyof PlumeAdminTheme]: PlumeAdminTheme[K]
+  // eslint-disable-next-line max-len
+  [K in keyof PlumeAdminTheme<ReturnType<typeof routes[DeclaredRoutePaths]>>]: PlumeAdminTheme<ReturnType<typeof routes[DeclaredRoutePaths]>>[K]
 };
 
 function usePlumeTheme(): PlumeAdminThemeComponents {
