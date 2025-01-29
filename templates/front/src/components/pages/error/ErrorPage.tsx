@@ -1,4 +1,4 @@
-import { ROUTE_HOME, routes, } from '@components/router/RouterDefinition';
+import { ROUTE_HOME, routes } from '@components/router/RouterDefinition';
 import React from 'react';
 import { Logger } from 'simple-logging-system';
 
