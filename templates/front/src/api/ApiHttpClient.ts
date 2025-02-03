@@ -8,7 +8,7 @@ const baseUrl: string = `${window.location.protocol}//${window.location.host}/ap
 export default class ApiHttpClient {
   // eslint-disable-next-line class-methods-use-this
   rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
-    return createHttpFetchRequest(baseUrl, method, path, fetchClient);
+    return createHttpFetchRequest<Response>(baseUrl, method, path, fetchClient);
   }
 
   // eslint-disable-next-line class-methods-use-this
