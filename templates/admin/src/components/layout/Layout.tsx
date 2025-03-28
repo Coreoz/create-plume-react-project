@@ -1,6 +1,7 @@
 import Header from '@components/layout/header/Header';
 import Navigation from '@components/navigation/Navigation';
 import { ReactNode } from 'react';
+import SecurityBanner from '@components/features/security/SecurityBanner';
 import scss from './layout.module.scss';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <>
+      <SecurityBanner />
       <div id={scss.mainLayout}>
         <Navigation />
         <div id={scss.contentLayout}>

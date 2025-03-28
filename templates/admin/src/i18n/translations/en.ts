@@ -107,7 +107,7 @@ const enMessages: Translations = {
       empty_field: 'The field entered is empty',
     },
     security: {
-      fingerprint_missing: 'Dev environment, fingerprint seems missing',
+      fingerprint_missing: 'The fingerprint cookie to secure the JWT token seems to be missing. This may be ok in development, but in production, this cookie must be activated',
     },
   },
   'http-errors': {

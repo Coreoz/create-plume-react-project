@@ -107,7 +107,7 @@ const frMessages: Translations = {
       empty_field: 'Le champ entré est vide',
     },
     security: {
-      fingerprint_missing: 'Environnement de développement, le fingerprint semble absent',
+      fingerprint_missing: 'Le fingerprint du cookie pour sécuriser le token JWT semble absent, cela peut être ok en développement, mais en production, ce cookie devra être activé',
     },
   },
   'http-errors': {
