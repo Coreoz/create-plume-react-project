@@ -106,6 +106,9 @@ const enMessages: Translations = {
       password_same_value: 'Both passwords must be the same',
       empty_field: 'The field entered is empty',
     },
+    security: {
+      fingerprint_missing: 'The fingerprint cookie to secure the JWT token seems to be missing. This may be ok in development, but in production, this cookie must be activated',
+    },
   },
   'http-errors': {
     INTERNAL_ERROR: 'An unexpected error occurred',
