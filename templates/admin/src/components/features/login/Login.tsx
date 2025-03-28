@@ -4,20 +4,19 @@ import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias'
 import { Alert } from '@mui/material';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import React from 'react';
 import useMessages from '../../../i18n/hooks/messagesHook';
 import useLoader, {
   LoaderState,
 } from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
 import SessionService from '../../../services/session/SessionService';
-import { HOME } from '../../Routes';
 import LoginForm from './LoginForm';
 import scss from './login.module.scss';
+import { routes, ROUTE_HOME } from '../../../router/RouterDefinition';
 
 export default function Login() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages, httpError } = useMessages();
-  const navigate: NavigateFunction = useNavigate();
 
   const loader: LoaderState = useLoader();
 
@@ -29,9 +28,9 @@ export default function Login() {
 
   useOnDependenciesChange(() => {
     if (isAuthenticated) {
-      navigate({ pathname: HOME });
+      routes[ROUTE_HOME]().push();
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated]);
 
   return (
     <div className={scss.loginLayout}>

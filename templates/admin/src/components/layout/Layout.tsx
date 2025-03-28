@@ -1,7 +1,6 @@
 import Header from '@components/layout/header/Header';
 import Navigation from '@components/navigation/Navigation';
 import { ReactNode } from 'react';
-import { ScrollRestoration } from 'react-router-dom';
 import scss from './layout.module.scss';
 
 type Props = {
@@ -20,7 +19,6 @@ export default function Layout({ children }: Props) {
           </div>
         </div>
       </div>
-      <ScrollRestoration />
     </>
   );
 }

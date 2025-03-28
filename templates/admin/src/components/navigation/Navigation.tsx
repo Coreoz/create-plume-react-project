@@ -1,16 +1,17 @@
+import { ROUTE_USERS, usersGroup } from '@lib/plume-admin-users/router/UsersRouter';
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
 import classNames from '../../lib/class-names/ClassNames';
 import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
+import { routes, ROUTE_HOME } from '../../router/RouterDefinition';
 import Permission from '../../services/session/Permission';
 import SessionService from '../../services/session/SessionService';
-import { HOME, USERS } from '../Routes';
 import LinkListItem from './LinkListItem';
-import NestedListItem from './NestedListItem';
 
 import scss from './navigation.module.scss';
+import NestedListItem from './NestedListItem';
 
 export default function Navigation() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
@@ -33,7 +34,7 @@ export default function Navigation() {
       <List className={scss.navigation}>
         <LinkListItem
           icon="home"
-          route={HOME}
+          route={routes[ROUTE_HOME]}
           label={messages.nav.home}
           drawerOpen={isDrawerOpened}
         />
@@ -47,7 +48,8 @@ export default function Navigation() {
             >
               <LinkListItem
                 icon="account_circle"
-                route={USERS}
+                route={routes[ROUTE_USERS]}
+                group={usersGroup}
                 label={messages.nav.user_list}
                 drawerOpen={isDrawerOpened}
               />
