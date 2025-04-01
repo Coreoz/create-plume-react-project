@@ -8,7 +8,6 @@ import {
 } from '@lib/plume-admin-theme/panel/PanelProps';
 import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
 import React from 'react';
-import { Link } from 'type-route';
 
 import scss from './panel.module.scss';
 
@@ -24,12 +23,12 @@ export function PanelSeparator() {
   return <hr />;
 }
 
-export function PanelTitle<T extends { link: Link }>(
+export function PanelTitle(
   {
     children,
     level = 'h1',
     backRoute,
-  }: Readonly<PanelTitleProps<T>>,
+  }: Readonly<PanelTitleProps>,
 ) {
   const Level: HeadingLevel = level;
   return (
@@ -41,7 +40,8 @@ export function PanelTitle<T extends { link: Link }>(
             className={scss.link}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any, jsx-a11y/anchor-has-content
             component={(props: any) => <a {...props} />}
-            to={backRoute().link}
+            to={backRoute.href}
+            onClick={backRoute.onClick}
           >
             <Icon>arrow_back</Icon>
           </IconButton>

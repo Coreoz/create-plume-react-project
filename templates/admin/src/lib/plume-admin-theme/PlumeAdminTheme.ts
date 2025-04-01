@@ -8,7 +8,6 @@ import {
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { FieldValues } from 'react-hook-form';
-import { Link } from 'type-route';
 import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from './action/ActionProps';
 import { FormFieldProps } from './form/FormFieldProps';
 import { InputPasswordProps, InputSelectProps, InputTextProps } from './form/FormInputProps';
@@ -20,14 +19,14 @@ import {
 } from './panel/PanelProps';
 import { ConfirmationPopInProps, PopinProps } from './popin/PopinProps';
 
-export default abstract class PlumeAdminTheme<T extends { link: Link }> {
+export default abstract class PlumeAdminTheme {
   // layout
 
   abstract panel: (props: PanelProps) => JSX.Element;
 
   abstract panelSeparator: () => JSX.Element;
 
-  abstract panelTitle: (props: PanelTitleProps<T>) => JSX.Element;
+  abstract panelTitle: (props: PanelTitleProps) => JSX.Element;
 
   abstract panelContent: (props: PanelProps) => JSX.Element;
 
@@ -46,7 +45,7 @@ export default abstract class PlumeAdminTheme<T extends { link: Link }> {
   // actions
   abstract actionsContainer: (props: ActionContainerProps) => JSX.Element;
 
-  abstract actionLink: (props: ActionLinkProps<T>) => JSX.Element;
+  abstract actionLink: (props: ActionLinkProps) => JSX.Element;
 
   abstract actionButton: (props: ActionButtonProps) => JSX.Element;
 
