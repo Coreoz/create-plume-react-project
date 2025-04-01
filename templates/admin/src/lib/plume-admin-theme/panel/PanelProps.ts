@@ -17,7 +17,7 @@ export type PanelProps = PropsWithChildren<{
   className?: string,
 }>;
 
-export type PanelTitleProps<T extends { link: Link }> = PropsWithChildren<{
+export type PanelTitleProps = PropsWithChildren<{
   level?: HeadingLevel,
-  backRoute?: () => T,
+  backRoute?: Link,
 }>;
