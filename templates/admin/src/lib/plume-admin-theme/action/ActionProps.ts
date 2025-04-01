@@ -25,8 +25,8 @@ type ActionProps = {
   children?: ReactNode,
 };
 
-export interface ActionLinkProps<T extends { link: Link }> extends ActionProps, DataTestProps {
-  linkTo: () => T,
+export interface ActionLinkProps extends ActionProps, DataTestProps {
+  linkTo: Link,
   rel?: string,
   target?: string,
 }

@@ -7,7 +7,6 @@ import {
 } from '@lib/plume-admin-theme/action/ActionProps';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { Button, CircularProgress, Icon } from '@mui/material';
-import { Link } from 'type-route';
 import scss from './actions.module.scss';
 
 function actionStyleToColor(
@@ -63,7 +62,7 @@ export function ActionsContainer(
   );
 }
 
-export function ActionLink<T extends { link: Link }>(
+export function ActionLink(
   {
     style = ActionStyle.PRIMARY,
     variant = 'contained',
@@ -75,7 +74,7 @@ export function ActionLink<T extends { link: Link }>(
     rel,
     target,
     dataTestId,
-  }: Readonly<ActionLinkProps<T>>,
+  }: Readonly<ActionLinkProps>,
 ) {
   return (
     <Button
@@ -85,7 +84,7 @@ export function ActionLink<T extends { link: Link }>(
       color={actionStyleToColor(style)}
       disabled={disabled}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, jsx-a11y/anchor-has-content
-      component={(props: any) => <a {...props} {...linkTo().link} />}
+      component={(props: any) => <a {...props} {...linkTo} />}
       rel={rel}
       target={target}
       startIcon={icon && <Icon>{icon}</Icon>}

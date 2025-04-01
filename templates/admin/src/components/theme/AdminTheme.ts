@@ -45,14 +45,14 @@ import {
 import Popin from './popin/Popin';
 import SortSelect from './sort/SortSelect';
 
-export default class AdminTheme <T extends { link: Link }> implements PlumeAdminTheme<T> {
+export default class AdminTheme implements PlumeAdminTheme {
   // actions
 
   actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
 
   actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
 
-  actionLink: (props: ActionLinkProps<T>) => JSX.Element = ActionLink;
+  actionLink: (props: ActionLinkProps) => JSX.Element = ActionLink;
 
   // layout
 
@@ -60,7 +60,7 @@ export default class AdminTheme <T extends { link: Link }> implements PlumeAdmin
 
   panelSeparator: () => JSX.Element = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps<T>) => JSX.Element = PanelTitle;
+  panelTitle: (props: PanelTitleProps) => JSX.Element = PanelTitle;
 
   panelContent: (props: PanelProps) => JSX.Element = PanelContent;
 
