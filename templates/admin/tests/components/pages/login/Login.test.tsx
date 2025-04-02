@@ -1,7 +1,9 @@
-import { fireEvent, render } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
+import React from 'react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
-import { describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { setupServer, SetupServerApi } from 'msw/node'
+import { http, HttpHandler, HttpResponse } from 'msw'
 import installApiModule from '../../../../src/api/api-module';
 import installComponentsModule from '../../../../src/components/components-module';
 import Login from '../../../../src/components/features/login/Login';
@@ -10,29 +12,39 @@ import installPlumeAdminUsersModule from '../../../../src/lib/plume-admin-users/
 import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
 
-describe('Login', () => {
-  const injector: Injector = createInjector();
-  installServicesModule(injector);
-  installComponentsModule(injector);
-  installApiModule(injector);
-  installI18nModule(injector);
-  installPlumeAdminUsersModule(injector);
-  configureGlobalInjector(injector);
-  fetchMock
-    .get('http://localhost/api/example/test/Aur%C3%A9lien', {
-      name: 'Aurélien',
-    })
-    .post('http://localhost/api/admin/session',
-      {
-        body: {
-          errorCode: 'WRONG_LOGIN_OR_PASSWORD',
-          statusArguments: [],
-        },
-        status: 400,
+const restHandlers: HttpHandler[] = [
+  http.post('/api/admin/session', () => {
+    return HttpResponse.json({
+        errorCode: 'WRONG_LOGIN_OR_PASSWORD',
+        statusArguments: [],
       },
-    );
+      { status: 400 }
+    )
+  }),
+]
 
-  it('should render a not disabled button', async () => {
+const server: SetupServerApi = setupServer(...restHandlers)
+
+describe('Login', () => {
+  beforeAll(() => {
+    const injector: Injector = createInjector();
+    installServicesModule(injector);
+    installComponentsModule(injector);
+    installApiModule(injector);
+    installI18nModule(injector);
+    installPlumeAdminUsersModule(injector);
+    configureGlobalInjector(injector);
+
+    server.listen({ onUnhandledRequest: 'error' });
+  })
+
+  afterAll(() => server.close());
+  afterEach(() => {
+    cleanup();
+    server.resetHandlers();
+  });
+
+  it('should render a not disabled button', () => {
     const wrapper = render(
       <Login />,
     );
@@ -56,16 +68,16 @@ describe('Login', () => {
     );
 
     // Get input and fill values
-    const userName: HTMLElement = (await wrapper.findAllByTestId('login-form-username'))[0] as HTMLElement;
+    const userName: HTMLElement = await wrapper.findByTestId('login-form-username');
     fireEvent.change(userName.querySelector('input')!, { target: { value: 'jdoe' } });
-    const password: HTMLElement = (await wrapper.findAllByTestId('login-form-password'))[0] as HTMLElement;
+    const password: HTMLElement = await wrapper.findByTestId('login-form-password');
     fireEvent.change(password.querySelector('input')!, { target: { value: 'password' } });
 
     // Submit form
-    const form: HTMLElement = (await wrapper.findAllByTestId('login-form'))[0] as HTMLElement;
+    const form: HTMLElement = await wrapper.findByTestId('login-form');
     fireEvent.submit(form);
 
-    const alert: HTMLElement = (await wrapper.findAllByTestId('login-alert'))[0] as HTMLElement;
+    const alert: HTMLElement = await wrapper.findByTestId('login-alert');
     expect(alert).toBeDefined();
     expect(alert.textContent).toBe('User name or password incorrect');
   });
