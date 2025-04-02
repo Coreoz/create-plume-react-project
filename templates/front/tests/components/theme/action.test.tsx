@@ -2,7 +2,7 @@ import { ActionButton } from '@components/theme/action/Actions';
 import installI18nModule from '@i18n/i18n-module';
 import { render, screen } from '@testing-library/react';
 import { configureGlobalInjector } from 'plume-ts-di';
-import '@testing-library/jest-dom';
+import { describe, expect, it } from 'vitest'
 import { createInjector } from '../../TestUtils';
 
 describe('ActionButton', () => {
@@ -22,8 +22,8 @@ describe('ActionButton', () => {
     const button: HTMLElement = screen.getByTestId('custom-button');
 
     // Results
-    expect(button).toBeDisabled();
-    expect(button).toHaveTextContent('Click me');
-    expect(button).toHaveAttribute('type', 'submit');
+    expect(button).toHaveProperty('disabled', true);
+    expect(button.textContent).toBe('Click me');
+    expect(button).toHaveProperty('type', 'submit');
   });
 });
