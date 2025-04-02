@@ -1,19 +1,17 @@
 import { fireEvent, render } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
-import { configureGlobalInjector } from 'plume-ts-di';
-import { MemoryRouter } from 'react-router-dom';
+import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import { describe, expect, it } from 'vitest';
 import installApiModule from '../../../../src/api/api-module';
 import installComponentsModule from '../../../../src/components/components-module';
 import Login from '../../../../src/components/features/login/Login';
 import installI18nModule from '../../../../src/i18n/i18n-module';
-import installPlumeAdminUsersModule
-  from '../../../../src/lib/plume-admin-users/plume-admin-users-module';
+import installPlumeAdminUsersModule from '../../../../src/lib/plume-admin-users/plume-admin-users-module';
 import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
-import '@testing-library/jest-dom';
 
 describe('Login', () => {
-  const injector = createInjector();
+  const injector: Injector = createInjector();
   installServicesModule(injector);
   installComponentsModule(injector);
   installApiModule(injector);
@@ -30,51 +28,45 @@ describe('Login', () => {
           errorCode: 'WRONG_LOGIN_OR_PASSWORD',
           statusArguments: [],
         },
-        status: 400
-      }
+        status: 400,
+      },
     );
 
-  it('should render a not disabled button', async() => {
+  it('should render a not disabled button', async () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
-    const button: HTMLElement | null = wrapper.queryByTestId("login-form-submit");
+    const button: HTMLElement | null = wrapper.queryByTestId('login-form-submit');
 
+    expect(button).toHaveProperty('disabled', false);
     expect(button).toBeDefined();
-    expect(button).not.toBeDisabled();
   });
 
   it('should not render an alert box', () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
-    const alert: HTMLElement | null = wrapper.queryByTestId("login-alert");
+    const alert: HTMLElement | null = wrapper.queryByTestId('login-alert');
     expect(alert).toBeNull();
   });
 
   it('should render an alert box', async () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
 
     // Get input and fill values
-    const userName: HTMLElement = await wrapper.findByTestId('login-form-username');
-    fireEvent.change(userName.querySelector("input")!, { target: { value: 'jdoe' } })
-    const password: HTMLElement = await wrapper.findByTestId('login-form-password');
-    fireEvent.change(password.querySelector("input")!, { target: { value: 'password' } })
+    const userName: HTMLElement = (await wrapper.findAllByTestId('login-form-username'))[0] as HTMLElement;
+    fireEvent.change(userName.querySelector('input')!, { target: { value: 'jdoe' } });
+    const password: HTMLElement = (await wrapper.findAllByTestId('login-form-password'))[0] as HTMLElement;
+    fireEvent.change(password.querySelector('input')!, { target: { value: 'password' } });
 
     // Submit form
-    const form: HTMLElement = await wrapper.findByTestId('login-form');
-    fireEvent.submit(form)
+    const form: HTMLElement = (await wrapper.findAllByTestId('login-form'))[0] as HTMLElement;
+    fireEvent.submit(form);
 
-    const alert: HTMLElement = await wrapper.findByTestId("login-alert");
+    const alert: HTMLElement = (await wrapper.findAllByTestId('login-alert'))[0] as HTMLElement;
     expect(alert).toBeDefined();
-    expect(alert).toHaveTextContent("User name or password incorrect")
+    expect(alert.textContent).toBe('User name or password incorrect');
   });
 });

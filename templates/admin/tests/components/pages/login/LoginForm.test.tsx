@@ -1,18 +1,20 @@
 import installI18nModule from '@i18n/i18n-module';
 import { render, RenderResult } from '@testing-library/react';
-import { configureGlobalInjector } from 'plume-ts-di';
+import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import {
+  describe, expect, it, vi,
+} from 'vitest';
 import LoginForm from '../../../../src/components/features/login/LoginForm';
-import '@testing-library/jest-dom';
 import { createInjector } from '../../../TestUtils';
 
 describe('LoginForm', () => {
-  const injector = createInjector();
+  const injector: Injector = createInjector();
   installI18nModule(injector);
   configureGlobalInjector(injector);
 
   it('should render a disabled button', () => {
-    const wrapper: RenderResult = render(<LoginForm isLoading tryAuthenticate={jest.fn()} />);
-    const button: HTMLElement | null = wrapper.queryByTestId("login-form-submit");
-    expect(button).toBeDisabled();
+    const wrapper: RenderResult = render(<LoginForm isLoading tryAuthenticate={vi.fn()} />);
+    const button: HTMLElement | null = wrapper.queryByTestId('login-form-submit');
+    expect(button).toHaveProperty('disabled', true);
   });
 });
