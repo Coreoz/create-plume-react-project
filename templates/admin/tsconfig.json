@@ -33,6 +33,7 @@
   },
   "include": [
     "src",
-    "asset.d.ts"
+    "asset.d.ts",
+    "tests"
   ],
 }

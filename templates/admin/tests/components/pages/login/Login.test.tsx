@@ -1,16 +1,13 @@
-import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { setupServer, SetupServerApi } from 'msw/node'
 import { http, HttpHandler, HttpResponse } from 'msw'
 import installApiModule from '../../../../src/api/api-module';
-import installComponentsModule from '../../../../src/components/components-module';
 import Login from '../../../../src/components/features/login/Login';
-import installI18nModule from '../../../../src/i18n/i18n-module';
-import installPlumeAdminUsersModule from '../../../../src/lib/plume-admin-users/plume-admin-users-module';
 import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
+import installI18nModule from '@i18n/i18n-module';
 
 const restHandlers: HttpHandler[] = [
   http.post('/api/admin/session', () => {
@@ -28,11 +25,10 @@ const server: SetupServerApi = setupServer(...restHandlers)
 describe('Login', () => {
   beforeAll(() => {
     const injector: Injector = createInjector();
+
     installServicesModule(injector);
-    installComponentsModule(injector);
     installApiModule(injector);
     installI18nModule(injector);
-    installPlumeAdminUsersModule(injector);
     configureGlobalInjector(injector);
 
     server.listen({ onUnhandledRequest: 'error' });
@@ -41,6 +37,7 @@ describe('Login', () => {
   afterAll(() => server.close());
   afterEach(() => {
     cleanup();
+
     server.resetHandlers();
   });
 

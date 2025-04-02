@@ -1,16 +1,17 @@
 import installI18nModule from '@i18n/i18n-module';
 import { render, RenderResult } from '@testing-library/react';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
-import {
-  describe, expect, it, vi,
-} from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import LoginForm from '../../../../src/components/features/login/LoginForm';
 import { createInjector } from '../../../TestUtils';
 
 describe('LoginForm', () => {
-  const injector: Injector = createInjector();
-  installI18nModule(injector);
-  configureGlobalInjector(injector);
+  beforeAll(() => {
+    const injector: Injector = createInjector();
+
+    installI18nModule(injector);
+    configureGlobalInjector(injector);
+  });
 
   it('should render a disabled button', () => {
     const wrapper: RenderResult = render(<LoginForm isLoading tryAuthenticate={vi.fn()} />);
