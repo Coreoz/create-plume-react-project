@@ -86,7 +86,7 @@
     "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx -c eslint.ci.config.js",
     "typescript": "tsc --noEmit",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage",
     "check-scss-types": "typed-scss-modules 'src/**/*.scss' -l",
     "storybook": "storybook dev -p 6006",
