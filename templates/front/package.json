@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-typescript-compat": "^0.3.1",
-    "fetch-mock": "^9.11.0",
+    "fetch-mock": "^12.5.2",
     "history": "5.3.0",
     "jsdom": "^20.0.1",
     "postcss": "latest",
