@@ -96,6 +96,7 @@ function compareAlphanumeric(aStr: string, bStr: string) {
         return -1;
       }
 
+      // eslint-disable-next-line no-continue
       continue;
     }
 

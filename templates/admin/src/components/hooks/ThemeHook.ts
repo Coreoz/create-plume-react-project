@@ -3,7 +3,7 @@ import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
 import { DeclaredRoutePaths, routes } from '../../router/RouterDefinition';
 
 export type PlumeAdminThemeComponents = {
-  // eslint-disable-next-line max-len
+  // eslint-disable-next-line @stylistic/max-len
   [K in keyof PlumeAdminTheme<ReturnType<typeof routes[DeclaredRoutePaths]>>]: PlumeAdminTheme<ReturnType<typeof routes[DeclaredRoutePaths]>>[K]
 };
 

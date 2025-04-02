@@ -65,7 +65,8 @@ export default [
       ],
     },
     rules: {
-      'max-len': ['error', {'code': 120}],
+      '@stylistic/max-len': ['error', {'code': 120}],
+      'no-continue': 'error',
       'react/require-default-props': 0,
       'import/prefer-default-export': 2,
       'import/no-absolute-path': 'off',

@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable @stylistic/max-len */
 import { viteHotContext } from '@i18n/translations/hmr-config';
 import { observable, WritableObservable } from 'micro-observables';
 import { Translations } from './Translations';

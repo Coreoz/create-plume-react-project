@@ -65,7 +65,8 @@ export default [
       ],
     },
     rules: {
-      'max-len': ['error', {'code': 120}],
+      '@stylistic/max-len': ['error', {'code': 120}],
+      'no-continue': 'error',
       'react/require-default-props': 0,
       'import/prefer-default-export': 2,
       'import/no-absolute-path': 'off',
@@ -87,6 +88,7 @@ export default [
       ],
       // Forbid @ts-ignore statements
       '@typescript-eslint/ban-ts-comment': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
       // Forbid any usage
       '@typescript-eslint/no-explicit-any': 2,
       // Allow defining using functions before their declaration
