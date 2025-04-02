@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "ts-built",
     "target": "ESNext",
     "lib": [
       "dom",
@@ -10,9 +9,7 @@
     "rootDirs": [".", "./scss-types"],
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
@@ -26,16 +23,6 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "plugins": [
-      {
-        "transform": "ts-transformer-classname",
-        "import": "diTransformerAdapter"
-      },
-      {
-        "transform": "ts-transformer-classname",
-        "import": "classNameTransformer"
-      }
-    ],
     "paths": {
       "@api/*": ["./src/api/*"],
       "@components/*": ["./src/components/*"],
