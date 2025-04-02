@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@sayari/eslint-plugin": "^0.0.1-rc.4",
+    "@swc/core": "^1.11.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
@@ -41,10 +42,9 @@
     "@types/validator": "^13.7.7",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "@vitejs/plugin-react-swc": "^3.7.0",
+    "@vitejs/plugin-react-swc": "^3.8.0",
     "autoprefixer": "latest",
     "concurrently": "^7.4.0",
-    "copyfiles": "^2.4.1",
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -68,11 +68,10 @@
     "stylelint": "^14.13.0",
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-scss": "^4.3.0",
+    "swc-class-decorator-plugin": "^1.0.0",
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.1",
-    "ts-transformer-classname": "^2.0.0",
     "tslib": "^2.5.3",
-    "ttypescript": "^1.5.15",
     "typed-scss-modules": "^7.1.1",
     "typescript": "4.9.4",
     "vite": "^5.3.1"
@@ -86,20 +85,17 @@
     "safari >= 13"
   ],
   "scripts": {
-    "start": "concurrently  \"yarn watch-ts\" \"yarn copy-scss\" \"yarn watch-scss-module\" \"yarn watch-js\"",
-    "watch-ts": "ttsc --incremental -w",
-    "watch-js": "vite",
+    "start": "concurrently \"yarn watch-scss-module\" \"yarn vite\"",
     "watch-scss-module": "typed-scss-modules 'src/**/*.scss' -w -u",
-    "copy-scss": "copyfiles -u 1 ./src/**/*.scss ts-built",
+    "build": "rm -rf build && vite build",
     "stylelint": "stylelint '**/*.scss'",
-    "build": "rm -rf build && yarn copy-scss && ttsc && vite build",
     "eslint": "eslint src --ext .ts,.tsx -c .eslintrc.ci.cjs",
     "typescript": "tsc --noEmit",
     "test": "jest --config jest.config.ts",
     "coverage": "jest --config jest.config.ts --coverage --watchAll=false",
     "check-scss-types": "typed-scss-modules 'src/**/*.scss' -l"
   },
-  "packageManager": "yarn@4.5.2",
+  "packageManager": "yarn@4.7.0",
   "engines": {
     "node": "~18"
   }
