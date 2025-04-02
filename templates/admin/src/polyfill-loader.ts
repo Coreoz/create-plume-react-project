@@ -5,7 +5,7 @@
 // c'est pas vraiment un polyfill mais ça permet de lancer l'application sans planter
 // => la conséquence c'est qu'il n'y a pas de gestion de timeout sur les appels HTTP
 if (!window.AbortController) {
-  /* eslint-disable-next-line func-names,@typescript-eslint/no-explicit-any */
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   const polyfill: any = function () {
     return {
       abort: () => {},

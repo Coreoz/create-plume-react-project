@@ -6,12 +6,11 @@ import {
 const baseUrl: string = `${window.location.protocol}//${window.location.host}/api`;
 
 export default class ApiHttpClient {
-  // eslint-disable-next-line class-methods-use-this
+
   rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
     return createHttpFetchRequest<Response>(baseUrl, method, path, fetchClient);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
     return createHttpFetchRequest<T>(baseUrl, method, path, defaultJsonFetchClient);
   }
