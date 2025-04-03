@@ -1,80 +1,81 @@
-import { fireEvent, render } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
-import { configureGlobalInjector } from 'plume-ts-di';
-import { MemoryRouter } from 'react-router-dom';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { setupServer, SetupServerApi } from 'msw/node'
+import { http, HttpHandler, HttpResponse } from 'msw'
 import installApiModule from '../../../../src/api/api-module';
-import installComponentsModule from '../../../../src/components/components-module';
 import Login from '../../../../src/components/features/login/Login';
-import installI18nModule from '../../../../src/i18n/i18n-module';
-import installPlumeAdminUsersModule
-  from '../../../../src/lib/plume-admin-users/plume-admin-users-module';
 import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
-import '@testing-library/jest-dom';
+import installI18nModule from '@i18n/i18n-module';
+
+const restHandlers: HttpHandler[] = [
+  http.post('/api/admin/session', () => {
+    return HttpResponse.json({
+        errorCode: 'WRONG_LOGIN_OR_PASSWORD',
+        statusArguments: [],
+      },
+      { status: 400 }
+    )
+  }),
+]
+
+const server: SetupServerApi = setupServer(...restHandlers)
 
 describe('Login', () => {
-  const injector = createInjector();
-  installServicesModule(injector);
-  installComponentsModule(injector);
-  installApiModule(injector);
-  installI18nModule(injector);
-  installPlumeAdminUsersModule(injector);
-  configureGlobalInjector(injector);
-  fetchMock
-    .get('http://localhost/api/example/test/Aur%C3%A9lien', {
-      name: 'Aurélien',
-    })
-    .post('http://localhost/api/admin/session',
-      {
-        body: {
-          errorCode: 'WRONG_LOGIN_OR_PASSWORD',
-          statusArguments: [],
-        },
-        status: 400
-      }
-    );
+  beforeAll(() => {
+    const injector: Injector = createInjector();
 
-  it('should render a not disabled button', async() => {
+    installServicesModule(injector);
+    installApiModule(injector);
+    installI18nModule(injector);
+    configureGlobalInjector(injector);
+
+    server.listen({ onUnhandledRequest: 'error' });
+  })
+
+  afterAll(() => server.close());
+  afterEach(() => {
+    cleanup();
+
+    server.resetHandlers();
+  });
+
+  it('should render a not disabled button', () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
-    const button: HTMLElement | null = wrapper.queryByTestId("login-form-submit");
+    const button: HTMLElement | null = wrapper.queryByTestId('login-form-submit');
 
+    expect(button).toHaveProperty('disabled', false);
     expect(button).toBeDefined();
-    expect(button).not.toBeDisabled();
   });
 
   it('should not render an alert box', () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
-    const alert: HTMLElement | null = wrapper.queryByTestId("login-alert");
+    const alert: HTMLElement | null = wrapper.queryByTestId('login-alert');
     expect(alert).toBeNull();
   });
 
   it('should render an alert box', async () => {
     const wrapper = render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
+      <Login />,
     );
 
     // Get input and fill values
     const userName: HTMLElement = await wrapper.findByTestId('login-form-username');
-    fireEvent.change(userName.querySelector("input")!, { target: { value: 'jdoe' } })
+    fireEvent.change(userName.querySelector('input')!, { target: { value: 'jdoe' } });
     const password: HTMLElement = await wrapper.findByTestId('login-form-password');
-    fireEvent.change(password.querySelector("input")!, { target: { value: 'password' } })
+    fireEvent.change(password.querySelector('input')!, { target: { value: 'password' } });
 
     // Submit form
     const form: HTMLElement = await wrapper.findByTestId('login-form');
-    fireEvent.submit(form)
+    fireEvent.submit(form);
 
-    const alert: HTMLElement = await wrapper.findByTestId("login-alert");
+    const alert: HTMLElement = await wrapper.findByTestId('login-alert');
     expect(alert).toBeDefined();
-    expect(alert).toHaveTextContent("User name or password incorrect")
+    expect(alert.textContent).toBe('User name or password incorrect');
   });
 });

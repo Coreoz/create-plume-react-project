@@ -37,7 +37,7 @@ export class LocaleResolver {
   }
 
   resolve(): Locale {
-    // eslint-disable-next-line no-restricted-syntax
+
     for (const resolver of this.resolvers) {
       const resolvedLocale: Locale | undefined = resolver(this);
       if (resolvedLocale !== undefined) {
@@ -51,7 +51,7 @@ export class LocaleResolver {
     if (typeof navigator === 'undefined') {
       throw new Error('Trying to resolve locale from browser whereas navigator is undefined');
     }
-    // eslint-disable-next-line no-restricted-syntax
+
     for (const language of navigator.languages) {
       const matchingLocale: Locale | undefined = localeResolver.tryFindMatchingLocale(language.substring(0, 2));
       if (matchingLocale) {
