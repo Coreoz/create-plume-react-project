@@ -65,7 +65,7 @@
     "stylelint": "^14.13.0",
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-scss": "^4.3.0",
-    "swc-class-decorator-plugin": "^1.0.0",
+    "swc-class-decorator-plugin": "^1.0.1",
     "typed-scss-modules": "^7.1.1",
     "typescript": "^5.8.2",
     "vite": "^6.2.1",

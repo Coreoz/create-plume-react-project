@@ -13952,10 +13952,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swc-class-decorator-plugin@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "swc-class-decorator-plugin@npm:1.0.0"
-  checksum: 10/3fc36298e526f7398955db30c9e4eec3efb85ca11ea9031075cf9de529b371339da8dc87c54c301cac12089a2bed0963adf4c935dd1a881d8f17ff14d4167ed4
+"swc-class-decorator-plugin@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "swc-class-decorator-plugin@npm:1.0.1"
+  checksum: 10/5417a201cce5ea054befbad070a5f7fe2c41d14eea4c19d76e06b622f3fec29fc7a3c0a1a35c4208966a4ac81faba309c912ef2922c642b42dd510b3c01aa5d4
   languageName: node
   linkType: hard
 
@@ -14287,7 +14287,7 @@ __metadata:
     stylelint: "npm:^14.13.0"
     stylelint-config-recommended-scss: "npm:^7.0.0"
     stylelint-scss: "npm:^4.3.0"
-    swc-class-decorator-plugin: "npm:^1.0.0"
+    swc-class-decorator-plugin: "npm:^1.0.1"
     type-route: "npm:^1.1.0"
     typed-scss-modules: "npm:^7.1.1"
     typescript: "npm:^5.8.2"
