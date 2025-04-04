@@ -50,7 +50,8 @@ function NestedListItem(
                 isItemOpened
                   ? (
                     <Icon>expand_less</Icon>
-                  ) : (
+                  )
+                  : (
                     <Icon>expand_more</Icon>
                   )
               }

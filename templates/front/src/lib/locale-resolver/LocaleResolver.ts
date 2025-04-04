@@ -37,7 +37,6 @@ export class LocaleResolver {
   }
 
   resolve(): Locale {
-
     for (const resolver of this.resolvers) {
       const resolvedLocale: Locale | undefined = resolver(this);
       if (resolvedLocale !== undefined) {

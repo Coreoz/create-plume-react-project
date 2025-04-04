@@ -15,13 +15,11 @@ export default [
   react.configs.flat.recommended,
   compat.configs["flat/recommended"],
   jsxA11y.flatConfigs.recommended,
+  stylistic.configs.recommended,
   {
     ignores: [
       'build/*',
       'public/*',
-      'stylelint.config.cjs',
-      'jest.config.ts',
-      'vite.config.ts',
     ],
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -66,11 +64,17 @@ export default [
     },
     rules: {
       '@stylistic/max-len': ['error', {'code': 120}],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/indent': ['error', 2, {'offsetTernaryExpressions': false}],
+      '@stylistic/quote-props': ['error', 'as-needed'],
+      '@stylistic/brace-style': ['error', '1tbs', {'allowSingleLine': false}],
+      '@stylistic/function-paren-newline': 'off',
+      '@stylistic/multiline-ternary': ['error', 'always-multiline'],
+      '@stylistic/jsx-wrap-multilines': ['error', {'prop': 'ignore'}],
       'no-continue': 'error',
       'react/require-default-props': 0,
       'import/prefer-default-export': 2,
       'import/no-absolute-path': 'off',
-      'function-paren-newline': 'off',
       'no-restricted-syntax': [
         'error',
         {
@@ -121,7 +125,7 @@ export default [
         },
       ],
       'react-hooks/rules-of-hooks': 'error',
-      'linebreak-style': 'off',
+      '@stylistic/linebreak-style': 'off',
       // Add all your custom hooks which have dependencies in the additional hooks
       // If you have several hooks, here is the syntax 'additionalHooks': '(hook1|hook2)'
       'react-hooks/exhaustive-deps': ['warn', {'additionalHooks': 'useOnDependenciesChange|useEffectWithSsrSupport|useObservableLoader'}],

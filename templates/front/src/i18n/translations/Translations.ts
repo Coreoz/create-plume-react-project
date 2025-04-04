@@ -59,7 +59,7 @@ export type Translations = {
   },
   // errors
   error: {
-    field : {
+    field: {
       required: string,
       email_wrong_format: string,
     },

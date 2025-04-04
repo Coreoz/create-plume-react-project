@@ -27,8 +27,24 @@ export default function Home() {
       <div>
         <h2>API call test</h2>
         {loader.isLoading && <div>Loading...</div>}
-        {loader.error && <div>Could not call API: {httpError(loader.error)}</div>}
-        {sample && <div>API call success! Result: {sample.name}</div>}
+        {
+          loader.error
+          && (
+            <div>
+              Could not call API:
+              {httpError(loader.error)}
+            </div>
+          )
+        }
+        {
+          sample
+          && (
+            <div>
+              API call success! Result:
+              {sample.name}
+            </div>
+          )
+        }
       </div>
     </div>
   );

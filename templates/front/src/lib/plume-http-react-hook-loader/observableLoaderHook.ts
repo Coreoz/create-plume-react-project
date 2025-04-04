@@ -181,7 +181,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
 export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
   observableSources: T,
   dependencies?: DependencyList,
-) : DataLoader<unknown[]> {
+): DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
     // eslint-disable-next-line react-hooks/exhaustive-deps

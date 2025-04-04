@@ -1,12 +1,12 @@
 import { ActionButton } from '@components/theme/action/Actions';
 import installI18nModule from '@i18n/i18n-module';
 import { render, screen } from '@testing-library/react';
-import { configureGlobalInjector } from 'plume-ts-di';
-import { describe, expect, it } from 'vitest'
+import { configureGlobalInjector, Injector } from 'plume-ts-di';
+import { describe, expect, it } from 'vitest';
 import { createInjector } from '../../TestUtils';
 
 describe('ActionButton', () => {
-  const injector = createInjector();
+  const injector: Injector = createInjector();
   installI18nModule(injector);
   configureGlobalInjector(injector);
 
@@ -15,7 +15,7 @@ describe('ActionButton', () => {
     render(
       <ActionButton disabled dataTestId="custom-button">
         Click me
-      </ActionButton>
+      </ActionButton>,
     );
 
     // Get tested element

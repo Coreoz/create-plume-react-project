@@ -8,7 +8,7 @@
     ],
     "rootDirs": [".", "./scss-types"],
     "types": ["node", "vite/client"],
-    "esModuleInterop": true,
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

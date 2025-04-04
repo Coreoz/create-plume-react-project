@@ -45,7 +45,7 @@ import {
 import Popin from './popin/Popin';
 import SortSelect from './sort/SortSelect';
 
-export default class AdminTheme <T extends { link: Link }> implements PlumeAdminTheme<T> {
+export default class AdminTheme<T extends { link: Link }> implements PlumeAdminTheme<T> {
   // actions
 
   actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
