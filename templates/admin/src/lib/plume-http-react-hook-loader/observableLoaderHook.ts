@@ -1,7 +1,5 @@
 import { Observable, useObservable } from 'micro-observables';
-import {
-  DependencyList, MutableRefObject, useRef, useState,
-} from 'react';
+import { DependencyList, MutableRefObject, useRef, useState } from 'react';
 import { HttpError } from 'simple-http-rest-client';
 import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
@@ -181,7 +179,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
 export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
   observableSources: T,
   dependencies?: DependencyList,
-) : DataLoader<unknown[]> {
+): DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
     // eslint-disable-next-line react-hooks/exhaustive-deps

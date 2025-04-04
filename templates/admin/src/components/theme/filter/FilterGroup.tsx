@@ -2,10 +2,7 @@ import CheckboxFilter from '@components/theme/filter/CheckboxFilter';
 import Filter from '@components/theme/filter/Filter';
 import RadioFilter from '@components/theme/filter/RadioFilter';
 import {
-  CheckboxFilterProps,
-  FilterGroupOption,
-  FilterGroupProps,
-  RadioFilterProps,
+  CheckboxFilterProps, FilterGroupOption, FilterGroupProps, RadioFilterProps,
 } from '@lib/plume-search/filters/FilterTypes';
 
 import scss from './filter-menu.module.scss';
@@ -73,7 +70,8 @@ function FilterGroup(
                   className={scss.inputFilter}
                   CheckboxProps={(value as CheckboxFilterProps).CheckboxProps}
                 />
-              ) : (
+              )
+              : (
                 <RadioFilter
                   key={value.value}
                   label={value.label}

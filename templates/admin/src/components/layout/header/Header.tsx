@@ -2,7 +2,7 @@ import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import LocaleService from '@i18n/locale/LocaleService';
 import classNames from '@lib/class-names/ClassNames';
 import { Locale } from '@lib/locale-resolver/LocaleResolver';
-import { MenuItem, Divider } from '@mui/material';
+import { Divider, MenuItem } from '@mui/material';
 import SessionService from '@services/session/SessionService';
 import { UserWithExpiration } from '@services/session/User';
 import { useObservable } from 'micro-observables';
@@ -29,11 +29,13 @@ function LocaleSelectorContainer() {
   const localeService: LocaleService = getGlobalInstance(LocaleService);
   const currentLocale: Locale | undefined = useObservable(localeService.getCurrentLocale());
 
-  return <LocaleSelector
-    currentLocale={currentLocale}
-    availableLocales={localeService.getAvailableLocales()}
-    onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
-  />;
+  return (
+    <LocaleSelector
+      currentLocale={currentLocale}
+      availableLocales={localeService.getAvailableLocales()}
+      onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
+    />
+  );
 }
 
 type Props = {

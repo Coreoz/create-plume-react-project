@@ -5,6 +5,6 @@
     "asset.d.ts",
     "tests",
     "vite.config.ts",
-    "typed-scss-modules.config.ts"
+    "typed-scss-modules.config.ts",
   ]
 }

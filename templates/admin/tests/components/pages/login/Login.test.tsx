@@ -1,8 +1,8 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
-import { setupServer, SetupServerApi } from 'msw/node'
-import { http, HttpHandler, HttpResponse } from 'msw'
+import { setupServer, SetupServerApi } from 'msw/node';
+import { http, HttpHandler, HttpResponse } from 'msw';
 import installApiModule from '../../../../src/api/api-module';
 import Login from '../../../../src/components/features/login/Login';
 import installServicesModule from '../../../../src/services/services-module';
@@ -12,15 +12,17 @@ import installI18nModule from '@i18n/i18n-module';
 const restHandlers: HttpHandler[] = [
   http.post('/api/admin/session', () => {
     return HttpResponse.json({
-        errorCode: 'WRONG_LOGIN_OR_PASSWORD',
-        statusArguments: [],
-      },
-      { status: 400 }
-    )
+      errorCode: 'WRONG_LOGIN_OR_PASSWORD',
+      statusArguments: [],
+    },
+    {
+      status: 400,
+    },
+    );
   }),
-]
+];
 
-const server: SetupServerApi = setupServer(...restHandlers)
+const server: SetupServerApi = setupServer(...restHandlers);
 
 describe('Login', () => {
   beforeAll(() => {
@@ -32,7 +34,7 @@ describe('Login', () => {
     configureGlobalInjector(injector);
 
     server.listen({ onUnhandledRequest: 'error' });
-  })
+  });
 
   afterAll(() => server.close());
   afterEach(() => {
