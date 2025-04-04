@@ -7,7 +7,7 @@
       "esnext"
     ],
     "rootDirs": [".", "./scss-types"],
-    "types": ["vite/client", "node"],
+    "types": ["node", "vite/client"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -33,6 +33,7 @@
   },
   "include": [
     "src",
-    "asset.d.ts"
+    "asset.d.ts",
+    "tests"
   ],
 }

@@ -10,11 +10,13 @@ function LocaleSelectorContainer() {
   const localeService: LocaleService = getGlobalInstance(LocaleService);
   const currentLocale: Locale = useObservable(localeService.getCurrentLocale());
 
-  return <LocaleSelector
-    currentLocale={currentLocale}
-    availableLocales={localeService.getAvailableLocales()}
-    onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
-  />;
+  return (
+    <LocaleSelector
+      currentLocale={currentLocale}
+      availableLocales={localeService.getAvailableLocales()}
+      onLocaleSelected={(newLocale: Locale) => localeService.setCurrentLocale(newLocale)}
+    />
+  );
 }
 
 export default function Header() {

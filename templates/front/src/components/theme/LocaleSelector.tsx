@@ -7,7 +7,7 @@ type LocaleSelectorProps = {
 };
 
 export default function LocaleSelector(
-  { availableLocales, onLocaleSelected, currentLocale } : LocaleSelectorProps,
+  { availableLocales, onLocaleSelected, currentLocale }: LocaleSelectorProps,
 ) {
   return (
     <div id="lang-menu">
