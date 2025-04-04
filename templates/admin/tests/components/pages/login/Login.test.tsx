@@ -11,13 +11,14 @@ import installI18nModule from '@i18n/i18n-module';
 
 const restHandlers: HttpHandler[] = [
   http.post('/api/admin/session', () => {
-    return HttpResponse.json({
-      errorCode: 'WRONG_LOGIN_OR_PASSWORD',
-      statusArguments: [],
-    },
-    {
-      status: 400,
-    },
+    return HttpResponse.json(
+      {
+        errorCode: 'WRONG_LOGIN_OR_PASSWORD',
+        statusArguments: [],
+      },
+      {
+        status: 400,
+      },
     );
   }),
 ];

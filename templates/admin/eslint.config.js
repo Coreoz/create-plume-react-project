@@ -69,7 +69,7 @@ export default [
       '@stylistic/quote-props': ['error', 'as-needed'],
       '@stylistic/brace-style': ['error', '1tbs', {'allowSingleLine': false}],
       '@stylistic/function-paren-newline': 'off',
-      '@stylistic/multiline-ternary': ['error', 'always-multiline', {'ignoreJSX': true}],
+      '@stylistic/multiline-ternary': ['error', 'always-multiline'],
       '@stylistic/jsx-wrap-multilines': ['error', {'prop': 'ignore'}],
       'no-continue': 'error',
       'react/require-default-props': 0,
