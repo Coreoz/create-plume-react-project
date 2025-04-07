@@ -1,17 +1,12 @@
 import appLogo from '/assets/icons/plume_logo.png';
 import { SessionCredentials } from '@api/session/SessionApi';
-import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
-import { Alert } from '@mui/material';
-import { useObservable } from 'micro-observables';
-import { getGlobalInstance } from 'plume-ts-di';
 import useMessages from '@i18n/hooks/messagesHook';
-import useLoader, {
-  LoaderState,
-} from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import { Alert } from '@mui/material';
 import SessionService from '@services/session/SessionService';
-import LoginForm from './LoginForm';
+import { getGlobalInstance } from 'plume-ts-di';
 import scss from './login.module.scss';
-import { routes, ROUTE_HOME } from '../../../router/RouterDefinition';
+import LoginForm from './LoginForm';
 
 export default function Login() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
@@ -22,14 +17,6 @@ export default function Login() {
   const tryAuthenticate = (credentials: SessionCredentials) => {
     loader.monitor(sessionService.authenticate(credentials));
   };
-
-  const isAuthenticated: boolean = useObservable(sessionService.isAuthenticated());
-
-  useOnDependenciesChange(() => {
-    if (isAuthenticated) {
-      routes[ROUTE_HOME]().push();
-    }
-  }, [isAuthenticated]);
 
   return (
     <div className={scss.loginLayout}>

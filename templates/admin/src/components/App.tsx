@@ -13,8 +13,8 @@ export default function App() {
     <GlobalErrorBoundary>
       <RouteProvider>
         <Router />
-        <ToastContainer />
       </RouteProvider>
+      <ToastContainer />
     </GlobalErrorBoundary>
   );
 }
