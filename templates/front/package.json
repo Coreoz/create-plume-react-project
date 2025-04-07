@@ -13,7 +13,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.37.0",
     "simple-http-request-builder": "^2.0.1",
-    "simple-http-rest-client": "^2.1.1",
+    "simple-http-rest-client": "^2.3.0",
     "simple-job-scheduler": "^1.1.2",
     "simple-logging-system": "^1.1.0",
     "type-route": "^1.1.0"
@@ -68,7 +68,7 @@
     "swc-class-decorator-plugin": "^1.0.1",
     "typed-scss-modules": "^7.1.1",
     "typescript": "^5.8.2",
-    "vite": "^6.2.1",
+    "vite": "^6.2.5",
     "vitest": "^3.1.1"
   },
   "browserslist": [
