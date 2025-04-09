@@ -19,13 +19,13 @@ export default class ApiHttpClientAuthenticated implements PlumeAdminHttpClient 
   }
 
   rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
-    return this.configureRequest(
+    return this.configureRequest<HttpPromise<Response>>(
       this.httpClient.rawRequest(method, path),
     );
   }
 
   restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
-    return this.configureRequest(
+    return this.configureRequest<HttpPromise<T>>(
       this.httpClient.restRequest<T>(method, path),
     );
   }

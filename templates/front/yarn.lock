@@ -15419,13 +15419,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-http-request-builder@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "simple-http-request-builder@npm:2.0.1"
-  checksum: 10/7f4ad872e8d7fe007b412c7a44aef9914af83e63fb848840c9b9660568a829cbe0bff9aaf4642369924fb5aa173bca80b0762d0f7904f1628d59049ff2edf52f
-  languageName: node
-  linkType: hard
-
 "simple-http-request-builder@npm:^2.1.0":
   version: 2.1.0
   resolution: "simple-http-request-builder@npm:2.1.0"
@@ -16502,7 +16495,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:7.37.0"
     sass: "npm:^1.55.0"
-    simple-http-request-builder: "npm:^2.0.1"
+    simple-http-request-builder: "npm:^2.1.0"
     simple-http-rest-client: "npm:^2.3.0"
     simple-job-scheduler: "npm:^1.1.2"
     simple-logging-system: "npm:^1.1.0"
