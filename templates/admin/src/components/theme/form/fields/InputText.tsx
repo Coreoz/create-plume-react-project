@@ -1,7 +1,7 @@
 import useFormErrorParser from '@components/theme/form/hooks/FormErrorParserHook';
 import { InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
 import { TextFieldElement } from 'react-hook-form-mui';
-import classNames from '../../../../lib/class-names/ClassNames';
+import classNames from '@lib/class-names/ClassNames';
 import scss from './form-input.module.scss';
 
 export default function InputText(
@@ -19,6 +19,7 @@ export default function InputText(
   }: Readonly<InputTextProps>,
 ) {
   const { parseError } = useFormErrorParser({ errorMapping: errorMessageMapping });
+
   return (
     <TextFieldElement
       className={classNames(scss.formControl)}

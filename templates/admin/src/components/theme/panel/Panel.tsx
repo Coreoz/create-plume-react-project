@@ -6,7 +6,7 @@ import {
   PanelProps,
   PanelTitleProps,
 } from '@lib/plume-admin-theme/panel/PanelProps';
-import { Grid2 as Grid, Icon, IconButton } from '@mui/material';
+import { Grid, Icon, IconButton } from '@mui/material';
 import React from 'react';
 import { Link } from 'type-route';
 

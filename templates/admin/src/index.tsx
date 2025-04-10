@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { JSX, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CssBaseline } from '@mui/material';
