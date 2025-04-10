@@ -1,8 +1,8 @@
 import { HttpRequest, HttpMethod } from 'simple-http-request-builder';
 import { HttpPromise } from 'simple-http-rest-client';
-import SessionService from '../services/session/SessionService';
+import SessionService from '@services/session/SessionService';
 import ApiHttpClient from './ApiHttpClient';
-import PlumeAdminHttpClient from '../lib/plume-admin-api/PlumeHttpClient';
+import PlumeAdminHttpClient from '@lib/plume-admin-api/PlumeHttpClient';
 
 export default class ApiHttpClientAuthenticated implements PlumeAdminHttpClient {
   constructor(private readonly httpClient: ApiHttpClient,
@@ -19,13 +19,13 @@ export default class ApiHttpClientAuthenticated implements PlumeAdminHttpClient 
   }
 
   rawRequest(method: HttpMethod, path: string): HttpRequest<HttpPromise<Response>> {
-    return this.configureRequest(
+    return this.configureRequest<HttpPromise<Response>>(
       this.httpClient.rawRequest(method, path),
     );
   }
 
   restRequest<T>(method: HttpMethod, path: string): HttpRequest<HttpPromise<T>> {
-    return this.configureRequest(
+    return this.configureRequest<HttpPromise<T>>(
       this.httpClient.restRequest<T>(method, path),
     );
   }

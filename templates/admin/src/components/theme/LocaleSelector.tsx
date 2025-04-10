@@ -1,5 +1,5 @@
 import { MenuItem } from '@mui/material';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
 import DropdownMenu, { useOnClickSubscriber } from './DropdownMenu';
 
 type LocaleSelectorProps = {

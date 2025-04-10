@@ -1,7 +1,7 @@
 import { Observable } from 'micro-observables';
 import { HttpError } from 'simple-http-rest-client';
 import frMessages from '../translations/fr';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
 import { Translations } from '../translations/Translations';
 import LocaleService from '../locale/LocaleService';
 import enMessages from '../translations/en';

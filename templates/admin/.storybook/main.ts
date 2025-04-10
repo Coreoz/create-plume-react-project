@@ -3,9 +3,9 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { join, dirname } from "path"
 
 /**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
+* This function is used to resolve the absolute path of a package.
+* It is needed in projects that use Yarn PnP or are set up within a monorepo.
+*/
 // getAbsolutePath use internal types of storybook : "FrameworkName"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getAbsolutePath(value: string): any {

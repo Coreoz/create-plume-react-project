@@ -1,5 +1,5 @@
 import { getGlobalInstance } from 'plume-ts-di';
-import PlumeAdminTheme from '../../lib/plume-admin-theme/PlumeAdminTheme';
+import PlumeAdminTheme from '@lib/plume-admin-theme/PlumeAdminTheme';
 import { DeclaredRoutePaths, routes } from '../../router/RouterDefinition';
 
 export type PlumeAdminThemeComponents = {

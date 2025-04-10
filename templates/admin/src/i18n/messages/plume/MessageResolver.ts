@@ -1,6 +1,6 @@
 import { Logger } from 'simple-logging-system';
 import { HttpError } from 'simple-http-rest-client';
-import PlumeMessageResolver from '../../../lib/plume-messages/MessageResolver';
+import PlumeMessageResolver from '@lib/plume-messages/MessageResolver';
 import { Translations } from '../../translations/Translations';
 import MessageService from '../MessageService';
 

@@ -1,6 +1,4 @@
-import {
-  MutableRefObject, useEffect, useRef,
-} from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 /**
  * Enable to control the timeout in the component where it is used.
@@ -36,8 +34,8 @@ type TimeoutType = ReturnType<typeof setTimeout>;
  */
 export default function useTimeout(callback: () => void, delayInMillis: number) {
   // it's important to have a React ref here: it enables to keep a reference to the last version of the callback
-  const callbackRef: MutableRefObject<() => void> = useRef(callback);
-  const timeoutIdRef: MutableRefObject<TimeoutType | undefined> = useRef<TimeoutType>();
+  const callbackRef: RefObject<() => void> = useRef(callback);
+  const timeoutIdRef: RefObject<TimeoutType | undefined> = useRef<TimeoutType | undefined>(undefined);
 
   useEffect(() => {
     callbackRef.current = callback;

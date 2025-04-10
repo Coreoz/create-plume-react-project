@@ -7,9 +7,17 @@ import List from '@components/theme/list/List';
 import ListHead from '@components/theme/list/ListHead';
 import ListItem from '@components/theme/list/ListItem';
 import ConfirmationPopIn from '@components/theme/popin/ConfirmationPopIn';
-import { ActionButtonProps, ActionContainerProps, ActionLinkProps } from '@lib/plume-admin-theme/action/ActionProps';
+import {
+  ActionButtonProps,
+  ActionContainerProps,
+  ActionLinkProps,
+} from '@lib/plume-admin-theme/action/ActionProps';
 import { FormFieldProps } from '@lib/plume-admin-theme/form/FormFieldProps';
-import { InputPasswordProps, InputSelectProps, InputTextProps } from '@lib/plume-admin-theme/form/FormInputProps';
+import {
+  InputPasswordProps,
+  InputSelectProps,
+  InputTextProps,
+} from '@lib/plume-admin-theme/form/FormInputProps';
 import { FormContainerProps } from '@lib/plume-admin-theme/form/FormProps';
 import { ListHeadProps, ListItemProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
 import {
@@ -27,6 +35,7 @@ import {
   FilterMenuProps,
 } from '@lib/plume-search/filters/FilterTypes';
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
+import { ReactNode } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { Link } from 'type-route';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
@@ -48,64 +57,64 @@ import SortSelect from './sort/SortSelect';
 export default class AdminTheme<T extends { link: Link }> implements PlumeAdminTheme<T> {
   // actions
 
-  actionsContainer: (props: ActionContainerProps) => JSX.Element = ActionsContainer;
+  actionsContainer: (props: ActionContainerProps) => ReactNode = ActionsContainer;
 
-  actionButton: (props: ActionButtonProps) => JSX.Element = ActionButton;
+  actionButton: (props: ActionButtonProps) => ReactNode = ActionButton;
 
-  actionLink: (props: ActionLinkProps<T>) => JSX.Element = ActionLink;
+  actionLink: (props: ActionLinkProps<T>) => ReactNode = ActionLink;
 
   // layout
 
-  panel: (props: PanelProps) => JSX.Element = Panel;
+  panel: (props: PanelProps) => ReactNode = Panel;
 
-  panelSeparator: () => JSX.Element = PanelSeparator;
+  panelSeparator: () => ReactNode = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps<T>) => JSX.Element = PanelTitle;
+  panelTitle: (props: PanelTitleProps<T>) => ReactNode = PanelTitle;
 
-  panelContent: (props: PanelProps) => JSX.Element = PanelContent;
+  panelContent: (props: PanelProps) => ReactNode = PanelContent;
 
-  panelContentElement: (props: PanelContentElementProps) => JSX.Element = PanelContentElement;
+  panelContentElement: (props: PanelContentElementProps) => ReactNode = PanelContentElement;
 
-  panelContentElementColumn: (props: PanelContentElementColumnProps) => JSX.Element = PanelContentElementColumn;
+  panelContentElementColumn: (props: PanelContentElementColumnProps) => ReactNode = PanelContentElementColumn;
 
   // lists
 
-  listHead: (props: ListHeadProps) => JSX.Element = ListHead;
+  listHead: (props: ListHeadProps) => ReactNode = ListHead;
 
-  list: (props: ListProps) => JSX.Element = List;
+  list: (props: ListProps) => ReactNode = List;
 
-  listItem: (props: ListItemProps) => JSX.Element = ListItem;
+  listItem: (props: ListItemProps) => ReactNode = ListItem;
 
   // popin
 
-  popin: (props: PopinProps) => JSX.Element = Popin;
+  popin: (props: PopinProps) => ReactNode = Popin;
 
-  confirmationPopIn: (props: ConfirmationPopInProps) => JSX.Element = ConfirmationPopIn;
+  confirmationPopIn: (props: ConfirmationPopInProps) => ReactNode = ConfirmationPopIn;
 
   // form
   formContainer: <TFieldValues extends FieldValues = FieldValues>(
     props: FormContainerProps<TFieldValues>,
-  ) => JSX.Element = FormContainer;
+  ) => ReactNode = FormContainer;
 
-  formField: (props: FormFieldProps) => JSX.Element = FormField;
+  formField: (props: FormFieldProps) => ReactNode = FormField;
 
-  inputText: (props: InputTextProps) => JSX.Element = InputText;
+  inputText: (props: InputTextProps) => ReactNode = InputText;
 
-  inputSelect: (props: InputSelectProps) => JSX.Element = InputSelect;
+  inputSelect: (props: InputSelectProps) => ReactNode = InputSelect;
 
-  inputPassword: (props: InputPasswordProps) => JSX.Element = InputPassword;
+  inputPassword: (props: InputPasswordProps) => ReactNode = InputPassword;
 
   // filters
 
-  filterMenu: (props: FilterMenuProps) => JSX.Element = FilterMenu;
+  filterMenu: (props: FilterMenuProps) => ReactNode = FilterMenu;
 
-  filter: (props: FilterContainerProps) => JSX.Element = Filter;
+  filter: (props: FilterContainerProps) => ReactNode = Filter;
 
-  filterGroup: (props: FilterGroupProps) => JSX.Element = FilterGroup;
+  filterGroup: (props: FilterGroupProps) => ReactNode = FilterGroup;
 
-  filterInputSearch: (props: FilterInputSearchProps) => JSX.Element = FilterInputSearch;
+  filterInputSearch: (props: FilterInputSearchProps) => ReactNode = FilterInputSearch;
 
   // sort
 
-  sortSelect: <S extends string>(props: SortSelectProps<S>) => JSX.Element = SortSelect;
+  sortSelect: <S extends string>(props: SortSelectProps<S>) => ReactNode = SortSelect;
 }
