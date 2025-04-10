@@ -1,4 +1,4 @@
-import SampleApi from '../../api/session/SampleApi';
+import SampleApi from '../.@api/session/SampleApi';
 
 /**
  * A sample Service that can be copied.

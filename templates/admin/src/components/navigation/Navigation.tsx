@@ -2,12 +2,12 @@ import { ROUTE_USERS, usersGroup } from '@lib/plume-admin-users/router/UsersRout
 import { Icon, List } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
 import plumeLogo from '../../../assets/icons/plume_logo.png';
-import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
-import classNames from '../../lib/class-names/ClassNames';
-import useToggle from '../../lib/react-hook-toggle/ReactHookToggle';
+import useMessages, { Messages } from '@i18n/hooks/messagesHook';
+import classNames from '@lib/class-names/ClassNames';
+import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
 import { routes, ROUTE_HOME } from '../../router/RouterDefinition';
-import Permission from '../../services/session/Permission';
-import SessionService from '../../services/session/SessionService';
+import Permission from '@services/session/Permission';
+import SessionService from '@services/session/SessionService';
 import LinkListItem from './LinkListItem';
 
 import scss from './navigation.module.scss';

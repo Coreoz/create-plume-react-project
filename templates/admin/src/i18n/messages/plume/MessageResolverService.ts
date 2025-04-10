@@ -1,8 +1,8 @@
 import { Observable } from 'micro-observables';
-import PlumeMessageResolver from '../../../lib/plume-messages/MessageResolver';
+import PlumeMessageResolver from '@lib/plume-messages/MessageResolver';
 import MessageService from '../MessageService';
 import MessageResolver from './MessageResolver';
-import PlumeMessageResolverService from '../../../lib/plume-messages/MessageResolverService';
+import PlumeMessageResolverService from '@lib/plume-messages/MessageResolverService';
 import { Translations } from '../../translations/Translations';
 
 /**

@@ -5,11 +5,11 @@ import { Alert } from '@mui/material';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
 import React from 'react';
-import useMessages from '../../../i18n/hooks/messagesHook';
+import useMessages from '@i18n/hooks/messagesHook';
 import useLoader, {
   LoaderState,
-} from '../../../lib/plume-http-react-hook-loader/promiseLoaderHook';
-import SessionService from '../../../services/session/SessionService';
+} from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import SessionService from '@services/session/SessionService';
 import LoginForm from './LoginForm';
 import scss from './login.module.scss';
 import { routes, ROUTE_HOME } from '../../../router/RouterDefinition';

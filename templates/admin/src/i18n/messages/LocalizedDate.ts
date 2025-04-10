@@ -3,7 +3,7 @@ import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import dayjs from 'dayjs';
 import LocaleService from '../locale/LocaleService';
-import { Locale } from '../../lib/locale-resolver/LocaleResolver';
+import { Locale } from '@lib/locale-resolver/LocaleResolver';
 
 /**
  * Gère le chargement des traductions pour dayjs

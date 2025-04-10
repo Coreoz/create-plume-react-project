@@ -2,8 +2,8 @@ import { SessionCredentials } from '@api/session/SessionApi';
 import InputPassword from '@components/theme/form/fields/InputPassword';
 import { FormHTMLAttributes } from 'react';
 import { FormContainer } from 'react-hook-form-mui';
-import useMessages from '../../../i18n/hooks/messagesHook';
-import ActionStyle from '../../../lib/plume-admin-theme/action/ActionStyle';
+import useMessages from '@i18n/hooks/messagesHook';
+import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { ActionButton, ActionsContainer } from '../../theme/action/Actions';
 import InputText from '../../theme/form/fields/InputText';
 

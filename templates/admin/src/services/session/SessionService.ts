@@ -1,6 +1,6 @@
 import { IdlenessDetector, JwtSessionManager, RefreshableJwtToken } from 'browser-user-session';
 import { Scheduler } from 'simple-job-scheduler';
-import SessionApi, { SessionCredentials } from '../../api/session/SessionApi';
+import SessionApi, { SessionCredentials } from '@api/session/SessionApi';
 import Permission from './Permission';
 import { UserWithExpiration } from './User';
 

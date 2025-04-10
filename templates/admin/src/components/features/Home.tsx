@@ -1,5 +1,5 @@
 import usePlumeTheme, { PlumeAdminThemeComponents } from '../hooks/ThemeHook';
-import useMessages, { Messages } from '../../i18n/hooks/messagesHook';
+import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 
 export default function Home() {
   const { messages }: Messages = useMessages();
