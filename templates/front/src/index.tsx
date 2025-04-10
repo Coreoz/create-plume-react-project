@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { JSX, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'micro-observables/batchingForReactDom';
 import { Logger } from 'simple-logging-system';
