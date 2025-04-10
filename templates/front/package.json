@@ -58,7 +58,7 @@
     "msw": "^2.7.3",
     "postcss": "latest",
     "sass": "^1.55.0",
-    "storybook": "7.4.6",
+    "storybook": "8.6.12",
     "stylelint": "^14.13.0",
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-scss": "^4.3.0",
