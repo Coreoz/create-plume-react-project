@@ -37,7 +37,6 @@ import {
 import { SortSelectProps } from '@lib/plume-search/sorts/SortTypes';
 import { ReactNode } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { Link } from 'type-route';
 import { ActionButton, ActionLink, ActionsContainer } from './action/Actions';
 import FormField from './form/fields/FormField';
 import InputSelect from './form/fields/InputSelect';
@@ -54,14 +53,14 @@ import {
 import Popin from './popin/Popin';
 import SortSelect from './sort/SortSelect';
 
-export default class AdminTheme<T extends { link: Link }> implements PlumeAdminTheme<T> {
+export default class AdminTheme implements PlumeAdminTheme {
   // actions
 
   actionsContainer: (props: ActionContainerProps) => ReactNode = ActionsContainer;
 
   actionButton: (props: ActionButtonProps) => ReactNode = ActionButton;
 
-  actionLink: (props: ActionLinkProps<T>) => ReactNode = ActionLink;
+  actionLink: (props: ActionLinkProps) => ReactNode = ActionLink;
 
   // layout
 
@@ -69,7 +68,7 @@ export default class AdminTheme<T extends { link: Link }> implements PlumeAdminT
 
   panelSeparator: () => ReactNode = PanelSeparator;
 
-  panelTitle: (props: PanelTitleProps<T>) => ReactNode = PanelTitle;
+  panelTitle: (props: PanelTitleProps) => ReactNode = PanelTitle;
 
   panelContent: (props: PanelProps) => ReactNode = PanelContent;
 

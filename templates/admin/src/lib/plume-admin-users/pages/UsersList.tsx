@@ -106,7 +106,7 @@ export default function UsersList(
           <SearchActions>
             <ActionLink
               icon="add"
-              linkTo={usersRoutes[ROUTE_USERS_CREATE]}
+              linkTo={usersRoutes[ROUTE_USERS_CREATE]().link}
               style={ActionStyle.PRIMARY}
             >
               {messages.user.add_user}
