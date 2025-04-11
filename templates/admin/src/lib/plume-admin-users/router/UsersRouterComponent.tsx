@@ -7,7 +7,6 @@ import {
   UseUsersRoute,
   useUsersRoute,
 } from '@lib/plume-admin-users/router/UsersRouter';
-import React from 'react';
 import UsersEdit from '../pages/UsersEdit';
 
 type Props = {

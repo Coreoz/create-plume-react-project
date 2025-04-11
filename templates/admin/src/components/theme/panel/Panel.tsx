@@ -7,7 +7,6 @@ import {
   PanelTitleProps,
 } from '@lib/plume-admin-theme/panel/PanelProps';
 import { Grid, Icon, IconButton } from '@mui/material';
-import React from 'react';
 import { Link } from 'type-route';
 
 import scss from './panel.module.scss';

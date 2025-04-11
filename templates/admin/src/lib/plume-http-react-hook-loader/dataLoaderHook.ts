@@ -1,5 +1,5 @@
 import {
-  DependencyList, MutableRefObject, useEffect, useRef, useState,
+  DependencyList, RefObject, useEffect, useRef, useState,
 } from 'react';
 import { DataLoader } from './observableLoaderHook';
 import useLoader, { LoaderState, LoadingPromise } from './promiseLoaderHook';
@@ -19,7 +19,7 @@ export default function useDataLoader<T>(
   dependencies: DependencyList = [],
 ): DataLoader<T> {
   const [data, setData] = useState<T>();
-  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const isMountedRef: RefObject<boolean> = useRef<boolean>(true);
   const loader: LoaderState = useLoader();
   const dataLoader = () => loader.monitor(dataPromise().then((result: T) => {
     // don't update state if the component is unmounted to avoid errors

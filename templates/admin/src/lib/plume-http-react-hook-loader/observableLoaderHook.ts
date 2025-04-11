@@ -1,5 +1,5 @@
 import { Observable, useObservable } from 'micro-observables';
-import { DependencyList, MutableRefObject, useRef, useState } from 'react';
+import { DependencyList, RefObject, useRef, useState } from 'react';
 import { HttpError } from 'simple-http-rest-client';
 import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
@@ -127,7 +127,7 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
   const isAllDataLoaded: boolean = allDataLoadable
     .every((dataLoadable: LoadableData) => dataLoadable.isLoaded);
 
-  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const isMountedRef: RefObject<boolean> = useRef<boolean>(true);
   const [loadingError, setLoadingError] = useState<HttpError>();
   // data loader with error handling
   const loaderWithErrorHandling = () => {

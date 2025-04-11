@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 import { Logger } from 'simple-logging-system';
 import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
 import { AnyPromise } from './AnyPromise';
@@ -61,7 +61,7 @@ export type LoaderState = {
  * This hooks does not take any parameter, the `Promise` using the returned method {@link LoaderState.monitor}
  */
 export default function useLoader(): LoaderState {
-  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const isMountedRef: RefObject<boolean> = useRef<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
