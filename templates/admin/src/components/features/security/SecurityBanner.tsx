@@ -1,6 +1,6 @@
 import { getGlobalInstance } from 'plume-ts-di';
 import { Alert } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useObservable } from 'micro-observables';
 import { UserWithExpiration } from '@services/session/User';
 import SessionService from '@services/session/SessionService';

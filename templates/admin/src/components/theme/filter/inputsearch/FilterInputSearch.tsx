@@ -4,7 +4,7 @@ import { FilterInputSearchProps } from '@lib/plume-search/filters/FilterTypes';
 import {
   Button, Icon, IconButton, InputAdornment, Popover, TextField,
 } from '@mui/material';
-import React, { useRef, useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 
 import scss from './filter-input-search.module.scss';
 import FilterInputSearchOptions from './FilterInputSearchOptions';
@@ -27,7 +27,7 @@ function FilterInputSearch({
   InputProps,
   children,
 }: FilterInputSearchProps) {
-  const anchorEl: React.MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
+  const anchorEl: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 
   const [displayMoreOptions, setDisplayMoreOptions] = useState<boolean>(false);
   const { messages }: Messages = useMessages();

@@ -1,5 +1,5 @@
 import { Button, Icon, Menu } from '@mui/material';
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { IconType } from './IconType';
 
 export type DropdownMenuType = {

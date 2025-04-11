@@ -8,7 +8,6 @@ import Permission from '@services/session/Permission';
 import SessionService from '@services/session/SessionService';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
-import React from 'react';
 import {
   LOGIN,
   ROUTE_HOME,

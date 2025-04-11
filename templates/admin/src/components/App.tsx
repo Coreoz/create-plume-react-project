@@ -1,4 +1,3 @@
-import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Logger } from 'simple-logging-system';
 import Router from '../router/Router';

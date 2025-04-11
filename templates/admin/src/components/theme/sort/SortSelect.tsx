@@ -6,7 +6,7 @@ import {
   Icon, ListItemText, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
 import { getGlobalInstance } from 'plume-ts-di';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import scss from './sort-select.module.scss';
 

@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react';
+import { RefObject, useRef } from 'react';
 import { AnyPromise } from './AnyPromise';
 import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
@@ -50,7 +50,7 @@ export interface StopPromisePropagationAfterUnmount {
  * ```
  */
 export default function useUnmountablePromises(): StopPromisePropagationAfterUnmount {
-  const isMountedRef: MutableRefObject<boolean> = useRef<boolean>(true);
+  const isMountedRef: RefObject<boolean> = useRef<boolean>(true);
 
   useOnComponentUnMounted(() => {
     isMountedRef.current = false;

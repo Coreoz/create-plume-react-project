@@ -3,7 +3,7 @@ import List from '@components/theme/list/List';
 import ListHead from '@components/theme/list/ListHead';
 import { PanelContent } from '@components/theme/panel/Panel';
 import { ListHeadProps, ListProps } from '@lib/plume-admin-theme/list/ListProps';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import scss from './search-layout.module.scss';
 
 export function SearchLayout({ children }: PropsWithChildren<{}>) {
