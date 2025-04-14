@@ -1,13 +1,10 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import { http, HttpHandler, HttpResponse } from 'msw';
+import { setupServer, SetupServerApi } from 'msw/node';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
-import { setupServer, SetupServerApi } from 'msw/node';
-import { http, HttpHandler, HttpResponse } from 'msw';
-import installApiModule from '../../../../src/api/api-module';
 import Login from '../../../../src/components/features/login/Login';
-import installServicesModule from '../../../../src/services/services-module';
 import { createInjector } from '../../../TestUtils';
-import installI18nModule from '@i18n/i18n-module';
 
 const restHandlers: HttpHandler[] = [
   http.post('/api/admin/session', () => {
@@ -29,9 +26,6 @@ describe('Login', () => {
   beforeAll(() => {
     const injector: Injector = createInjector();
 
-    installServicesModule(injector);
-    installApiModule(injector);
-    installI18nModule(injector);
     configureGlobalInjector(injector);
 
     server.listen({ onUnhandledRequest: 'error' });
