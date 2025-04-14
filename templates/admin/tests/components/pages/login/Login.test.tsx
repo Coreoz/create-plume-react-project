@@ -5,7 +5,9 @@ import { configureGlobalInjector, Injector } from 'plume-ts-di';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import Login from '../../../../src/components/features/login/Login';
 import { createInjector } from '../../../TestUtils';
+import installI18nModule from '@i18n/i18n-module';
 
+// Set up mock HTTP server with default handler
 const restHandlers: HttpHandler[] = [
   http.post('/api/admin/session', () => {
     return HttpResponse.json(
@@ -23,15 +25,20 @@ const restHandlers: HttpHandler[] = [
 const server: SetupServerApi = setupServer(...restHandlers);
 
 describe('Login', () => {
+  // Set up DI and mock server
   beforeAll(() => {
     const injector: Injector = createInjector();
 
+    installI18nModule(injector);
     configureGlobalInjector(injector);
 
     server.listen({ onUnhandledRequest: 'error' });
   });
 
+  // Clean up after tests
   afterAll(() => server.close());
+
+  // Reset handlers after each test
   afterEach(() => {
     cleanup();
 
