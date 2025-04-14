@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
+    "@testing-library/jest-dom": "^6.6.3",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.13",
     "micro-observables": "^1.7.2",

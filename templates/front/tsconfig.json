@@ -7,7 +7,7 @@
       "esnext"
     ],
     "rootDirs": [".", "./scss-types"],
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "@testing-library/jest-dom"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
