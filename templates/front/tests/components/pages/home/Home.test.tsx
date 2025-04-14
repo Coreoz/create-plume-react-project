@@ -15,7 +15,6 @@ const restHandlers: HttpHandler[] = [
     () => {
       return HttpResponse.json({ name: 'John Doe' });
     },
-    { once: true },
   ),
 ];
 
