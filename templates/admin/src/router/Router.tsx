@@ -15,6 +15,7 @@ import {
   UseRoute,
   useRoute,
 } from './RouterDefinition';
+import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
 
 export default function Router() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
@@ -23,16 +24,23 @@ export default function Router() {
   const isAuthenticated: boolean = useObservable(sessionService.isAuthenticated());
 
   const route: UseRoute = useRoute();
+  const redirectHomeCondition: boolean = route.name === false
+    || (usersGroup.has(route) && !canManageUsers);
+
+  useOnDependenciesChange(() => {
+    if (isAuthenticated) {
+      routes[LOGIN]().push();
+    }
+    if (redirectHomeCondition) {
+      routes[ROUTE_HOME]().push();
+    }
+  }, [route, redirectHomeCondition]);
 
   if (!isAuthenticated) {
-    routes[LOGIN]().push();
-
     return <Login />;
   }
 
-  if (route.name === false) {
-    routes[ROUTE_HOME]().push();
-
+  if (redirectHomeCondition) {
     return <></>;
   }
 
