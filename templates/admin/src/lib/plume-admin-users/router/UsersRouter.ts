@@ -33,7 +33,6 @@ export const usersGroup: ReturnType<typeof createGroup> = createGroup([
   usersRoutes[ROUTE_USERS],
   usersRoutes[ROUTE_USERS_CREATE],
   usersRoutes[ROUTE_USERS_UPDATE],
-],
-);
+]);
 
 export type UseUsersRoute = ReturnType<typeof useUsersRoute>;
