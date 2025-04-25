@@ -6,9 +6,11 @@ import { describe, expect, it } from 'vitest';
 import { createInjector } from '../../TestUtils';
 
 describe('ActionButton', () => {
-  const injector: Injector = createInjector();
-  installI18nModule(injector);
-  configureGlobalInjector(injector);
+  beforeAll(() => {
+    const injector: Injector = createInjector();
+    installI18nModule(injector);
+    configureGlobalInjector(injector);
+  })
 
   it('should render a disabled "click me" submit button', async () => {
     // Render action button

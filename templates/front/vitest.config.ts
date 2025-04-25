@@ -3,6 +3,8 @@ import viteConfig from './vite.config'
 
 export default mergeConfig(viteConfig, defineConfig({
   test: {
-    environment: "jsdom"
+    environment: "jsdom",
+    setupFiles: ['./tests/setup.ts'],
+    globals: true, // Ensure globals like 'expect' are available
   },
 }))
