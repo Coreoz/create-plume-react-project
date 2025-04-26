@@ -1,5 +1,4 @@
 import usePlumeTheme, { PlumeAdminThemeComponents } from '@components/hooks/ThemeHook';
-import { checkEmptyTrimmed } from '@components/theme/form/validators/Validators';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
 import { ROUTE_USERS, ROUTE_USERS_UPDATE, usersRoutes } from '@lib/plume-admin-users/router/UsersRouter';
@@ -231,9 +230,6 @@ export default function UsersEdit(
           autoComplete="off"
           rules={{
             required: isCreation,
-            validate: {
-              empty_field: checkEmptyTrimmed,
-            },
           }}
         />
         <InputPassword
