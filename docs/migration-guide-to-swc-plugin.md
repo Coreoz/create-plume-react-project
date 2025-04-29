@@ -21,7 +21,7 @@ Not using TypeScript anymore to transform TS code allows us to update to the lat
 - Migrate from `fetch-mock` to `msw` for mocking fetch requests
 - Update to `vite` 6.2.1
 - Update to `typescript` 5.8.2
-- Update `yarn` to 4.7.0
+- Update `yarn` to 4.9.1
 - Update to `eslint` 9.23.0
 
 ## Migrating from the previous version
