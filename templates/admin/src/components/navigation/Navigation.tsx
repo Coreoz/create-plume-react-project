@@ -5,7 +5,7 @@ import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
 import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
-import { routes, ROUTE_HOME } from '../../router/RouterDefinition';
+import { routes, ROUTE_HOME, ROUTE_TASKS } from '../../router/RouterDefinition';
 import Permission from '@services/session/Permission';
 import SessionService from '@services/session/SessionService';
 import LinkListItem from './LinkListItem';
@@ -51,6 +51,23 @@ export default function Navigation() {
                 route={routes[ROUTE_USERS]}
                 group={usersGroup}
                 label={messages.nav.user_list}
+                drawerOpen={isDrawerOpened}
+              />
+            </NestedListItem>
+          )
+        }
+        {
+          sessionService.hasPermission(Permission.MANAGE_SYSTEM)
+          && (
+            <NestedListItem
+              icon="manage_accounts"
+              label={messages.nav.tasks}
+              drawerOpen={isDrawerOpened}
+            >
+              <LinkListItem
+                icon="list_alt"
+                route={routes[ROUTE_TASKS]}
+                label={messages.nav.tasks}
                 drawerOpen={isDrawerOpened}
               />
             </NestedListItem>

@@ -1,0 +1,38 @@
+// Styles for the main container of the Scheduled Tasks page
+.pageContainer {
+  padding: $spacer-4; // Using variable for 1rem padding
+}
+
+// Styles for the page title
+.pageTitle {
+  /* Corresponds to old .content-title */
+  margin-bottom: $spacer-5; // Using variable for 1.5rem margin
+  font-size: $font-size-extra-large; // Using variable for 1.8rem font size
+  font-weight: $font-weight-bold; // Using variable for bold font weight
+}
+
+// Styles for the layout of the content (list and stats)
+.contentLayout {
+  /* Corresponds to old .content div */
+  display: flex;
+  flex-direction: column; /* Stack them vertically for now, can be row with flex-basis */
+  gap: $spacer-5; // Using variable for 1.5rem gap
+}
+
+/* If a two-column layout is desired like in some admin panels: */
+/*
+.contentLayout {
+  display: flex;
+  flex-direction: row;
+  gap: $spacer-5;
+}
+
+.taskListSection {
+  flex: 2; // Takes more space
+}
+
+.taskStatsSection {
+  flex: 1; // Takes less space (like width: 40% for old .thread-stats)
+  max-width: 400px; // Example max-width for stats
+}
+*/ 

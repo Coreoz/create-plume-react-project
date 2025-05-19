@@ -42,6 +42,7 @@ const frMessages: Translations = {
     home: 'Accueil',
     users: 'Gestion des utilisateurs',
     user_list: 'Utilisateurs',
+    tasks: 'Tâches planifiées',
   },
   // home
   home: {
@@ -119,6 +120,50 @@ const frMessages: Translations = {
     TOO_MANY_WRONG_ATTEMPS: (seconds: string) => `Suite à des erreurs dans la saisie de vos identifiants, votre compte est verrouillé pendant ${seconds} secondes, veuillez-vous reconnecter ultérieurement`,
     FIELD_REQUIRED: (fieldName: string) => `Le champ '${fieldName}' est requis`,
     MESSAGE: (message: string) => message,
+  },
+  tasks: {
+    pageTitle: 'Tâches planifiées',
+    listPanelTitle: 'Liste des tâches planifiées',
+    statsPanelTitle: 'Statistiques des threads',
+
+    columnName: 'Nom de la tâche',
+    columnFrequency: 'Fréquence',
+    columnExecutions: 'Nombre d\'exécutions',
+    columnNextExecution: 'Prochaine exécution',
+    columnLastStart: 'Début dernière exécution',
+    columnLastEnd: 'Fin dernière exécution',
+    columnStatus: 'Statut',
+    columnActions: 'Actions',
+
+    runTaskButton: 'Lancer',
+    deleteTaskButton: 'Supprimer',
+    confirmDeleteTaskTitle: 'Confirmation de suppression',
+    confirmDeleteTaskMessage: (taskName: string) => `Êtes-vous sûr de vouloir supprimer la tâche \'${taskName}\' ?`,
+
+    neverExecuted: 'Encore jamais exécuté',
+    executionDurationTooltip: (duration: number) => `Temps d'exécution : ${duration} ms`,
+    dateFormat: 'DD-MM-YYYY HH:mm:ss', // kk is non-standard, HH for 24hr
+
+    statsActiveThreads: 'Nombre de threads actives :',
+    statsInactiveThreads: 'Nombre de threads inactives :',
+    statsMinThreads: 'Nombre minimum de threads :',
+    statsMaxThreads: 'Nombre maximum de threads :',
+    statsLargestPool: 'Plus grand nombre de threads dans le pool :',
+
+    loading: 'Chargement en cours...',
+    errorFetching: 'Erreur lors de la récupération des données des tâches.',
+    noTasksFound: 'Aucune tâche planifiée pour le moment.',
+    taskExecutedSuccess: 'Tâche exécutée avec succès.',
+    taskDeletedSuccess: 'Tâche supprimée avec succès.',
+  },
+  common: {
+    // Assuming these might be new or need to be aligned
+    yes: 'Oui',
+    no: 'Non',
+    cancel: 'Annuler',
+    confirm: 'Confirmer',
+    delete: 'Supprimer',
+    error: 'Erreur',
   },
 } as const;
 

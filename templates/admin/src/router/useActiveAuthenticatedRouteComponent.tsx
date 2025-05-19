@@ -1,4 +1,5 @@
 import Home from '@components/features/Home';
+import ScheduledTasksPage from '@components/features/tasks/ScheduledTasksPage';
 import UserGroupRoot from '@lib/plume-admin-users/pages/UsersRoot';
 import { usersGroup } from '@lib/plume-admin-users/router/UsersRouter';
 import Permission from '@services/session/Permission';
@@ -6,7 +7,7 @@ import SessionService from '@services/session/SessionService';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
 import { JSX, useMemo } from 'react';
-import { ROUTE_HOME, useRoute, UseRoute } from './RouterDefinition';
+import { ROUTE_HOME, ROUTE_TASKS, useRoute, UseRoute } from './RouterDefinition';
 
 export default function useActiveAuthenticatedRouteComponent(): JSX.Element | null {
   const sessionService: SessionService = getGlobalInstance(SessionService);
@@ -17,6 +18,9 @@ export default function useActiveAuthenticatedRouteComponent(): JSX.Element | nu
   return useMemo(() => {
     if (route.name === ROUTE_HOME) {
       return <Home />;
+    }
+    if (route.name === ROUTE_TASKS) {
+      return <ScheduledTasksPage />;
     }
     if (usersGroup.has(route) && canManageUsers) {
       return <UserGroupRoot />;

@@ -1,0 +1,30 @@
+.taskStatsContainer {
+  /* Assuming this will be handled by a parent layout or grid system.
+     If .thread-stats from old scss (width: 40%) needs to be applied here, add it. */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.statItem {
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  /* Styles for the label part, e.g., "Active threads:" */
+  /* Already handled by direct text in the component */
+}
+
+.statValue {
+  font-weight: bold;
+}
+
+.activeValue {
+  composes: statValue;
+  color: #438945; /* from .thread-active */
+}
+
+.inactiveValue {
+  composes: statValue;
+  color: #E40C2B; /* from .thread-inactive */
+} 

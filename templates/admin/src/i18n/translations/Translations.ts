@@ -41,6 +41,7 @@ export type Translations = {
     home: string,
     users: string,
     user_list: string,
+    tasks: string,
   },
   // home
   home: {
@@ -114,5 +115,54 @@ export type Translations = {
     TOO_MANY_WRONG_ATTEMPS: (seconds: string) => string,
     FIELD_REQUIRED: (fieldName: string) => string,
     MESSAGE: (message: string) => string,
+  },
+  tasks: {
+    pageTitle: string,
+    listPanelTitle: string,
+    statsPanelTitle: string,
+
+    // Table headers
+    columnName: string,
+    columnFrequency: string,
+    columnExecutions: string,
+    columnNextExecution: string,
+    columnLastStart: string,
+    columnLastEnd: string,
+    columnStatus: string,
+    columnActions: string, // For buttons like Run/Delete
+
+    // Task actions
+    runTaskButton: string,
+    deleteTaskButton: string,
+    confirmDeleteTaskTitle: string,
+    confirmDeleteTaskMessage: (taskName: string) => string,
+
+    // Cell content / misc
+    neverExecuted: string,
+    executionDurationTooltip: (duration: number) => string,
+    dateFormat: string, // For displaying dates
+    // Example: specific status texts if needed, e.g. tasks.status.SUCCESS: string;
+
+    // Stats
+    statsActiveThreads: string,
+    statsInactiveThreads: string,
+    statsMinThreads: string,
+    statsMaxThreads: string,
+    statsLargestPool: string,
+
+    // General actions that might be used on this page
+    loading: string,
+    errorFetching: string,
+    noTasksFound: string,
+    taskExecutedSuccess: string,
+    taskDeletedSuccess: string,
+  },
+  common: {
+    yes: string,
+    no: string,
+    cancel: string,
+    confirm: string,
+    delete: string,
+    error: string,
   },
 };

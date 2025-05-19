@@ -1,0 +1,30 @@
+// Styles for the stats container
+.taskStatsContainer {
+  padding: $spacer-4; // Using variable for 1rem padding
+  border: 1px solid $separator-color; // Using variable for border color
+  border-radius: $border-radius-3; // Using variable for border radius
+}
+
+.statItem {
+  margin-bottom: $spacer-2; // Using variable for 0.5rem margin
+
+  &:last-child {
+    margin-bottom: 0; // No bottom margin for the last item
+  }
+}
+
+.statValue {
+  font-weight: $font-weight-bold; // Using variable for bold font weight
+  margin-left: $spacer-1; // Add a small space between label and value
+}
+
+// Specific colors for active and inactive stats
+.activeValue {
+  composes: statValue; // Inherit from statValue
+  color: $primary-color; // Using a primary color variable similar to old #438945
+}
+
+.inactiveValue {
+  composes: statValue; // Inherit from statValue
+  color: $red-danger; // Using a danger color variable similar to old #E40C2B
+} 

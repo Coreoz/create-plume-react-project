@@ -1,0 +1,35 @@
+.pageContainer {
+  padding: 1rem;
+}
+
+.pageTitle {
+  /* Corresponds to old .content-title */
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.contentLayout {
+  /* Corresponds to old .content div */
+  display: flex;
+  flex-direction: column; /* Stack them vertically for now, can be row with flex-basis */
+  gap: 1.5rem;
+}
+
+/* If a two-column layout is desired like in some admin panels: */
+/*
+.contentLayout {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.taskListSection {
+  flex: 2; // Takes more space
+}
+
+.taskStatsSection {
+  flex: 1; // Takes less space (like width: 40% for old .thread-stats)
+  max-width: 400px; // Example max-width for stats
+}
+*/ 

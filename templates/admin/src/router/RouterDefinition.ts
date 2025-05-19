@@ -3,6 +3,7 @@ import { createRouter, defineRoute } from 'type-route';
 
 export const LOGIN: 'login' = 'login';
 export const ROUTE_HOME: 'home' = 'home';
+export const ROUTE_TASKS: 'tasks' = 'tasks';
 
 export const { RouteProvider, useRoute, routes } = createRouter(
   {
@@ -11,6 +12,7 @@ export const { RouteProvider, useRoute, routes } = createRouter(
   {
     [LOGIN]: defineRoute('/login'),
     [ROUTE_HOME]: defineRoute('/'),
+    [ROUTE_TASKS]: defineRoute('/tasks'),
     ...usersRouteDefinitions,
   },
 );

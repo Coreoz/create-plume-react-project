@@ -1,0 +1,77 @@
+// Styles for the main container of the list
+.taskListContainer {
+  margin-top: $spacer-4; // Using variable for 1rem margin
+}
+
+// Styles for the task list table
+.taskListTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white; // Assuming white is a standard background, or use a variable if available for panel body background
+  
+  th,
+  td {
+    border: 1px solid $separator-color; // Using variable for border color
+    padding: $spacer-2 $spacer-3; // Using variables for padding
+    text-align: left;
+  }
+
+  th {
+    background-color: $gray-lighter; // Using variable for header background color
+  }
+}
+
+// Styles for task status text based on old .done, .scheduled, etc.
+// Using BEM-like structure with base status class and modifiers
+.status {
+  font-weight: $font-weight-bold; // Assuming status text is bold
+
+  &--done {
+    color: $gray-text; // Using variable similar to old #b0ada2
+  }
+
+  &--scheduled {
+    color: $secondary-color; // Using variable similar to old #EBA63F
+  }
+
+  &--ready {
+    color: $primary-color; // Using variable similar to old #3CBCC3, or a specific info/success color if available
+  }
+
+  &--running {
+    color: $red-danger; // Using variable similar to old #438945, or a specific running/progress color if available
+  }
+}
+
+.actionsCell {
+  button {
+    margin-right: $spacer-1; // Using variable for small right margin
+    padding: $spacer-1 $spacer-2; // Using variables for padding
+    border: none;
+    border-radius: $border-radius-3; // Using variable for border radius
+    cursor: pointer;
+  }
+}
+
+.runButton {
+  background-color: $primary-color; // Using variable similar to old info color
+  color: white; // Assuming white text on colored button
+
+  &:disabled {
+    background-color: $gray-light; // Using variable for disabled state
+  }
+}
+
+.deleteButton {
+  background-color: $red-danger; // Using variable for danger color
+  color: white; // Assuming white text on colored button
+}
+
+// Centering content in cells like old .rt-td if desired for specific columns
+.centeredCellContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+} 

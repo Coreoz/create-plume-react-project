@@ -42,6 +42,7 @@ const enMessages: Translations = {
     home: 'Home',
     users: 'User management',
     user_list: 'Users',
+    tasks: 'Scheduled Tasks',
   },
   // home
   home: {
@@ -119,6 +120,49 @@ const enMessages: Translations = {
     TOO_MANY_WRONG_ATTEMPS: (seconds: string) => `Due to login attempt errors, your account is locked for ${seconds} seconds, please try again later`,
     FIELD_REQUIRED: (fieldName: string) => `Field '${fieldName}' is required`,
     MESSAGE: (message: string) => message,
+  },
+  tasks: {
+    pageTitle: 'Scheduled Tasks',
+    listPanelTitle: 'Scheduled Tasks List',
+    statsPanelTitle: 'Thread Statistics',
+
+    columnName: 'Task Name',
+    columnFrequency: 'Frequency',
+    columnExecutions: 'Executions',
+    columnNextExecution: 'Next Execution',
+    columnLastStart: 'Last Start',
+    columnLastEnd: 'Last End',
+    columnStatus: 'Status',
+    columnActions: 'Actions',
+
+    runTaskButton: 'Run',
+    deleteTaskButton: 'Delete',
+    confirmDeleteTaskTitle: 'Confirm Deletion',
+    confirmDeleteTaskMessage: (taskName: string) => `Are you sure you want to delete the task \'${taskName}\'?`,
+
+    neverExecuted: 'Never executed',
+    executionDurationTooltip: (duration: number) => `Execution time: ${duration} ms`,
+    dateFormat: 'YYYY-MM-DD HH:mm:ss',
+
+    statsActiveThreads: 'Active threads:',
+    statsInactiveThreads: 'Inactive threads:',
+    statsMinThreads: 'Minimum threads:',
+    statsMaxThreads: 'Maximum threads:',
+    statsLargestPool: 'Largest pool size:',
+
+    loading: 'Loading...',
+    errorFetching: 'Error fetching task data.',
+    noTasksFound: 'No scheduled tasks at the moment.',
+    taskExecutedSuccess: 'Task executed successfully.',
+    taskDeletedSuccess: 'Task deleted successfully.',
+  },
+  common: {
+    yes: 'Yes',
+    no: 'No',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    delete: 'Delete',
+    error: 'Error',
   },
 } as const;
 
