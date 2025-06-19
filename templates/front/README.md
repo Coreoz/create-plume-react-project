@@ -151,3 +151,17 @@ export default function Component() {
 - Add the scss module in the same directory as the component in which it is used
 - Do not import the scss module in another component
 - Map your modifier class to a typescript enum
+
+Configuring ESLint in pipelines
+-------------------------------
+
+Three eslint commands are available:
+- `eslint`: Runs eslint on the whole project with the `eslint.ci.config.js` configuration
+- `eslint-local`: Runs eslint only on files that have changes between the current branch and the `main` branch with the `eslint.config.js` configuration
+- `eslint-pipeline`: Runs eslint only on files that have changes between the current branch and the targeted branch by the merge request with the `eslint.ci.config.js` configuration
+
+> Note 1: The target branch of the eslint-local command can be changed manually in the package.json file.  
+> Note 2: If the frontend project is located is not at the source of the git repository, add `sed 's#^<path to the frontend project from the root directory>/##'`  
+> Example: for a project located in `<project root>/front-ui`, the command for the `eslint-local` and `eslint-pipeline` become:  
+> `eslint-local: eslint --ext .ts,.tsx --no-ignore -c eslint.config.full.js $(git diff --name-only --diff-filter=AM dev/main -- './**/*.ts' './**/*.tsx' | sed 's#^front-ui/##')`  
+> Note 3: An error occurs when running `eslint-local` without any changes but it is not an issue  
