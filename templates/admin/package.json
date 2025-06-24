@@ -91,6 +91,8 @@
     "build": "rm -rf build && vite build",
     "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx -c eslint.ci.config.js",
+    "eslint-local": "eslint --ext .ts,.tsx --no-ignore -c eslint.config.js $(git diff --name-only --diff-filter=AM main -- './**/*.ts' './**/*.tsx'",
+    "eslint-pipeline": "eslint --ext .ts,.tsx --no-ignore -c eslint.ci.config.js $(git diff --name-only --diff-filter=AM \"origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME\" -- './**/*.ts' './**/*.tsx')",
     "typescript": "tsc --noEmit",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
