@@ -11,9 +11,30 @@ Front UI build:
     - yarn install
     # CI=false : avoid warnings to be treated as errors
     - CI=false yarn typescript
-    # Pipeline will use .eslintrc.ci.cjs configuration file (debugger/console.log are not allowed)
-    # You can configure your IDE to use .eslintrc.cjs for development if you want to allow debugger/console.log
-    - CI=false yarn eslint
+  tags:
+    - yarn
+
+ESlint analyze:
+  extends: .before_script_template
+  # Run when
+  # - the pipeline is triggered by a merge request event and there are changes in the src directory
+  # - the pipeline is triggered by a new commit on the default branch and there are changes in the src directory
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - src/**/*
+  script:
+    - yarn install
+    - git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    # Use different eslint command based on pipeline source
+    # For default branch: use yarn eslint (whole project is analyzed)
+    # For other pipelines: use yarn eslint-pipeline (only changed files are analyzed)
+    - |
+      if [ $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH ]; then
+        CI=false yarn eslint
+      else
+        CI=false yarn eslint-pipeline
+      fi
   tags:
     - yarn
 
