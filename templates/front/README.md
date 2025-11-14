@@ -165,3 +165,11 @@ Three eslint commands are available:
 > Example: for a project located in `<project root>/front-ui`, the command for the `eslint-local` and `eslint-pipeline` become:  
 > `eslint-local: eslint --ext .ts,.tsx --no-ignore -c eslint.config.full.js $(git diff --name-only --diff-filter=AM main -- './**/*.ts' './**/*.tsx' | sed 's#^front-ui/##')`  
 > Note 3: An error occurs when running `eslint-local` without any changes but it is not an issue  
+
+# Configure CSP using vite-plugin-content-security-policy
+
+Content Security Policy is a security feature to allow/block origins for multiple sources.  
+The [vite-plugin-content-security-policy](https://github.com/Coreoz/vite-plugin-content-security-policy) is used and configured in the `vite.configs.ts` of the project.  
+The CSP configuration is defined in `./content-security-policy/csp-configuration.ts`, the plugin will
+- apply this configuration in the development server
+- create a file containing the CSP header to add to your Nginx/Apache file

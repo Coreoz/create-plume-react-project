@@ -14,10 +14,14 @@
     <script>
       function optionalChainingUnsupported() {
         try {
-          eval('const f = {}; f?.b');
+          const test = { a: 1 };
+          test?.b;
           return false;
-        } catch(e) {
-          return true;
+        } catch(error) {
+          if (error instanceof SyntaxError) {
+            return true; // Not supported
+          }
+          throw error;
         }
       }
 

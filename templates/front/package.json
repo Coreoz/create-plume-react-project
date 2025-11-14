@@ -58,16 +58,17 @@
     "jsdom": "^20.0.1",
     "msw": "^2.7.3",
     "postcss": "latest",
-    "sass": "^1.55.0",
+    "sass": "^1.94.0",
     "storybook": "8.6.12",
     "stylelint": "^14.13.0",
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-scss": "^4.3.0",
     "swc-class-decorator-plugin": "^1.0.1",
-    "typed-scss-modules": "^7.1.1",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.5",
-    "vitest": "^3.1.1"
+    "typed-scss-modules": "^8.1.1",
+    "typescript": "^5.9.3",
+    "vite": "7.1.12",
+    "vite-plugin-content-security-policy": "^1.0.1",
+    "vitest": "3.2.4"
   },
   "browserslist": [
     "defaults",
@@ -92,7 +93,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.12.0",
   "engines": {
     "node": "~22"
   }
