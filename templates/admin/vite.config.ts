@@ -2,6 +2,11 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { Options } from '@swc/core';
+import {
+  cspConfigurationFileGenerationPlugin,
+  cspProxyPlugin,
+} from '../../../vite-plugin-content-security-policy';
+import { cspRules, Environment } from './content-security-policy/csp-configuration';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +18,26 @@ export default defineConfig({
         options.jsc!.experimental!.runPluginFirst = true;
       },
     }),
+    cspProxyPlugin<Environment>(
+      {
+        rules: cspRules,
+        noncesConfiguration: {
+          nonceTemplate: '{RANDOM}',
+          developmentKey: 'dev',
+        },
+      },
+    ),
+    cspConfigurationFileGenerationPlugin<Environment>(
+      {
+        rules: cspRules,
+        environments: new Set<Environment>(['int']),
+      },
+    ),
   ],
+  html: {
+    // Overridden by cspProxyPlugin in dev, used nominally when building the project
+    cspNonce: `<!--#echo var="CSP_NONCE" -->`,
+  },
   // uncomment the line with the base attribute to use the context path /admin/
   // base: '/admin/',
   build: {
