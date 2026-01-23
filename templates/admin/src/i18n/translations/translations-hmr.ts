@@ -1,4 +1,5 @@
 import { WritableObservable } from 'micro-observables';
+// @ts-expect-error IDE can well reference the type but tsc can not
 import { ModuleNamespace } from 'vite/types/hot';
 import { Translations } from './Translations';
 

@@ -3,7 +3,7 @@ Plume admin React TS
 
 Development workstation installation
 ------------------------------------
-Make sure you have at least node 18 installed.
+Make sure you have at least node 24 installed.
 
 Yarn is the preferred way to set up this project. To install it, follow the instructions detailed here: <https://yarnpkg.com/getting-started/install>.
 
@@ -32,6 +32,12 @@ Sometimes the first compilation fails.
 If that's the case:
 - If the application can be accessed in the browser at <http://localhost:3000>, it is possible to just reload the webpage: press `ctrl+r` keys
 - Else, you can force the first Typescript compilation with: `yarn build`
+
+Launching Storybook
+-------------------
+To start [Storybook](https://storybook.js.org/docs/react/writing-stories/introduction), run: `yarn storybook`
+
+Storybook is currently unplugged from Yarn PNP because it fails module resolution.
 
 Configuration after project creation
 ------------------------------------

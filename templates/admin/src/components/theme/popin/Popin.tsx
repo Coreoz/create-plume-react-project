@@ -1,4 +1,4 @@
-import scss from '@components/theme/popin/popin.module.scss';
+import scss from './popin.module.scss';
 import classNames from '@lib/class-names/ClassNames';
 import { PopinProps } from '@lib/plume-admin-theme/popin/PopinProps';
 import { Dialog } from '@mui/material';

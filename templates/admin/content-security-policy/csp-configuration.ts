@@ -1,15 +1,16 @@
-import { CspPolicies } from '../../../../vite-plugin-content-security-policy';
+import { CspPolicies } from 'vite-plugin-content-security-policy';
 
 // Add your environment here (e.g. ['dev', 'staging', 'production']
 export const ENVIRONMENTS: readonly ['dev'] = <const>['dev'];
-export type Environment = typeof ENVIRONMENTS[number];
+export type AppEnvironment = typeof ENVIRONMENTS[number];
 
-export const cspRules: CspPolicies<Environment> = {
+export const cspRules: CspPolicies<AppEnvironment> = {
   'default-src': '\'self\'',
   'script-src': {
     default: '\'self\' '
-      + '\'sha256-9ETCSkgKPALncds5uxSOcK3MXx5BAgviQvfr52+3sgQ=\' ' // For import source script
-      + '\'sha256-NEZvGkT0ZWP6XHdKYM4B1laRPcM6Lw4LJfkDtIEVAKc=\'', // For outdated browser script
+      + '\'sha256-NEZvGkT0ZWP6XHdKYM4B1laRPcM6Lw4LJfkDtIEVAKc=\' ' // For outdated browser script
+      + '\'sha256-9ETCSkgKPALncds5uxSOcK3MXx5BAgviQvfr52+3sgQ=\' '
+      + '\'sha256-Z2/iFzh9VMlVkEOar1f/oSHWwQk3ve1qk/C2WdsC4Xk=\' ', // For import source script
   },
   'style-src': {
     // %{CSP_NONCE}e will be replaced by Apache (use {RANDOM} for dev environment if needed,

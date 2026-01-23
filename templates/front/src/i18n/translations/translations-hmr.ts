@@ -1,5 +1,6 @@
 import { Translations } from '@i18n/translations/Translations';
 import { WritableObservable } from 'micro-observables';
+// @ts-expect-error IDE can well reference the type but tsc can not
 import { ModuleNamespace } from 'vite/types/hot';
 
 // Development hot reloading handling, see https://vitejs.dev/guide/api-hmr.html

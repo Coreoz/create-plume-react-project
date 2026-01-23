@@ -1,3 +1,4 @@
+// @ts-expect-error IDE can well reference the type but tsc can not
 import { ViteHotContext } from 'vite/types/hot';
 
 // This is needed in order to mock the import.meta.hot object which is not available in Jest
