@@ -5,7 +5,7 @@ import {
 import { createGroup } from 'type-route';
 import {
   DeclaredRoutePaths, routes, UseRoute, useRoute,
-} from '../../router/RouterDefinition';
+} from '@components/router/RouterDefinition';
 import { IconType } from '../theme/IconType';
 
 import scss from './navigation.module.scss';
