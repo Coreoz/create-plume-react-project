@@ -1,22 +1,43 @@
 import appLogo from '/assets/icons/plume_logo.png';
 import { SessionCredentials } from '@api/session/SessionApi';
 import useMessages from '@i18n/hooks/messagesHook';
-import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import {
+  useReturnAfterAccess,
+} from '@lib/plume-admin-redirect/RequiredAccessHooks';
+import useLoader, {
+  LoaderState,
+} from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import { Alert } from '@mui/material';
 import SessionService from '@services/session/SessionService';
+import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
+import {
+  session,
+  ROUTE_HOME,
+} from '../../router/RouterDefinition';
 import scss from './login.module.scss';
 import LoginForm from './LoginForm';
 
 export default function Login() {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const { messages, httpError } = useMessages();
+  const isAuthenticated: boolean = useObservable(sessionService.isAuthenticated());
 
   const loader: LoaderState = useLoader();
 
   const tryAuthenticate = (credentials: SessionCredentials) => {
     loader.monitor(sessionService.authenticate(credentials));
   };
+
+  useReturnAfterAccess({
+    hasAccess: isAuthenticated,
+    defaultRedirect: ROUTE_HOME,
+    navigate: (url: string) => session.push(url),
+  });
+
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className={scss.loginLayout}>

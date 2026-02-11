@@ -25,7 +25,7 @@ function LinkListItem<T extends DeclaredRoutePaths>(
     group,
     label,
     drawerOpen,
-  }: LinkListItemProps<T>,
+  }: Readonly<LinkListItemProps<T>>,
 ) {
   const activeRoute: UseRoute = useRoute();
 
@@ -38,7 +38,7 @@ function LinkListItem<T extends DeclaredRoutePaths>(
         (props: any) => <a {...props} {...route().link}>{label}</a>
       }
       to={activeRoute}
-      className={classNames({ routeIsActive })}
+      className={classNames({ [scss.active]: routeIsActive })}
     >
       <ListItemIcon className={scss.icon}>
         <Icon fontSize="large">{icon}</Icon>
