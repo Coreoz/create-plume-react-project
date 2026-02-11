@@ -14,13 +14,16 @@ export default function useActiveAuthenticatedRouteComponent(): JSX.Element | nu
 
   const route: UseRoute = useRoute();
 
-  return useMemo(() => {
-    if (route.name === ROUTE_HOME) {
-      return <Home />;
-    }
-    if (usersGroup.has(route) && canManageUsers) {
-      return <UserGroupRoot />;
-    }
-    return null;
-  }, [route.name, canManageUsers]);
+  return useMemo(
+    () => {
+      if (route.name === ROUTE_HOME) {
+        return <Home />;
+      }
+      if (usersGroup.has(route) && canManageUsers) {
+        return <UserGroupRoot />;
+      }
+      return null;
+    },
+    [route, canManageUsers],
+  );
 }

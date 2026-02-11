@@ -10,10 +10,11 @@
     "types": ["node", "vite/client", "@testing-library/jest-dom"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -34,6 +35,10 @@
   "include": [
     "src",
     "asset.d.ts",
-    "tests"
+    "tests",
+    ".storybook/**.ts",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "typed-scss-modules.config.ts"
   ],
 }

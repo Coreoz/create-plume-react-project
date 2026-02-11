@@ -1,6 +1,6 @@
 import { ActionButton, ActionsContainer } from '@components/theme/action/Actions';
 import ActionStyle from '@lib/plume-admin-theme/action/ActionStyle';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 // Correctly typed meta export for Storybook
 const meta: Meta<typeof ActionButton> = {

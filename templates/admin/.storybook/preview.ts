@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 
 // Import du CSS de l'application
 import '../assets/scss/app.scss';

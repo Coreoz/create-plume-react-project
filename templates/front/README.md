@@ -3,7 +3,7 @@ Plume React TS
 
 Development workstation installation
 ------------------------------------
-Make sure you have at least node 18 installed.
+Make sure you have at least node 24 installed.
 
 Yarn is the preferred way to set up this project. To install it, follow the instructions detailed here: <https://yarnpkg.com/getting-started/install>.
 
@@ -36,6 +36,8 @@ If that's the case:
 Launching Storybook
 -------------------
 To start [Storybook](https://storybook.js.org/docs/react/writing-stories/introduction), run: `yarn storybook`
+
+Storybook is currently unplugged from Yarn PNP because it fails module resolution.
 
 Configuration after project creation
 ------------------------------------

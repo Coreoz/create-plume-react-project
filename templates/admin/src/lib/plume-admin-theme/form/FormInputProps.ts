@@ -2,8 +2,7 @@ import { ElementType } from 'react';
 import {
   BaseTextFieldProps, FilledInputProps, SlotProps,
 } from '@mui/material';
-import { FieldError } from 'react-hook-form';
-import { RegisterOptions } from 'react-hook-form/dist/types/validator';
+import { FieldError, RegisterOptions } from 'react-hook-form';
 
 type DataTestIdPropsOverride = {
   'data-testid'?: string,
