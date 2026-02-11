@@ -8,8 +8,7 @@ export const cspRules: CspPolicies<AppEnvironment> = {
   'default-src': '\'self\'',
   'script-src': {
     default: '\'self\' '
-      + '\'sha256-NEZvGkT0ZWP6XHdKYM4B1laRPcM6Lw4LJfkDtIEVAKc=\' ' // For outdated browser script
-      + '\'sha256-9ETCSkgKPALncds5uxSOcK3MXx5BAgviQvfr52+3sgQ=\' '
+      + '\'sha256-9ETCSkgKPALncds5uxSOcK3MXx5BAgviQvfr52+3sgQ=\' ' // For outdated browser script
       + '\'sha256-Z2/iFzh9VMlVkEOar1f/oSHWwQk3ve1qk/C2WdsC4Xk=\' ', // For import source script
   },
   'style-src': {
