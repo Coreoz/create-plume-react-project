@@ -5,7 +5,7 @@ import plumeLogo from '../../../assets/icons/plume_logo.png';
 import useMessages, { Messages } from '@i18n/hooks/messagesHook';
 import classNames from '@lib/class-names/ClassNames';
 import useToggle from '@lib/react-hook-toggle/ReactHookToggle';
-import { routes, ROUTE_HOME } from '../../router/RouterDefinition';
+import { routes, ROUTE_HOME } from '@components/router/RouterDefinition';
 import Permission from '@services/session/Permission';
 import SessionService from '@services/session/SessionService';
 import LinkListItem from './LinkListItem';
