@@ -1,4 +1,5 @@
 import Home from '@components/features/Home';
+import Navigate from '@lib/plume-admin-router/Navigate.tsx';
 import {
   useRequireAccess,
 } from '@lib/plume-admin-redirect/RequiredAccessHooks';
@@ -8,7 +9,7 @@ import Permission from '@services/session/Permission';
 import SessionService from '@services/session/SessionService';
 import { useObservable } from 'micro-observables';
 import { getGlobalInstance } from 'plume-ts-di';
-import { JSX, useMemo } from 'react';
+import { JSX } from 'react';
 import {
   LOGIN,
   REDIRECT_PARAM,
@@ -19,7 +20,7 @@ import {
   UseRoute,
 } from './RouterDefinition';
 
-export default function useAuthenticatedRouter(): JSX.Element | null {
+export default function AuthenticatedRouter(): JSX.Element | null {
   const sessionService: SessionService = getGlobalInstance(SessionService);
   const canManageUsers: boolean = useObservable(sessionService.hasPermission(Permission.MANAGE_USERS));
   const isAuthenticated: boolean = useObservable(sessionService.isAuthenticated());
@@ -36,21 +37,17 @@ export default function useAuthenticatedRouter(): JSX.Element | null {
     navigate: (url: string) => session.push(url),
   });
 
-  return useMemo(() => {
-    if (!allowed) {
-      return null;
-    }
+  if (!allowed) {
+    return null;
+  }
 
-    if (route.name === ROUTE_HOME) {
-      return <Home />;
-    }
+  if (route.name === ROUTE_HOME) {
+    return <Home />;
+  }
 
-    if (usersGroup.has(route) && canManageUsers) {
-      return <UsersModule />;
-    }
+  if (usersGroup.has(route) && canManageUsers) {
+    return <UsersModule />;
+  }
 
-    // default route if no other route matches
-    routes[ROUTE_HOME]().push();
-    return <></>;
-  }, [allowed, route, canManageUsers]);
+  return <Navigate to={routes[ROUTE_HOME]()} />;
 }

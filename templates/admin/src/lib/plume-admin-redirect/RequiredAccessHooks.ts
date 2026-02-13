@@ -29,7 +29,7 @@ type RequireAccessOpts = {
   hasAccess: boolean,
   currentUrl: string, // the router provides this
   fallbackUrl: string,
-  navigate: (url: string) => void, // the router's navigate/push fn
+  navigate: (url: string) => void, // the router's navigate/push function
   useQueryParam?: boolean,
   paramName?: string,
   shouldRedirect?: boolean, // skipping redirect on login page to avoid loop
