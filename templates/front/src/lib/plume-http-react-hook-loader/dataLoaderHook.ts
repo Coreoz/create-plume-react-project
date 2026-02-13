@@ -36,7 +36,6 @@ export default function useDataLoader<T>(
       // mark the component as unmounted
       isMountedRef.current = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   return {

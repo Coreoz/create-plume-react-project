@@ -2,8 +2,7 @@ import UsersRouterComponent from '@lib/plume-admin-users/router/UsersRouterCompo
 import useLoader from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useNotification from '@lib/plume-notification/NotificationHook';
 import { getGlobalInstance } from 'plume-ts-di';
-import { useState } from 'react';
-import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
+import { useEffect, useState } from 'react';
 import { AdminRole, AdminUsersDetails } from '../api/AdminUserTypes';
 import UserApi from '../api/UserApi';
 import {
@@ -41,10 +40,10 @@ export default function Users() {
     );
   };
 
-  // users are loaded from the main component, so it can be reused in the two sub component list & edit
-  useOnComponentMounted(() => {
+  // users are loaded from the main component, so it can be reused in the two subcomponent list & edit
+  useEffect(() => {
     updateUsersAndRoles();
-  });
+  }, []);
 
   return (
     <>

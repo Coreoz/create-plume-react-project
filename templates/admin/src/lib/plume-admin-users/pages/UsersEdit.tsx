@@ -6,10 +6,9 @@ import { makeErrorMessageMapping } from '@lib/plume-form-error-messages/FormErro
 import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useNotification, { PlumeNotification } from '@lib/plume-notification/NotificationHook';
 import useConfirmationPopIn, { ConfirmationPopInType } from '@lib/react-hook-confirm/ReactHookConfirm';
-import { useOnDependenciesChange } from '@lib/react-hooks-alias/ReactHooksAlias';
 import dayjs from 'dayjs';
 import { getGlobalInstance } from 'plume-ts-di';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { HttpError } from 'simple-http-rest-client';
 import isEmail from 'validator/lib/isEmail';
@@ -77,7 +76,7 @@ export default function UsersEdit(
   } = formContext;
 
   // when the users are loaded from the upper component, we need update the form with the new values
-  useOnDependenciesChange(() => reset(userToEdit), [userToEdit, reset]);
+  useEffect(() => reset(userToEdit), [userToEdit, reset]);
 
   // data validation
 
