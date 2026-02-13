@@ -1,8 +1,8 @@
-import { routes } from '@components/router/RouterDefinition.ts';
+import { DeclaredRoutePaths, routes } from '@components/router/RouterDefinition.ts';
 import { useEffect } from 'react';
 
 type NavigateProps = {
-  to: ReturnType<typeof routes[unknown]>,
+  to: ReturnType<typeof routes[DeclaredRoutePaths]>,
 };
 
 function Navigate(
@@ -12,7 +12,6 @@ function Navigate(
 ): null {
   useEffect(() => {
     to.push();
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- need to run only once on mount
   }, []);
 
   return null;
