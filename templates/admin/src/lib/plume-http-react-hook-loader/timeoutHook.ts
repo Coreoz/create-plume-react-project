@@ -56,7 +56,6 @@ export default function useTimeout(callback: () => void, delayInMillis: number) 
   useEffect(() => {
     startTimeout();
     return stopTimeout;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const restartTimeout = () => {

@@ -1,6 +1,5 @@
-import { RefObject, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { AnyPromise } from './AnyPromise';
-import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Function calls when the {@link Promise} resolution happens after the component has been unmounted.
@@ -52,9 +51,11 @@ export interface StopPromisePropagationAfterUnmount {
 export default function useUnmountablePromises(): StopPromisePropagationAfterUnmount {
   const isMountedRef: RefObject<boolean> = useRef<boolean>(true);
 
-  useOnComponentUnMounted(() => {
-    isMountedRef.current = false;
-  });
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   return <T, E>(promise: AnyPromise<T, E>, onUnmountedResolution?: OnUnmountedResolution<T, E>): AnyPromise<T, E> => (
     // the idea is to not resolve or reject the Promise in case the component is not Mounted anymore

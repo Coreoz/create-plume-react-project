@@ -1,7 +1,6 @@
 import { Observable, useObservable } from 'micro-observables';
-import { DependencyList, RefObject, useRef, useState } from 'react';
+import { DependencyList, RefObject, useEffect, useRef, useState } from 'react';
 import { HttpError } from 'simple-http-rest-client';
-import { useEffectWithSsrSupport, useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 /**
  * Describe an {@link Observable} data and the function to trigger the loading of this data.
@@ -148,9 +147,11 @@ export function useObservableLoaderConfigurable<T extends ObservableDataHandler<
     }
   };
 
-  useOnComponentUnMounted(() => {
-    isMountedRef.current = false;
-  });
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   // try to load the data
   config.useOnComponentMountedHook(loaderWithErrorHandling);
@@ -182,7 +183,6 @@ export function useObservableLoader<T extends ObservableDataHandler<any>[]>(
 ): DataLoader<unknown[]> {
   return useObservableLoaderConfigurable({
     observableSources,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useOnComponentMountedHook: (onMounted: () => void) => useEffectWithSsrSupport(onMounted, dependencies),
+    useOnComponentMountedHook: (onMounted: () => void) => useEffect(onMounted, dependencies),
   });
 }

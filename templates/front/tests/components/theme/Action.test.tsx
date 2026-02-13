@@ -2,7 +2,7 @@ import { ActionButton } from '@components/theme/action/Actions';
 import installI18nModule from '@i18n/i18n-module';
 import { render, screen } from '@testing-library/react';
 import { configureGlobalInjector, Injector } from 'plume-ts-di';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, beforeAll } from 'vitest';
 import { createInjector } from '../../TestUtils';
 
 describe('ActionButton', () => {

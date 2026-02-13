@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import { getGlobalInstance } from 'plume-ts-di';
 import { Sample } from '@api/session/SampleApi';
-import SampleService from '@services/sample/SampleService';
-import { useOnComponentMounted } from '@lib/react-hooks-alias/ReactHooksAlias';
-import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
 import useMessages from '@i18n/hooks/messagesHook';
+import useLoader, { LoaderState } from '@lib/plume-http-react-hook-loader/promiseLoaderHook';
+import SampleService from '@services/sample/SampleService';
+import { getGlobalInstance } from 'plume-ts-di';
+import { useEffect, useState } from 'react';
 
 import scss from './home.module.scss';
 
@@ -14,12 +13,12 @@ export default function Home() {
   const loader: LoaderState = useLoader();
   const [sample, setSample] = useState<Sample>();
 
-  useOnComponentMounted(() => {
+  useEffect(() => {
     loader.monitor(sampleService
       .sayHello('World')
       .then(setSample),
     );
-  });
+  }, []);
 
   return (
     <div id={scss.homeLayout}>

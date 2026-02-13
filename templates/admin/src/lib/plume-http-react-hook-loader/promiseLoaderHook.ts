@@ -1,8 +1,7 @@
-import { RefObject, useRef, useState } from 'react';
-import { Logger } from 'simple-logging-system';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { genericError, HttpError, isHttpError } from 'simple-http-rest-client';
+import { Logger } from 'simple-logging-system';
 import { AnyPromise } from './AnyPromise';
-import { useOnComponentUnMounted } from '../react-hooks-alias/ReactHooksAlias';
 
 const logger: Logger = new Logger('promiseLoaderHook');
 
@@ -65,9 +64,11 @@ export default function useLoader(): LoaderState {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [loadingError, setLoadingError] = useState<HttpError>();
 
-  useOnComponentUnMounted(() => () => {
-    isMountedRef.current = false;
-  });
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   return {
     isLoading: isLoading ?? false,
