@@ -3162,9 +3162,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browser-user-session@npm:1.0.4":
-  version: 1.0.4
-  resolution: "browser-user-session@npm:1.0.4"
+"browser-user-session@npm:1.0.5":
+  version: 1.0.5
+  resolution: "browser-user-session@npm:1.0.5"
   dependencies:
     js-base64: "npm:^3.7.5"
   peerDependencies:
@@ -3173,7 +3173,7 @@ __metadata:
     simple-http-rest-client: ^2.1.0
     simple-job-scheduler: ^1.1.2
     simple-logging-system: ^1.1.0
-  checksum: 10/427bc6f121c1769da608374c7a742d59e5b93e2879358d03eafc9cbe4f27bcc14791e9c79af4f26289e292280ea0aff0f404064bec3903d0b3f790f58ea203ed
+  checksum: 10/10257e1c5db45dfcdf597c0d6eea8534c93ea7d9cf1a0c9adb86c637d9c1763f69fa88604b638922f436ae03797dfad94ff054986a9cdbc1357da797182e540c
   languageName: node
   linkType: hard
 
@@ -8378,7 +8378,7 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:^4.2.2"
     "@vitest/coverage-v8": "npm:^4.0.18"
     autoprefixer: "npm:latest"
-    browser-user-session: "npm:1.0.4"
+    browser-user-session: "npm:1.0.5"
     clsx: "npm:^2.1.1"
     concurrently: "npm:^7.4.0"
     dayjs: "npm:^1.11.19"
