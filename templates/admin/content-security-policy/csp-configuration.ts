@@ -24,4 +24,5 @@ export const cspRules: CspPolicies<AppEnvironment> = {
   'img-src': '\'self\'',
   'connect-src': '\'self\'',
   'media-src': '\'self\'',
+  'base-uri': '\'none\'',
 };
