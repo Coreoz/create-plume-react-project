@@ -8418,7 +8418,7 @@ __metadata:
     typescript: "npm:^5.9.3"
     validator: "npm:^13.15.25"
     vite: "npm:^7.3.1"
-    vite-plugin-content-security-policy: "npm:^1.0.1"
+    vite-plugin-content-security-policy: "npm:^1.0.2"
     vitest: "npm:^4.0.18"
   dependenciesMeta:
     "@storybook/addon-docs@10.2.0":
@@ -8784,12 +8784,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-content-security-policy@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "vite-plugin-content-security-policy@npm:1.0.1"
+"vite-plugin-content-security-policy@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "vite-plugin-content-security-policy@npm:1.0.2"
   dependencies:
     simple-logging-system: "npm:^1.1.0"
-  checksum: 10/1ecd49a6fee8ee17ef11e750d3e562f4248253182db56194527a7448231372bc566234fb87e7909ea94616fa3d07e3158642d71ed21d56ed78630696f2a8351d
+  checksum: 10/e3615def8a8c781825c3a88733d5676e9845f32746b7838320542b8f56703901990ff15fac3da757ff29bea05c2000d163387b27d28ee6bf41f6b9c4852176d8
   languageName: node
   linkType: hard
 
