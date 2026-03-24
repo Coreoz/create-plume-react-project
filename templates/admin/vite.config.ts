@@ -21,10 +21,10 @@ if (!isVitest) {
   vitePlugins.push(
     cspProxyPlugin<AppEnvironment>(
       {
+        developmentKey: 'dev',
         rules: cspRules,
         noncesConfiguration: {
           nonceTemplate: '{RANDOM}',
-          developmentKey: 'dev',
         },
       },
     ),
