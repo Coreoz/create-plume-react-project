@@ -1,0 +1,4 @@
+#set($kebabCase = $NAME.replaceAll("([A-Z])", "-$1").toLowerCase().substring(1))
+.${kebabCase} {
+
+}

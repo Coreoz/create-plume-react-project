@@ -22,7 +22,9 @@ bin/
 .README.md.html
 
 # Intellij
-.idea/
+.idea/*
+!.idea/fileTemplates
+!.idea/file.template.settings.xml
 *.iml
 *.iws
 
