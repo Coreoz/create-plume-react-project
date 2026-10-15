@@ -26,11 +26,11 @@ If you are using VSCode, you need to also execute `yarn dlx @yarnpkg/sdks vscode
 Launching the application
 -------------------------
 To start the application, you need to run: `yarn start`.
-Then, the application can be accessed at <http://localhost:3000>.
+Then, the application can be accessed at <http://localhost:5173>.
 
 Sometimes the first compilation fails.
 If that's the case:
-- If the application can be accessed in the browser at <http://localhost:3000>, it is possible to just reload the webpage: press `ctrl+r` keys
+- If the application can be accessed in the browser at <http://localhost:5173>, it is possible to just reload the webpage: press `ctrl+r` keys
 - Else, you can force the first Typescript compilation with: `yarn build`
 
 Launching Storybook
