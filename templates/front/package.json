@@ -76,7 +76,7 @@
   "scripts": {
     "start": "concurrently \"yarn watch-scss-module\" \"yarn vite\"",
     "watch-scss-module": "typed-scss-modules 'src/**/*.scss' -w -u",
-    "build": "rm -rf build && vite build",
+    "build": "node -e \"require('node:fs').rmSync('build',{recursive:true,force:true})\" && vite build",
     "stylelint": "stylelint '**/*.scss'",
     "eslint": "eslint src --ext .ts,.tsx -c eslint.ci.config.js",
     "eslint-local": "eslint --ext .ts,.tsx --no-ignore -c eslint.config.js $(git diff --name-only --diff-filter=AM main -- './**/*.ts' './**/*.tsx'",

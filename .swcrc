@@ -1,0 +1,21 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "dynamicImport": true
+    },
+    "target": "es2022",
+    "keepClassNames": true,
+    "experimental": {
+      "plugins": [
+        ["swc-class-decorator-plugin", { "log": "Info" }]
+      ],
+      "runPluginFirst": true
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "sourceMaps": true
+}

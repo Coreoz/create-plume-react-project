@@ -21,11 +21,7 @@
     "noImplicitAny": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "plugins": [
-      {"transform": "./di-transformer-adapter.ts" },
-      {"transform": "ts-transformer-classname" },
-    ]
+    "noImplicitThis": true
   },
   "include": [
     "src",

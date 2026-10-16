@@ -1,4 +1,0 @@
-build/*
-templates/*
-di-transformer-adapter.ts
-.eslintrc.js
