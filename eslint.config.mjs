@@ -5,12 +5,9 @@ import importPlugin from 'eslint-plugin-import';
 import airbnbTs from 'eslint-config-airbnb-typescript';
 import stylistic from '@stylistic/eslint-plugin';
 
-/**
- * ESLint 9 flat configuration (see the sibling TypeScript libraries for the same approach).
- *
- * @type {import('eslint').Linter.Config[]}
- */
+/** @type {import('eslint').Linter.Config[]} */
 export default [
+  stylistic.configs.recommended,
   {
     ignores: [
       'build/*',
@@ -35,6 +32,14 @@ export default [
     },
     rules: {
       '@stylistic/max-len': ['error', { code: 120 }],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/indent': ['error', 2, { offsetTernaryExpressions: false }],
+      '@stylistic/quote-props': ['error', 'as-needed'],
+      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
+      '@stylistic/function-paren-newline': 'off',
+      '@stylistic/multiline-ternary': ['error', 'always-multiline'],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/linebreak-style': 'off',
       'no-continue': 'error',
       'import/prefer-default-export': 'off',
       'import/no-absolute-path': 'off',
@@ -61,6 +66,17 @@ export default [
       // Allow defining using functions before their declaration
       '@typescript-eslint/no-use-before-define': ['error', {
         functions: false,
+      }],
+      // Uniformize TS type members delimiter (comma instead of semicolon)
+      '@stylistic/member-delimiter-style': ['error', {
+        multiline: {
+          delimiter: 'comma',
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: 'comma',
+          requireLast: false,
+        },
       }],
     },
   },

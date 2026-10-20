@@ -28,7 +28,6 @@ export default class ServerLogger {
   }
 
   private static internalLog(level: LoggerLevel, message: string, ...args: unknown[]) {
-    // eslint-disable-next-line no-console
     console.log(
       `${ServerLogger.levelToColor(level)}%s\x1b[0m`,
       message,
