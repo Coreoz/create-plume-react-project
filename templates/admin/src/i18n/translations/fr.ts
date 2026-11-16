@@ -116,6 +116,7 @@ const frMessages: Translations = {
     TIMEOUT_ERROR: 'Erreur réseau (timeout), votre connexion internet ou le serveur distant semble indisponible',
     FORBIDDEN_ERROR: 'Il semble que vous n\'avez pas accès à cette ressource ou à cette action',
     WRONG_LOGIN_OR_PASSWORD: 'Nom d\'utilisateur ou mot de passe incorrect',
+    CONTENT_SIZE_LIMIT_EXCEEDED: 'Le contenu envoyé est trop volumineux pour le serveur',
     TOO_MANY_WRONG_ATTEMPS: (seconds: string) => `Suite à des erreurs dans la saisie de vos identifiants, votre compte est verrouillé pendant ${seconds} secondes, veuillez-vous reconnecter ultérieurement`,
     FIELD_REQUIRED: (fieldName: string) => `Le champ '${fieldName}' est requis`,
     MESSAGE: (message: string) => message,

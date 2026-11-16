@@ -70,6 +70,7 @@ export type Translations = {
     TIMEOUT_ERROR: string,
     FORBIDDEN_ERROR: string,
     WRONG_LOGIN_OR_PASSWORD: string,
+    CONTENT_SIZE_LIMIT_EXCEEDED: string,
     TOO_MANY_WRONG_ATTEMPS: (seconds: string) => string,
     FIELD_REQUIRED: (fieldName: string) => string,
     MESSAGE: (message: string) => string,
